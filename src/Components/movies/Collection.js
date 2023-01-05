@@ -4,15 +4,13 @@ import MoviesList from './MoviesList'
 const Collection = () => {
     return (
         <React.Fragment>
-            <section className='content'>
-                <div className="row">
-                    <div className="col-md-12 movie-wrapper">
-                        <div id="results">
-                            <MoviesList />
-                        </div>
+            <div className="row">
+                <div className="col-md-12 collection-wrapper">
+                    <div id="results">
+                        <MoviesList />
                     </div>
                 </div>
-            </section>
+            </div>
         </React.Fragment>
     )
 }
