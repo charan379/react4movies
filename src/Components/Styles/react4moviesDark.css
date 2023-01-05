@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(0, 0, 0, 0.943);
+    background-color: rgba(24, 23, 23, 0.943);
     overflow-y: scroll;
 }
 
@@ -66,8 +66,8 @@ body {
 
     .movie-box:hover{
         box-shadow: 0 10px 80px rgba(132, 2, 246, 0.19);
-        transition: transform 1.5s;
-        transform-origin: top bottom right left;
+        transition: transform 0.5s;
+        transform-origin: top;
         transform: scale(1.2);
     }
 
