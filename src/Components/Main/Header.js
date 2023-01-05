@@ -14,11 +14,20 @@ const Header = () => {
                     <li className='nav-item' >
                         <i className="fa fa-user-o " aria-hidden="true"></i>
                     </li> */}
+                    {/* <li className='nav-item' >
+                        <img className='nav-img' src={user} ></img>
+                    </li> */}
+                    <div class="navbar-dropdown">
                     <li className='nav-item' >
                         <img className='nav-img' src={user} ></img>
                     </li>
-                   
-                    
+                        <div class="navbar-dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+
                 </ul>
             </nav>
         </>
