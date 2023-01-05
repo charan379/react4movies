@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Header from './Components/Main/Header'
 import Collection from './Components/Movies/Collection'
 
 const App = () => {
@@ -11,7 +12,12 @@ const App = () => {
   }
 
   return (
-    <Collection />
+    <>
+      <Header/>
+      <Collection />
+      
+    
+    </>
   )
 }
 
