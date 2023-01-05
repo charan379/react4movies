@@ -3,20 +3,22 @@ import Header from './Components/Main/Header'
 import Collection from './Components/Movies/Collection'
 
 const App = () => {
-  const [theme,setTheme] = useState("lack")
-  if(theme === "black"){
+  const [theme, setTheme] = useState("lack")
+  if (theme === "black") {
     import('./Components/Styles/react4moviesDark.css')
   }
-  else{
+  else {
     import('./Components/Styles/react4movies.css')
   }
 
   return (
     <>
-      <Header/>
-      <Collection />
-      
-    
+      <div >
+        <Header />
+        <Collection />
+      </div>
+
+
     </>
   )
 }
