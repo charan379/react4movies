@@ -1,5 +1,5 @@
 import React from 'react'
-import user from '../Static/Icons/user.svg'
+import user from '../static/icons/user.svg'
 const Header = () => {
     return (
         <>
