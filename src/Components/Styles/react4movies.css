@@ -1,12 +1,21 @@
+/* Body */
+
 body {
     overflow-y: scroll;
 }
 
-/* movies */
-.movie-wrapper {
-    text-align: center;
+/* movies  */
+
+/*  movies list wrapper */
+.collection-wrapper {   
+    text-align: center; /*  center all the contnets */
 }
 
+
+/* just a wraper to  */
+.movies {
+    align-items: center;
+}
 .movies .movie-box {
     display: inline-block;
     box-sizing: border-box;
@@ -107,7 +116,7 @@ body {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 2;
     border-radius: 10px;
     box-shadow: -11px -10px 111px 12px rgba(19, 19, 153, 1);
 }
@@ -133,7 +142,9 @@ body {
     background-color: #3e8e41;
 }
 
-
+.navbar-dropdown .navbar-dropdown-content.show {
+    display: block;
+}
 
 
 @media (max-width : 580px) {
