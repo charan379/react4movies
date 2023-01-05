@@ -16,7 +16,7 @@ const MoviesList = () => {
                 <div className='movie-cover'>
                   {/* if image is avaliable in local */}
                   {/* <img className='' src='https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt=''></img> */}
-                  <img src={require('../Styles/matrix.jpg')}></img>
+                  <img src={require('../styles/matrix.jpg')}></img>
                   {/* if no image */}
                   {/* <div className='movie-nocover'></div> */}
                 </div>
