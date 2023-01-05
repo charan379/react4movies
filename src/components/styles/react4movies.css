@@ -173,7 +173,7 @@ body {
 
     .movie-box:hover {
         box-shadow: -11px -10px 111px 12px rgba(19, 19, 153, 1);
-        border-radius: 5px 5px 20px 20px;
+        border-radius: 5px 5px 10px 10px;
         transition: transform 1.5s, border-radius 2.5s;
         transform-origin: top bottom right left;
         transform: scale(1.5);
