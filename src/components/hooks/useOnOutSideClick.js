@@ -6,11 +6,12 @@ function useOnOutSideClick(ref, handlerFunc) {
             const listner = (event) => {
                 // Do nothing if clicking ref's element or descendent elements
                 if (!ref.current ||ref.current.contains(event.target)) {
-                    // console.log(dropdownRef.current)
                     // console.log(event.target)
+                    // console.log(ref.current)
                     return;
                 }
                 // console.log(event.target)
+                // console.log(ref.current)
                 handlerFunc();
             }
 
