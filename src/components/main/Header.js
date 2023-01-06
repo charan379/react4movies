@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import useOnOutSideClick from '../hooks/useOnOutSideClick';
 import user from '../static/icons/user.svg'
+
+
 const Header = () => {
+    
+    //  is dropdown open State
+    const [isDropdwonOpen,setDropdownOpen] = useState(false);
+    const dropdownRef = useRef();
+    useOnOutSideClick(dropdownRef, () => setDropdownOpen(false))
     return (
         <>
             <nav className='navbar'>
@@ -17,11 +25,11 @@ const Header = () => {
                     {/* <li className='nav-item' >
                         <img className='nav-img' src={user} ></img>
                     </li> */}
-                    <div class="navbar-dropdown">
+                    <div ref={dropdownRef} className="navbar-dropdown" onClick={()=>setDropdownOpen(true)}>
                     <li className='nav-item' >
                         <img className='nav-img' src={user} ></img>
                     </li>
-                        <div class="navbar-dropdown-content">
+                        <div className={isDropdwonOpen ? "navbar-dropdown-content show" : "navbar-dropdown-content"}>
                             <a href="#">Link 1</a>
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
