@@ -14,7 +14,7 @@ function useOnOutSideClick(ref, handlerFunc) {
                 // console.log(ref.current)
                 handlerFunc();
             }
-
+                
             document.addEventListener("mousedown", listner);
             document.addEventListener("touchstart", listner)
 
@@ -22,7 +22,7 @@ function useOnOutSideClick(ref, handlerFunc) {
                 document.addEventListener("mousedown", listner);
                 document.addEventListener("touchstart", listner)
             }
-        }, []
+        }, [ref,handlerFunc]
     )
 }
 
