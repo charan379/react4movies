@@ -176,6 +176,6 @@ body {
         border-radius: 5px 5px 10px 10px;
         transition: transform 1.5s, border-radius 2.5s;
         transform-origin: top bottom right left;
-        transform: scale(1.5);
+        transform: scale(1.2);
     }
 }
