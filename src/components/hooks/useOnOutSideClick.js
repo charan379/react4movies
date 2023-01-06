@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
-function useOnOutSideClick(dropdownRef, handlerFunc) {
+function useOnOutSideClick(ref, handlerFunc) {
     useEffect(
         () => {
             const listner = (event) => {
                 // Do nothing if clicking ref's element or descendent elements
-                if (!dropdownRef.current || dropdownRef.current.contains(event.target)) {
+                if (!ref.current ||ref.current.contains(event.target)) {
                     // console.log(dropdownRef.current)
                     // console.log(event.target)
                     return;
