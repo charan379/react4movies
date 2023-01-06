@@ -16,6 +16,8 @@ body {
 .movies {
     align-items: center;
 }
+
+
 .movies .movie-box {
     display: inline-block;
     box-sizing: border-box;
@@ -164,7 +166,7 @@ body {
     }
 
     .navbar .nav-title {
-        display: none;
+        display: block;
     }
     
 }
