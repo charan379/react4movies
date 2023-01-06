@@ -134,9 +134,9 @@ body {
     background-color: #f1f1f1
 }
 
-.navbar-dropdown:hover .navbar-dropdown-content {
+/* .navbar-dropdown:hover .navbar-dropdown-content {
     display: block;
-}
+} */
 
 .navbar-dropdown:hover .dropbtn {
     background-color: #3e8e41;
