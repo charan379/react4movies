@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import useOnOutSideClick from '../hooks/useOnOutSideClick';
 import user from '../static/icons/user.svg'
 
@@ -8,7 +8,7 @@ const Header = () => {
     //  is dropdown open State
     const [isDropdwonOpen,setDropdownOpen] = useState(false);
     const dropdownRef = useRef();
-    useOnOutSideClick(dropdownRef, () => setDropdownOpen(false))
+    useOnOutSideClick(dropdownRef, useCallback(()=>{setDropdownOpen(false)}))
     return (
         <>
             <nav className='navbar'>
