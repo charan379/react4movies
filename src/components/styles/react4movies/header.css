@@ -1,0 +1,109 @@
+@import './theme.css';
+
+/* Header  */
+/* Nav Bar */
+.navbar {
+    display: flex;
+    padding: 5px 5px 5px 15px;
+    /* background-color: #5107c0; */
+    color: white;
+    z-index: 0;
+    position: sticky;
+    top: 0;
+}
+
+.navbar.light {
+    background-color: rgb(167, 162, 162);
+    /* background-color: var(--ui-elemnet-light); */
+}
+.navbar.dark {
+    background-color: #100f0f;
+    /* background-color: var(--ui-elemnet-dark); */
+}
+
+.navbar .nav-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    word-spacing: 1.6px;
+    color: #FFF;
+    font-weight: normal;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+
+.navbar .nav-items .nav-item {
+    list-style: none;
+    display: inline;
+    padding: 0 2px 0 2px;
+    text-align: right;
+
+}
+
+.navbar .nav-items {
+    margin-bottom: auto;
+    margin-left: auto;
+}
+
+.nav-items .nav-img {
+    list-style: none;
+    display: inline-block;
+    padding: 0 0px 0 0px;
+    text-align: center;
+    height: 45px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.navbar-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar-dropdown-content {
+    float: right;
+    right: 0px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border-radius: 10px;
+    box-shadow: -11px -10px 111px 12px rgba(19, 19, 153, 1);
+}
+
+.navbar-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 10px;
+}
+
+
+.navbar-dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* .navbar-dropdown:hover .navbar-dropdown-content {
+    display: block;
+} */
+
+.navbar-dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+.navbar-dropdown .navbar-dropdown-content.show {
+    display: block;
+}
+
+
+@media (max-width : 580px) {
+    .navbar .nav-title {
+        display: block;
+    }
+    
+}
