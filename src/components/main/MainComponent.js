@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Collection from '../movies/Collection';
+import { ThemeContext } from '../store/contextAPI/themeToggler/ThemeContext';
 
 import Header from './Header'
 
 const MainComponent = () => {
+
+  // current theme
+  const {theme} = useContext(ThemeContext)
   return (
     <>
     {/*                         Author @Charan379
@@ -26,12 +30,15 @@ const MainComponent = () => {
     ############################################################################################
     
     */}
+
+    <div className={`main-component ${theme}`}>
       {/* header at top */}
       <Header />
       {/* main content */}
-      <div className='container'>
+      <div className={`container ${theme}`}>
        <Collection />
       </div>
+    </div>
     </>
   )
 }
