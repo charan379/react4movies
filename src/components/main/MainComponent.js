@@ -1,3 +1,5 @@
+
+
 import React, { useContext } from 'react'
 import Collection from '../movies/Collection';
 import { ThemeContext } from '../store/contextAPI/themeToggler/ThemeContext';

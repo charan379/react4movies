@@ -1,3 +1,10 @@
+/**
+ * @author : charanteja379
+ * @email  : charanteja379@gmail.com
+ * @create : created on 2023-01-07 18:43:21
+ * @modify : last modify on 2023-01-07 18:43:21
+ * @desc   :desc [description]
+ */
 import React, { useContext } from 'react'
 import { ThemeContext } from '../store/contextAPI/themeToggler/ThemeContext';
 
