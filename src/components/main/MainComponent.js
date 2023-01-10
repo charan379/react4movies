@@ -1,4 +1,14 @@
-
+/** 
+ *	#########################################################
+ *  										 									
+ *      @author : charanteja379                                 			
+ *      @email  : charanteja379@gmail.com                                  
+ *  	@createedOn : 2023-01-07 19:28:45                               
+ *      @lastModifiedOn : 2023-01-07 19:28:51
+ *  	@desc   : [description]							
+ *  										 								
+ *  #########################################################
+ */
 
 import React, { useContext } from 'react'
 import Collection from '../movies/Collection';
