@@ -20,6 +20,10 @@
     color: var(--font-color-dark);
 }
 
+.sidebar header {
+    position: relative;
+}
+
 /* sidebar text */
 .sidebar text {
     font-size: 16px;
@@ -54,3 +58,4 @@ header .sidebar-image-text .sidebar-header-text {
 .sidebar-header-text .app-version {
     margin-top: -2px;
 }
+
