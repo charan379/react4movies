@@ -1,28 +1,28 @@
-/** 
+/**
  *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	@createedOn : 2023-01-07 19:28:45                               
- *      @lastModifiedOn : 2023-01-07 19:28:51
- *  	@desc   : [description]							
- *  										 								
+ *
+ *      @author : charanteja379
+ *      @email  : charanteja379@gmail.com
+ *  	  @createedOn : 2023-01-07 19:28:45
+ *      @lastModifiedOn : 2023-01-10 22:35:39
+ *  	  @desc   : [description]
+ *
  *  #########################################################
  */
 
-import React, { useContext } from 'react'
-import Collection from '../movies/Collection';
-import { ThemeContext } from '../store/contextAPI/themeToggler/ThemeContext';
+import React, { useContext } from "react";
+import Collection from "../movies/Collection";
+import { ThemeContext } from "../store/contextAPI/themeToggler/ThemeContext";
 
-import Header from './Header'
+import Header from "./Header";
+import SideBar from "./SideBar";
 
 const MainComponent = () => {
-
   // current theme
-  const {theme} = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
   return (
     <>
-    {/*                         Author @Charan379
+      {/*                         Author @Charan379
                               # main component structure #
     ###########################################################################################
     #             #                                                                           #
@@ -42,17 +42,21 @@ const MainComponent = () => {
     ############################################################################################
     
     */}
+    
+      <div className={`main-component ${theme}`}>
+        {/* header at top */}
+        <Header />
+        
+        {/* sidebar */}
+        <SideBar />
 
-    <div className={`main-component ${theme}`}>
-      {/* header at top */}
-      <Header />
-      {/* main content */}
-      <div className={`container ${theme}`}>
-       <Collection />
+        {/* main content */}
+        <div className={`container ${theme}`}>
+          <Collection />
+        </div>
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 
 export default MainComponent;

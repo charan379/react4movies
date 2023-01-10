@@ -1,0 +1,56 @@
+@import './variables.css';
+
+/* ===== Sidebar ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+}
+
+.sidebar.light {
+    background-color: var(--ui-elemnet-light);
+    color: var(--font-color-light);
+}
+
+.sidebar.dark {
+    background-color: var(--ui-elemnet-dark);
+    color: var(--font-color-dark);
+}
+
+/* sidebar text */
+.sidebar text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sidebar .sidebar-logo {
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .sidebar-image-text img {
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar header .sidebar-image-text {
+    display: flex;
+    align-items: center;
+}
+
+header .sidebar-image-text .sidebar-header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header-text .app-name {
+    font-weight: 600;
+}
+
+.sidebar-header-text .app-version {
+    margin-top: -2px;
+}

@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:27:59                               
- *      @lastModifiedOn : 2023-01-07 19:28:02
+ *      @lastModifiedOn : 2023-01-10 12:55:56
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -18,7 +18,7 @@ function useOnOutSideClick(ref, handlerFunc) {
         () => {
             const listner = (event) => {
                 // Do nothing if clicking ref's element or descendent elements
-                if (!ref.current ||ref.current.contains(event.target)) {
+                if (!ref.current || ref.current.contains(event.target)) {
                     // console.log(event.target)
                     // console.log(ref.current)
                     return;

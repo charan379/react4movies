@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:37                               
- *      @lastModifiedOn : 2023-01-07 19:28:39
+ *      @lastModifiedOn : 2023-01-10 18:17:33
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -62,6 +62,7 @@ const Header = () => {
           >
             <li className="nav-item">
               <img className="nav-img" src={user}></img>
+              {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div
               className={

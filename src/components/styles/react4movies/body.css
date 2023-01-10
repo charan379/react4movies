@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:58                               
- *      @lastModifiedOn : 2023-01-07 19:29:02
+ *      @lastModifiedOn : 2023-01-10 22:38:31
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -13,4 +13,5 @@
 
 body{
     overflow-y: scroll;
+    height: 100vh;
 }
