@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-10 23:14:48
+ *      @lastModifiedOn : 2023-01-10 23:25:04
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -38,7 +38,8 @@ const SideBar = () => {
               <span className="app-version">version-0.1</span>
             </div>
           </div>
-          
+
+          <i class='bx bx-chevron-right toggle'></i>
         </header>
       </nav>
     </>
