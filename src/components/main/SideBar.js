@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-10 23:25:04
+ *      @lastModifiedOn : 2023-01-10 23:35:30
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -39,7 +39,7 @@ const SideBar = () => {
             </div>
           </div>
 
-          <i class='bx bx-chevron-right toggle'></i>
+          <i className={`bx bx-chevron-right toggle ${theme}`}></i>
         </header>
       </nav>
     </>
