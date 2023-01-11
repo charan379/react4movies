@@ -8,8 +8,9 @@
     /* background-color: #5107c0; */
     color: white;
     z-index: 0;
-    position: sticky;
+    position: sticky !important;
     top: 0;
+    width: 100vw;
 }
 
 .navbar.light {
