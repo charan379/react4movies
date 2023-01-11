@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-01-11 09:22:22
+ *      @lastModifiedOn : 2023-01-11 11:10:20
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -48,10 +48,10 @@ const MainComponent = () => {
         <Header />
         
         {/* sidebar */}
-        {/* <SideBar /> */}
+        <SideBar />
 
         {/* main content */}
-        <div className={`container ${theme}`}>
+        <div className={`main-container ${theme}`}>
           <Collection />
         </div>
       </div>
