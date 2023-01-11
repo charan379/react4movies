@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:58                               
- *      @lastModifiedOn : 2023-01-10 22:38:31
+ *      @lastModifiedOn : 2023-01-11 11:14:42
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -15,3 +15,19 @@ body{
     overflow-y: scroll;
     height: 100vh;
 }
+
+div#root {
+    height: 100%;
+    width: 100vw;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  ::-webkit-scrollbar{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
