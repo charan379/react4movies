@@ -1,4 +1,15 @@
-
+/** 
+ *	#########################################################
+ *  										 									
+ *      @author : charanteja379                                 			
+ *      @email  : charanteja379@gmail.com                                  
+ *  	@createedOn : 2023-01-07 19:28:37                               
+ *      @lastModifiedOn : 2023-01-11 18:48:52
+ *  	@desc   : [description]							
+ *  										 								
+ *  #########################################################
+ */
+ 
 import React, { useCallback, useContext, useRef, useState } from "react";
 import useOnOutSideClick from "../hooks/useOnOutSideClick";
 import user from "../static/icons/user.svg";
@@ -24,7 +35,7 @@ const Header = () => {
   return (
     <>
       <nav className={`navbar ${theme}`}>
-        <div className="nav-title">react4movies</div>
+        {/* <div className="nav-title">react4movies</div> */}
         <ul className="nav-items">
           {/* <li className='nav-item' >
                         <i className="fa fa-user-o " aria-hidden="true"></i>
@@ -51,6 +62,7 @@ const Header = () => {
           >
             <li className="nav-item">
               <img className="nav-img" src={user}></img>
+              {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div
               className={

@@ -1,20 +1,31 @@
-@import './theme.css';
+@import "./variables.css";
 
-.main-component{
-    background-color: var(--bg-light);
+.main-component {
+  background-color: var(--bg-light);
 }
 
 .main-component.light {
-    background-color: var(--bg-light);
+  background-color: var(--bg-light);
 }
 
 .main-component.dark {
-    background-color: var(--bg-dark);
+  background-color: var(--bg-dark);
 }
-
+.main-container {
+  margin-right: 0;
+  height: 100%;
+  overflow-y: hidden;
+  margin-left: 78px;
+}
 .container.light {
-    background-color: var(--bg-light);
+  background-color: var(--bg-light);
 }
 .container.dark {
-    background-color: var(--bg-dark);
+  background-color: var(--bg-dark);
+}
+
+@media (max-width: 580px) {
+  .main-container {
+    margin-left: 70px;
+  }
 }
