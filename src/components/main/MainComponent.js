@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-01-10 22:35:39
+ *      @lastModifiedOn : 2023-01-11 09:22:22
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -48,7 +48,7 @@ const MainComponent = () => {
         <Header />
         
         {/* sidebar */}
-        <SideBar />
+        {/* <SideBar /> */}
 
         {/* main content */}
         <div className={`container ${theme}`}>
