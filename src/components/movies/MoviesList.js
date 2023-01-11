@@ -25,9 +25,9 @@ const MoviesList = () => {
                 <div className={`movie-cover ${theme}`}>
                   {/* if image is avaliable in local */}
                   {/* <img className='' src='https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt=''></img> */}
-                  {/* <img src={require('../styles/matrix.jpg')}></img> */}
+                  <img src={require('../styles/matrix.jpg')}></img>
                   {/* if no image */}
-                  <div className={`movie-nocover ${theme}`}><br/><br/><br/><br/><i class="fa-solid fa-triangle-exclamation fa-2x" aria-hidden="true"></i><br/>No Image</div>
+                  {/* <div className={`movie-nocover ${theme}`}><br/><br/><br/><br/><i class="fa-solid fa-triangle-exclamation fa-2x" aria-hidden="true"></i><br/>No Image</div> */}
                 </div>
                 <div className={`movie-title ${theme}`}> {element}</div>
               </div>
