@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:37                               
- *      @lastModifiedOn : 2023-01-10 18:17:33
+ *      @lastModifiedOn : 2023-01-11 18:48:52
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <>
       <nav className={`navbar ${theme}`}>
-        <div className="nav-title">react4movies</div>
+        {/* <div className="nav-title">react4movies</div> */}
         <ul className="nav-items">
           {/* <li className='nav-item' >
                         <i className="fa fa-user-o " aria-hidden="true"></i>
