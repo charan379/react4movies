@@ -29,7 +29,7 @@ const MoviesList = () => {
                   {/* if no image */}
                   {/* <div className={`movie-nocover ${theme}`}><br/><br/><br/><br/><i class="fa-solid fa-triangle-exclamation fa-2x" aria-hidden="true"></i><br/>No Image</div> */}
                 </div>
-                <div className={`movie-title ${theme}`}> {element}</div>
+                <div className={`movie-title ${theme}`}>The Matrix</div>
               </div>
             )
 
