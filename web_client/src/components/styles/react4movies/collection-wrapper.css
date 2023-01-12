@@ -40,8 +40,8 @@
 }
 
 .movies .movie-box.dark {
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
   background-color: var(--ui-elemnet-dark);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 /* titile */
@@ -66,6 +66,8 @@
   font-weight: 400;
   border-top: 3px solid var(--font-color-dark);
 }
+
+
 
 .movies .movie-cover img,
 .movies .movie-nocover {
@@ -94,7 +96,24 @@
   background-color: var(--bg-dark);
 }
 
-@media (max-width: 580px) {
+@media (max-width: 400px) {
+  .movies .movie-box {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .movies .movie-cover img,
+  .movies .movie-nocover {
+    width: 137px;
+    height: 137px;
+  }
+
+  .movies .movie-title {
+    width: 137px;
+  }
+}
+
+@media (min-width: 420px) {
   .movies .movie-box {
     margin-top: 10px;
     margin-right: 10px;
@@ -111,15 +130,53 @@
   }
 }
 
+
 @media (min-width: 1080px) {
-  .movie-box:hover {
-    border-radius: 5px 5px 10px 10px;
-    transition: transform 1s, border-radius 2.5s;
+  .movie-box.light:hover {
+    border-radius: 5px 5px 10px 10px;    
     transform-origin: top bottom right left;
-    transform: scale(1);
+    transform: scale(1.0); 
+    background-color: var(--ui-elemnet-dark);
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
+    transition: transform 1s, border-radius var(---hover-movies), background-color var(---hover-movies), box-shadow var(---hover-movies);
   }
+
+  .movie-box.dark:hover {
+    border-radius: 6px 6px 10px 10px;    
+    transform-origin: top bottom right left;
+    transform: scale(1.0); 
+    background-color: var(--ui-elemnet-light);
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+    transition: transform 1s, border-radius var(---hover-movies), background-color var(---hover-movies), box-shadow var(---hover-movies);
+  }
+
+  .movie-box:hover .movie-title.dark{
+    color: var(--font-color-light);
+    border-top: 3px solid var(--font-color-light);
+    transition: color var(---hover-movies), border-top var(---hover-movies);
+
+  }
+
+  .movie-box:hover .movie-title.light{
+    color: var(--font-color-dark);
+    border-top: 3px solid var(--font-color-dark);
+    transition: color var(---hover-movies), border-top var(---hover-movies);
+    
+  }
+
   .movies .movie-box {
     margin-top: 10px;
     margin-right: 20px;
   }
+
+  .movies .movie-cover img,
+  .movies .movie-nocover {
+    width: 200px;
+    height: 230px;
+  }
+
+  .movies .movie-title {
+    width: 200px;
+  }
+
 }
