@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-11 19:35:43
+ *      @lastModifiedOn : 2023-01-12 21:44:49
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -28,7 +28,7 @@ const SideBar = () => {
   return (
     <>
       {/* sidebar */}
-      <nav ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "" : "close"} ${theme}`}>
+      <nav ref={sidebarRef} className={`sidebar ${isSidebarOpen?"":"close"} ${theme}`}>
         {/* sidebar header */}
         <header>
           {/* App Logo and App Name */}
