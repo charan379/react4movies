@@ -15,7 +15,14 @@
   margin-right: 0;
   height: 100%;
   overflow-y: hidden;
-  margin-left: 78px;
+  
+}
+.sidebar.close + .main-container{
+  margin-left: 70px;
+}
+
+.sidebar + .main-container {
+  margin-left: 240px;
 }
 .container.light {
   background-color: var(--bg-light);
@@ -26,6 +33,6 @@
 
 @media (max-width: 580px) {
   .main-container {
-    margin-left: 70px;
+    margin-left: 70px !important;
   }
 }
