@@ -135,7 +135,7 @@
   .movie-box.light:hover {
     border-radius: 5px 5px 10px 10px;    
     transform-origin: top bottom right left;
-    transform: scale(1.0); 
+    /* transform: scale(1.0);  */
     background-color: var(--ui-elemnet-dark);
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
     transition: transform 1s, border-radius var(---hover-movies), background-color var(---hover-movies), box-shadow var(---hover-movies);
@@ -144,7 +144,7 @@
   .movie-box.dark:hover {
     border-radius: 6px 6px 10px 10px;    
     transform-origin: top bottom right left;
-    transform: scale(1.0); 
+    /* transform: scale(1.0);  */
     background-color: var(--ui-elemnet-light);
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
     transition: transform 1s, border-radius var(---hover-movies), background-color var(---hover-movies), box-shadow var(---hover-movies);
