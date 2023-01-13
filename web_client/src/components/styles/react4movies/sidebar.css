@@ -28,6 +28,14 @@
 
 .sidebar header {
   position: relative;
+  padding-bottom: 5px;
+}
+
+.sidebar.light header {
+  border-bottom: 2px solid var(--ui-elemnet-dark);
+}
+.sidebar.dark header {
+  border-bottom: 2px solid var(--ui-elemnet-light);
 }
 
 /* sidebar text */
@@ -81,8 +89,8 @@ header .sidebar-image-text .sidebar-header-text {
 
 .sidebar header .toggle {
   position: absolute;
-  top: 50%;
-  right: -33px;
+  top: 46%;
+  right: -43px;
   transform: translateY(-50%) rotate(180deg);
   height: 35px;
   width: 35px;

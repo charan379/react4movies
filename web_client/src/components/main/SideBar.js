@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-13 10:58:12
+ *      @lastModifiedOn : 2023-01-13 20:49:13
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -12,7 +12,6 @@
 
 import React, { useCallback, useContext, useRef, useState } from "react";
 import { ThemeContext } from "../store/contextAPI/themeToggler/ThemeContext";
-import logo from "../static/icons/user.svg";
 import useOnOutSideClick from "../hooks/useOnOutSideClick";
 
 const SideBar = () => {
@@ -36,14 +35,14 @@ const SideBar = () => {
             {/* AppLogo */}
             <span className="sidebar-logo" onClick={()=> setIsSidebarOpen(true)}>
               <img
-                src={require("../static/icons/user.svg").default}
+                src={require("../static/icons/movie-player-play-video-svgrepo-com.svg").default}
                 alt="logo"
               ></img>
             </span>
 
             {/* AppName */}
             <div className="text sidebar-header-text">
-              <span className="app-name">React4Movies</span>
+              <span className="app-name"><b><u>M</u></b>ovie<b><u>B</u></b>unkers</span>
               <span className="app-version">version-0.1</span>
             </div>
           </div>
