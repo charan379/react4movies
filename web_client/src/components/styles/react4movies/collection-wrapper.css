@@ -47,7 +47,7 @@
 /* titile */
 .movies .movie-title {
   padding: 10px;
-  width: 200px;
+  width: 157px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -71,8 +71,8 @@
 
 .movies .movie-cover img,
 .movies .movie-nocover {
-  width: 200px;
-  height: 230px;
+  width: 157px;
+  height: 233px;
   overflow: hidden;
   border-radius: 5px 5px 0 0;
 }
