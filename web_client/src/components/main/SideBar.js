@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-12 21:44:49
+ *      @lastModifiedOn : 2023-01-13 10:58:12
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -58,8 +58,8 @@ const SideBar = () => {
         <div className="sidebar-menu-wrapper" onClick={()=> setIsSidebarOpen(true)} >
           <div className={`sidebar-menu`}>
             {/* search box */}
-            <li className="menu-item">
-              <i class="bx bx-search-alt-2 icon"></i>
+            <li className={`menu-item ${theme}`}>
+              <i className="bx bx-search-alt-2 icon"></i>
               <input type="text" placeholder="Search.."></input>
             </li>
 
@@ -67,10 +67,10 @@ const SideBar = () => {
             <li className="menu-item-header">
               <span className="nonlink-menu-item-info">Genre</span>
             </li>
-            <li className="menu-item">
-              <i class="bx bx-folder-open icon"></i>
+            <li className={`menu-item ${theme}`}>
+              <i className="bx bx-folder-open icon"></i>
               {/*  */}
-              <label class="sidebar-select" for="slct">
+              <label className={`sidebar-select ${theme}`} for="slct">
                 <select id="slct" required="required">
                   <option value="" disabled="disabled" selected="selected">
                     Select option
@@ -92,9 +92,9 @@ const SideBar = () => {
             <li className="menu-item-header">
               <span className="nonlink-menu-item-info">Language</span>
             </li>
-            <li className="menu-item">
-              <i class="fa fa-globe icon" aria-hidden="true"></i>
-              <label class="sidebar-select" for="slct">
+            <li className={`menu-item ${theme}`}>
+              <i className="fa fa-globe icon" aria-hidden="true"></i>
+              <label className={`sidebar-select ${theme}`} for="slct">
                 <select id="slct" required="required">
                   <option value="" disabled="disabled" selected="selected">
                     Select option
@@ -116,9 +116,9 @@ const SideBar = () => {
             <li className="menu-item-header">
               <span className="nonlink-menu-item-info">Sort By</span>
             </li>
-            <li className="menu-item">
-              <i class="bx bx-sort icon"></i>
-              <label class="sidebar-select" for="slct">
+            <li className={`menu-item ${theme}`}>
+              <i className="bx bx-sort icon"></i>
+              <label className={`sidebar-select ${theme}`} for="slct">
                 <select id="slct" required="required">
                   <option value="" disabled="disabled" selected="selected">
                     Select option
@@ -140,9 +140,9 @@ const SideBar = () => {
             <li className="menu-item-header">
               <span className="nonlink-menu-item-info">Age Rating</span>
             </li>
-            <li className="menu-item">
-              <i class="bx bx-user icon"></i>
-              <label class="sidebar-select" for="slct">
+            <li className={`menu-item ${theme}`}>
+              <i className="bx bx-user icon"></i>
+              <label className={`sidebar-select ${theme}`} for="slct">
                 <select id="slct" required="required">
                   <option value="" disabled="disabled" selected="selected">
                     Select option
@@ -156,6 +156,35 @@ const SideBar = () => {
                   <option value="#">Five</option>
                   <option value="#">Six</option>
                   <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
+                  <option value="#">Four</option>
+                  <option value="#">Five</option>
+                  <option value="#">Six</option>
+                  <option value="#">Seven</option>
                 </select>
               </label>
             </li>
@@ -164,8 +193,8 @@ const SideBar = () => {
             <li className="menu-item-header">
               <span className="nonlink-menu-item-info">Filter By</span>
             </li>
-            <li className="menu-item">
-              <i class="bx bx-filter-alt icon"></i>
+            <li className={`menu-item ${theme}`}>
+              <i className="bx bx-filter-alt icon"></i>
             </li>
 
             {/* <ul className="sidebar-menu-links">

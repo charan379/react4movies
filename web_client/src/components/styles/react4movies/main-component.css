@@ -15,6 +15,7 @@
   margin-right: 0;
   height: 100%;
   overflow-y: hidden;
+  /* transition: margin-left var(---trans-container-margin); */
   
 }
 .sidebar.close + .main-container{
