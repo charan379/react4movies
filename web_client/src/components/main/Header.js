@@ -4,19 +4,19 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	  @createedOn : 2023-01-07 19:28:37                               
- *      @lastModifiedOn : 2023-01-13 20:23:40
+ *      @lastModifiedOn : 2023-01-16 19:54:16
  *  	  @desc   : [description]							
  *  										 								
  *  #########################################################
  */
  
 import React, { useCallback, useContext, useRef, useState } from "react";
-import useOnOutSideClick from "../hooks/useOnOutSideClick";
-import user from "../static/icons/user.svg";
-import day from "../static/icons/day.svg";
-import night from "../static/icons/night.svg";
-import { ThemeContext } from "../store/contextAPI/themeToggler/ThemeContext";
-import ToogleTheme from "../store/contextAPI/themeToggler/ToogleTheme";
+import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
+import user from "../../static/icons/user.svg";
+import day from "../../static/icons/day.svg";
+import night from "../../static/icons/night.svg";
+import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme"
 
 // Main Header
 const Header = () => {
