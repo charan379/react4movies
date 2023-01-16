@@ -4,15 +4,15 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-13 20:49:13
+ *      @lastModifiedOn : 2023-01-16 19:52:06
  *  	@desc   : [description]
  *
  *  #########################################################
  */
 
 import React, { useCallback, useContext, useRef, useState } from "react";
-import { ThemeContext } from "../store/contextAPI/themeToggler/ThemeContext";
-import useOnOutSideClick from "../hooks/useOnOutSideClick";
+import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 
 const SideBar = () => {
   const { theme } = useContext(ThemeContext);
@@ -35,7 +35,7 @@ const SideBar = () => {
             {/* AppLogo */}
             <span className="sidebar-logo" onClick={()=> setIsSidebarOpen(true)}>
               <img
-                src={require("../static/icons/movie-player-play-video-svgrepo-com.svg").default}
+                src={require("../../static/icons/movie-player-play-video-svgrepo-com.svg").default}
                 alt="logo"
               ></img>
             </span>
