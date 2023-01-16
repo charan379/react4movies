@@ -4,21 +4,24 @@
 /* Nav Bar */
 .navbar {
     display: flex;
-    padding: 5px 5px 5px 15px;
+    padding: 5px 15px 10px 15px !important;
     /* background-color: #5107c0; */
     color: white;
     z-index: 0;
     position: sticky !important;
     top: 0;
     width: 100vw;
+    z-index: 0;    
 }
 
 .navbar.light {
-    background-color: rgb(167, 162, 162);
+    background-color: var(--bg-light);
+    border-bottom: 2px solid var(--ui-elemnet-dark);
     /* background-color: var(--ui-elemnet-light); */
 }
 .navbar.dark {
-    background-color: #100f0f;
+    background-color: var(--bg-dark);
+    border-bottom: 2px solid var(--ui-elemnet-light);
     /* background-color: var(--ui-elemnet-dark); */
 }
 
@@ -54,7 +57,7 @@
     padding: 0 0px 0 0px;
     text-align: center;
     height: 45px;
-    width: 50px;
+    width: 45px;
     cursor: pointer;
 }
 

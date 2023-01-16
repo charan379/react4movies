@@ -4,12 +4,13 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:58                               
- *      @lastModifiedOn : 2023-01-11 11:14:42
+ *      @lastModifiedOn : 2023-01-13 00:22:53
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
  */
- 
+
+@import "./variables.css";
 
 body{
     overflow-y: scroll;
@@ -30,4 +31,8 @@ div#root {
   ::-webkit-scrollbar{
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  *{
+    transition:color var(---trans-theme), background-color var(---trans-theme);
   }
