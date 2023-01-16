@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-01-12 21:43:51
+ *      @lastModifiedOn : 2023-01-16 20:47:45
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -12,10 +12,11 @@
 
 import React, { useContext } from "react";
 import Collection from "../movies/Collection";
-import { ThemeContext } from "../store/contextAPI/themeToggler/ThemeContext";
+import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 
 import Header from "./Header";
 import SideBar from "./SideBar";
+import { Outlet } from "react-router-dom";
 
 const MainComponent = () => {
   // current theme
@@ -52,7 +53,7 @@ const MainComponent = () => {
 
         {/* main content */}
         <div className={`main-container ${theme}`}>
-          <Collection />
+          <Outlet />
         </div>
       </div>
     </>
