@@ -6,6 +6,8 @@ import FetchTitle from './components/movies/FetchTitle'
 import Home from './components/movies/Home'
 import AddTitle from './components/movies/AddTitle'
 import ThemeContextProvider from './utils/store/contextAPI/themeToggler/ThemeContext'
+import Discover from './components/movies/Discover'
+import PageNotFound from './components/main/PageNotFound'
 
 
 
@@ -26,6 +28,8 @@ const App = () => {
             <Route path='/collection' element={<Collection/>} />
             <Route path='/fetch-title' element={<FetchTitle/>} />
             <Route path='/add-title' element={<AddTitle />} />
+            <Route path='/discover' element={<Discover />} />
+            <Route path='*' element={<PageNotFound />} />
           </Route>
           </Routes>
         </BrowserRouter>
