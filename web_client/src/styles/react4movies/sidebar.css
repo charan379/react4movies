@@ -147,7 +147,7 @@ header .sidebar-image-text .sidebar-header-text {
   justify-content: center;
   padding: 2px 2px 2px 2px;
   min-width: 40px;
-  font-size: 25px;
+  font-size: 23px;
   transition: opacity var(---trans-sidebar-toggle);
 }
 
