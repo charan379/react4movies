@@ -5,11 +5,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 250px;
   padding: 10px 14px;
   transition: background-color var(---trans-theme), color var(---trans-theme), width var(---trans-sidebar-toggle);
 }
+
 
 /* sidebar close */
 .sidebar.close {
@@ -112,6 +113,7 @@ header .sidebar-image-text .sidebar-header-text {
   color: var(--font-color-light);
   background-color: var(--ui-elemnet-light);
 }
+
 
 .sidebar ul{
   padding: 0;
@@ -276,7 +278,6 @@ header .sidebar-image-text .sidebar-header-text {
 .sidebar-select select:focus {
   outline: none;
 }
-
 
 /*  */
 

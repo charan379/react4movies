@@ -10,7 +10,7 @@ function minifyConbineCss(){
                 .pipe(concat('react4movies.min.css'))
                 .pipe(cleanCSS())
                 .pipe(sourcemaps.write('.'))
-                .pipe(gulp.dest('../public'))
+                .pipe(gulp.dest('./styles/'))
 }
 
 exports.css = minifyConbineCss
