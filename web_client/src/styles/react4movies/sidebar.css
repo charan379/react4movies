@@ -99,7 +99,7 @@ header .sidebar-image-text .sidebar-header-text {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 35px;
+  font-size: 25px;
   transition: transform var(---trans-sidebar-toggle), background-color var(---trans-theme), color var(---trans-theme),display var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle);
 }
 .sidebar.close header .toggle {
@@ -236,7 +236,7 @@ header .sidebar-image-text .sidebar-header-text {
 
 .sidebar-select select {
   padding: 7px 10px 7px 12px;
-  width: 98%;
+  width: 170px;
   height: 100%;
   border-radius: 5px;
   cursor: pointer;
