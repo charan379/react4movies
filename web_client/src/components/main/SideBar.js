@@ -4,16 +4,18 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-17 18:10:57
+ *      @lastModifiedOn : 2023-01-17 23:53:57
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import { useLocation } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { updateDiscoverQuery } from "../../utils/store/reduxStore/actions/DiscoverActions";
 
 const SideBar = () => {
   const { theme } = useContext(ThemeContext);
@@ -28,6 +30,31 @@ const SideBar = () => {
       setIsSidebarOpen(false);
     }, [])
   );
+  
+
+   const dispatch = useDispatch();
+  
+  // states
+  const [discoverForm, setDiscoverForm] = useState({
+        queryString : "",
+        titleType : "",
+        year : ""
+  })
+  
+ const handleChange = (event) =>{
+    switch(event.target.getAttribute("data-form")){
+      case "discoverForm":
+        setDiscoverForm({...discoverForm, [event.target.name] : event.target.value});
+        break;
+    }
+  }
+  
+// discover movie query
+useEffect(()=>{
+    dispatch(updateDiscoverQuery(discoverForm));
+  },[discoverForm]);
+
+
   return (
     <>
       {/* sidebar */}
@@ -71,7 +98,7 @@ const SideBar = () => {
 
           {/* Sidebar toggle */}
           <i
-            className={`bx bx-chevron-right toggle ${theme}`}
+            className={`fa fa-chevron-right toggle ${theme}`}
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           ></i>
         </header>
@@ -87,7 +114,7 @@ const SideBar = () => {
                 {/* title */}
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-search fa-fw icon"></i>
-                  <input type="text" placeholder="Search.."></input>
+                  <input  data-form="discoverForm" data-id="D1" name="queryString" type="text" value={discoverForm.queryString} placeholder="Search.." onChange={handleChange}></input>
                 </li>
                 
                 {/* Movie or TV */}
@@ -98,8 +125,8 @@ const SideBar = () => {
                   <i className="bx bx-folder-open icon"></i>
                   {/*  */}
                   <label className={`sidebar-select ${theme}`} for="slct">
-                    <select id="slct" required="required">
-                      <option value="" disabled="disabled" selected="selected">
+                    <select data-form="discoverForm" data-id="D2" name="titleType" required="required" onChange={handleChange}>
+                    <option value={discoverForm.titleType} disabled="disabled" selected="selected">
                         Select option
                       </option>
                       <option value="movie">Movie</option>
@@ -111,7 +138,7 @@ const SideBar = () => {
                 {/* year */}
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-calendar icon"></i>
-                  <input type="number" placeholder="release year"></input>
+                  <input data-form="discoverForm" data-id="D3" name="year" type="number" placeholder="release year" onChange={handleChange}></input>
                 </li>
 
                
