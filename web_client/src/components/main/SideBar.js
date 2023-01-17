@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-17 23:53:57
+ *      @lastModifiedOn : 2023-01-18 00:15:27
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -113,7 +113,7 @@ useEffect(()=>{
               <form>
                 {/* title */}
                 <li className={`menu-item ${theme}`}>
-                  <i className="fa fa-search fa-fw icon"></i>
+                  <i className="fa fa-search icon"></i>
                   <input  data-form="discoverForm" data-id="D1" name="queryString" type="text" value={discoverForm.queryString} placeholder="Search.." onChange={handleChange}></input>
                 </li>
                 
@@ -122,7 +122,7 @@ useEffect(()=>{
                   <span className="nonlink-menu-item-info">Title Type</span>
                 </li> */}
                 <li className={`menu-item ${theme}`}>
-                  <i className="bx bx-folder-open icon"></i>
+                  <i className={`${discoverForm.titleType === "tv" ? "fa fa-television" : "fa fa-film"} icon`}></i>
                   {/*  */}
                   <label className={`sidebar-select ${theme}`} for="slct">
                     <select data-form="discoverForm" data-id="D2" name="titleType" required="required" onChange={handleChange}>
