@@ -5,10 +5,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 250px;
   padding: 10px 14px;
   transition: background-color var(---trans-theme), color var(---trans-theme), width var(---trans-sidebar-toggle);
+  z-index: 1;
 }
 
 
@@ -19,6 +20,7 @@
 
 .sidebar.light {
   background-color: var(--hsf-bg-light);
+  /* background-color: red; */
   color: var(--font-color-light);
 }
 
@@ -216,14 +218,20 @@ header .sidebar-image-text .sidebar-header-text {
 
 /*Select */
 .sidebar select {
+  transition: width var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle);
+  padding: 7px 10px 7px 12px;
+  width: 170px;
+  height: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
   position: relative;
-  width: 85%;
-  transition: opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle);
 }
 
 .sidebar.close select {
-  /* opacity: 0; */
-  display: none;
+  opacity: 0%;
+  width: 0px;
+  padding: 0;
 }
 .sidebar select {
  appearance: none;
@@ -234,15 +242,11 @@ header .sidebar-image-text .sidebar-header-text {
 }
 
 
-.sidebar-select select {
-  padding: 7px 10px 7px 12px;
-  width: 170px;
-  height: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all var(---trans-sidebar-toggle);
-}
+/* .sidebar-select select {
+ 
+  transition: opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle), width var(---trans-sidebar-toggle);
+} */
+
 
 .sidebar-select.light select {
   color: var(--font-color-light);
