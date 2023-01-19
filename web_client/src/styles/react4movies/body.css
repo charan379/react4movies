@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-07 19:28:58                               
- *      @lastModifiedOn : 2023-01-17 15:01:49
+ *      @lastModifiedOn : 2023-01-18 16:24:16
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -15,6 +15,7 @@
 body{
     overflow-y: hidden;
     height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 div#root {

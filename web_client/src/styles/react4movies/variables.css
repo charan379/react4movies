@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-10 23:15:35                               
- *      @lastModifiedOn : 2023-01-13 19:36:56
+ *      @lastModifiedOn : 2023-01-18 14:41:38
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
@@ -16,6 +16,7 @@
     --bg-light : #f8f6f6;
     --font-color-light : #555555;
     --ui-elemnet-light : #DDDDDD;
+    --movie-box-title-light : #191970;
     /* hsf = Header Sidebar Footer */
     /* --hsf-bg-light : rgb(167, 162, 162);  */
     --hsf-bg-light : var(--bg-light);
@@ -25,6 +26,7 @@
     --bg-dark  : #101010;
     --font-color-dark : #DDDDDD;
     --ui-elemnet-dark : #333333;
+    --movie-box-title-dark : #DADBDD;
     /* hsf = Header Sidebar Footer */
     /* --hsf-bg-dark : #100f0f;  */
     --hsf-bg-dark : var(--bg-dark);
