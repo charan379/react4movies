@@ -4,17 +4,23 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-18 00:15:27
+ *      @lastModifiedOn : 2023-01-19 15:35:14
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
-import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
+import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
+import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import { updateDiscoverQuery } from "../../utils/store/reduxStore/actions/DiscoverActions";
 
 const SideBar = () => {
@@ -30,30 +36,31 @@ const SideBar = () => {
       setIsSidebarOpen(false);
     }, [])
   );
-  
 
-   const dispatch = useDispatch();
-  
+  const dispatch = useDispatch();
+
   // states
   const [discoverForm, setDiscoverForm] = useState({
-        queryString : "",
-        titleType : "",
-        year : ""
-  })
-  
- const handleChange = (event) =>{
-    switch(event.target.getAttribute("data-form")){
+    queryString: "",
+    titleType: "movie",
+    year: "",
+  });
+
+  const handleChange = (event) => {
+    switch (event.target.getAttribute("data-form")) {
       case "discoverForm":
-        setDiscoverForm({...discoverForm, [event.target.name] : event.target.value});
+        setDiscoverForm({
+          ...discoverForm,
+          [event.target.name]: event.target.value,
+        });
         break;
     }
-  }
-  
-// discover movie query
-useEffect(()=>{
-    dispatch(updateDiscoverQuery(discoverForm));
-  },[discoverForm]);
+  };
 
+  // discover movie query
+  useEffect(() => {
+    dispatch(updateDiscoverQuery(discoverForm));
+  }, [discoverForm]);
 
   return (
     <>
@@ -98,7 +105,7 @@ useEffect(()=>{
 
           {/* Sidebar toggle */}
           <i
-            className={`fa fa-chevron-right toggle ${theme}`}
+            className={`fas fa-chevron-right toggle ${theme}`}
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           ></i>
         </header>
@@ -114,19 +121,43 @@ useEffect(()=>{
                 {/* title */}
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-search icon"></i>
-                  <input  data-form="discoverForm" data-id="D1" name="queryString" type="text" value={discoverForm.queryString} placeholder="Search.." onChange={handleChange}></input>
+                  <input
+                    data-form="discoverForm"
+                    data-id="D1"
+                    name="queryString"
+                    type="text"
+                    value={discoverForm.queryString}
+                    placeholder="Search.."
+                    onChange={handleChange}
+                  ></input>
                 </li>
-                
+
                 {/* Movie or TV */}
                 {/* <li className="menu-item-header">
                   <span className="nonlink-menu-item-info">Title Type</span>
                 </li> */}
                 <li className={`menu-item ${theme}`}>
-                  <i className={`${discoverForm.titleType === "tv" ? "fa fa-television" : "fa fa-film"} icon`}></i>
+                  <i
+                    className={`${
+                      discoverForm.titleType === "tv"
+                        ? "fa fa-television"
+                        : "fa fa-film"
+                    } icon`}
+                  ></i>
                   {/*  */}
                   <label className={`sidebar-select ${theme}`} for="slct">
-                    <select data-form="discoverForm" data-id="D2" name="titleType" required="required" onChange={handleChange}>
-                    <option value={discoverForm.titleType} disabled="disabled" selected="selected">
+                    <select
+                      data-form="discoverForm"
+                      data-id="D2"
+                      name="titleType"
+                      required="required"
+                      onChange={handleChange}
+                    >
+                      <option
+                        value={discoverForm.titleType}
+                        disabled="disabled"
+                        selected="selected"
+                      >
                         Select option
                       </option>
                       <option value="movie">Movie</option>
@@ -138,10 +169,15 @@ useEffect(()=>{
                 {/* year */}
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-calendar icon"></i>
-                  <input data-form="discoverForm" data-id="D3" name="year" type="number" placeholder="release year" onChange={handleChange}></input>
+                  <input
+                    data-form="discoverForm"
+                    data-id="D3"
+                    name="year"
+                    type="number"
+                    placeholder="release year"
+                    onChange={handleChange}
+                  ></input>
                 </li>
-
-               
               </form>
             ) : collectionPattren.test(location.pathname) ? (
               // colection
