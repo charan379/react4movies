@@ -6,6 +6,9 @@
 /.pnp
 .pnp.js
 
+# css
+/src/styles/fontAwesome
+
 # testing
 /coverage
 
