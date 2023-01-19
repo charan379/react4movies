@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-19 15:35:14
+ *      @lastModifiedOn : 2023-01-19 21:02:38
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -140,8 +140,8 @@ const SideBar = () => {
                   <i
                     className={`${
                       discoverForm.titleType === "tv"
-                        ? "fa fa-television"
-                        : "fa fa-film"
+                        ? "fas fa-tv"
+                        : "fas fa-film"
                     } icon`}
                   ></i>
                   {/*  */}
