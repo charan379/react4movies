@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/react4movies.min.css";
+import "./styles/fontAwesome/css/fontawesome.min.css"
+import "./styles/fontAwesome/css/all.min.css"
 import { Provider } from "react-redux";
 import store from "./utils/store/reduxStore/Store";
 
