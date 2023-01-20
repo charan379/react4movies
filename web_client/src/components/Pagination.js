@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-18 22:08:29
- *      @lastModifiedOn : 2023-01-19 17:23:49
+ *      @lastModifiedOn : 2023-01-19 19:36:32
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -32,7 +32,6 @@ const Pagination = (props) => {
   }, [props.query]);
 
   const handlePageClick = (event) => {
-    console.log(event.target.dataset.pageType)
     switch (event.target.dataset.pageType) {
       case "normal":
         return props.setPageNo(event.target.dataset.page);
