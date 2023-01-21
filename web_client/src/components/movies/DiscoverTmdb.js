@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	@createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-20 22:42:22
+ *      @lastModifiedOn : 2023-01-21 21:11:30
  *  	@desc   : [description]
  *
  *  #########################################################
@@ -83,8 +83,7 @@ const DiscoverTmdb = () => {
   return (
     <>
       {discoverQuery.queryString ? (
-        <div className="row">
-          <div className={`col-md-12 collection-wrapper ${theme}`}>
+          <div className={`collection-wrapper ${theme}`}>
             {isLoading ? (
               <Loader />
             ) : (
@@ -110,7 +109,6 @@ const DiscoverTmdb = () => {
               setPageNo={setPageNo}
             />
           </div>
-        </div>
       ) : (
         <div>No Query String</div>
       )}
