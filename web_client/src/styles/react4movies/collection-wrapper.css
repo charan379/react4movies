@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	  @createedOn : 2023-01-06 09:40:53                               
- *      @lastModifiedOn : 2023-01-21 13:34:02
+ *      @lastModifiedOn : 2023-01-21 18:31:17
  *  	  @desc   : [description]							
  *  										 								
  *  #########################################################
@@ -32,7 +32,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 0px 10px 0px 0px;
   margin: 0;
   z-index: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -82,7 +82,7 @@ Height = ?
   z-index: 1;
   width: 200px;
   height: 315px;   /* 275px img width + 40px for title */
-  margin: 10px;
+  margin: 10px 7px 10px 7px;
 }
 
 .movie-box.light {
@@ -130,7 +130,7 @@ Height = ?
 .movie-box .movie-title {
   bottom: 0px;
   right: 0px;
-  padding: 5px;
+  padding: 3px 5px 2px 5px;
   height: 40px; 
   width: 200px;
   position: absolute ;
@@ -201,9 +201,12 @@ Height = ?
   height: 20px;
   width: 40px;
   display: flex;
+  flex-wrap: wrap;
   border-radius: 0px 5px 0px 0px;
+  padding: 2px;
   align-items: center;
-  justify-content: center;
+  align-content: center;
+  justify-content: space-evenly;
   z-index: 3;
 }
 
@@ -227,9 +230,12 @@ Height = ?
     height: 20px;
     width: 35px;
     display: flex;
+    flex-wrap: wrap;
     border-radius: 5px 0px 0px 0px;
+    padding: 2px;
     align-items: center;
-    justify-content: center;
+    align-content: center;
+    justify-content: space-evenly;
     z-index: 3;
 }
 
@@ -246,7 +252,48 @@ Height = ?
 
 
 
+/* for 530px screens and below */
+@media (max-width: 530px) {
+  /* movie box */
+  .movie-box {
+    /* margin-top: 10px; */
+    /* margin-right: 10px; */
+    width: 178px;
+    height: 280px;
+  }
 
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 178px;
+    height: 245px;
+  }
+
+  .movie-box .movie-title {
+    height: 35.5px;
+    width: 178px;
+    font-size: small;
+  }
+
+  .movie-box .movie-info {
+    width: 178px;
+    height: 245px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
 
 /* for 530px screens and below */
 @media (max-width: 530px) {
@@ -356,7 +403,7 @@ Height = ?
 
   .movie-box .movie-info {
     width: 145px;
-    height: 229px;
+    height: 200px;
   }
 
   .movie-box .movie-year{
@@ -370,6 +417,213 @@ Height = ?
     font-size: 10px;
     bottom: 29px;
     height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 420px screens and below */
+@media (max-width: 420px) {
+  /* movie box */
+  .movie-box {
+    width: 134.5px;
+    height: 212.5px;
+  }
+
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 134.5px;
+    height: 185.6px;
+  }
+
+  .movie-box .movie-title {
+    height: 27px;
+    width: 134.5px;
+    font-size: 12px;
+  }
+
+  .movie-box .movie-info {
+    width: 134.5px;
+    height: 185.6px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 27px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 389px screens and below */
+@media (max-width: 389px) {
+  /* movie box */
+  .movie-box {
+    width: 119px;
+    height: 189px;
+    margin: 5px;
+  }
+
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 119px;
+    height: 165px;
+  }
+
+  .movie-box .movie-title {
+    height: 24px;
+    width: 119px;
+    font-size: 10px;
+  }
+
+  .movie-box .movie-info {
+    width: 119px;
+    height: 165px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 360px screens and below */
+@media (max-width: 359px) {
+  /* movie box */
+  .movie-box {
+    width: 109.5px;
+    height: 172px;
+  }
+
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 109.5px;
+    height: 150px;
+  }
+
+  .movie-box .movie-title {
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .movie-box .movie-info {
+    width: 109.5px;
+    height: 150px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 339px screens and below */
+@media (max-width: 339px) {
+  /* movie box */
+  .movie-box {
+    width: 109.5px;
+    height: 172px;
+  }
+
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 110px;
+    height: 150px;
+  }
+
+  .movie-box .movie-title {
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .movie-box .movie-info {
+    width: 109.5px;
+    height: 150px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 338px screens and below */
+@media (max-width: 320px) {
+  /* movie box */
+  .movie-box {
+    width: 101px;
+    height: 156px;
+    margin: 5px;
+  }
+
+/* movie poster */
+.movie-box .movie-poster .poster-img,
+.movie-box  .movie-poster .movie-poster-backdrop {
+    width: 101px;
+    height: 136px;
+  }
+
+  .movie-box .movie-title {
+    height: 20px;
+    width: 101px;
+    font-size: 10px;
+  }
+
+  .movie-box .movie-info {
+    width: 101px;
+    height: 136px;
+  }
+
+  .movie-box .movie-year{
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
+    width: 29px;
+  }
+
+  .movie-box .movie-ratting{
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
     width: 23px;
   }
 }
