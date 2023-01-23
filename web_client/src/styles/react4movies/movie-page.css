@@ -2,11 +2,11 @@
 
 .movie-page {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 7fr 2fr;
     grid-template-areas: 
     "movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title"
-    "movie-poster movie-poster  movie-details movie-details movie-details movie-details movie-details movie-details movie-details movie-details";
+    "movie-poster movie-poster  movie-poster movie-details movie-details movie-details movie-details movie-details movie-details movie-details";
 }
 
 .movie-page .movie-title {
@@ -17,6 +17,16 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.movie-page.light .movie-title{
+    color: var(--font-color-light);
+}
+
+.movie-page.dark .movie-title{
+    color: var(--font-color-dark);
 }
 
 .movie-page .movie-poster {
@@ -31,5 +41,19 @@
 
 .movie-page .movie-details{
     grid-area: movie-details;
+    margin-right: 10px;
 
+}
+
+
+@media (max-width: 840px) {
+    .movie-page {
+        display: grid;
+        grid-template-columns: 1fr ;
+        grid-template-rows: 0.5fr 3fr 5fr 1.5fr;
+        grid-template-areas: 
+        "movie-title"
+        "movie-poster"
+        'movie-details';
+    }
 }
