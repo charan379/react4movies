@@ -1,0 +1,35 @@
+@import './variables.css';
+
+.movie-page {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr 7fr 2fr;
+    grid-template-areas: 
+    "movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title"
+    "movie-poster movie-poster  movie-details movie-details movie-details movie-details movie-details movie-details movie-details movie-details";
+}
+
+.movie-page .movie-title {
+    grid-area: movie-title;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.movie-page .movie-poster {
+    grid-area: movie-poster;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.movie-page .movie-details{
+    grid-area: movie-details;
+
+}
