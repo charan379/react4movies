@@ -1,4 +1,16 @@
-import React, { useContext } from "react";
+/** 
+ *	#########################################################
+ *  										 									
+ *      @author : charanteja379                                 			
+ *      @email  : charanteja379@gmail.com                                  
+ *  	  @createedOn : 2023-01-23 22:41:38                               
+ *      @lastModifiedOn : 2023-01-23 22:41:50
+ *  	  @desc   : [description]							
+ *  										 								
+ *  #########################################################
+ */
+ 
+ import React, { useContext } from "react";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 
 const MovieDetails = () => {
