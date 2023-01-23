@@ -4,7 +4,7 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	  @createedOn : 2023-01-23 22:41:38                               
- *      @lastModifiedOn : 2023-01-23 22:41:50
+ *      @lastModifiedOn : 2023-01-23 23:27:50
  *  	  @desc   : [description]							
  *  										 								
  *  #########################################################
@@ -46,12 +46,6 @@ const MovieDetails = () => {
           </div>
           <div className="info-item">
             <b>Origin Country :</b>USA
-          </div>
-          <div className="info-item">
-            <b>Tagline : </b>Over all Outstanding in your Customer Ledger is as follows
-Outstanding in Spares Category is Rs. 16,885
-Outstanding in Accessories & Essentials Category is Rs. 00
-Kindly Clear the same ASAP to avoid Overdue.
           </div>
           <div className="info-item">
             <b>Type :</b> Movie
