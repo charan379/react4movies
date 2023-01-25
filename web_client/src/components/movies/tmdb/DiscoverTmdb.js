@@ -3,14 +3,14 @@
  *
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
- *  	@createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-23 10:00:25
- *  	@desc   : [description]
+ *  	  @createedOn : 2023-01-17 13:39:06
+ *      @lastModifiedOn : 2023-01-25 14:52:21
+ *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
 import MoviesList from "../MoviesList";
 import { TmdbConfig } from "../../../utils/Config";
@@ -18,24 +18,29 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Pagination from "../../utils/Pagination";
 import Loader from "../../utils/Loader";
+import {useSearchParams} from "react-router-dom";
 
 const DiscoverTmdb = () => {
-  const { theme } = useContext(ThemeContext);
+  const isMounted = useRef(false);
+
   const discoverQuery = useSelector((state) => state.DiscoverReducer);
+
   const [isLoading, setIsLoading] = useState(true);
+
   const [tmdbMoviesList, setTmdbMoviesList] = useState({
     page: 1,
     results: [],
     total_pages: 1,
     total_results: 1,
   });
+  
+  const [searchParams,setSearchParams] = useSearchParams();
 
-  const [pageNo, setPageNo] = useState(1);
-
+  const [pageNo, setPageNo] = useState(searchParams.get("pageNo") ? searchParams.get("pageNo") : 1);
+  
   useEffect(() => {
     setIsLoading(true);
     const source = axios.CancelToken.source();
-    console.log(discoverQuery);
     fetchDataTmdb(
       discoverQuery.queryString,
       discoverQuery.titleType,
@@ -49,8 +54,12 @@ const DiscoverTmdb = () => {
   }, [discoverQuery, pageNo]);
 
   useEffect(() => {
-    setPageNo(1);
-  }, [discoverQuery]);
+    if(isMounted.current){
+      setPageNo(1)
+    }else{
+      isMounted.current = true;
+    }    
+  }, [sessionStorage.getItem("discoverForm_queryString")]);
 
   const fetchDataTmdb = (query, titleType, year, pageNo, source) => {
     axios
@@ -68,14 +77,16 @@ const DiscoverTmdb = () => {
       )
       .then((response) => {
         setTmdbMoviesList({ ...response.data });
+        setSearchParams({...Object.fromEntries([...searchParams.entries()]),"pageNo" : pageNo})
         setIsLoading(false);
-        console.log(response.data);
+        
+        // console.log(response.data);
       })
       .catch((error) => {
         if (axios.isCancel(error)) {
-          console.log(error);
+          // console.log(error);
         } else {
-          console.log(error);
+          // console.log(error);
         }
       });
   };
