@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-25 14:52:21
+ *      @lastModifiedOn : 2023-01-25 15:54:21
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -12,7 +12,7 @@
 
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
-import MoviesList from "../MoviesList";
+import TmdbMoviesList from "./TmdbMoviesList";
 import { TmdbConfig } from "../../../utils/Config";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -99,7 +99,7 @@ const DiscoverTmdb = () => {
               <Loader />
             ) : (
               <div id="results">
-                <MoviesList
+                <TmdbMoviesList
                   resultsArray={tmdbMoviesList.results}
                   resultsInfo={{
                     total_pages: tmdbMoviesList.total_pages,
