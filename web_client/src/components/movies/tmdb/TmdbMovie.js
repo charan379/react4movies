@@ -50,6 +50,7 @@ function TmdbMovie() {
 
   return (
     <>
+
       <div className={`movie-page ${theme}`}>
         {isLoading ? (
           <Loader />
@@ -58,8 +59,7 @@ function TmdbMovie() {
             <div className="movie-title">
               {params.movieType === "movie"
                 ? tmdbMovie.title
-                : tmdbMovie.original_name}{" "}
-              &nbsp;{" "}
+                : tmdbMovie.original_name}
               <small>
                 (
                 {params.movieType === "movie"
@@ -99,6 +99,7 @@ function TmdbMovie() {
                   type: params.movieType,
                   production_companies : tmdbMovie.production_companies,
                   production_countries : tmdbMovie.production_countries,
+                  streaming_on : tmdbMovie["watch/providers"].results.IN,
                   status : tmdbMovie.status,
                   release_date : (
                     params.movieType === "movie"
