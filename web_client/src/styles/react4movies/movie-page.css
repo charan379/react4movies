@@ -2,7 +2,7 @@
 
 .movie-page {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 7fr 2fr;
     grid-template-areas: 
     "movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title"
@@ -13,7 +13,7 @@
     grid-area: movie-title;
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
@@ -44,6 +44,7 @@
     margin-right: 10px;
 
 }
+
 
 
 @media (max-width: 840px) {
