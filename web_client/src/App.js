@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MainComponent from './components/main/MainComponent'
 import Collection from './components/movies/Collection'
@@ -7,16 +6,13 @@ import Home from './components/movies/Home'
 import AddTitle from './components/movies/AddTitle'
 import ThemeContextProvider from './utils/store/contextAPI/themeToggler/ThemeContext'
 import PageNotFound from './components/main/PageNotFound'
-import DiscoverTmdb from './components/movies/DiscoverTmdb'
+import DiscoverTmdb from './components/movies/tmdb/DiscoverTmdb'
+import Loader from './components//utils/Loader'
+import TmdbMovie from './components/movies/tmdb/TmdbMovie'
 
 
 
 const App = () => {
-  const [theme, setTheme] = useState("light")
-
-  useEffect(() => {
-
-  }, [theme])
 
   return (
     <>
@@ -29,6 +25,8 @@ const App = () => {
             <Route path='/fetch-title' element={<FetchTitle/>} />
             <Route path='/add-title' element={<AddTitle />} />
             <Route path='/discover/tmdb' element={<DiscoverTmdb />} />
+            <Route path='/discover/tmdb/:movieType/:tmdbId/:title' element={<TmdbMovie />} />
+            <Route path='/loader' element={<Loader />} />
             <Route path='*' element={<PageNotFound />} />
           </Route>
           </Routes>

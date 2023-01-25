@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-01-17 15:30:48
+ *      @lastModifiedOn : 2023-01-22 16:30:14
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -44,17 +44,19 @@ const MainComponent = () => {
     ############################################################################################
     
     */}
-    
+
       <div className={`main-component ${theme}`}>
         {/* header at top */}
         <Header />
-        
+
         {/* sidebar */}
         <SideBar />
 
         {/* main content */}
         <div className={`main-container ${theme}`}>
-          <Outlet />
+          <div className={`content-wrapper ${theme}`}>
+            <Outlet />
+          </div>
         </div>
 
         <Footer />

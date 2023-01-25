@@ -3,15 +3,15 @@
  *
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
- *  	@createedOn : 2023-01-18 22:08:29
- *      @lastModifiedOn : 2023-01-19 17:23:49
- *  	@desc   : [description]
+ *  	  @createedOn : 2023-01-18 22:08:29
+ *      @lastModifiedOn : 2023-01-23 09:56:53
+ *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { ThemeContext } from "../utils/store/contextAPI/themeToggler/ThemeContext";
+import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 
 const Pagination = (props) => {
   const {theme} = useContext(ThemeContext);
@@ -32,7 +32,6 @@ const Pagination = (props) => {
   }, [props.query]);
 
   const handlePageClick = (event) => {
-    console.log(event.target.dataset.pageType)
     switch (event.target.dataset.pageType) {
       case "normal":
         return props.setPageNo(event.target.dataset.page);

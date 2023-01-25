@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-19 15:35:14
+ *      @lastModifiedOn : 2023-01-24 16:36:09
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -41,9 +41,15 @@ const SideBar = () => {
 
   // states
   const [discoverForm, setDiscoverForm] = useState({
-    queryString: "",
-    titleType: "movie",
-    year: "",
+    queryString: sessionStorage.getItem("discoverForm_queryString")
+      ? sessionStorage.getItem("discoverForm_queryString")
+      : "",
+    titleType: sessionStorage.getItem("discoverForm_titleType")
+      ? sessionStorage.getItem("discoverForm_titleType")
+      : "movie",
+    year: sessionStorage.getItem("discoverForm_year")
+      ? sessionStorage.getItem("discoverForm_year")
+      : "",
   });
 
   const handleChange = (event) => {
@@ -53,6 +59,10 @@ const SideBar = () => {
           ...discoverForm,
           [event.target.name]: event.target.value,
         });
+        sessionStorage.setItem(
+          "discoverForm_" + event.target.name,
+          event.target.value
+        );
         break;
     }
   };
@@ -140,8 +150,8 @@ const SideBar = () => {
                   <i
                     className={`${
                       discoverForm.titleType === "tv"
-                        ? "fa fa-television"
-                        : "fa fa-film"
+                        ? "fas fa-tv"
+                        : "fas fa-film"
                     } icon`}
                   ></i>
                   {/*  */}
@@ -154,11 +164,12 @@ const SideBar = () => {
                       onChange={handleChange}
                     >
                       <option
-                        value={discoverForm.titleType}
-                        disabled="disabled"
+                        defaultValue={discoverForm.titleType}
                         selected="selected"
                       >
-                        Select option
+                        {discoverForm.titleType === "movie"
+                          ? "Movie"
+                          : "TV Series"}
                       </option>
                       <option value="movie">Movie</option>
                       <option value="tv">TV Series</option>
@@ -174,7 +185,8 @@ const SideBar = () => {
                     data-id="D3"
                     name="year"
                     type="number"
-                    placeholder="release year"
+                    value={discoverForm.year}
+                    placeholder="Release Year"
                     onChange={handleChange}
                   ></input>
                 </li>
@@ -220,9 +232,6 @@ const SideBar = () => {
                       </option>
                       <option value="#">One</option>
                       <option value="#">Two</option>
-                      <option value="#">
-                        Thresssssssssssssssssssssssss44444444444444444sssssse
-                      </option>
                       <option value="#">Four</option>
                       <option value="#">Five</option>
                       <option value="#">Six</option>
@@ -244,9 +253,6 @@ const SideBar = () => {
                       </option>
                       <option value="#">One</option>
                       <option value="#">Two</option>
-                      <option value="#">
-                        Thresssssssssssssssssssssssss44444444444444444sssssse
-                      </option>
                       <option value="#">Four</option>
                       <option value="#">Five</option>
                       <option value="#">Six</option>
@@ -268,42 +274,6 @@ const SideBar = () => {
                       </option>
                       <option value="#">One</option>
                       <option value="#">Two</option>
-                      <option value="#">
-                        Thresssssssssssssssssssssssss44444444444444444sssssse
-                      </option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
                     </select>
                   </label>
                 </li>

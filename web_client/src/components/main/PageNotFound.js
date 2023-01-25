@@ -4,7 +4,7 @@ import { ThemeContext } from '../../utils/store/contextAPI/themeToggler/ThemeCon
 const PageNotFound = () => {
   const {theme}  =useContext(ThemeContext);
   return (
-    <div className={`content-wrapper ${theme}`}>Page Not Found</div>
+    <div className={`content ${theme}`}>Page Not Found</div>
   )
 }
 
