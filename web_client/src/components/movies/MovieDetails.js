@@ -4,18 +4,27 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	  @createedOn : 2023-01-23 22:41:38                               
- *      @lastModifiedOn : 2023-01-25 16:22:05
+ *      @lastModifiedOn : 2023-01-25 22:07:11
  *  	  @desc   : [description]							
  *  										 								
  *  #########################################################
  */
  
- import React, { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 
 const MovieDetails = (props) => {
   const { theme } = useContext(ThemeContext);
   console.log(props)
+  
+  const getProviders = (streaming_on) =>{
+    try{
+      return streaming_on.flatrate.map(provider => provider.provider_name).join(", ");
+    }
+    catch(err){
+      return "No Data Found"
+    }
+  }
   
   return (
     <div className={`movie-info-box ${theme}`}>
@@ -38,10 +47,10 @@ const MovieDetails = (props) => {
             <b>Type : </b> {props.data.type}
           </div >
           <div className="info-item">
-            <b>Production Companies : </b> {props.data.type}
+            <b>Production Companies : </b> {props.data.production_companies.map((company) => company.name).join(", ")}
           </div >
           <div className="info-item">
-            <b>Production Countries : </b> {props.data.type}
+            <b>Production Countries : </b> {props.data.production_countries.map((country) => country.name).join(", ")}
           </div > 
            <div className="info-item">
             <b>Status : </b>{props.data.status}
@@ -51,6 +60,9 @@ const MovieDetails = (props) => {
           </div>
           <div className="info-item">
             <b>Rumtime : </b>{props.data.runtime}
+          </div>
+          <div className="info-item">
+            <b>Streaming On : </b>{getProviders(props.data.streaming_on)}
           </div>
 
           {/*<div className="info-item">
