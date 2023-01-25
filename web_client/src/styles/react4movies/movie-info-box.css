@@ -6,11 +6,12 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.2fr 0.8fr;
+  grid-template-rows: 0.2fr 0.8fr 0.4fr;
   gap: 5px;
   grid-template-areas: 
         "genres-container genres-container"
-        "movie-info movie-info";
+        "movie-info movie-info"
+        "movie-overview movie-overview";
 }
 
 /*  */
@@ -43,7 +44,6 @@
     grid-area: movie-info;
     padding: 5px;
     width: -webkit-fill-available;
-    border-top: 2px solid var(--ui-elemnet-light);
     border-radius: 5px;
 }
 
@@ -55,8 +55,19 @@
 
 }
 
+
+.movie-info-box .movie-overview {
+    text-align: initial;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    grid-area: movie-overview;
+    padding: 5px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+}
+
 .movie-info-box.light .genres-container,
-.movie-info-box.light .movie-info {
+.movie-info-box.light .movie-info,
+.movie-info-box.light .movie-overview  {
     background-color: var(--ui-elemnet-light);
     color: var(--font-color-light);
     border-top: 2px solid var(--ui-elemnet-dark);
@@ -64,7 +75,8 @@
 }
 
 .movie-info-box.dark .genres-container,
-.movie-info-box.dark .movie-info  {
+.movie-info-box.dark .movie-info,
+.movie-info-box.dark .movie-overview   {
     background-color: var(--ui-elemnet-dark);
     color: var(--font-color-dark);
     border-top: 2px solid var(--ui-elemnet-light);
