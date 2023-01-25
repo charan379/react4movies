@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import MoviesList from './MoviesList'
+import TmdbMoviesList from './tmdb/TmdbMoviesList'
 import {ThemeContext} from '../../utils/store/contextAPI/themeToggler/ThemeContext'
 
 const Collection = () => {
@@ -9,7 +9,7 @@ const Collection = () => {
             <div className="row">
                 <div className={`col-md-12 collection-wrapper ${theme}`}>
                     <div id="results">
-                        <MoviesList />
+                        <TmdbMoviesList />
                     </div>
                 </div>
             </div>
