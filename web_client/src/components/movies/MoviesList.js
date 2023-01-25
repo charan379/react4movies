@@ -1,16 +1,23 @@
-/**
- * @author : charanteja379
- * @email  : charanteja379@gmail.com
- * @create : created on 2023-01-07 18:43:21
- * @modify : last modify on 2023-01-07 18:43:21
- * @desc   :desc [description]
+/** 
+ *	#########################################################
+ *  										 									
+ *      @author : charanteja379                                 			
+ *      @email  : charanteja379@gmail.com                                  
+ *  	  @createedOn : 2023-01-07 18:43:21                               
+ *      @lastModifiedOn : 2023-01-19 18:28:34
+ *  	  @desc   : [description]							
+ *  										 								
+ *  #########################################################
  */
+ 
 import React, { useContext } from 'react'
-import { ThemeContext } from '../store/contextAPI/themeToggler/ThemeContext';
+import {ThemeContext} from '../../utils/store/contextAPI/themeToggler/ThemeContext'
+import MovieBox from './MovieBox'
 
-const MoviesList = () => {
+const MoviesList = (props) => {
   const {theme} = useContext(ThemeContext)
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let array = new Array(0,1,2,3,4,5,6,7,8,9,10)
+  console.log(props)
   return (
     <>
       {/* Movies List  */}
@@ -19,19 +26,18 @@ const MoviesList = () => {
           array.map((element, index) => {
             
             return (
-
-              <div key={"box" + index} className={`movie-box ${theme}`}>
-                {/* Movie Cover */}
-                <div className={`movie-cover ${theme}`}>
-                  {/* if image is avaliable in local */}
-                  {/* <img className='' src='https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt=''></img> */}
-                  <img src={require('../styles/matrix.jpg')}></img>
-                  {/* if no image */}
-                  {/* <div className={`movie-nocover ${theme}`}><br/><br/><br/><br/><i class="fa-solid fa-triangle-exclamation fa-2x" aria-hidden="true"></i><br/>No Image</div> */}
-                </div>
-                <div className={`movie-title ${theme}`}>The Matrix</div>
-              </div>
-            )
+              <MovieBox
+                movieData={{
+                  index: index,
+                  link: "",
+                  poster: "",
+                  title: "Matrix",
+                  type: "",
+                  year: 1998,
+                  ratting: 8.03,
+                }}
+              />
+            );
 
           })
         }
@@ -40,4 +46,4 @@ const MoviesList = () => {
   )
 }
 
-export default MoviesList
+export default MoviesList;

@@ -5,12 +5,12 @@ const sourcemaps = require('gulp-sourcemaps');
 
 
 function minifyConbineCss(){
-    return gulp.src('./components/styles/react4movies/*.css')
+    return gulp.src('./styles/react4movies/*.css')
                 .pipe(sourcemaps.init())
                 .pipe(concat('react4movies.min.css'))
                 .pipe(cleanCSS())
                 .pipe(sourcemaps.write('.'))
-                .pipe(gulp.dest('../public'))
+                .pipe(gulp.dest('./styles/'))
 }
 
 exports.css = minifyConbineCss

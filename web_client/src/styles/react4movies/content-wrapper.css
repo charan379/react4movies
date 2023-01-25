@@ -1,0 +1,15 @@
+@import "./variables.css";
+
+/* movies  */
+/*  movies list wrapper */
+.content-wrapper {
+  text-align: center; /* center all the contnets */
+}
+
+.content-wrapper.light {
+  background-color: var(--bg-light);
+}
+
+.content-wrapper.dark {
+  background-color: var(--bg-dark);
+}

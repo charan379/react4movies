@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import MoviesList from './MoviesList'
-import {ThemeContext} from '../store/contextAPI/themeToggler/ThemeContext'
+import {ThemeContext} from '../../utils/store/contextAPI/themeToggler/ThemeContext'
 
 const Collection = () => {
     const {theme} = useContext(ThemeContext)

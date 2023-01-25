@@ -2,6 +2,9 @@
 
 .main-component {
   background-color: var(--bg-light);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .main-component.light {
@@ -13,8 +16,9 @@
 }
 .main-container {
   margin-right: 0;
-  height: 100%;
-  overflow-y: hidden;
+  height: 85%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* transition: margin-left var(---trans-container-margin); */
   
 }
