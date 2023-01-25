@@ -9,9 +9,13 @@ import MoviePoster from "../MoviePoster";
 
 function TmdbMovie() {
   const { theme } = useContext(ThemeContext);
+
   const params = useParams();
+  
   const [isLoading, setIsLoading] = useState(true);
+
   const [tmdbMovie, setTmdbMovie] = useState({});
+
   const fetchMovie = (source) => {
     setIsLoading(true);
     axios
@@ -93,6 +97,19 @@ function TmdbMovie() {
                       : tmdbMovie.original_name,
                   original_language: tmdbMovie.original_language,
                   type: params.movieType,
+                  production_companies : tmdbMovie.production_companies,
+                  production_countries : tmdbMovie.production_countries,
+                  status : tmdbMovie.status,
+                  release_date : (
+                    params.movieType === "movie"
+                      ? tmdbMovie.release_date
+                      : tmdbMovie.first_air_date
+                    ),
+                  runtime : (
+                    params.movieType === "movie"
+                      ? tmdbMovie.runtime
+                      : null
+                    ),
                   overview: tmdbMovie.overview,
                 }}
               />
