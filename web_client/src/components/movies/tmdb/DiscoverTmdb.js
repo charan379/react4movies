@@ -4,14 +4,13 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-25 15:54:21
+ *      @lastModifiedOn : 2023-01-26 11:20:51
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React, {useEffect, useRef, useState } from "react";
 import TmdbMoviesList from "./TmdbMoviesList";
 import { TmdbConfig } from "../../../utils/Config";
 import { useSelector } from "react-redux";
