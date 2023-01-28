@@ -21,20 +21,30 @@ function TmdbMovie() {
     axios
       .get(
         `${TmdbConfig.tmdbApiUrl}${params.movieType}/${params.tmdbId}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=videos,images,watch/providers`,
+
         {
           cancelToken: source.token,
         }
+        
       )
       .then((response) => {
+
         setTmdbMovie({ ...response.data });
+
         setIsLoading(false);
+
         console.log(response.data);
       })
       .catch((error) => {
+
         if (axios.isCancel(error)) {
+
           console.log(error);
+
         } else {
+
           console.log(error);
+
         }
       });
   };
@@ -70,16 +80,20 @@ function TmdbMovie() {
             </div>
             <div className="movie-poster">
               <MoviePoster
+
                 data={{
                   url: `${
                     TmdbConfig.tmdbImagesUrl + "/w500" + tmdbMovie.poster_path
                   }`,
+
                   alt: `${
                     params.movieType === "movie"
                       ? tmdbMovie.title
                       : tmdbMovie.original_name
                   }`,
+
                   tagline: tmdbMovie.tagline,
+                  
                 }}
               />
             </div>
@@ -87,30 +101,41 @@ function TmdbMovie() {
               <MovieDetails
                 data={{
                   genres: tmdbMovie.genres,
+
                   title:
                     params.movieType === "movie"
                       ? tmdbMovie.title
                       : tmdbMovie.original_name,
+
                   original_title:
                     params.movieType === "movie"
                       ? tmdbMovie.original_title
                       : tmdbMovie.original_name,
+
                   original_language: tmdbMovie.original_language,
+
                   type: params.movieType,
+
                   production_companies : tmdbMovie.production_companies,
+
                   production_countries : tmdbMovie.production_countries,
+
                   streaming_on : tmdbMovie["watch/providers"].results.IN,
+
                   status : tmdbMovie.status,
+
                   release_date : (
                     params.movieType === "movie"
                       ? tmdbMovie.release_date
                       : tmdbMovie.first_air_date
                     ),
+
                   runtime : (
                     params.movieType === "movie"
                       ? tmdbMovie.runtime
                       : null
                     ),
+
                   overview: tmdbMovie.overview,
                 }}
               />
