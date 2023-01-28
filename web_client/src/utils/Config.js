@@ -6,4 +6,4 @@ const TmdbConfig = {
     tmdbRegion : process.env.REACT_APP_TMDB_API_REGION
 }
 
-export {TmdbConfig};
+export {TmdbConfig}
