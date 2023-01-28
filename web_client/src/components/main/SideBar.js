@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-24 16:36:09
+ *      @lastModifiedOn : 2023-01-28 14:23:32
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -41,12 +41,14 @@ const SideBar = () => {
 
   // states
   const [discoverForm, setDiscoverForm] = useState({
-    queryString: sessionStorage.getItem("discoverForm_queryString")
-      ? sessionStorage.getItem("discoverForm_queryString")
+    query: sessionStorage.getItem("discoverForm_query")
+      ? sessionStorage.getItem("discoverForm_query")
       : "",
-    titleType: sessionStorage.getItem("discoverForm_titleType")
-      ? sessionStorage.getItem("discoverForm_titleType")
+
+    type: sessionStorage.getItem("discoverForm_type")
+      ? sessionStorage.getItem("discoverForm_type")
       : "movie",
+
     year: sessionStorage.getItem("discoverForm_year")
       ? sessionStorage.getItem("discoverForm_year")
       : "",
@@ -134,9 +136,9 @@ const SideBar = () => {
                   <input
                     data-form="discoverForm"
                     data-id="D1"
-                    name="queryString"
+                    name="query"
                     type="text"
-                    value={discoverForm.queryString}
+                    value={discoverForm.query}
                     placeholder="Search.."
                     onChange={handleChange}
                   ></input>
@@ -149,7 +151,7 @@ const SideBar = () => {
                 <li className={`menu-item ${theme}`}>
                   <i
                     className={`${
-                      discoverForm.titleType === "tv"
+                      discoverForm.type === "tv"
                         ? "fas fa-tv"
                         : "fas fa-film"
                     } icon`}
@@ -159,15 +161,15 @@ const SideBar = () => {
                     <select
                       data-form="discoverForm"
                       data-id="D2"
-                      name="titleType"
+                      name="type"
                       required="required"
                       onChange={handleChange}
                     >
                       <option
-                        defaultValue={discoverForm.titleType}
+                        value={discoverForm.type}
                         selected="selected"
                       >
-                        {discoverForm.titleType === "movie"
+                        {discoverForm.type=== "movie"
                           ? "Movie"
                           : "TV Series"}
                       </option>
@@ -253,10 +255,6 @@ const SideBar = () => {
                       </option>
                       <option value="#">One</option>
                       <option value="#">Two</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
                     </select>
                   </label>
                 </li>
