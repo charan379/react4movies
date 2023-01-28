@@ -4,20 +4,19 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-26 11:20:51
+ *      @lastModifiedOn : 2023-01-28 15:57:47
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, {useEffect, useRef, useState } from "react";
-import TmdbMoviesList from "./TmdbMoviesList";
-import { TmdbConfig } from "../../../utils/Config";
+import React, { useEffect, useRef, useState } from "react";
+import MoviesList from "../MoviesList";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Pagination from "../../utils/Pagination";
 import Loader from "../../utils/Loader";
-import {useSearchParams} from "react-router-dom";
+import searchTmdb from "../../../utils/tmdb_api/searchTmdb";
 
 const DiscoverTmdb = () => {
   const isMounted = useRef(false);
@@ -26,101 +25,83 @@ const DiscoverTmdb = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [tmdbMoviesList, setTmdbMoviesList] = useState({
+  //  {
+  //     page: 1,
+  //     movieList: [],
+  //     total_pages: 1,
+  //     total_results: 1,
+  //  }
+
+  const [movies, setMovies] = useState({
     page: 1,
-    results: [],
+    movieList: [],
     total_pages: 1,
     total_results: 1,
   });
-  
-  const [searchParams,setSearchParams] = useSearchParams();
 
-  const [pageNo, setPageNo] = useState(searchParams.get("pageNo") ? searchParams.get("pageNo") : 1);
-  
+  const [error, setError] = useState({});
+
+  const [pageNo, setPageNo] = useState(1);
+
   useEffect(() => {
     setIsLoading(true);
     const source = axios.CancelToken.source();
-    fetchDataTmdb(
-      discoverQuery.queryString,
-      discoverQuery.titleType,
-      discoverQuery.year,
-      pageNo,
-      source
-    );
+
+    searchTmdb({ ...discoverQuery, pageNo: pageNo }, source)
+      .then((result) => {
+        setMovies({ ...result });
+        setIsLoading(false);
+        console.log(result);
+      })
+      .catch((error) => {
+        setError(error);
+        setIsLoading(false);
+        console.log(error);
+      });
+
     return () => {
       source.cancel();
     };
   }, [discoverQuery, pageNo]);
 
   useEffect(() => {
-    if(isMounted.current){
-      setPageNo(1)
-    }else{
+    if (isMounted.current) {
+      setPageNo(1);
+    } else {
       isMounted.current = true;
-    }    
-  }, [sessionStorage.getItem("discoverForm_queryString")]);
-
-  const fetchDataTmdb = (query, titleType, year, pageNo, source) => {
-    axios
-      .get(
-        `${TmdbConfig.tmdbApiUrl}search/${titleType}?api_key=${
-          TmdbConfig.tmdbApiKey
-        }&language=${TmdbConfig.tmdbLanguage}&query=${encodeURIComponent(
-          query
-        )}&include_adult=false&region=${TmdbConfig.tmdbRegion}${
-          year ? "&year=" + year : ""
-        }${pageNo ? "&page=" + pageNo : ""}`,
-        {
-          cancelToken: source.token,
-        }
-      )
-      .then((response) => {
-        setTmdbMoviesList({ ...response.data });
-        setSearchParams({...Object.fromEntries([...searchParams.entries()]),"pageNo" : pageNo})
-        setIsLoading(false);
-        
-        // console.log(response.data);
-      })
-      .catch((error) => {
-        if (axios.isCancel(error)) {
-          // console.log(error);
-        } else {
-          // console.log(error);
-        }
-      });
-  };
+    }
+  }, [sessionStorage.getItem("discoverForm_query")]);
 
   return (
     <>
-      {discoverQuery.queryString ? (
-          <>
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <div id="results">
-                <TmdbMoviesList
-                  resultsArray={tmdbMoviesList.results}
-                  resultsInfo={{
-                    total_pages: tmdbMoviesList.total_pages,
-                    currentPage: tmdbMoviesList.page,
-                    source: "tmdb",
-                    movieType: discoverQuery.titleType,
-                  }}
-                />
-              </div>
-            )}
+      {movies.movieList.length > 0 ? (
+        <>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div id="results">
+              <MoviesList
+                data={{
+                  source: "tmdb",
+                  movieList: movies.movieList,
+                }}
+              />
+            </div>
+          )}
 
-            <Pagination
-              data={{
-                total_pages: tmdbMoviesList.total_pages,
-                currentPage: tmdbMoviesList.page,
-              }}
-              query={discoverQuery}
-              setPageNo={setPageNo}
-            />
-          </>
+          <Pagination
+            data={{
+              total_pages: movies.total_pages,
+              currentPage: movies.page,
+            }}
+            query={discoverQuery}
+            setPageNo={setPageNo}
+          />
+        </>
       ) : (
-        <div>No Query String</div>
+
+        <div>{error.message ? error.message : ""}</div>
+        
       )}
     </>
   );
