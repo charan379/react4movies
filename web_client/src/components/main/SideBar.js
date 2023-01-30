@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-28 14:23:32
+ *      @lastModifiedOn : 2023-01-30 12:25:37
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -157,22 +157,15 @@ const SideBar = () => {
                     } icon`}
                   ></i>
                   {/*  */}
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select
                       data-form="discoverForm"
                       data-id="D2"
                       name="type"
                       required="required"
                       onChange={handleChange}
+                      value={discoverForm.type}
                     >
-                      <option
-                        value={discoverForm.type}
-                        selected="selected"
-                      >
-                        {discoverForm.type=== "movie"
-                          ? "Movie"
-                          : "TV Series"}
-                      </option>
                       <option value="movie">Movie</option>
                       <option value="tv">TV Series</option>
                     </select>
@@ -209,7 +202,7 @@ const SideBar = () => {
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-folder-open icon"></i>
                   {/*  */}
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
@@ -227,7 +220,7 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-globe icon" aria-hidden="true"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
@@ -248,7 +241,7 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-sort icon"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
@@ -265,7 +258,7 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-user icon"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
