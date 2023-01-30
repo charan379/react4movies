@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-27 12:42:28
- *      @lastModifiedOn : 2023-01-28 15:29:14
+ *      @lastModifiedOn : 2023-01-30 18:59:10
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -46,7 +46,8 @@ const buildList = (tmdbdata, type) => {
   //return result with required data
   const movieList = tmdbdata.results.map((movie) => {
     return {
-      link: `/discover/tmdb/${type}/${movie.id}/${encodeURIComponent(
+      tmdb_id : movie.id,
+      link: `/view/tmdb/${type}/${movie.id}/${encodeURIComponent(
         (getTitle(movie, type) + "-" + getYear(movie, type)).replace(
           /[^a-zA-Z0-9]/g,
           "-"
@@ -62,6 +63,8 @@ const buildList = (tmdbdata, type) => {
       ratting: movie.vote_average ? movie.vote_average : 0,
 
       type: type,
+
+      source :"tmdb",
     };
   });
 
@@ -70,6 +73,7 @@ const buildList = (tmdbdata, type) => {
     movieList,
     total_pages: tmdbdata.total_pages,
     total_results: tmdbdata.total_results,
+    source :"tmdb",
   };
 };
 
