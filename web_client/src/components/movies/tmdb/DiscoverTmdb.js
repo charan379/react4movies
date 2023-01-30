@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-28 15:57:47
+ *      @lastModifiedOn : 2023-01-30 14:32:04
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -51,7 +51,7 @@ const DiscoverTmdb = () => {
       .then((result) => {
         setMovies({ ...result });
         setIsLoading(false);
-        console.log(result);
+        // console.log(result);
       })
       .catch((error) => {
         setError(error);
@@ -82,7 +82,7 @@ const DiscoverTmdb = () => {
             <div id="results">
               <MoviesList
                 data={{
-                  source: "tmdb",
+                  source: movies.source,
                   movieList: movies.movieList,
                 }}
               />
