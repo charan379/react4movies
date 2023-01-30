@@ -4,15 +4,15 @@
  *      @author : charanteja379                                 			
  *      @email  : charanteja379@gmail.com                                  
  *  	@createedOn : 2023-01-17 23:56:14                               
- *      @lastModifiedOn : 2023-01-19 18:55:17
+ *      @lastModifiedOn : 2023-01-28 14:15:06
  *  	@desc   : [description]							
  *  										 								
  *  #########################################################
  */
  
  const initialState = {
-    queryString : "",
-    titleType : "",
+    query : "",
+    type : "",
     year : ""
 }
 

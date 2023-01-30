@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-24 16:36:09
+ *      @lastModifiedOn : 2023-01-30 12:25:37
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -41,12 +41,14 @@ const SideBar = () => {
 
   // states
   const [discoverForm, setDiscoverForm] = useState({
-    queryString: sessionStorage.getItem("discoverForm_queryString")
-      ? sessionStorage.getItem("discoverForm_queryString")
+    query: sessionStorage.getItem("discoverForm_query")
+      ? sessionStorage.getItem("discoverForm_query")
       : "",
-    titleType: sessionStorage.getItem("discoverForm_titleType")
-      ? sessionStorage.getItem("discoverForm_titleType")
+
+    type: sessionStorage.getItem("discoverForm_type")
+      ? sessionStorage.getItem("discoverForm_type")
       : "movie",
+
     year: sessionStorage.getItem("discoverForm_year")
       ? sessionStorage.getItem("discoverForm_year")
       : "",
@@ -134,9 +136,9 @@ const SideBar = () => {
                   <input
                     data-form="discoverForm"
                     data-id="D1"
-                    name="queryString"
+                    name="query"
                     type="text"
-                    value={discoverForm.queryString}
+                    value={discoverForm.query}
                     placeholder="Search.."
                     onChange={handleChange}
                   ></input>
@@ -149,28 +151,21 @@ const SideBar = () => {
                 <li className={`menu-item ${theme}`}>
                   <i
                     className={`${
-                      discoverForm.titleType === "tv"
+                      discoverForm.type === "tv"
                         ? "fas fa-tv"
                         : "fas fa-film"
                     } icon`}
                   ></i>
                   {/*  */}
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select
                       data-form="discoverForm"
                       data-id="D2"
-                      name="titleType"
+                      name="type"
                       required="required"
                       onChange={handleChange}
+                      value={discoverForm.type}
                     >
-                      <option
-                        defaultValue={discoverForm.titleType}
-                        selected="selected"
-                      >
-                        {discoverForm.titleType === "movie"
-                          ? "Movie"
-                          : "TV Series"}
-                      </option>
                       <option value="movie">Movie</option>
                       <option value="tv">TV Series</option>
                     </select>
@@ -207,7 +202,7 @@ const SideBar = () => {
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-folder-open icon"></i>
                   {/*  */}
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
@@ -225,7 +220,7 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="fa fa-globe icon" aria-hidden="true"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
@@ -246,17 +241,13 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-sort icon"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option
                       </option>
                       <option value="#">One</option>
                       <option value="#">Two</option>
-                      <option value="#">Four</option>
-                      <option value="#">Five</option>
-                      <option value="#">Six</option>
-                      <option value="#">Seven</option>
                     </select>
                   </label>
                 </li>
@@ -267,7 +258,7 @@ const SideBar = () => {
                 </li>
                 <li className={`menu-item ${theme}`}>
                   <i className="bx bx-user icon"></i>
-                  <label className={`sidebar-select ${theme}`} for="slct">
+                  <label className={`sidebar-select ${theme}`} htmlFor="slct">
                     <select id="slct" required="required">
                       <option value="" disabled="disabled" selected="selected">
                         Select option

@@ -9,7 +9,8 @@ import PageNotFound from './components/main/PageNotFound'
 import DiscoverTmdb from './components/movies/tmdb/DiscoverTmdb'
 import Loader from './components//utils/Loader'
 import TmdbMovie from './components/movies/tmdb/TmdbMovie'
-
+import Test from './rough/test'
+import MovieModal from './components/movies/MovieModal'
 
 
 const App = () => {
@@ -25,8 +26,10 @@ const App = () => {
             <Route path='/fetch-title' element={<FetchTitle/>} />
             <Route path='/add-title' element={<AddTitle />} />
             <Route path='/discover/tmdb' element={<DiscoverTmdb />} />
-            <Route path='/discover/tmdb/:movieType/:tmdbId/:title' element={<TmdbMovie />} />
+            <Route path='/view/tmdb/:type/:tmdbId/:title' element={<TmdbMovie />} />
             <Route path='/loader' element={<Loader />} />
+            <Route path='/test' element={<Test />} />
+            <Route path='/modal' element={<MovieModal/>} />
             <Route path='*' element={<PageNotFound />} />
           </Route>
           </Routes>

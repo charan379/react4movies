@@ -1,6 +1,7 @@
 @import './variables.css';
 
 .movie-page {
+    padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 7fr 2fr;
@@ -18,6 +19,7 @@
     align-content: center;
     justify-content: center;
     font-weight: bold;
+    font-size: larger;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -41,7 +43,7 @@
 
 .movie-page .movie-details{
     grid-area: movie-details;
-    margin-right: 10px;
+    margin-right: 0px;
 
 }
 

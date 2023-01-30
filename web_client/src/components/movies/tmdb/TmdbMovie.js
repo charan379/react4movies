@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { TmdbConfig } from "../../../utils/Config";
 import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
@@ -7,11 +8,11 @@ import Loader from "../../utils/Loader";
 import MovieDetails from "../MovieDetails";
 import MoviePoster from "../MoviePoster";
 
-function TmdbMovie() {
+function TmdbMovie({ movieData }) {
   const { theme } = useContext(ThemeContext);
 
-  const params = useParams();
-  
+  const {type=movieData.type,tmdbId=movieData.tmdb_id, title=movieData.title} = useParams();
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [tmdbMovie, setTmdbMovie] = useState({});
@@ -20,14 +21,19 @@ function TmdbMovie() {
     setIsLoading(true);
     axios
       .get(
-        `${TmdbConfig.tmdbApiUrl}${params.movieType}/${params.tmdbId}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=videos,images,watch/providers`,
+        // `${TmdbConfig.tmdbApiUrl}${params.movieType}/${params.tmdbId}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=videos,images,watch/providers`,
+        `${TmdbConfig.tmdbApiUrl}${type}/${tmdbId}?api_key=${
+          TmdbConfig.tmdbApiKey
+        }&append_to_response=videos,images,watch/providers`,
         {
           cancelToken: source.token,
         }
       )
       .then((response) => {
         setTmdbMovie({ ...response.data });
+        console.log(response.data)
         setIsLoading(false);
+
         console.log(response.data);
       })
       .catch((error) => {
@@ -46,23 +52,22 @@ function TmdbMovie() {
     return () => {
       source.cancel();
     };
-  }, [params]);
+  }, [type, tmdbId, title]);
 
   return (
     <>
-
       <div className={`movie-page ${theme}`}>
         {isLoading ? (
           <Loader />
         ) : (
           <>
             <div className="movie-title">
-              {params.movieType === "movie"
+              {type === "movie"
                 ? tmdbMovie.title
                 : tmdbMovie.original_name}
               <small>
                 (
-                {params.movieType === "movie"
+                {type === "movie"
                   ? new Date(tmdbMovie.release_date).getFullYear()
                   : new Date(tmdbMovie.first_air_date).getFullYear()}
                 )
@@ -74,11 +79,13 @@ function TmdbMovie() {
                   url: `${
                     TmdbConfig.tmdbImagesUrl + "/w500" + tmdbMovie.poster_path
                   }`,
+
                   alt: `${
-                    params.movieType === "movie"
+                    type === "movie"
                       ? tmdbMovie.title
                       : tmdbMovie.original_name
                   }`,
+
                   tagline: tmdbMovie.tagline,
                 }}
               />
@@ -87,30 +94,37 @@ function TmdbMovie() {
               <MovieDetails
                 data={{
                   genres: tmdbMovie.genres,
+
                   title:
-                    params.movieType === "movie"
+                    type === "movie"
                       ? tmdbMovie.title
                       : tmdbMovie.original_name,
+
                   original_title:
-                    params.movieType === "movie"
+                    type === "movie"
                       ? tmdbMovie.original_title
                       : tmdbMovie.original_name,
+
                   original_language: tmdbMovie.original_language,
-                  type: params.movieType,
-                  production_companies : tmdbMovie.production_companies,
-                  production_countries : tmdbMovie.production_countries,
-                  streaming_on : tmdbMovie["watch/providers"].results.IN,
-                  status : tmdbMovie.status,
-                  release_date : (
-                    params.movieType === "movie"
+
+                  type: type,
+
+                  production_companies: tmdbMovie.production_companies,
+
+                  production_countries: tmdbMovie.production_countries,
+
+                  streaming_on: tmdbMovie["watch/providers"].results.IN,
+
+                  status: tmdbMovie.status,
+
+                  release_date:
+                    type === "movie"
                       ? tmdbMovie.release_date
-                      : tmdbMovie.first_air_date
-                    ),
-                  runtime : (
-                    params.movieType === "movie"
-                      ? tmdbMovie.runtime
-                      : null
-                    ),
+                      : tmdbMovie.first_air_date,
+
+                  runtime:
+                    type === "movie" ? tmdbMovie.runtime : null,
+
                   overview: tmdbMovie.overview,
                 }}
               />
@@ -121,5 +135,26 @@ function TmdbMovie() {
     </>
   );
 }
+
+// Default props
+
+TmdbMovie.defaultProps = {
+  movieData: {
+    tmdb_id: 550,
+    tittle: "Fight Club",
+    year: 1999,
+    type: "movie",
+  },
+};
+
+//  Prop-Types
+TmdbMovie.propTypes = {
+  movieData: PropTypes.shape({
+    tmdb_id: PropTypes.number,
+    title: PropTypes.string,
+    year: PropTypes.number,
+    type: PropTypes.string,
+  }),
+};
 
 export default TmdbMovie;
