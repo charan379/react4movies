@@ -1,22 +1,23 @@
-/** 
+/**
  *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	  @createedOn : 2023-01-07 19:28:37                               
- *      @lastModifiedOn : 2023-01-16 19:54:16
- *  	  @desc   : [description]							
- *  										 								
+ *
+ *      @author : charanteja379
+ *      @email  : charanteja379@gmail.com
+ *  	  @createedOn : 2023-01-07 19:28:37
+ *      @lastModifiedOn : 2023-01-31 12:44:09
+ *  	  @desc   : [description]
+ *
  *  #########################################################
  */
- 
+
 import React, { useCallback, useContext, useRef, useState } from "react";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import user from "../../static/icons/user.svg";
 import day from "../../static/icons/day.svg";
 import night from "../../static/icons/night.svg";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
-import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme"
+import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme";
+import { useNavigate } from "react-router-dom";
 
 // Main Header
 const Header = () => {
@@ -25,7 +26,11 @@ const Header = () => {
 
   //  is dropdown open State
   const [isDropdwonOpen, setDropdownOpen] = useState(false);
+
   const dropdownRef = useRef();
+  
+  const navigate = useNavigate();
+  
   useOnOutSideClick(
     dropdownRef,
     useCallback(() => {
@@ -35,7 +40,17 @@ const Header = () => {
   return (
     <>
       <nav className={`navbar ${theme}`}>
-        {/* <div className="nav-title">react4movies</div> */}
+        
+        <div className="nav-title" onClick={() =>  navigate('/')}>
+          <img
+            src={
+              require("../../static/icons/movie-player-play-video-svgrepo-com.svg")
+                .default
+            }
+            alt="logo"
+          ></img>
+        </div>
+
         <ul className="nav-items">
           {/* <li className='nav-item' >
                         <i className="fa fa-user-o " aria-hidden="true"></i>
