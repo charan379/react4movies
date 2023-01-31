@@ -29,6 +29,7 @@
   /* transition: margin-left var(---trans-container-margin); */
   
 }
+
 .sidebar.close + .main-container{
   margin-left: 70px;
 }
@@ -36,6 +37,12 @@
 .sidebar + .main-container {
   margin-left: 240px;
 }
+
+.sidebar.none + .main-container{
+  margin-left: 3px;
+}
+
+
 .container.light {
   background-color: var(--bg-light);
 }
@@ -45,6 +52,6 @@
 
 @media (max-width: 580px) {
   .main-container {
-    margin-left: 70px !important;
+    margin-left: 70px;
   }
 }

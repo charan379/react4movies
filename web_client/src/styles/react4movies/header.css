@@ -35,6 +35,11 @@
     text-transform: capitalize;
 }
 
+.navbar .nav-title img {
+    width: 40px;
+    border-radius: 6px;
+}
+
 .navbar .nav-items .nav-item {
     list-style: none;
     display: inline;

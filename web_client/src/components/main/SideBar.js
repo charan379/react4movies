@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-30 12:25:37
+ *      @lastModifiedOn : 2023-01-31 12:44:58
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -29,14 +29,15 @@ const SideBar = () => {
   const sidebarRef = useRef();
   const discoverPattren = /^\/discover.{0,}/;
   const collectionPattren = /^\/collection.{0,}/;
+  const noSidebar = [/^\/view.{0,}/, /^\/login.{0,}/, /^\/test.{0,}/];
   const location = useLocation();
+
   useOnOutSideClick(
     sidebarRef,
     useCallback(() => {
       setIsSidebarOpen(false);
     }, [])
   );
-
   const dispatch = useDispatch();
 
   // states
@@ -74,6 +75,12 @@ const SideBar = () => {
     dispatch(updateDiscoverQuery(discoverForm));
   }, [discoverForm]);
 
+  
+  if((noSidebar.some(pattern => pattern.test(location.pathname)))){
+    console.log(location.pathname)
+    return null
+  };
+  
   return (
     <>
       {/* sidebar */}
@@ -151,9 +158,7 @@ const SideBar = () => {
                 <li className={`menu-item ${theme}`}>
                   <i
                     className={`${
-                      discoverForm.type === "tv"
-                        ? "fas fa-tv"
-                        : "fas fa-film"
+                      discoverForm.type === "tv" ? "fas fa-tv" : "fas fa-film"
                     } icon`}
                   ></i>
                   {/*  */}
