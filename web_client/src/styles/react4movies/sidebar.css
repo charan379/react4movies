@@ -12,6 +12,9 @@
   z-index: 998;
 }
 
+.sidebar.none {
+  display: none;
+}
 
 /* sidebar close */
 .sidebar.close {
