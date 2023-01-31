@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-30 14:32:04
+ *      @lastModifiedOn : 2023-01-31 17:06:41
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -56,6 +56,12 @@ const DiscoverTmdb = () => {
       .catch((error) => {
         setError(error);
         setIsLoading(false);
+        setMovies({
+          page: 1,
+          movieList: [],
+          total_pages: 1,
+          total_results: 1,
+        });
         console.log(error);
       });
 
