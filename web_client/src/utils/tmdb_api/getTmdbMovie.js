@@ -94,9 +94,14 @@ const getLanguage = (iso_code) => {
 }
 
 
-const getTmdbMovie = () => {
-  const url =
-    "https://api.themoviedb.org/3/movie/550?api_key=1010cbcbe4825ee2a11e52baf7e3c9e5&append_to_response=watch/providers,credits";
+const getTmdbMovie = (tmdb_id) => {
+  const url =`${TmdbConfig.tmdbApiUrl}
+              movie/
+              ${tmdb_id}
+              ?api_key=${TmdbConfig.tmdbApiKey}&
+              append_to_response=watch/providers,credits`
+              .replace(/\n/g, "")
+              .replace(/ /g, "");
 
   return new Promise((resolve, reject) => {
     axios
