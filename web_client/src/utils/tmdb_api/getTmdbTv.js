@@ -112,9 +112,14 @@ const getLanguage = (iso_code) => {
   }
 };
 
-const getTmdbTv = () => {
-  const url =
-    "https://api.themoviedb.org/3/tv/100088?api_key=1010cbcbe4825ee2a11e52baf7e3c9e5&append_to_response=watch/providers,credits";
+const getTmdbTv = (tmdb_id) => {
+  const url = `${TmdbConfig.tmdbApiUrl}
+                tv/
+                ${tmdb_id}
+                ?api_key=${TmdbConfig.tmdbApiKey}&
+                append_to_response=watch/providers,credits`
+                .replace(/\n/g, "")
+                .replace(/ /g, "");
 
   return new Promise((resolve, reject) => {
     axios
