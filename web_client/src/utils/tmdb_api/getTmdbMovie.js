@@ -48,22 +48,6 @@ const buildMovie = (movieData) => {
   return movie;
 };
 
-const getTmdbMovie = () => {
-  const url =
-    "https://api.themoviedb.org/3/movie/550?api_key=1010cbcbe4825ee2a11e52baf7e3c9e5&append_to_response=watch/providers,credits";
-
-  return new Promise((resolve, reject) => {
-    axios
-      .get(url)
-      .then((response) => {
-        resolve(buildMovie(response.data));
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-};
-
 const getProviders = (streaming_on) => {
   try {
     return streaming_on.flatrate.map((provider) => provider.provider_name);
@@ -108,5 +92,22 @@ const getLanguage = (iso_code) => {
     return "Error with ISO Converstion";
   }
 }
+
+
+const getTmdbMovie = () => {
+  const url =
+    "https://api.themoviedb.org/3/movie/550?api_key=1010cbcbe4825ee2a11e52baf7e3c9e5&append_to_response=watch/providers,credits";
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url)
+      .then((response) => {
+        resolve(buildMovie(response.data));
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
 
 export default getTmdbMovie;

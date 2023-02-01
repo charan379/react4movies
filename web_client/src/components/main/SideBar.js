@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-01-31 12:44:58
+ *      @lastModifiedOn : 2023-02-01 17:11:50
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -22,6 +22,7 @@ import { useLocation } from "react-router-dom";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import { updateDiscoverQuery } from "../../utils/store/reduxStore/actions/DiscoverActions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const SideBar = () => {
   const { theme } = useContext(ThemeContext);

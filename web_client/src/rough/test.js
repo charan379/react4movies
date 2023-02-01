@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import MovieModal from '../components/movies/MovieModal'
+import getTmdbMovie from "../utils/tmdb_api/getTmdbMovie";
 
 const Test = () => {
+  getTmdbMovie()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-  const [openModal, setOpenModal] = useState(false);
-  return (
-    <div>
-      <button onClick={() => setOpenModal(true)}>Modal</button>
-      <MovieModal open={openModal} close={() => setOpenModal(false)}/>
-    </div>
-  )
-}
+  return <div>test</div>;
+};
 
-export default Test
+
+export default Test;
 
 // {
 //     "tmdb_id": 846433,
