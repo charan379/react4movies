@@ -20,7 +20,7 @@ const buildMovie = (movieData) => {
 
     original_language: getLanguage(movieData.original_language),
 
-    type: "movie",
+    titleType: "movie",
 
     production_companies: movieData.production_companies,
 
