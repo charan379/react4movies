@@ -31,7 +31,7 @@ const MovieModal = ({ data, open, close }) => {
                 tmdb_id: data.tmdb_id,
                 tittle: data.tittle,
                 year: data.year,
-                type: data.type,
+                titleType: data.titleType,
               }}
             />
           ) : null}
