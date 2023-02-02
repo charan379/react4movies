@@ -4,6 +4,7 @@ import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeCon
 import TmdbMovie from "./tmdb/TmdbMovie";
 
 const MovieModal = ({ data, open, close }) => {
+  console.log(data)
   const { theme } = useContext(ThemeContext);
 
   const openInNewTab = (url) => {
