@@ -1,6 +1,6 @@
 import axios from "axios";
 import { TmdbConfig } from "../Config";
-import iso from '../iso369-1.json'
+import iso from "../iso369-1.json";
 
 const buildMovie = (movieData) => {
   const movie = {
@@ -85,32 +85,34 @@ const getCast = (credits) => {
 };
 
 const getLanguage = (iso_code) => {
-  try{
-    return iso.find(ele => ele["639_1_code"] === iso_code);
-  }
-  catch(err){
+  try {
+    return iso.find((ele) => ele["639_1_code"] === iso_code);
+  } catch (err) {
     return "Error with ISO Converstion";
   }
-}
+};
 
-
-const getTmdbMovie = (tmdb_id) => {
-  const url =`${TmdbConfig.tmdbApiUrl}
+const getTmdbMovie = (tmdb_id, source) => {
+  const url = `${TmdbConfig.tmdbApiUrl}
               movie/
               ${tmdb_id}
               ?api_key=${TmdbConfig.tmdbApiKey}&
               append_to_response=watch/providers,credits`
-              .replace(/\n/g, "")
-              .replace(/ /g, "");
+    .replace(/\n/g, "")
+    .replace(/ /g, "");
 
   return new Promise((resolve, reject) => {
     axios
-      .get(url)
+      .get(url, { cancelToken: source.token })
       .then((response) => {
         resolve(buildMovie(response.data));
       })
       .catch((error) => {
-        reject(error);
+        if (axios.isCancel(error)) {
+          // do nothing
+        } else {
+          reject(error);
+        }
       });
   });
 };
