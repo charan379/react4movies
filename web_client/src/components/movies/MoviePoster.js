@@ -3,14 +3,13 @@ import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeCon
 import empty from "../../static/empty.svg";
 import matrix from "../../styles/matrix.jpg";
 
-const MoviePoster = (props) => {
+const MoviePoster = ({data}) => {
   const { theme } = useContext(ThemeContext);
 
   const handleImageError = (img) => {
     img.target.onerror = null;
     img.target.src = empty;
   };
-  console.log(props)
 
   return (
     <>
@@ -21,8 +20,8 @@ const MoviePoster = (props) => {
           <img
             loading="lazy"
             onError={handleImageError}
-            src={props.data.url}
-            alt={props.data.alt}
+            src={data.url}
+            alt={data.alt}
           ></img>
         </div>
         {/* postor backdrop*/}
@@ -34,7 +33,7 @@ const MoviePoster = (props) => {
       </div>
 
       {/* movie tagline */}
-      <div className={`movie-tagline ${theme}`}>{props.data.tagline}</div>
+      <div className={`movie-tagline ${theme}`}>{data.tagline}</div>
     </>
   );
 };
