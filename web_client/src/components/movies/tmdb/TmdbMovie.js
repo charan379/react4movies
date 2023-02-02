@@ -15,14 +15,12 @@ import Seasons from "./Tv/Seasons";
 function TmdbMovie({ movieData }) {
   const { theme } = useContext(ThemeContext);
 
-  console.log(movieData);
   const {
-    titleType = movieData.type,
+    titleType = movieData.titleType,
     tmdbId = movieData.tmdb_id,
     title = movieData.title,
   } = useParams();
 
-  console.log(titleType);
   const [isLoading, setIsLoading] = useState(true);
 
   const [tmdbMovie, setTmdbMovie] = useState({});
@@ -134,7 +132,7 @@ TmdbMovie.defaultProps = {
     tmdb_id: 550,
     tittle: "Fight Club",
     year: 1999,
-    type: "movie",
+    titleType: "movie",
   },
 };
 
@@ -144,7 +142,7 @@ TmdbMovie.propTypes = {
     tmdb_id: PropTypes.number,
     title: PropTypes.string,
     year: PropTypes.number,
-    type: PropTypes.string,
+    titleType: PropTypes.string,
   }),
 };
 
