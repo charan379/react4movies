@@ -36,7 +36,7 @@ const MovieBox = ({ movieData }) => {
         <div className={`movie-info ${theme}`}>
           {movieData.title}
           <br />
-          {movieData.type}
+          {movieData.titleType}
         </div>
 
         <div className={`movie-year ${theme}`}>
@@ -62,7 +62,7 @@ MovieBox.defaultProps = {
     link: "link",
     poster: "path",
     title: "movie title",
-    type: "movie",
+    titleType: "movie",
     year: 0,
     ratting: 0,
   },
@@ -75,7 +75,7 @@ MovieBox.propTypes = {
     link: PropTypes.string,
     poster: PropTypes.string,
     title: PropTypes.string,
-    type: PropTypes.string,
+    titleType: PropTypes.string,
     year: PropTypes.number,
     ratting: PropTypes.number,
   }),
