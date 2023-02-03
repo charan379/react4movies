@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import TmdbMovie from "./tmdb/TmdbMovie";
 
