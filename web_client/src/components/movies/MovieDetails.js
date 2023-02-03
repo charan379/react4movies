@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-23 22:41:38
- *      @lastModifiedOn : 2023-02-02 20:44:47
+ *      @lastModifiedOn : 2023-02-03 19:46:16
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -12,6 +12,7 @@
 
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import ShowLessText from "../utils/ShowLessText";
 
 const MovieDetails = ({ titleData, titleType }) => {
   const { theme } = useContext(ThemeContext);
@@ -123,7 +124,7 @@ const MovieDetails = ({ titleData, titleType }) => {
       </div>
       <div className={`movie-overview`}>
         <h6>Overview</h6>
-        {titleData.overview ? titleData.overview : "No Data"}
+        {titleData.overview ? <ShowLessText data={{text : titleData.overview}}/> : "No Data"}
       </div>
     </div>
   );
