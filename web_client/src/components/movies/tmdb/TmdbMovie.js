@@ -113,7 +113,13 @@ function TmdbMovie({ movieData }) {
 
                 {titleType === "tv" ? (
                   <>
-                    <Seasons />
+                    <Seasons
+                      data={{
+                        latest_episode: tmdbMovie.last_episode_to_air,
+                        upcoming_episode: tmdbMovie.next_episode_to_air,
+                        seasons: tmdbMovie.seasons,
+                      }}
+                    />
                   </>
                 ) : null}
               </>
