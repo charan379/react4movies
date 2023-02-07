@@ -52,9 +52,13 @@ const buildTv = (tvData) => {
 
     last_air_date : tvData.last_air_date,
 
-    last_episode_to_air : tvData.last_episode_to_air,
+    last_episode_to_air :  tvData.last_episode_to_air ? {
+      ...tvData.last_episode_to_air, still_path : `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`
+    } : null,
 
-    next_episode_to_air : tvData.next_episode_to_air,
+    next_episode_to_air : tvData.next_episode_to_air ? {
+      ...tvData.next_episode_to_air , still_path : `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`
+    } : null,
 
     networks : tvData.networks,
 
@@ -62,7 +66,11 @@ const buildTv = (tvData) => {
 
     number_of_episodes : tvData.number_of_episodes,
 
-    seasons : tvData.seasons,
+    seasons : tvData.seasons.map(season => {
+      return ({
+        ...season, poster_path : `${TmdbConfig.tmdbImagesUrl}/w300/${season.poster_path}`, tmdb_show_id : tvData.id
+      })
+    }),
   };
 
   return tv;
@@ -112,7 +120,7 @@ const getLanguage = (iso_code) => {
   }
 };
 
-const getTmdbTv = (tmdb_id) => {
+const getTmdbTv = (tmdb_id, source) => {
   const url = `${TmdbConfig.tmdbApiUrl}
                 tv/
                 ${tmdb_id}
@@ -123,12 +131,16 @@ const getTmdbTv = (tmdb_id) => {
 
   return new Promise((resolve, reject) => {
     axios
-      .get(url)
+      .get(url, { cancelToken: source.token })
       .then((response) => {
         resolve(buildTv(response.data));
       })
       .catch((error) => {
-        reject(error);
+        if (axios.isCancel(error)) {
+          // do nothing
+        } else {
+          reject(error);
+        }
       });
   });
 };
