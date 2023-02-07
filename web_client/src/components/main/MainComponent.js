@@ -4,14 +4,13 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-01-22 16:30:14
+ *      @lastModifiedOn : 2023-02-07 15:32:12
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
 import React, { useContext } from "react";
-import Collection from "../movies/Collection";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 
 import Header from "./Header";
