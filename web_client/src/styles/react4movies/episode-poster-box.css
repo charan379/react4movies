@@ -1,0 +1,58 @@
+@import './variables.css';
+
+
+.episode-poster-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0px solid;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    z-index: 1;
+    width: 238px;
+    height: 160px;   
+    /* margin: 2px 7px 10px 7px; */
+}
+
+.episode-poster-box.light {
+    background-color: var(--ui-elemnet-light);
+    color: var(--font-color-light);
+}
+
+.episode-poster-box.dark {
+    background-color: var(--ui-elemnet-dark);
+    color: var(--font-color-dark);
+}
+
+.episode-poster-box .episode-poster-backdrop,
+.episode-poster-box .episode-poster-img {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    height: inherit; 
+    overflow: hidden;
+    position: absolute;
+    right: 0px;
+}
+
+.episode-poster-box .episode-poster-backdrop {
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.episode-poster-box .episode-poster-img {
+    z-index: 1;
+}
+
+.episode-poster-box .episode-poster-img img {
+    width: inherit;
+    height: inherit;
+}

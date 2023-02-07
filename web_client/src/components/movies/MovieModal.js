@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import TmdbMovie from "./tmdb/TmdbMovie";
 
 const MovieModal = ({ data, open, close }) => {
+  console.log(data)
   const { theme } = useContext(ThemeContext);
 
   const openInNewTab = (url) => {
@@ -30,7 +30,7 @@ const MovieModal = ({ data, open, close }) => {
                 tmdb_id: data.tmdb_id,
                 tittle: data.tittle,
                 year: data.year,
-                type: data.type,
+                titleType: data.titleType,
               }}
             />
           ) : null}

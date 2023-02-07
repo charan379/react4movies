@@ -7,7 +7,7 @@
   font-size: 14px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.2fr 0.8fr 0.4fr;
-  gap: 5px;
+  gap: 10px;
   grid-template-areas: 
         "genres-container genres-container"
         "movie-info movie-info"

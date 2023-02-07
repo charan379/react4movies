@@ -7,52 +7,74 @@ import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/Theme
 import Loader from "../../utils/Loader";
 import MovieDetails from "../MovieDetails";
 import MoviePoster from "../MoviePoster";
+import getTmdbMovie from "../../../utils/tmdb_api/getTmdbMovie";
+import getTmdbTv from "../../../utils/tmdb_api/getTmdbTv";
+import Episode from "./Tv/Episode";
+import Seasons from "./Tv/Seasons";
 
 function TmdbMovie({ movieData }) {
   const { theme } = useContext(ThemeContext);
 
-  const {type=movieData.type,tmdbId=movieData.tmdb_id, title=movieData.title} = useParams();
+  const {
+    titleType = movieData.titleType,
+    tmdbId = movieData.tmdb_id,
+    title = movieData.title,
+  } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
 
   const [tmdbMovie, setTmdbMovie] = useState({});
 
+  const [error, setError] = useState({ message: null });
+
   const fetchMovie = (source) => {
     setIsLoading(true);
-    axios
-      .get(
-        // `${TmdbConfig.tmdbApiUrl}${params.movieType}/${params.tmdbId}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=videos,images,watch/providers`,
-        `${TmdbConfig.tmdbApiUrl}${type}/${tmdbId}?api_key=${
-          TmdbConfig.tmdbApiKey
-        }&append_to_response=videos,images,watch/providers`,
-        {
-          cancelToken: source.token,
-        }
-      )
+    getTmdbMovie(tmdbId, source)
       .then((response) => {
-        setTmdbMovie({ ...response.data });
-        console.log(response.data)
+        setTmdbMovie({ ...response });
         setIsLoading(false);
-
-        console.log(response.data);
+        setError({ message: null });
       })
       .catch((error) => {
-        if (axios.isCancel(error)) {
-          console.log(error);
-        } else {
-          console.log(error);
-        }
+        setTmdbMovie({});
+        setError(error);
+        setIsLoading(false);
+      });
+  };
+
+  const fetchTv = (source) => {
+    setIsLoading(true);
+    getTmdbTv(tmdbId, source)
+      .then((response) => {
+        setTmdbMovie({ ...response });
+        setIsLoading(false);
+        setError({ message: null });
+      })
+      .catch((error) => {
+        setTmdbMovie({});
+        setError(error);
+        setIsLoading(false);
       });
   };
 
   useEffect(() => {
     setIsLoading(true);
     const source = axios.CancelToken.source();
-    fetchMovie(source);
-    return () => {
-      source.cancel();
-    };
-  }, [type, tmdbId, title]);
+    switch (titleType) {
+      case "movie":
+        fetchMovie(source);
+        return () => {
+          source.cancel();
+        };
+      case "tv":
+        fetchTv(source);
+        return () => {
+          source.cancel();
+        };
+      default:
+        console.log("Invalid Title Type while fetching movie page");
+    }
+  }, [titleType, tmdbId, title]);
 
   return (
     <>
@@ -61,74 +83,47 @@ function TmdbMovie({ movieData }) {
           <Loader />
         ) : (
           <>
-            <div className="movie-title">
-              {type === "movie"
-                ? tmdbMovie.title
-                : tmdbMovie.original_name}
-              <small>
-                (
-                {type === "movie"
-                  ? new Date(tmdbMovie.release_date).getFullYear()
-                  : new Date(tmdbMovie.first_air_date).getFullYear()}
-                )
-              </small>
-            </div>
-            <div className="movie-poster">
-              <MoviePoster
-                data={{
-                  url: `${
-                    TmdbConfig.tmdbImagesUrl + "/w500" + tmdbMovie.poster_path
-                  }`,
+            {error.message ? (
+              <div>{error.message}</div>
+            ) : (
+              <>
+                <div className="movie-title">
+                  {tmdbMovie.title}
+                  <small> ({tmdbMovie.year})</small>
+                </div>
 
-                  alt: `${
-                    type === "movie"
-                      ? tmdbMovie.title
-                      : tmdbMovie.original_name
-                  }`,
+                <div className="movie-poster">
+                  <MoviePoster
+                    data={{
+                      url: tmdbMovie.poster_path,
 
-                  tagline: tmdbMovie.tagline,
-                }}
-              />
-            </div>
-            <div className="movie-details">
-              <MovieDetails
-                data={{
-                  genres: tmdbMovie.genres,
+                      alt: tmdbMovie.title,
 
-                  title:
-                    type === "movie"
-                      ? tmdbMovie.title
-                      : tmdbMovie.original_name,
+                      tagline: tmdbMovie.tagline,
+                    }}
+                  />
+                </div>
 
-                  original_title:
-                    type === "movie"
-                      ? tmdbMovie.original_title
-                      : tmdbMovie.original_name,
+                <div className="movie-details">
+                  <MovieDetails
+                    titleData={{ ...tmdbMovie }}
+                    titleType={titleType}
+                  />
+                </div>
 
-                  original_language: tmdbMovie.original_language,
-
-                  type: type,
-
-                  production_companies: tmdbMovie.production_companies,
-
-                  production_countries: tmdbMovie.production_countries,
-
-                  streaming_on: tmdbMovie["watch/providers"].results.IN,
-
-                  status: tmdbMovie.status,
-
-                  release_date:
-                    type === "movie"
-                      ? tmdbMovie.release_date
-                      : tmdbMovie.first_air_date,
-
-                  runtime:
-                    type === "movie" ? tmdbMovie.runtime : null,
-
-                  overview: tmdbMovie.overview,
-                }}
-              />
-            </div>
+                {titleType === "tv" ? (
+                  <>
+                    <Seasons
+                      data={{
+                        latest_episode: tmdbMovie.last_episode_to_air,
+                        upcoming_episode: tmdbMovie.next_episode_to_air,
+                        seasons: tmdbMovie.seasons,
+                      }}
+                    />
+                  </>
+                ) : null}
+              </>
+            )}
           </>
         )}
       </div>
@@ -143,7 +138,7 @@ TmdbMovie.defaultProps = {
     tmdb_id: 550,
     tittle: "Fight Club",
     year: 1999,
-    type: "movie",
+    titleType: "movie",
   },
 };
 
@@ -153,7 +148,7 @@ TmdbMovie.propTypes = {
     tmdb_id: PropTypes.number,
     title: PropTypes.string,
     year: PropTypes.number,
-    type: PropTypes.string,
+    titleType: PropTypes.string,
   }),
 };
 

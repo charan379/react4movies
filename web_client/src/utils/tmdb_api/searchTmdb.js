@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-27 12:42:28
- *      @lastModifiedOn : 2023-01-30 18:59:10
+ *      @lastModifiedOn : 2023-02-02 20:36:19
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -46,7 +46,7 @@ const buildList = (tmdbdata, type) => {
   //return result with required data
   const movieList = tmdbdata.results.map((movie) => {
     return {
-      tmdb_id : movie.id,
+      tmdb_id: movie.id,
       link: `/view/tmdb/${type}/${movie.id}/${encodeURIComponent(
         (getTitle(movie, type) + "-" + getYear(movie, type)).replace(
           /[^a-zA-Z0-9]/g,
@@ -62,9 +62,9 @@ const buildList = (tmdbdata, type) => {
 
       ratting: movie.vote_average ? movie.vote_average : 0,
 
-      type: type,
+      titleType: type,
 
-      source :"tmdb",
+      source: "tmdb",
     };
   });
 
@@ -73,7 +73,7 @@ const buildList = (tmdbdata, type) => {
     movieList,
     total_pages: tmdbdata.total_pages,
     total_results: tmdbdata.total_results,
-    source :"tmdb",
+    source: "tmdb",
   };
 };
 
@@ -96,7 +96,13 @@ const searchTmdb = async (
                 query=${encodeURIComponent(search.query)}&
                 include_adult=false&
                 region=${TmdbConfig.tmdbRegion}
-                ${search.year ?  (search.type === "movie" ? "&year=" : "&first_air_date_year=") + search.year : ""}
+                ${
+                  search.year
+                    ? (search.type === "movie"
+                        ? "&year="
+                        : "&first_air_date_year=") + search.year
+                    : ""
+                }
                 ${search.pageNo ? "&page=" + search.pageNo : ""}`
     .replace(/\n/g, "")
     .replace(/ /g, "");
@@ -106,22 +112,22 @@ const searchTmdb = async (
   // return moviedata promise
   return new Promise((resolve, reject) => {
     axios
-      .get(url, {cancelToken: source.token})
+      .get(url, { cancelToken: source.token })
       .then((result) => {
         if (result.data.total_results) {
           resolve(buildList(result.data, search.type));
         } else {
           reject({
-            message : "No Data Found",
+            message: "No Data Found",
             error: "No Data Found",
             errorType: "Empty Result",
           });
         }
       })
       .catch((error) => {
-        if(axios.isCancel(error)){
-            // do nothing
-        }else{
+        if (axios.isCancel(error)) {
+          // do nothing
+        } else {
           reject(error);
         }
       });

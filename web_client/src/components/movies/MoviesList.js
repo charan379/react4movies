@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 18:43:21
- *      @lastModifiedOn : 2023-01-30 14:30:43
+ *      @lastModifiedOn : 2023-02-02 20:40:57
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -47,7 +47,7 @@ const MoviesList = ({ data }) => {
                       link: movie.link,
                       poster: movie.poster_path,
                       title: movie.title,
-                      type: movie.type,
+                      titleType: movie.type,
                       year: movie.year,
                       ratting: movie.ratting,
                       source: movie.source
@@ -81,7 +81,7 @@ MoviesList.defaultProps = {
         link: "url",
         poster: "poster path",
         title: "Movie Title 1",
-        type: "movie",
+        titleType: "movie",
         year: 1998,
         ratting: 7.4,
       },
@@ -91,7 +91,7 @@ MoviesList.defaultProps = {
         link: "url",
         poster: "poster path",
         title: "Movie Title 2",
-        type: "movie",
+        titleType: "movie",
         year: 1999,
         ratting: 7.5,
       },

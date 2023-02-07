@@ -1,71 +1,121 @@
-/** 
+/**
  *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	  @createedOn : 2023-01-23 22:41:38                               
- *      @lastModifiedOn : 2023-01-25 22:07:11
- *  	  @desc   : [description]							
- *  										 								
+ *
+ *      @author : charanteja379
+ *      @email  : charanteja379@gmail.com
+ *  	  @createedOn : 2023-01-23 22:41:38
+ *      @lastModifiedOn : 2023-02-03 19:46:16
+ *  	  @desc   : [description]
+ *
  *  #########################################################
  */
- 
+
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import ShowLessText from "../utils/ShowLessText";
 
-const MovieDetails = (props) => {
+const MovieDetails = ({ titleData, titleType }) => {
   const { theme } = useContext(ThemeContext);
-  console.log(props)
-  
-  const getProviders = (streaming_on) =>{
-    try{
-      return streaming_on.flatrate.map(provider => provider.provider_name).join(", ");
-    }
-    catch(err){
-      return "No Data Found"
-    }
-  }
-  
+
   return (
     <div className={`movie-info-box ${theme}`}>
       <div className={`genres-container ${theme}`}>
-        {props.data.genres.map(genre =>{
-          return <div key={genre.id} className="genre">{genre.name}</div>
+        {titleData.genres.map((genre) => {
+          return (
+            <div key={genre.id} className="genre">
+              {genre.name}
+            </div>
+          );
         })}
       </div>
       <div className="movie-info">
-          <div className="info-item">
-            <b>Title : </b>{props.data.title}
-          </div>
-          <div className="info-item">
-            <b>Original Title : </b>{props.data.original_title}
-          </div>
-          <div className="info-item">
-            <b>Original Language : </b>{props.data.original_language}
-          </div>
-          <div className="info-item">
-            <b>Type : </b> {props.data.type}
-          </div >
-          <div className="info-item">
-            <b>Production Companies : </b> {props.data.production_companies.map((company) => company.name).join(", ")}
-          </div >
-          <div className="info-item">
-            <b>Production Countries : </b> {props.data.production_countries.map((country) => country.name).join(", ")}
-          </div > 
-           <div className="info-item">
-            <b>Status : </b>{props.data.status}
-          </div>
-          <div className="info-item">
-            <b>Release Date : </b>{props.data.release_date}
-          </div>
-          <div className="info-item">
-            <b>Rumtime : </b>{props.data.runtime}
-          </div>
-          <div className="info-item">
-            <b>Streaming On : </b>{getProviders(props.data.streaming_on)}
-          </div>
+        <div className="info-item">
+          <b>Title : </b>
+          {titleData.title}
+        </div>
 
-          {/*<div className="info-item">
+        <div className="info-item">
+          <b>Original Title : </b>
+          {titleData.original_title}
+        </div>
+
+        <div className="info-item">
+          <b>Original Language : </b>
+          {titleData.original_language.english_name}
+        </div>
+
+        <div className="info-item">
+          <b>Type : </b> {titleData.titleType}
+        </div>
+
+        <div className="info-item">
+          <b>Production Companies : </b>{" "}
+          {titleData.production_companies
+            .map((company) => company.name)
+            .join(", ")}
+        </div>
+
+        <div className="info-item">
+          <b>Production Countries : </b>{" "}
+          {titleData.production_countries
+            .map((country) => country.name)
+            .join(", ")}
+        </div>
+
+        <div className="info-item">
+          <b>Top Cast : </b>{" "}
+          {titleData.cast.map((cast) => cast.name).join(", ")}
+        </div>
+
+        {titleType === "movie" ? (
+          <>
+            <div className="info-item">
+              <b>Director : </b>{" "}
+              {titleData.directors.map((director) => director).join(", ")}
+            </div>
+
+            <div className="info-item">
+              <b>Rumtime : </b>
+              {titleData.runtime}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="info-item">
+              <b>Creators : </b>{" "}
+              {titleData.created_by.map((creator) => creator.name).join(", ")}
+            </div>
+
+            <div className="info-item">
+              <b>Seasons : </b>
+              {titleData.number_of_seasons}
+            </div>
+            
+            <div className="info-item">
+              <b>Episodes : </b>
+              {titleData.number_of_episodes}
+            </div>
+
+            <div className="info-item">
+              <b>Episode Rumtime : </b>
+              {titleData.runtime}
+            </div>
+          </>
+        )}
+        <div className="info-item">
+          <b>Status : </b>
+          {titleData.status}
+        </div>
+        <div className="info-item">
+          <b>Release Date : </b>
+          {titleData.release_date}
+        </div>
+        <div className="info-item">
+          <b>Streaming On : </b>
+          {titleData.providers.map((provider) => provider).join(",")}
+        </div>
+
+        {/*<div className="info-item">
             <b>Age Ratting :</b> ?
           </div>
           <div className="info-item">
@@ -74,7 +124,7 @@ const MovieDetails = (props) => {
       </div>
       <div className={`movie-overview`}>
         <h6>Overview</h6>
-        {props.data.overview ? props.data.overview : "No Data"}
+        {titleData.overview ? <ShowLessText data={{text : titleData.overview}}/> : "No Data"}
       </div>
     </div>
   );
