@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import Episode from "./Episode";
 import PropTypes from "prop-types";
-import Season from "./Season";
 import { ThemeContext } from "../../../../utils/store/contextAPI/themeToggler/ThemeContext";
-import SeasonEpisodes from "./SeasonEpisodes";
 import CollapsibleSeason from "./CollapsibleSeason";
 
 const Seasons = ({ data }) => {
