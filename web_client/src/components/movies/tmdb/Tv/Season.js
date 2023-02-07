@@ -1,7 +1,6 @@
 import React from "react";
 import ShowLessText from "../../../utils/ShowLessText";
 import SeasonPoster from "../../SeasonPoster";
-import SeasonEpisodes from "./SeasonEpisodes";
 
 const Season = ({ season }) => {
   return (

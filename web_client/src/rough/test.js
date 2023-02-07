@@ -1,17 +1,16 @@
-import getTmdbMovie from "../utils/tmdb_api/getTmdbMovie";
+import { useState } from "react";
+import CollapsibleSeason from "../components/movies/tmdb/Tv/CollapsibleSeason";
+import getTmdbTvSeason from "../utils/tmdb_api/getTmdbTvSeason";
 
 const Test = () => {
-  getTmdbMovie()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  return <div>test</div>;
+  return (
+    <div>
+      Test
+      <br />
+      <CollapsibleSeason />
+    </div>
+  );
 };
-
 
 export default Test;
 
