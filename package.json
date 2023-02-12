@@ -1,6 +1,5 @@
 {
-  "name": "moviebunkers",
-  "alias" : "react4movies",
+  "name": "react4movies",
   "version": "2.1.4",
   "private": true,
   "description": "",
