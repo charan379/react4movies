@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { TmdbConfig } from "../../../utils/Config";
 import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
 import Loader from "../../utils/Loader";
@@ -14,7 +14,7 @@ import Seasons from "./Tv/Seasons";
 
 function TmdbMovie({ movieData }) {
   const { theme } = useContext(ThemeContext);
-
+  const location = useLocation();
   const {
     titleType = movieData.titleType,
     tmdbId = movieData.tmdb_id,
@@ -111,7 +111,7 @@ function TmdbMovie({ movieData }) {
                   />
                 </div>
 
-                {titleType === "tv" ? (
+                {titleType === "tv" & (/^\/view.{0,}/.test(location.pathname)) ? (
                   <>
                     <Seasons
                       data={{
@@ -126,6 +126,9 @@ function TmdbMovie({ movieData }) {
             )}
           </>
         )}
+        <div>
+          <button>View on full details</button>
+        </div>
       </div>
     </>
   );
