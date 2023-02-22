@@ -1,0 +1,234 @@
+@import "./variables.css";
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 999;  
+  overflow-y: scroll;
+}
+
+.login-box.light {
+  color: var(--font-color-light);
+  background: var(--ui-elemnet-light);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+
+.login-box.dark {
+  color: var(--font-color-dark);
+  background: var(--ui-elemnet-dark);
+  box-shadow: 0 15px 25px rgba(3, 3, 117, 0.6);
+}
+
+.login-box .closeBtn{
+  width: 45px;
+  height: 45px;
+  border-radius: 25px;
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  text-align: center;
+  padding: 4px;
+  font-size: larger;
+}
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  /* color: #fff; */
+  text-align: center;
+}
+
+.login-box .input-box {
+  position: relative;
+}
+
+.login-box .input-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  color: inherit;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #7a66ed;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .input-box label {
+  position: absolute;
+  color: #7a66ed;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  pointer-events: none;
+  transition: 0.5s;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.login-box .input-box input:focus ~ label,
+.login-box .input-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+}
+
+.login-box form .form-button {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .left-button,
+.login-box .right-button{
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding: 5px;
+  font-size: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: max-content;
+}
+.login-box .left-button {
+  float: left;
+}
+.login-box .right-button {
+  float: right;
+}
+.login-box .form-button:hover , .login-box .right-button:hover,.login-box .left-button:hover {
+  background: #7a66ed;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #7a66ed, 0 0 25px #7a66ed, 0 0 10px #7a66ed,
+    0 0 10px #7a66ed;
+}
+
+.login-box .form-button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box .form-button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7a66ed);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.login-box .form-button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #7a66ed);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+.login-box .form-button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #7a66ed);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.login-box .form-button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #7a66ed);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+
+@media (max-width:480px) {
+  .login-box {
+    width: 320px;
+  }
+}
+
+@media (max-width:320px) {
+  .login-box {
+    width: 260px;
+  }
+}
+
+@media (max-height:420px) {
+  .login-box {
+    height:280px;
+  }
+}
