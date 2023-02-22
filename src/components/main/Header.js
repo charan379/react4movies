@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-07 19:28:37
- *      @lastModifiedOn : 2023-01-31 12:44:09
+ *      @lastModifiedOn : 2023-02-22 21:47:51
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -18,30 +18,32 @@ import night from "../../static/icons/night.svg";
 import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme";
 import { useNavigate } from "react-router-dom";
+import Login from "../authentication/Login";
 
 // Main Header
 const Header = () => {
   // current theme
   const { theme } = useContext(ThemeContext);
-
   //  is dropdown open State
   const [isDropdwonOpen, setDropdownOpen] = useState(false);
 
+  const [openLogin, setOpenLogin] = useState(false);
+
   const dropdownRef = useRef();
-  
+
   const navigate = useNavigate();
-  
+
   useOnOutSideClick(
     dropdownRef,
     useCallback(() => {
       setDropdownOpen(false);
     }, [])
   );
+  
   return (
     <>
       <nav className={`navbar ${theme}`}>
-        
-        <div className="nav-title" onClick={() =>  navigate('/')}>
+        <div className="nav-title" onClick={() => navigate("/")}>
           <img
             src={
               require("../../static/icons/movie-player-play-video-svgrepo-com.svg")
@@ -86,6 +88,7 @@ const Header = () => {
                   : "navbar-dropdown-content"
               }
             >
+              <a onClick={() => setOpenLogin(true)}>Login</a>
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
@@ -93,6 +96,9 @@ const Header = () => {
           </div>
         </ul>
       </nav>
+      {openLogin ? (
+        <Login open={openLogin} close={() => setOpenLogin(false)} />
+      ) : null}
     </>
   );
 };
