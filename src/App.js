@@ -4,14 +4,14 @@ import Collection from './components/movies/Collection'
 import FetchTitle from './components/movies/FetchTitle'
 import Home from './components/movies/Home'
 import AddTitle from './components/movies/AddTitle'
-import ThemeContextProvider from './utils/store/contextAPI/themeToggler/ThemeContext'
+import ThemeContextProvider from './utils/store/contextAPI/themeToggler/ThemeContextProvider'
 import PageNotFound from './components/main/PageNotFound'
 import DiscoverTmdb from './components/movies/tmdb/DiscoverTmdb'
 import Loader from './components//utils/Loader'
 import TmdbMovie from './components/movies/tmdb/TmdbMovie'
 import Test from './rough/test'
-import MovieModal from './components/movies/MovieModal'
 import Episode from './components/movies/tmdb/Tv/Episode'
+import Login from './components/authentication/Login'
 
 
 const App = () => {
@@ -31,6 +31,7 @@ const App = () => {
             <Route path='/loader' element={<Loader />} />
             <Route path='/test' element={<Test />} />
             <Route path='/lep' element={<Episode/>} />
+            <Route path='login' element={<Login/>} />
             <Route path='*' element={<PageNotFound />} />
           </Route>
           </Routes>
