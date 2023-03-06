@@ -1,18 +1,43 @@
-import React, { useCallback, useContext, useRef, useState } from "react";
+import axios from "axios";
+import React, { useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Config } from "../../utils/Config";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import useTheme from "../../utils/hooks/useTheme";
 
-const Login = ({ ref, open, close }) => {
-  const { theme } = useContext(ThemeContext);
+const Login = ({ open, close, loginSuccess }) => {
+  const { theme } = useTheme();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("");
   const loginRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors("");
     // handle form submission logic here, making an API call to verify the user's credentials
-    console.log(username + " " + password);
+    axios
+      .post(
+        Config.SERVER + "/auth/cookie-auth",
+        {
+          userName: username,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+          console.log(response.data)
+          loginSuccess();
+          close();
+      })
+      .catch((error) => {
+          let errorMessage = error?.response?.data.error?.message;
+          if(errorMessage){
+            setErrors(errorMessage);
+          }else{
+            console.log(error);
+          }
+      });
   };
 
   useOnOutSideClick(loginRef, useCallback(close, []));
@@ -47,22 +72,43 @@ const Login = ({ ref, open, close }) => {
             ></input>
             <label>Password</label>
           </div>
+          <div className="container">{errors ? errors : null}</div>
+          <div className="container">
+            <button
+              className="form-button"
+              style={{ float: "left" }}
+              type="submit"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              LogIn
+            </button>
 
-          <button className="form-button" type="submit">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Log In
-          </button>
+            <a className="form-button" style={{ float: "right" }}>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Guest User
+            </a>
+          </div>
           <br />
-          <Link to={"#"} className="left-button">
+        </form>
+        <div className="links">
+          <Link
+            to={"#"}
+            className="link"
+            style={{ float: "left" }}
+            onClick={() => alert("Under ")}
+          >
             New User ?
           </Link>
-          <Link to={"#"} className="right-button">
+          <Link to={"#"} className="link" style={{ float: "right" }}>
             Cannot Login ?
           </Link>
-        </form>
+        </div>
       </div>
     </>
   );
