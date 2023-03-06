@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Episode from "./Episode";
 import PropTypes from "prop-types";
-import { ThemeContext } from "../../../../utils/store/contextAPI/themeToggler/ThemeContext";
 import CollapsibleSeason from "./CollapsibleSeason";
+import useTheme from "../../../../utils/hooks/useTheme";
 
 const Seasons = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <div className={`tv-seasons ${theme}`}>
       <h5>Seasons Data</h5>

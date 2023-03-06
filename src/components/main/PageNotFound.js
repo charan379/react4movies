@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from '../../utils/store/contextAPI/themeToggler/ThemeContext';
+import React from 'react'
+import useTheme from '../../utils/hooks/useTheme';
 
 const PageNotFound = () => {
-  const {theme}  =useContext(ThemeContext);
+  const {theme}  = useTheme();
   return (
     <div className={`content ${theme}`}>Page Not Found</div>
   )

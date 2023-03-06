@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useLocation, useParams } from "react-router-dom";
 import { TmdbConfig } from "../../../utils/Config";
-import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
 import Loader from "../../utils/Loader";
 import MovieDetails from "../MovieDetails";
 import MoviePoster from "../MoviePoster";
@@ -11,9 +10,10 @@ import getTmdbMovie from "../../../utils/tmdb_api/getTmdbMovie";
 import getTmdbTv from "../../../utils/tmdb_api/getTmdbTv";
 import Episode from "./Tv/Episode";
 import Seasons from "./Tv/Seasons";
+import useTheme from "../../../utils/hooks/useTheme";
 
 function TmdbMovie({ movieData }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const location = useLocation();
   const {
     titleType = movieData.titleType,

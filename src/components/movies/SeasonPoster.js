@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React from "react";
 import empty from "../../static/empty.svg";
+import useTheme from "../../utils/hooks/useTheme";
 
 const SeasonPoster = ({data}) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   const handleImageError = (img) => {
     img.target.onerror = null;

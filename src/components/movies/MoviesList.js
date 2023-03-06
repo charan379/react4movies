@@ -1,23 +1,11 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-07 18:43:21
- *      @lastModifiedOn : 2023-02-02 20:40:57
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import MovieBox from "./MovieBox";
 import MovieModal from "./MovieModal";
+import useTheme from "../../utils/hooks/useTheme";
 
 const MoviesList = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
 

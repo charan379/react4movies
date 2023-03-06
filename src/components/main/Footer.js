@@ -1,21 +1,9 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-07 19:18:52
- *      @lastModifiedOn : 2023-01-20 21:53:01
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, {  useContext } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React from "react";
 import { Link } from "react-router-dom";
+import useTheme from "../../utils/hooks/useTheme";
 
 const Footer = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <>
       <div className={`footer ${theme}`}>

@@ -1,18 +1,4 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-10 17:55:04
- *      @lastModifiedOn : 2023-02-07 15:32:26
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
 import React, {
-  useCallback,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -20,11 +6,11 @@ import React, {
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import useTheme from "../../utils/hooks/useTheme";
 import { updateDiscoverQuery } from "../../utils/store/reduxStore/actions/DiscoverActions";
 
 const SideBar = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef();
   const discoverPattren = /^\/discover.{0,}/;
@@ -34,9 +20,10 @@ const SideBar = () => {
 
   useOnOutSideClick(
     sidebarRef,
-    useCallback(() => {
-      setIsSidebarOpen(false);
-    }, [])
+    () => setIsSidebarOpen(false)
+    // useCallback(() => {
+    //   setIsSidebarOpen(false);
+    // }, [])
   );
   const dispatch = useDispatch();
 
@@ -75,12 +62,11 @@ const SideBar = () => {
     dispatch(updateDiscoverQuery(discoverForm));
   }, [discoverForm]);
 
-  
-  if((noSidebar.some(pattern => pattern.test(location.pathname)))){
-    console.log(location.pathname)
-    return null
-  };
-  
+  if (noSidebar.some((pattern) => pattern.test(location.pathname))) {
+    console.log(location.pathname);
+    return null;
+  }
+
   return (
     <>
       {/* sidebar */}

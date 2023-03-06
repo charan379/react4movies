@@ -1,29 +1,29 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-07 19:28:37
- *      @lastModifiedOn : 2023-02-22 21:47:51
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import user from "../../static/icons/user.svg";
 import day from "../../static/icons/day.svg";
 import night from "../../static/icons/night.svg";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme";
 import { useNavigate } from "react-router-dom";
 import Login from "../authentication/Login";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { Config } from "../../utils/Config";
+import {
+  removeUser,
+  setUser,
+} from "../../utils/store/reduxStore/actions/UserActions";
+import useTheme from "../../utils/hooks/useTheme";
 
 // Main Header
 const Header = () => {
   // current theme
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   //  is dropdown open State
   const [isDropdwonOpen, setDropdownOpen] = useState(false);
 
@@ -33,13 +33,54 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const userDetails = useSelector((state) => state.UserReducer);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const dispatch = useDispatch();
+
   useOnOutSideClick(
     dropdownRef,
     useCallback(() => {
       setDropdownOpen(false);
     }, [])
   );
-  
+
+  const logout = () => {
+    axios
+      .get(Config.SERVER + "/auth/logout", { withCredentials: true })
+      .then((response) => {
+        let data = response.data;
+          setLoggedIn(false);
+          dispatch(removeUser());
+          alert(JSON.stringify(data));
+      });
+  };
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    if (loggedIn === false) {
+      setOpenLogin(true)
+      return;
+    }
+    axios
+      .get(Config.SERVER + "/auth/who-am-i", { withCredentials: true })
+      .then((response) => {
+        let data = response.data;
+          dispatch(setUser({ ...data }));
+      })
+      .catch((error) => {
+        let data = error.response.data.error;
+        if (data) {
+          alert(JSON.stringify(data));
+        } else {
+          console.log(error);
+        }
+      });
+    return () => {
+      source.cancel();
+    };
+  }, [loggedIn]);
+
   return (
     <>
       <nav className={`navbar ${theme}`}>
@@ -88,16 +129,24 @@ const Header = () => {
                   : "navbar-dropdown-content"
               }
             >
-              <a onClick={() => setOpenLogin(true)}>Login</a>
+              {loggedIn ? (
+                <a>{userDetails.userName}</a>
+              ) : (
+                <a onClick={() => setOpenLogin(true)}>Login</a>
+              )}
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              {loggedIn ? <a onClick={() => logout()}>Logout</a> : null}
             </div>
           </div>
         </ul>
       </nav>
       {openLogin ? (
-        <Login open={openLogin} close={() => setOpenLogin(false)} />
+        <Login
+          open={openLogin}
+          close={() => setOpenLogin(false)}
+          loginSuccess={() => setLoggedIn(true)}
+        />
       ) : null}
     </>
   );

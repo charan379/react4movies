@@ -1,26 +1,13 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-07 19:28:45
- *      @lastModifiedOn : 2023-02-07 15:32:12
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useContext } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
-
+import React from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import useTheme from "../../utils/hooks/useTheme";
 
 const MainComponent = () => {
   // current theme
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
     <>
       {/*                         Author @Charan379

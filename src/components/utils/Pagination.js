@@ -4,17 +4,17 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-18 22:08:29
- *      @lastModifiedOn : 2023-01-28 13:10:44
+ *      @lastModifiedOn : 2023-03-06 21:03:17
  *  	  @desc   : [description]
  *
  *  #########################################################
  */
 
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React, { useEffect, useMemo, useState } from "react";
+import useTheme from "../../utils/hooks/useTheme";
 
 const Pagination = (props) => {
-  const {theme} = useContext(ThemeContext);
+  const {theme} = useTheme();
   const pageNumberLimit = 4;
   const [minPageLimit, setMinPageLimit] = useState(0);
   const [maxPageLimit, setMaxPageLimit] = useState(pageNumberLimit);

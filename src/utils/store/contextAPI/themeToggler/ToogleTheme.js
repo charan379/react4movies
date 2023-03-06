@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from './ThemeContext'
+import React from 'react'
+import useTheme from '../../../hooks/useTheme'
 
 const ToogleTheme = ({className,children}) => {
-    const {theme, setTheme} = useContext(ThemeContext)
+    const {theme, setTheme} = useTheme();
     // console.log(theme)
   return (
     <div className={className} onClick={()=> theme === "light" ? setTheme("dark") : setTheme("light")}>

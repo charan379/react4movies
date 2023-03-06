@@ -1,21 +1,9 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-23 22:41:38
- *      @lastModifiedOn : 2023-02-03 19:46:16
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useContext, useState } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React from "react";
+import useTheme from "../../utils/hooks/useTheme";
 import ShowLessText from "../utils/ShowLessText";
 
 const MovieDetails = ({ titleData, titleType }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
 
   return (
     <div className={`movie-info-box ${theme}`}>
