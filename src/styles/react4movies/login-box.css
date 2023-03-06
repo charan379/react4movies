@@ -12,7 +12,7 @@
   transform: translate(-50%, -50%);
   box-sizing: border-box;
   border-radius: 10px;
-  z-index: 999;  
+  z-index: 999;
   overflow-y: scroll;
 }
 
@@ -28,7 +28,7 @@
   box-shadow: 0 15px 25px rgba(3, 3, 117, 0.6);
 }
 
-.login-box .closeBtn{
+.login-box .closeBtn {
   width: 45px;
   height: 45px;
   border-radius: 25px;
@@ -86,7 +86,7 @@
   position: relative;
   display: inline-block;
   color: inherit;
-  padding: 10px 20px;
+  padding: 5px;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -99,8 +99,7 @@
   background: transparent;
 }
 
-.login-box .left-button,
-.login-box .right-button{
+.login-box .links .link {
   position: relative;
   display: inline-block;
   color: inherit;
@@ -117,13 +116,10 @@
   background: transparent;
   width: max-content;
 }
-.login-box .left-button {
-  float: left;
-}
-.login-box .right-button {
-  float: right;
-}
-.login-box .form-button:hover , .login-box .right-button:hover,.login-box .left-button:hover {
+
+.login-box .form-button:hover,
+.login-box .right-button:hover,
+.login-box .left-button:hover {
   background: #7a66ed;
   border-radius: 5px;
   box-shadow: 0 0 5px #7a66ed, 0 0 25px #7a66ed, 0 0 10px #7a66ed,
@@ -214,21 +210,24 @@
   }
 }
 
-
-@media (max-width:480px) {
+@media (max-width: 480px) {
   .login-box {
-    width: 320px;
+    width: 380px;
   }
+ 
 }
 
-@media (max-width:320px) {
+@media (max-width: 400px) {
   .login-box {
-    width: 260px;
+    width: 340px;
   }
+  /* .login-box form .form-button {
+    float: left !important;
+  } */
 }
 
-@media (max-height:420px) {
-  .login-box {
-    height:280px;
-  }
+@media (max-height: 420px) {
+  /* .login-box {
+    height: 280px;
+  } */
 }
