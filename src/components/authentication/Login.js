@@ -1,16 +1,22 @@
 import axios from "axios";
-import React, { useCallback, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { data } from "jquery";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { fetchWhoAmI } from "../../helpers/axios.auth.requests";
 import { Config } from "../../utils/Config";
-import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
+import useAuth from "../../utils/hooks/useAuth";
 import useTheme from "../../utils/hooks/useTheme";
 
-const Login = ({ open, close, loginSuccess }) => {
+const Login = () => {
   const { theme } = useTheme();
+  const { setAuth, auth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.form?.pathname || "/";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
-  const loginRef = useRef();
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,49 +32,47 @@ const Login = ({ open, close, loginSuccess }) => {
         { withCredentials: true }
       )
       .then((response) => {
-          console.log(response.data)
-          loginSuccess();
-          close();
+        console.log(response.data);
+        fetchWhoAmI().then((data) => {
+          setAuth(data);
+          navigate(from, {replace: true})
+        })
       })
       .catch((error) => {
-          let errorMessage = error?.response?.data.error?.message;
-          if(errorMessage){
-            setErrors(errorMessage);
-          }else{
-            console.log(error);
-          }
+        let errorMessage = error?.response?.data.error?.message;
+        if (errorMessage) {
+          setErrors(errorMessage);
+        } else {
+          console.log(error);
+        }
       });
   };
 
-  useOnOutSideClick(loginRef, useCallback(close, []));
-
-  if (!open) return null;
-
   return (
     <>
-      <div ref={loginRef} className={`login-box ${theme}`}>
-        <div onClick={close} className="closeBtn">
+      <div className={`login-box ${theme}`}>
+        {/* <div onClick={close} className="closeBtn">
           <i className="fas fa-times fa-lg"></i>
-        </div>
+        </div> */}
 
         <h2> LOGIN </h2>
 
         <form onSubmit={handleSubmit}>
-          <div class="input-box">
+          <div className="input-box">
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required="true"
+              required={true}
             ></input>
             <label>Username</label>
           </div>
-          <div class="input-box">
+          <div className="input-box">
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required="true"
+              required={true}
             ></input>
             <label>Password</label>
           </div>
