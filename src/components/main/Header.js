@@ -9,16 +9,11 @@ import user from "../../static/icons/user.svg";
 import day from "../../static/icons/day.svg";
 import night from "../../static/icons/night.svg";
 import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme";
-import { useNavigate } from "react-router-dom";
-import Login from "../authentication/Login";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Config } from "../../utils/Config";
-import {
-  removeUser,
-  setUser,
-} from "../../utils/store/reduxStore/actions/UserActions";
 import useTheme from "../../utils/hooks/useTheme";
+import useAuth from "../../utils/hooks/useAuth";
 
 // Main Header
 const Header = () => {
@@ -27,17 +22,12 @@ const Header = () => {
   //  is dropdown open State
   const [isDropdwonOpen, setDropdownOpen] = useState(false);
 
-  const [openLogin, setOpenLogin] = useState(false);
+  const {removeAuth, auth} = useAuth();
 
   const dropdownRef = useRef();
 
   const navigate = useNavigate();
 
-  const userDetails = useSelector((state) => state.UserReducer);
-
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const dispatch = useDispatch();
 
   useOnOutSideClick(
     dropdownRef,
@@ -47,39 +37,16 @@ const Header = () => {
   );
 
   const logout = () => {
+    console.log("log out executee")
     axios
       .get(Config.SERVER + "/auth/logout", { withCredentials: true })
       .then((response) => {
         let data = response.data;
-          setLoggedIn(false);
-          dispatch(removeUser());
+          // setLoggedIn(false);
+          removeAuth();
           alert(JSON.stringify(data));
       });
   };
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-    if (loggedIn === false) {
-      setOpenLogin(true)
-      return;
-    }
-    axios
-      .get(Config.SERVER + "/auth/who-am-i", { withCredentials: true })
-      .then((response) => {
-        let data = response.data;
-          dispatch(setUser({ ...data }));
-      })
-      .catch((error) => {
-        let data = error.response.data.error;
-        if (data) {
-          alert(JSON.stringify(data));
-        } else {
-          console.log(error);
-        }
-      });
-    return () => {
-      source.cancel();
-    };
-  }, [loggedIn]);
 
   return (
     <>
@@ -129,25 +96,25 @@ const Header = () => {
                   : "navbar-dropdown-content"
               }
             >
-              {loggedIn ? (
-                <a>{userDetails.userName}</a>
+              {auth?.userName ? (
+                <a>{auth.userName}</a>
               ) : (
-                <a onClick={() => setOpenLogin(true)}>Login</a>
+                <Link to={"/login"} >Login</Link>
               )}
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>
-              {loggedIn ? <a onClick={() => logout()}>Logout</a> : null}
+              {auth?.userName  ? <a onClick={() => logout()}>Logout</a> : null}
             </div>
           </div>
         </ul>
       </nav>
-      {openLogin ? (
+      {/* {openLogin ? (
         <Login
           open={openLogin}
           close={() => setOpenLogin(false)}
           loginSuccess={() => setLoggedIn(true)}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };
