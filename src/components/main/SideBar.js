@@ -63,7 +63,6 @@ const SideBar = () => {
   }, [discoverForm]);
 
   if (noSidebar.some((pattern) => pattern.test(location.pathname))) {
-    console.log(location.pathname);
     return null;
   }
 
