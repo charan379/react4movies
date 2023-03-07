@@ -19,7 +19,7 @@ const MovieModal = ({ data, open, close }) => {
       <div ref={movieModalRef} className={`movie-overlay ${theme}`}>
         <div className="movie-modalContainer">
           <div className="open-newTab" onClick={() => openInNewTab(data.link)}>
-            <i class="fas fa-external-link-alt fa-2x"></i>
+            <i className="fas fa-external-link-alt fa-2x"></i>
           </div>
           <div onClick={close} className="closeBtn">
             <i className="fas fa-times fa-lg"></i>
