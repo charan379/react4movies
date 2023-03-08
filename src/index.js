@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/react4movies.min.css";
+import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
 import store, { persistor } from "./utils/store/reduxStore/Store";
