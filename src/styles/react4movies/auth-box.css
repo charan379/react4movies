@@ -1,6 +1,6 @@
 @import "./variables.css";
 
-.login-box {
+.auth-box {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -16,19 +16,19 @@
   overflow-y: scroll;
 }
 
-.login-box.light {
+.auth-box.light {
   color: var(--font-color-light);
   background: var(--ui-elemnet-light);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
 }
 
-.login-box.dark {
+.auth-box.dark {
   color: var(--font-color-dark);
   background: var(--ui-elemnet-dark);
   box-shadow: 0 15px 25px rgba(3, 3, 117, 0.6);
 }
 
-.login-box .closeBtn {
+.auth-box .closeBtn {
   width: 45px;
   height: 45px;
   border-radius: 25px;
@@ -39,18 +39,18 @@
   padding: 4px;
   font-size: larger;
 }
-.login-box h2 {
+.auth-box h2 {
   margin: 0 0 30px;
   padding: 0;
   /* color: #fff; */
   text-align: center;
 }
 
-.login-box .input-box {
+.auth-box .input-box {
   position: relative;
 }
 
-.login-box .input-box input {
+.auth-box .input-box input {
   width: 100%;
   padding: 10px 0;
   font-size: 18px;
@@ -62,7 +62,7 @@
   background: transparent;
 }
 
-.login-box .input-box label {
+.auth-box .input-box label {
   position: absolute;
   color: #7a66ed;
   top: 0;
@@ -75,14 +75,15 @@
   text-transform: uppercase;
 }
 
-.login-box .input-box input:focus ~ label,
-.login-box .input-box input:valid ~ label {
+.auth-box .input-box input:focus ~ label,
+.auth-box .input-box input:valid ~ label {
   top: -20px;
   left: 0;
   font-size: 12px;
 }
 
-.login-box form .form-button {
+.auth-box form .form-button,
+.auth-box form .logout-button{
   position: relative;
   display: inline-block;
   color: inherit;
@@ -97,9 +98,10 @@
   border: none;
   outline: none;
   background: transparent;
+  cursor: pointer;
 }
 
-.login-box .links .link {
+.auth-box .links .link {
   position: relative;
   display: inline-block;
   color: inherit;
@@ -115,23 +117,36 @@
   outline: none;
   background: transparent;
   width: max-content;
+  cursor: pointer;
 }
 
-.login-box .form-button:hover,
-.login-box .right-button:hover,
-.login-box .left-button:hover {
+.auth-box .form-button:hover,
+.auth-box .right-button:hover,
+.auth-box .left-button:hover {
   background: #7a66ed;
   border-radius: 5px;
   box-shadow: 0 0 5px #7a66ed, 0 0 25px #7a66ed, 0 0 10px #7a66ed,
     0 0 10px #7a66ed;
 }
 
-.login-box .form-button span {
+.auth-box .logout-button:hover {
+  background: #f76606bf;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #f76606bf, 0 0 25px #f76606bf, 0 0 10px #f76606bf,
+    0 0 10px #f76606bf;
+}
+
+
+
+.auth-box .form-button span,
+.auth-box .logout-button span {
   position: absolute;
   display: block;
 }
 
-.login-box .form-button span:nth-child(1) {
+
+.auth-box .form-button span:nth-child(1),
+.auth-box .logout-button span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -139,6 +154,7 @@
   background: linear-gradient(90deg, transparent, #7a66ed);
   animation: btn-anim1 1s linear infinite;
 }
+
 
 @keyframes btn-anim1 {
   0% {
@@ -150,15 +166,18 @@
   }
 }
 
-.login-box .form-button span:nth-child(2) {
+.auth-box .form-button span:nth-child(2),
+.auth-box .logout-button span:nth-child(2){
   top: -100%;
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #7a66ed);
+  background: linear-gradient(180deg, transparent, #eb66ed);
   animation: btn-anim2 1s linear infinite;
   animation-delay: 0.25s;
 }
+
+
 
 @keyframes btn-anim2 {
   0% {
@@ -170,12 +189,13 @@
   }
 }
 
-.login-box .form-button span:nth-child(3) {
+.auth-box .form-button span:nth-child(3),
+.auth-box .logout-button span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #7a66ed);
+  background: linear-gradient(270deg, transparent, #8ced66);
   animation: btn-anim3 1s linear infinite;
   animation-delay: 0.5s;
 }
@@ -190,12 +210,13 @@
   }
 }
 
-.login-box .form-button span:nth-child(4) {
+.auth-box .form-button span:nth-child(4),
+.auth-box .logout-button span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #7a66ed);
+  background: linear-gradient(360deg, transparent, #f76606bf);
   animation: btn-anim4 1s linear infinite;
   animation-delay: 0.75s;
 }
@@ -211,23 +232,23 @@
 }
 
 @media (max-width: 480px) {
-  .login-box {
+  .auth-box {
     width: 380px;
   }
  
 }
 
 @media (max-width: 400px) {
-  .login-box {
+  .auth-box {
     width: 340px;
   }
-  /* .login-box form .form-button {
+  /* .auth-box form .form-button {
     float: left !important;
   } */
 }
 
 @media (max-height: 420px) {
-  /* .login-box {
+  /* .auth-box {
     height: 280px;
   } */
 }
