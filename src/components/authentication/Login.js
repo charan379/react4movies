@@ -1,59 +1,100 @@
-import axios from "axios";
-import { data } from "jquery";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { fetchWhoAmI } from "../../helpers/axios.auth.requests";
-import { Config } from "../../utils/Config";
+import {
+  authenticateUser,
+  fetchWhoAmI,
+} from "../../helpers/axios.auth.requests";
 import useAuth from "../../utils/hooks/useAuth";
 import useTheme from "../../utils/hooks/useTheme";
+import useToastify from "../../utils/hooks/useToast";
+import MovieBunkersException from "../../utils/MovieBunkersException";
 
 const Login = () => {
   const { theme } = useTheme();
+  const { ToastContainer, toastContainerOptions, toast } = useToastify();
+
   const { setAuth, auth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.form?.pathname || "/";
+  const requestedRoute = location.state?.form?.pathname || "/";
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setErrors("");
-    // handle form submission logic here, making an API call to verify the user's credentials
-    axios
-      .post(
-        Config.SERVER + "/auth/cookie-auth",
-        {
-          userName: username,
-          password: password,
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        console.log(response.data);
-        fetchWhoAmI().then((data) => {
-          setAuth(data);
-          navigate(from, {replace: true})
-        })
+  const forwardToRequestedRoute = (requestedRoute) => {
+    const toastId = toast.loading("Fetching User...");
+    fetchWhoAmI()
+      .then((userDetails) => {
+        toast.update(toastId, {
+          render: `Welcome ${userDetails?.userName}`,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+          delay: 50,
+        });
+        toast.info("Forwording to requested page...!");
+        setAuth(userDetails);
+        setTimeout(() => {
+          navigate(requestedRoute, { replace: true });
+        }, 1000);
       })
       .catch((error) => {
-        let errorMessage = error?.response?.data.error?.message;
-        if (errorMessage) {
-          setErrors(errorMessage);
+        if (error instanceof MovieBunkersException) {
+          toast.update(toastId, {
+            render: error?.message,
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+            delay: 100,
+          });
         } else {
-          console.log(error);
+          toast.update(toastId, {
+            render: error?.message || "Somthing went worng !",
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+            delay: 100,
+          });
+        }
+      });
+  };
+
+  const handleSubmit = (event) => {
+    const toastId = toast.loading("Authenticating...");
+    event.preventDefault();
+    setErrors("");
+
+    authenticateUser(username, password)
+      .then((response) => {
+        toast.update(toastId, {
+          render: response?.message,
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        setTimeout(() => {
+          forwardToRequestedRoute(requestedRoute);
+        }, 1000);
+      })
+      .catch((error) => {
+        if (error instanceof MovieBunkersException) {
+          toast.update(toastId, {
+            render: error?.message,
+            type: "error",
+            isLoading: false,
+            autoClose: 5000,
+            delay: 50,
+          });
+          setErrors(error.reason);
+        } else {
+          setErrors(error?.name);
         }
       });
   };
 
   return (
     <>
-      <div className={`login-box ${theme}`}>
-        {/* <div onClick={close} className="closeBtn">
-          <i className="fas fa-times fa-lg"></i>
-        </div> */}
+      <div className={`auth-box ${theme}`}>
 
         <h2> LOGIN </h2>
 
@@ -64,6 +105,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required={true}
+              autoComplete={false}
             ></input>
             <label>Username</label>
           </div>
@@ -73,6 +115,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required={true}
+              autoComplete={false}
             ></input>
             <label>Password</label>
           </div>
@@ -114,6 +157,8 @@ const Login = () => {
           </Link>
         </div>
       </div>
+
+      <ToastContainer {...toastContainerOptions} />
     </>
   );
 };
