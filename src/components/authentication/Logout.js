@@ -15,10 +15,10 @@ const Logout = ({ open, close }) => {
   const logoutRef = useRef(null);
 
   const navigate = useNavigate(); 
+
   const handleSubmit = (event) => {
     const toastId = toast.loading("Logging out...");
     event.preventDefault();
-
     logout()
       .then((response) => {
         toast.update(toastId, {
@@ -27,9 +27,7 @@ const Logout = ({ open, close }) => {
           isLoading: false,
           autoClose: 5000,
         });
-
         removeAuth();
-
         setTimeout(() => {
             navigate("/")
             close();
