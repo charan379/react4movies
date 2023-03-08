@@ -1,6 +1,5 @@
 import React, {
   useCallback,
-  useEffect,
   useRef,
   useState,
 } from "react";
@@ -10,10 +9,9 @@ import day from "../../static/icons/day.svg";
 import night from "../../static/icons/night.svg";
 import ToogleTheme from "../../utils/store/contextAPI/themeToggler/ToogleTheme";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Config } from "../../utils/Config";
 import useTheme from "../../utils/hooks/useTheme";
 import useAuth from "../../utils/hooks/useAuth";
+import Logout from "../authentication/Logout";
 
 // Main Header
 const Header = () => {
@@ -22,7 +20,9 @@ const Header = () => {
   //  is dropdown open State
   const [isDropdwonOpen, setDropdownOpen] = useState(false);
 
-  const {removeAuth, auth} = useAuth();
+  const [openLogout, setOpenLogout] = useState(false);
+
+  const { auth } = useAuth();
 
   const dropdownRef = useRef();
 
@@ -36,17 +36,6 @@ const Header = () => {
     }, [])
   );
 
-  const logout = () => {
-    console.log("log out executee")
-    axios
-      .get(Config.SERVER + "/auth/logout", { withCredentials: true })
-      .then((response) => {
-        let data = response.data;
-          // setLoggedIn(false);
-          removeAuth();
-          alert(JSON.stringify(data));
-      });
-  };
 
   return (
     <>
@@ -62,12 +51,6 @@ const Header = () => {
         </div>
 
         <ul className="nav-items">
-          {/* <li className='nav-item' >
-                        <i className="fa fa-user-o " aria-hidden="true"></i>
-                    </li>
-                    <li className='nav-item' >
-                        <i className="fa fa-user-o " aria-hidden="true"></i>
-                    </li> */}
           {/* <li className='nav-item' >
                         <img className='nav-img' src={user} ></img>
                     </li> */}
@@ -96,25 +79,25 @@ const Header = () => {
                   : "navbar-dropdown-content"
               }
             >
-              {auth?.userName ? (
-                <a>{auth.userName}</a>
-              ) : (
-                <Link to={"/login"} >Login</Link>
-              )}
+              {auth?.userName
+                ? <a>{auth.userName}</a>
+                : <Link to={"/login"} >Login</Link>
+              }
+
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>
-              {auth?.userName  ? <a onClick={() => logout()}>Logout</a> : null}
+
+              {auth?.userName
+                ? <a onClick={() => setOpenLogout(true)}>Logout</a>
+                : null}
             </div>
           </div>
         </ul>
       </nav>
-      {/* {openLogin ? (
-        <Login
-          open={openLogin}
-          close={() => setOpenLogin(false)}
-          loginSuccess={() => setLoggedIn(true)}
-        />
-      ) : null} */}
+
+      {openLogout
+        ? <Logout open={openLogout} close={() => setOpenLogout(false)} />
+        : null}
     </>
   );
 };
