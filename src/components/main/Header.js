@@ -59,6 +59,7 @@ const Header = () => {
               <img
                 className="nav-img"
                 src={theme === "light" ? day : night}
+                alt={theme}
               ></img>
             </li>
           </ToogleTheme>
@@ -69,7 +70,11 @@ const Header = () => {
             onClick={() => setDropdownOpen(true)}
           >
             <li className="nav-item">
-              <img className="nav-img" src={user}></img>
+              <img
+                className="nav-img"
+                src={user}
+                alt="user lgo">
+              </img>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div
@@ -80,15 +85,15 @@ const Header = () => {
               }
             >
               {auth?.userName
-                ? <a>{auth.userName}</a>
+                ? <Link>{auth.userName}</Link>
                 : <Link to={"/login"} >Login</Link>
               }
 
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
+              <Link href="#">Link 1</Link>
+              <Link href="#">Link 2</Link>
 
               {auth?.userName
-                ? <a onClick={() => setOpenLogout(true)}>Logout</a>
+                ? <Link onClick={() => setOpenLogout(true)}>Logout</Link>
                 : null}
             </div>
           </div>
