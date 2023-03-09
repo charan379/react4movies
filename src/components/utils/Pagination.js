@@ -1,44 +1,41 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-18 22:08:29
- *      @lastModifiedOn : 2023-03-06 21:03:17
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import useTheme from "../../utils/hooks/useTheme";
 
-const Pagination = (props) => {
-  const {theme} = useTheme();
+const Pagination = ({total_pages, currentPage,resetOn, setPageNo}) => {
+
+  const isMounted = useRef(false);
+
+  const { theme } = useTheme();
   const pageNumberLimit = 4;
-  const [minPageLimit, setMinPageLimit] = useState(0);
-  const [maxPageLimit, setMaxPageLimit] = useState(pageNumberLimit);
+  const [minPageLimit, setMinPageLimit] = useState(currentPage > pageNumberLimit ? currentPage - 2 : 1);
+  const [maxPageLimit, setMaxPageLimit] = useState(currentPage > pageNumberLimit ? currentPage + 2 : pageNumberLimit);
   const pages = useMemo(() => {
     const pagesArray = [];
-    for (let i = 1; i <= props.data.total_pages; i++) {
+    for (let i = 1; i <= total_pages; i++) {
       pagesArray.push(i);
     }
     return pagesArray;
-  }, [props.data.total_pages]);
+  }, [total_pages]);
+
 
   useEffect(() => {
-    setMinPageLimit(0);
-    setMaxPageLimit(pageNumberLimit);
-  }, [props.query]);
+    if (isMounted.current) {
+      setMinPageLimit(0);
+      setMaxPageLimit(pageNumberLimit);
+      setPageNo(1);
+    } else {
+      isMounted.current = true;
+    }
+  }, [resetOn]);
 
   const handlePageClick = (event) => {
     switch (event.target.dataset.pageType) {
       case "normal":
-        return props.setPageNo(event.target.dataset.page);
+        return setPageNo(event.target.dataset.page);
       case "first":
         return (
           <>
-            {props.setPageNo(event.target.dataset.page)}
+            {setPageNo(event.target.dataset.page)}
             {setMaxPageLimit(pageNumberLimit)}
             {setMinPageLimit(0)}
           </>
@@ -46,7 +43,7 @@ const Pagination = (props) => {
       case "last":
         return (
           <>
-            {props.setPageNo(event.target.dataset.page)}
+            {setPageNo(event.target.dataset.page)}
             {setMaxPageLimit(event.target.dataset.page)}
             {setMinPageLimit(
               event.target.dataset.page - pageNumberLimit
@@ -59,30 +56,30 @@ const Pagination = (props) => {
   };
 
   const handlePrevPage = () => {
-    if (maxPageLimit - 1 === props.data.total_pages) {
-      setMaxPageLimit(props.data.total_pages);
-      setMinPageLimit(props.data.total_pages - pageNumberLimit);
-      props.setPageNo(props.data.currentPage - 1);
+    if (maxPageLimit - 1 === total_pages) {
+      setMaxPageLimit(total_pages);
+      setMinPageLimit(total_pages - pageNumberLimit);
+      setPageNo(currentPage - 1);
     } else if (maxPageLimit <= pageNumberLimit) {
-      props.setPageNo(props.data.currentPage - 1);
+      setPageNo(currentPage - 1);
     } else {
       setMinPageLimit(minPageLimit - 1);
       setMaxPageLimit(maxPageLimit - 1);
-      props.setPageNo(props.data.currentPage - 1);
+      setPageNo(currentPage - 1);
     }
   };
 
   const handleNextPage = () => {
-    if (props.data.currentPage + 1 <= props.data.total_pages) {
-      if (minPageLimit + 1 >= props.data.total_pages - pageNumberLimit) {
+    if (currentPage + 1 <= total_pages) {
+      if (minPageLimit + 1 >= total_pages - pageNumberLimit) {
         setMaxPageLimit(maxPageLimit + 1);
-        setMinPageLimit(props.data.total_pages - pageNumberLimit);
+        setMinPageLimit(total_pages - pageNumberLimit);
       } else {
-        setMaxPageLimit(props.data.currentPage + pageNumberLimit);
-        setMinPageLimit(props.data.currentPage);
+        setMaxPageLimit(currentPage + pageNumberLimit);
+        setMinPageLimit(currentPage);
       }
 
-      props.setPageNo(props.data.currentPage + 1);
+      setPageNo(currentPage + 1);
     }
   };
 
@@ -90,23 +87,23 @@ const Pagination = (props) => {
     if (minPageLimit - pageNumberLimit > 1) {
       setMinPageLimit(minPageLimit - pageNumberLimit);
       setMaxPageLimit(maxPageLimit - pageNumberLimit);
-      props.setPageNo(minPageLimit);
+      setPageNo(minPageLimit);
     } else {
       setMinPageLimit(0);
       setMaxPageLimit(pageNumberLimit);
-      props.setPageNo(1);
+      setPageNo(1);
     }
   };
 
   const handleNextPageGroupClick = () => {
-    if (maxPageLimit + pageNumberLimit <= props.data.total_pages) {
+    if (maxPageLimit + pageNumberLimit <= total_pages) {
       setMaxPageLimit(maxPageLimit + pageNumberLimit);
       setMinPageLimit(minPageLimit + pageNumberLimit);
-      props.setPageNo(maxPageLimit + pageNumberLimit);
+      setPageNo(maxPageLimit + pageNumberLimit);
     } else {
-      setMinPageLimit(props.data.total_pages - pageNumberLimit);
-      setMaxPageLimit(props.data.total_pages);
-      props.setPageNo(props.data.total_pages);
+      setMinPageLimit(total_pages - pageNumberLimit);
+      setMaxPageLimit(total_pages);
+      setPageNo(total_pages);
     }
   };
   return (
@@ -114,13 +111,12 @@ const Pagination = (props) => {
       <div className="pagination">
         <div className={`pages ${theme}`}>
           {/* First Page */}
-          {props.data.total_pages > 1 ? (
+          {total_pages > 1 ? (
             <div
               data-page={1}
               data-page-type="first"
-              className={`page navigate ${
-                props.data.currentPage === 1 ? "active" : ""
-              }`}
+              className={`page navigate ${currentPage === 1 ? "active" : ""
+                }`}
               onClick={handlePageClick}
               title="First Page"
             >
@@ -137,7 +133,7 @@ const Pagination = (props) => {
           )}
 
           {/* navigate to previous page */}
-          {props.data.currentPage > 1 ? (
+          {currentPage > 1 ? (
             <div
               className="page navigate"
               onClick={handlePrevPage}
@@ -176,16 +172,14 @@ const Pagination = (props) => {
 
           {/* page numbers */}
           {pages.map((page) => {
-            // if (page <= maxPageLimit && page >= minPageLimit && (page !== 1 &&page !== Number(props.data.total_pages))
             if (page <= maxPageLimit && page >= minPageLimit) {
               return (
                 <div
                   key={page}
                   data-page={page}
                   data-page-type="normal"
-                  className={`page ${
-                    props.data.currentPage === page ? "active" : ""
-                  }`}
+                  className={`page ${currentPage === page ? "active" : ""
+                    }`}
                   onClick={handlePageClick}
                 >
                   {page}
@@ -216,7 +210,7 @@ const Pagination = (props) => {
           )}
 
           {/* Next Page */}
-          {props.data.currentPage < props.data.total_pages ? (
+          {currentPage < total_pages ? (
             <div
               className="page navigate"
               onClick={handleNextPage}
@@ -235,19 +229,18 @@ const Pagination = (props) => {
           )}
 
           {/* last page */}
-          {props.data.total_pages > 1 ? (
+          {total_pages > 1 ? (
             <div
-              data-page={props.data.total_pages}
+              data-page={total_pages}
               data-page-type="last"
-              className={`page navigate ${
-                props.data.currentPage === props.data.total_pages
+              className={`page navigate ${currentPage === total_pages
                   ? "active"
                   : ""
-              }`}
+                }`}
               onClick={handlePageClick}
               title="Last Page"
             >
-              <i data-page={props.data.total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
+              <i data-page={total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
             </div>
           ) : (
             <div
