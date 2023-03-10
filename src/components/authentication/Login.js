@@ -22,7 +22,7 @@ const Login = () => {
   const [errors, setErrors] = useState("");
 
   const forwardToRequestedRoute = (requestedRoute) => {
-    const toastId = toast.loading("Fetching User...");
+    const toastId = toast.loading("Fetching User...", {position:"top-right"});
     fetchWhoAmI()
       .then((userDetails) => {
         toast.update(toastId, {
@@ -32,7 +32,7 @@ const Login = () => {
           autoClose: 5000,
           delay: 50,
         });
-        toast.info("Forwording to requested page...!");
+        toast.info("Forwording to requested page...!", {position: "top-right"});
         setAuth(userDetails);
         setTimeout(() => {
           navigate(requestedRoute, { replace: true });
@@ -60,7 +60,7 @@ const Login = () => {
   };
 
   const handleSubmit = (event) => {
-    const toastId = toast.loading("Authenticating...");
+    const toastId = toast.loading("Authenticating...", {position:"top-right"});
     event.preventDefault();
     setErrors("");
 
