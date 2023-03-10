@@ -4,7 +4,7 @@ import MovieBox from "./MovieBox";
 import MovieModal from "./MovieModal";
 import useTheme from "../../utils/hooks/useTheme";
 
-const MoviesList = ({ data }) => {
+const MoviesList = ({source, list}) => {
   const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
@@ -20,8 +20,8 @@ const MoviesList = ({ data }) => {
       {/* Movies List  */}
       <div className={`movies ${theme}`}>
         {/* if list source = tmdb */}
-        {data.source === "tmdb"
-          ? data.movieList.map((movie, index) => {
+        {source === "tmdb"
+          ? list.map((movie, index) => {
               return (
                 <div
                   id={"box-" + index}
