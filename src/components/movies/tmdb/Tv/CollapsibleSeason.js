@@ -18,6 +18,7 @@ const CollapsibleSeason = ({ season }) => {
   const handleClick = () => {
     setIsExpanded(!isExpanded);
   };
+  
   return (
     <div ref={seasonRef}>
       <div className="season" onClick={handleClick}>
@@ -25,16 +26,16 @@ const CollapsibleSeason = ({ season }) => {
       </div>
       <i
         onClick={handleClick}
-        className={`fas fa-chevron-circle-down toggle ${
-          isExpanded ? "expand" : null
-        }`}
+        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : null
+          }`}
       ></i>
       {isExpanded ? (
         <>
           <div className="episodes">
+            <h4 style={{textAlign:"center"}}>Episodes</h4>
             {
               <SeasonEpisodes
-                showId={season.tmdb_show_id}
+                tmdbShowId={season.tmdb_show_id}
                 seasonNumber={season.season_number}
               />
             }
