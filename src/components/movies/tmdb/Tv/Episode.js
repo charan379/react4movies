@@ -36,7 +36,7 @@ const Episode = ({episode}) => {
             <b>Directors : </b> {episode.directors ? episode.directors.map(person => person).join(','): "No Data"}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText data={{text : episode.overview}} />
+            <b>Overview : </b> <ShowLessText text={episode?.overview} limit={150} />
           </li>
         </ul>
       </div>
