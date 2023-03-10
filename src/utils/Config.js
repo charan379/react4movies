@@ -7,6 +7,7 @@ const TmdbConfig = {
 };
 
 const Config = {
-  SERVER: process.env.REACT_APP_SERVER
+  SERVER: process.env.REACT_APP_SERVER,
+  TMDB_API: process.env.REACT_APP_TMDB_API_WRAPPER
 };
 export { TmdbConfig, Config };
