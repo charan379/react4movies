@@ -13,11 +13,8 @@ import Test from "./rough/test";
 import Episode from "./components/movies/tmdb/Tv/Episode";
 import Login from "./components/authentication/Login";
 import Unauthorized from "./components/authentication/Unauthorized";
-import useAuth from "./utils/hooks/useAuth";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Config } from "./utils/Config";
-import Roles, {
+import React from "react";
+import {
   LevelOne,
   LevelThere,
   LevelTwo,
