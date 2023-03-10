@@ -14,7 +14,6 @@
   background-color: var(--bg-dark);
 }
 
-
 .content {
   display: flex;
   flex-direction: column;
@@ -25,4 +24,12 @@
   margin: 0;
   z-index: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-message {
+  text-align: center;
+  color: rgb(176, 42, 69);
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 100px;
 }
