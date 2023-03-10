@@ -1,6 +1,5 @@
 import React from "react";
 import empty from "../../static/empty.svg";
-import matrix from "../../styles/matrix.jpg";
 import useTheme from "../../utils/hooks/useTheme";
 
 const MoviePoster = ({data}) => {
