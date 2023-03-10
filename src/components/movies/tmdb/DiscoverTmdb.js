@@ -35,8 +35,7 @@ const DiscoverTmdb = () => {
       setIsLoading((isLoading) => !isLoading);
 
     }).catch(error => {
-      console.error(error)
-      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 6000, position: "top-right" })
+      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 6000, position: "top-center" })
       if (error instanceof MovieBunkersException) {
         setError(error);
       } else {
@@ -66,7 +65,6 @@ const DiscoverTmdb = () => {
 
   return (
     <>
-      {console.log(error)}
       {moviesPage?.list?.length > 0
         ? // true
         <>
