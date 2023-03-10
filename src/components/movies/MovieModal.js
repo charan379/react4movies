@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from "react";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
 import Title from "./Title";
-import TmdbMovie from "./tmdb/TmdbMovie";
 
 const MovieModal = ({ data, open, close }) => {
   const { theme } = useTheme();
