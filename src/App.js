@@ -8,7 +8,6 @@ import AddTitle from "./components/movies/AddTitle";
 import PageNotFound from "./components/main/PageNotFound";
 import DiscoverTmdb from "./components/movies/tmdb/DiscoverTmdb";
 import Loader from "./components//utils/Loader";
-import TmdbMovie from "./components/movies/tmdb/TmdbMovie";
 import Test from "./rough/test";
 import Episode from "./components/movies/tmdb/Tv/Episode";
 import Login from "./components/authentication/Login";
@@ -20,6 +19,7 @@ import {
   LevelTwo,
   LevelZero,
 } from "./constants/AuthRoles";
+import Title from "./components/movies/Title";
 
 const App = () => {
 
@@ -40,8 +40,8 @@ const App = () => {
 
               <Route element={<RouteProtector allowedRoles={LevelOne} />}>
                 <Route
-                  path="/view/tmdb/:titleType/:tmdbId/:title"
-                  element={<TmdbMovie />}
+                  path="/view/title/:_titleSource/:_titleType/:_title/:_id"
+                  element={<Title />}
                 />
               </Route>
             </Route>
