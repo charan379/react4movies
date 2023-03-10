@@ -1,14 +1,3 @@
-/** 
- *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	  @createedOn : 2023-01-06 09:40:53                               
- *      @lastModifiedOn : 2023-01-23 09:36:34
- *  	  @desc   : [description]							
- *  										 								
- *  #########################################################
- */
  @import "./variables.css";
 
 /* movies  */
@@ -22,7 +11,7 @@
   padding: 0px 10px 0px 0px;
   margin: 0;
   z-index: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 /* Movie Box structure */
@@ -118,7 +107,7 @@ Height = ?
 .movie-box .movie-title {
   bottom: 0px;
   right: 0px;
-  padding: 3px 5px 2px 5px;
+  padding: 6px 3px 2px 5px;
   height: 40px; 
   width: 200px;
   position: absolute ;
@@ -127,8 +116,9 @@ Height = ?
   text-overflow: ellipsis;
   text-align: center;
   z-index: 2;
-  font-weight: 400;
+  font-weight: 300;
   font-size: medium;
+  font-family: "cursive";
 }
 
 .movie-box.light .movie-title {
@@ -258,6 +248,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 5px 3px 2px 5px;
     height: 35.5px;
     width: 178px;
     font-size: small;
@@ -301,6 +292,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 5px 3px 2px 5px;
     height: 35.5px;
     width: 178px;
     font-size: small;
@@ -343,6 +335,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 5px 3px 2px 5px;
     height: 32.5px;
     width: 162.5px;
     font-size: small;
@@ -384,6 +377,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 5px 3px 2px 5px;
     height: 29px;
     width: 145px;
     font-size: 12px;
@@ -425,6 +419,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 4px 3px 2px 5px;
     height: 27px;
     width: 134.5px;
     font-size: 12px;
@@ -467,6 +462,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 3px 3px 2px 5px;
     height: 24px;
     width: 119px;
     font-size: 10px;
@@ -508,6 +504,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 3px 3px 2px 5px;
     height: 22px;
     width: 109.5px;
     font-size: 10px;
@@ -549,6 +546,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 3px 3px 2px 5px;
     height: 22px;
     width: 109.5px;
     font-size: 10px;
@@ -591,6 +589,7 @@ Height = ?
   }
 
   .movie-box .movie-title {
+    padding: 1px 3px 1px 3px;
     height: 20px;
     width: 101px;
     font-size: 10px;

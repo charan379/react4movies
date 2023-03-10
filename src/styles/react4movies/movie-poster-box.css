@@ -73,7 +73,8 @@
     width: inherit;
     padding: 5px;  
     margin: 0px 7px 10px 7px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: cursive;
     font-style: italic;
 }
 

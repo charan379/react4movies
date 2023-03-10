@@ -23,7 +23,7 @@
   padding: 0px 10px 0px 0px;
   margin: 0;
   z-index: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 .error-message {

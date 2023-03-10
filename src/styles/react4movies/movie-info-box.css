@@ -3,7 +3,7 @@
 /*  */
 .movie-info-box {
   display: grid;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-size: 14px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.2fr 0.8fr 0.4fr;
@@ -27,6 +27,7 @@
     padding: 5px;
     border-radius: 3px;
     margin: 5px 5px 5px 0px;
+    font-weight: 500;
 }
 
 .genres-container.light .genre {
@@ -47,12 +48,14 @@
     border-radius: 5px;
 }
 
+.movie-info-box .movie-info .info-item b {
+    font-family: inherit;
+}
 .movie-info-box .movie-info .info-item {
     margin-left: 1px;
     margin-top: 2px;
     padding: 1px;
     text-align: initial;
-
 }
 
 
