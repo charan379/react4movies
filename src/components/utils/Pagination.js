@@ -1,9 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import useTheme from "../../utils/hooks/useTheme";
 
-const Pagination = ({total_pages, currentPage,resetOn, setPageNo}) => {
-
-  const isMounted = useRef(false);
+const Pagination = ({ total_pages, currentPage, setPageNo }) => {
 
   const { theme } = useTheme();
   const pageNumberLimit = 4;
@@ -16,17 +14,6 @@ const Pagination = ({total_pages, currentPage,resetOn, setPageNo}) => {
     }
     return pagesArray;
   }, [total_pages]);
-
-
-  useEffect(() => {
-    if (isMounted.current) {
-      setMinPageLimit(0);
-      setMaxPageLimit(pageNumberLimit);
-      setPageNo(1);
-    } else {
-      isMounted.current = true;
-    }
-  }, [resetOn]);
 
   const handlePageClick = (event) => {
     switch (event.target.dataset.pageType) {
@@ -234,8 +221,8 @@ const Pagination = ({total_pages, currentPage,resetOn, setPageNo}) => {
               data-page={total_pages}
               data-page-type="last"
               className={`page navigate ${currentPage === total_pages
-                  ? "active"
-                  : ""
+                ? "active"
+                : ""
                 }`}
               onClick={handlePageClick}
               title="Last Page"
