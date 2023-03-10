@@ -4,7 +4,7 @@ import MovieBox from "./MovieBox";
 import MovieModal from "./MovieModal";
 import useTheme from "../../utils/hooks/useTheme";
 
-const MoviesList = ({source, list}) => {
+const MoviesList = ({ source, list }) => {
   const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
@@ -22,28 +22,33 @@ const MoviesList = ({source, list}) => {
         {/* if list source = tmdb */}
         {source === "tmdb"
           ? list.map((movie, index) => {
-              return (
-                <div
-                  id={"box-" + index}
-                  key={"box-" + index}
-                  onClick={() => handleOnClick({ ...movie })}
-                >
-                  <MovieBox
-                    movieData={{
-                      id: movie.tmdb_id,
-                      index: index,
-                      link: movie.link,
-                      poster: movie.poster_path,
-                      title: movie.title,
-                      titleType: movie.type,
-                      year: movie.year,
-                      ratting: movie.ratting,
-                      source: movie.source
-                    }}
-                  />
-                </div>
-              );
-            })
+            return (
+              <div
+                id={"box-" + index}
+                key={"box-" + index}
+                onClick={() => handleOnClick({
+                  id: movie?._id ?? movie?.tmdb_id,
+                  title: movie.title,
+                  year: movie?.year,
+                  titleType: movie.title_type,
+                  source: movie?.source
+                })}
+              >
+                <MovieBox
+                  movieData={{
+                    id: movie?._id ?? movie?.tmdb_id,
+                    index: index,
+                    poster: movie?.poster_path,
+                    title: movie.title,
+                    titleType: movie.title_type,
+                    year: movie?.year,
+                    ratting: movie?.ratting,
+                    source: movie?.source
+                  }}
+                />
+              </div>
+            );
+          })
           : null}
 
         {openModal ? (
@@ -65,7 +70,6 @@ MoviesList.defaultProps = {
     movieList: [
       {
         id: 1,
-        index: 1,
         link: "url",
         poster: "poster path",
         title: "Movie Title 1",
@@ -75,7 +79,6 @@ MoviesList.defaultProps = {
       },
       {
         id: 2,
-        index: 2,
         link: "url",
         poster: "poster path",
         title: "Movie Title 2",
