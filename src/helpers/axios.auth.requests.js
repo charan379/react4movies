@@ -16,7 +16,7 @@ export async function fetchWhoAmI(source = axios.CancelToken.source()) {
     if (errorResponse) {
       throw new MovieBunkersException(errorResponse);
     } else {
-      throw new AxiosError(error);
+      throw error;
     }
   }
 }
@@ -45,7 +45,7 @@ export async function authenticateUser(
     if (errorResponse) {
       throw new MovieBunkersException(errorResponse);
     } else {
-      throw new AxiosError(error);
+      throw error;
     }
   }
 }
@@ -62,7 +62,7 @@ export async function logout(source = axios.CancelToken.source()) {
     if (errorResponse) {
       throw new MovieBunkersException(errorResponse);
     } else {
-      throw new AxiosError(error);
+      throw error;
     }
   }
 }
