@@ -29,13 +29,13 @@ const DiscoverTmdb = () => {
     setTmdbSearch({ ...tmdbSearch, pageNo: pageNo });
   }
 
-  const fetchData = (source) => {
-    searchTmdb(tmdbSearch, source).then((result) => {
+  const fetchData = ({cancelToken}) => {
+    searchTmdb({query : tmdbSearch, cancelToken}).then((result) => {
       setMoviesPage((moviePage) => ({ ...result }));
       setIsLoading((isLoading) => !isLoading);
 
     }).catch(error => {
-      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 6000, position: "top-center" })
+      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
       if (error instanceof MovieBunkersException) {
         setError(error);
       } else {
@@ -52,7 +52,7 @@ const DiscoverTmdb = () => {
     setMoviesPage((moviePage) => { })
     setIsLoading((isLoading) => !isLoading);
     setTimeout(() => {
-      fetchData(source)
+      fetchData({cancelToken: source.token})
     }, 500)
 
     return () => {
@@ -61,10 +61,11 @@ const DiscoverTmdb = () => {
     // eslint-disable-next-line 
   }, [tmdbSearch]);
 
-  if (isLoading) return <Loader />
-
   return (
     <>
+
+      {isLoading ? <Loader /> : null}
+
       {moviesPage?.list?.length > 0
         ? // true
         <>

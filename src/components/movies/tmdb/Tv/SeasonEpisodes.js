@@ -15,10 +15,10 @@ const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const fetchData = ({ tmdbShowId, seasonNumber }, source) => {
-    fetchTmdbTvSeason({ tmdbShowId, seasonNumber }, source)
+  const fetchData = ({ tmdbShowId, seasonNumber , cancelToken}) => {
+    fetchTmdbTvSeason({ tmdbShowId, seasonNumber, cancelToken })
       .then((result) => {
-        setEpisodes(result.episodes);
+        setEpisodes(result?.episodes);
         setLoading(loading => !loading);
       })
       .catch((error) => {
@@ -33,7 +33,7 @@ const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
     setLoading(loading => !loading);
     setError(null);
     fetchData(
-      { tmdbShowId, seasonNumber }, source
+      { tmdbShowId, seasonNumber, cancelToken: source.token }
     );
 
     return () => {
@@ -45,7 +45,7 @@ const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
   if (loading) return <Loader />
 
   if (error) {
-    toast.error(error?.message ?? "Something went wrong !", { autoClose: 6000, position: "top-center" })
+    toast.error(error?.message ?? "Something went wrong !", { autoClose: 3000, position: "top-right" })
     return (
       <>
         <div className={"error-message"} style={{ marginTop: "unset", paddingBottom: "50px" }}>
@@ -68,10 +68,10 @@ const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
   return (
     <>
       {episodes.length > 0
-        ? episodes.map((episode) => {
+        ? episodes.map((episode, index) => {
           return (
-            <div className="episode">
-              <Episode episode={episode} />
+            <div key={`${index}`} id={`E${index}`} className="episode">
+              <Episode episode={episode} index={index} />
             </div>
           );
         })
