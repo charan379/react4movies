@@ -3,7 +3,7 @@ import useOnOutSideClick from "../../../../utils/hooks/useOnOutSideClick";
 import Season from "./Season";
 import SeasonEpisodes from "./SeasonEpisodes";
 
-const CollapsibleSeason = ({ season }) => {
+const CollapsibleSeason = ({ season, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const seasonRef = useRef();
@@ -20,8 +20,8 @@ const CollapsibleSeason = ({ season }) => {
   };
   
   return (
-    <div ref={seasonRef}>
-      <div className="season" onClick={handleClick}>
+    <div ref={seasonRef} key={`${index}`} id={`Season-wrapper-${index}`}>
+      <div key={`${index}`} id={`S${index}`} className="season" onClick={handleClick}>
         <Season season={season} />
       </div>
       <i
@@ -31,7 +31,7 @@ const CollapsibleSeason = ({ season }) => {
       ></i>
       {isExpanded ? (
         <>
-          <div className="episodes">
+          <div className="episodes" key={`episodes`}>
             <h4 style={{textAlign:"center"}}>Episodes</h4>
             {
               <SeasonEpisodes

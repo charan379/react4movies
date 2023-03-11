@@ -40,17 +40,13 @@ const Seasons = ({ data }) => {
   return (
     <div className={`tv-seasons ${theme}`}>
       <h5>Seasons Data</h5>
-        {LatestEpisode ?? null}
-        {UpCommingEpisode ?? null}
+      {LatestEpisode ?? null}
+      {UpCommingEpisode ?? null}
       <br />
       {data.seasons ? (
         <>
-          {data.seasons.map((season) => {
-            return (
-              <>
-                <CollapsibleSeason season={season} />
-              </>
-            );
+          {data.seasons.map((season, index) => {
+            return <CollapsibleSeason season={season} index={index} key={index} />
           })}
         </>
       ) : null}
