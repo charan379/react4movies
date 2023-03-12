@@ -21,6 +21,7 @@ const QuickBall = () => {
     { title: 'Search Tmdb', url: '/discover/tmdb' },
     { title: 'Settings', url: '/settings' },
     { title: 'View Logs', url: '/logs' },
+    { title: 'Collection', url: '/collection' },
     { title: 'Treanding', url: '/treanding' },
     { title: 'Home', url: '/' },
   ];
@@ -37,10 +38,10 @@ const QuickBall = () => {
     <div ref={quickBallRef} className="quick-ball-container">
       <div className={`quick-ball-shadow ${theme}`} />
       <div className="quick-ball" onClick={toggleQuickBall}>
-        <span className={`quick-ball-icon ${theme}`} />
+        <span className={`quick-ball-icon ${theme}`} > {!showQuickBall ?<i class="fas fa-bars"></i> : <i class="fas fa-times"></i>}</span>
       </div>
       {showQuickBall && (
-        <div className={`quick-ball-links${showQuickBall ? " show" : ""}`}>
+        <div className={`quick-ball-links${showQuickBall ? " show" : ""} ${theme}`}>
           {links.map((link, index) => (
             <NavLink exact={"true"}
               key={index}
