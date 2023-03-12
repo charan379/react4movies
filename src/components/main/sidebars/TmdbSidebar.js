@@ -14,7 +14,8 @@ const TmdbSidebar = () => {
   }
 
   return (
-    <form>
+    <form className='sidebar-form'>
+      
       {/* title */}
       <li className={`menu-item ${theme}`}>
         <i className="fa fa-search icon"></i>
@@ -61,6 +62,7 @@ const TmdbSidebar = () => {
           onChange={handleChange}
         ></input>
       </li>
+
     </form>
   );
 

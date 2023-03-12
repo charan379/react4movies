@@ -87,7 +87,7 @@ const SideBar = () => {
               <TmdbSidebar />
               : collectionPattren.test(location.pathname) ? (
                 // colection
-                <form>
+                <form className="sidebar-form">
                   {/* search box */}
                   <li className={`menu-item ${theme}`}>
                     <i className="bx bx-search-alt-2 icon"></i>
@@ -168,6 +168,112 @@ const SideBar = () => {
                     </label>
                   </li>
 
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
+                  {/* movie filter */}
+                  <li className="menu-item-header">
+                    <span className="nonlink-menu-item-info">Filter By</span>
+                  </li>
+                  <li className={`menu-item ${theme}`}>
+                    <i className="bx bx-filter-alt icon"></i>
+                  </li>
                   {/* movie filter */}
                   <li className="menu-item-header">
                     <span className="nonlink-menu-item-info">Filter By</span>
