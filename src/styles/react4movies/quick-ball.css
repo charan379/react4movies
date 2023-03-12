@@ -2,14 +2,14 @@
 
 .quick-ball-container {
   position: fixed;
-  bottom: 50px;
+  bottom: 60px;
   right: 20px;
   z-index: 10;
 }
 
 .quick-ball-shadow {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   position: absolute;
   bottom: 0;
@@ -27,8 +27,8 @@
 }
 
 .quick-ball {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   background-color: crimson;
   border-radius: 50%;
   display: flex;
@@ -54,7 +54,7 @@
   display: flex;
   visibility: hidden;
   position: absolute;
-  bottom: 70px;
+  bottom: 75px;
   right: 10px;
   padding: 10px;
   border-radius: 10px;
@@ -189,9 +189,55 @@
   }
 }
 
+
+@media (max-width: 720px) {
+  .quick-ball-container {
+    bottom: 120px;
+    right: 8px;
+  }
+
+  .quick-ball ,
+  .quick-ball-shadow {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .quick-ball-links {
+    bottom: 65px;
+  }
+
+  .quick-ball-link {
+    font-size: 20px;
+
+  }
+}
+
+@media (max-width: 580px) {
+  .quick-ball-container {
+    bottom: 100px;
+    right: 6px;
+  }
+
+  .quick-ball ,
+  .quick-ball-shadow {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .quick-ball-links {
+    bottom: 65px;
+  }
+
+  .quick-ball-link {
+    font-size: 20px;
+
+  }
+}
+
+
 @media (max-width: 420px) {
   .quick-ball-container {
-    bottom: 110px;
+    bottom: 120px;
     right: 4px;
   }
 
@@ -206,17 +252,13 @@
   }
 
   .quick-ball-link {
-    font-size: 15px;
+    font-size: 18px;
 
   }
 }
 
  /* IPHONE SE */
 @media (max-width: 380px) {
-  .quick-ball-container {
-    bottom: 110px;
-    right: 4px;
-  }
 
   .quick-ball ,
   .quick-ball-shadow {
@@ -236,10 +278,6 @@
 
 
 @media (max-width: 320px) {
-  .quick-ball-container {
-    bottom: 110px;
-    right: 4px;
-  }
 
   .quick-ball ,
   .quick-ball-shadow {
