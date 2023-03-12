@@ -1,38 +1,41 @@
-@import './variables.css';
-
+@import "./variables.css";
 
 .footer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 5px;
-    position: fixed;
-    width: 100vw;
-    z-index: 998; 
-    bottom: 0px;
-    margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 5px;
+  position: fixed;
+  width: 100vw;
+  z-index: 998;
+  bottom: 0px;
+  margin-left: 10px;
 }
 
-.footer.light{
-    background-color: var(--bg-light);
+.footer.light {
+  background-color: var(--bg-light);
 }
 
 .footer.dark {
-    background-color: var(--bg-dark);
+  background-color: var(--bg-dark);
 }
 
 .footer a {
-    text-decoration: none;
+  text-decoration: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 .footer.light a {
-    color: var(--font-color-light);
+  color: var(--font-color-light);
 }
 
 .footer.dark a {
-    color: var(--font-color-dark);
+  color: var(--font-color-dark);
 }
