@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, {  useRef, useState } from "react";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import user from "../../static/icons/user.svg";
 import day from "../../static/icons/day.svg";
@@ -18,7 +14,7 @@ const Header = () => {
   // current theme
   const { theme } = useTheme();
   //  is dropdown open State
-  const [isDropdwonOpen, setDropdownOpen] = useState(false);
+  const [showDropdown, setShwoDropdown] = useState(false);
 
   const [openLogout, setOpenLogout] = useState(false);
 
@@ -28,14 +24,13 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-
   useOnOutSideClick(
     dropdownRef,
-    useCallback(() => {
-      setDropdownOpen(false);
-    }, [])
+    () => setShwoDropdown(false)
+    // useCallback(() => {
+    //   setShwoDropdown(false);
+    // }, [])
   );
-
 
   return (
     <>
@@ -64,45 +59,41 @@ const Header = () => {
             </li>
           </ToogleTheme>
 
-          <div
-            ref={dropdownRef}
-            className="navbar-dropdown"
-            onClick={() => setDropdownOpen(true)}
-          >
-            <li className="nav-item">
-              <img
-                className="nav-img"
-                src={user}
-                alt="user lgo">
-              </img>
+          <div ref={dropdownRef} className="navbar-dropdown">
+            <li
+              className="nav-item"
+              onClick={() => setShwoDropdown(!showDropdown)}
+            >
+              <img className="nav-img" src={user} alt="user lgo"></img>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div
               className={
-                isDropdwonOpen
+                showDropdown
                   ? "navbar-dropdown-content show"
                   : "navbar-dropdown-content"
               }
             >
-              {auth?.userName
-                ? <Link>{auth.userName}</Link>
-                : <Link to={"/login"} >Login</Link>
-              }
+              {auth?.userName ? (
+                <Link>{auth.userName}</Link>
+              ) : (
+                <Link to={"/login"}>Login</Link>
+              )}
 
-              <Link href="#">Link 1</Link>
-              <Link href="#">Link 2</Link>
+              <Link to="/">Link 1</Link>
+              <Link to="/">Link 2</Link>
 
-              {auth?.userName
-                ? <Link onClick={() => setOpenLogout(true)}>Logout</Link>
-                : null}
+              {auth?.userName ? (
+                <Link onClick={() => setOpenLogout(true)}>Logout</Link>
+              ) : null}
             </div>
           </div>
         </ul>
       </nav>
 
-      {openLogout
-        ? <Logout open={openLogout} close={() => setOpenLogout(false)} />
-        : null}
+      {openLogout ? (
+        <Logout open={openLogout} close={() => setOpenLogout(false)} />
+      ) : null}
     </>
   );
 };
