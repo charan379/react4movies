@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 85vh;
+  height: 100vh;
   width: 250px;
   padding: 10px 14px;
   transition: background-color var(---trans-theme), color var(---trans-theme),
@@ -56,7 +56,7 @@
 .sidebar .sidebar-form {
   overflow-y: scroll;
   height: inherit;
-  padding-block-end: 10px;
+  padding-block-end: 140px;
 }
 
 /* sidebar text */
