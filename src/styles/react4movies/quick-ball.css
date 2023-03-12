@@ -189,26 +189,24 @@
   }
 }
 
-
 @media (max-width: 720px) {
   .quick-ball-container {
     bottom: 120px;
     right: 8px;
   }
 
-  .quick-ball ,
+  .quick-ball,
   .quick-ball-shadow {
     width: 55px;
     height: 55px;
   }
-  
+
   .quick-ball-links {
     bottom: 65px;
   }
 
   .quick-ball-link {
     font-size: 20px;
-
   }
 }
 
@@ -218,22 +216,20 @@
     right: 6px;
   }
 
-  .quick-ball ,
+  .quick-ball,
   .quick-ball-shadow {
     width: 55px;
     height: 55px;
   }
-  
+
   .quick-ball-links {
     bottom: 65px;
   }
 
   .quick-ball-link {
     font-size: 20px;
-
   }
 }
-
 
 @media (max-width: 420px) {
   .quick-ball-container {
@@ -241,26 +237,24 @@
     right: 4px;
   }
 
-  .quick-ball ,
+  .quick-ball,
   .quick-ball-shadow {
     width: 45px;
     height: 45px;
   }
-  
+
   .quick-ball-links {
     bottom: 55px;
   }
 
   .quick-ball-link {
     font-size: 18px;
-
   }
 }
 
- /* IPHONE SE */
+/* IPHONE SE */
 @media (max-width: 380px) {
-
-  .quick-ball ,
+  .quick-ball,
   .quick-ball-shadow {
     width: 45px;
     height: 45px;
@@ -272,14 +266,11 @@
 
   .quick-ball-link {
     font-size: 18px;
-
   }
 }
-
 
 @media (max-width: 320px) {
-
-  .quick-ball ,
+  .quick-ball,
   .quick-ball-shadow {
     width: 45px;
     height: 45px;
@@ -291,6 +282,81 @@
 
   .quick-ball-link {
     font-size: 15px;
+  }
+}
 
+
+/* height */
+@media (max-height: 480px) {
+  .quick-ball-container {
+    bottom: 60px;
+    right: 8px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 50px;
+    height: 50px;
+  }
+
+  .quick-ball-links {
+    bottom: 60px;
+    height: 175px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 380px) {
+  .quick-ball-container {
+    bottom: 40px;
+    right: 8px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 45px;
+    height: 45px;
+  }
+
+  .quick-ball-icon {
+    font-size: 18px;
+  }
+
+  .quick-ball-links {
+    bottom: 50px;
+    height: 160px;
+  }
+
+  .quick-ball-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 320px) {
+  .quick-ball-container {
+    bottom: 40px;
+    right: 8px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .quick-ball-icon {
+    font-size: 18px;
+  }
+
+  .quick-ball-links {
+    bottom: 40px;
+    height: 100px;
+  }
+
+  .quick-ball-link {
+    font-size: 12px;
   }
 }

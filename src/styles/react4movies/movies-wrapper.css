@@ -118,7 +118,7 @@ Height = ?
   z-index: 2;
   font-weight: 300;
   font-size: medium;
-  font-family: "cursive";
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .movie-box.light .movie-title {
