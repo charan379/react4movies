@@ -1,16 +1,14 @@
 import { combineReducers } from "redux";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-import DiscoverReducer from "./DiscoverReducer";
 import UserReducer from "./UserReducer";
 import TmdbSearchReducer from "./TmdbSearchReducer";
-
+import CollectionSearchReducer from "./CollectionSearchReducer"
 
 const rootReducer = combineReducers({
-  DiscoverReducer,
   UserReducer,
   TmdbSearchReducer,
+  CollectionSearchReducer,
 });
 
 const persistConfig = {
