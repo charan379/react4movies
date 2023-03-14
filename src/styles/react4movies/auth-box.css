@@ -38,6 +38,7 @@
   text-align: center;
   padding: 4px;
   font-size: larger;
+  cursor: pointer;
 }
 .auth-box h2 {
   margin: 0 0 30px;
