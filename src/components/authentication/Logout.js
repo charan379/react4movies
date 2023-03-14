@@ -59,9 +59,9 @@ const Logout = ({ open, close }) => {
   return (
     <>
       <div ref={logoutRef} className={`auth-box ${theme}`}>
-        <div onClick={close} className="closeBtn">
+        <Link onClick={close} className="closeBtn" tabIndex="1">
           <i className="fas fa-times fa-lg"></i>
-        </div>
+        </Link>
 
         <h2>
           <i class="fas fa-exclamation-triangle"></i> Confirm Logout
@@ -69,24 +69,22 @@ const Logout = ({ open, close }) => {
         <h6 style={{textAlign: "center"}}>Are you sure you want to log out ?</h6>
         <form onSubmit={handleSubmit}>
           <div className="container">
-            <button
+            <Link
               className="logout-button"
               style={{ float: "left" }}
               type="submit"
-              tabIndex="0"
             >
               <span></span>
               <span></span>
               <span></span>
               <span></span>
               Logout
-            </button>
+            </Link>
 
             <Link
               className="form-button"
               style={{ float: "right" }}
               onClick={close}
-              tabIndex="0"
             >
               <span></span>
               <span></span>

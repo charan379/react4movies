@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ShowLessNames = ({ commaSepratedText, limit }) => {
   const [showMore, setShowMore] = useState(false);
@@ -10,16 +11,29 @@ const ShowLessNames = ({ commaSepratedText, limit }) => {
       {showMore ? commaSepratedText : `${commaSepratedText?.split(",").slice(0, limit ?? 3).map(ele => ele).join(",")}`}
       <span style={
         {
-          display:"inline",
+          display: "inline",
           textDecoration: "none",
           fontStyle: "italic",
           fontFamily: "monospace",
           fontWeight: "bold",
           cursor: "pointer",
-          color:"#4787d6"
+          color: "#4787d6"
         }
-      } onClick={() => setShowMore(!showMore)} tabIndex="0">
-        {showMore ? " ...less" : " ...more"}
+      } >
+        <Link
+          style={{
+            display: "inline",
+            textDecoration: "none",
+            fontStyle: "italic",
+            fontFamily: "monospace",
+            fontWeight: "bold",
+            cursor: "pointer",
+            color: "#4787d6"
+          }}
+          title={showMore ? "Show less names" : "Show more names"}
+          onClick={() => setShowMore(!showMore)}>
+          {showMore ? " ...less" : " ...more"}
+        </Link>
       </span>
     </>
   );

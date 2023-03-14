@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
 import Title from "./Title";
@@ -20,9 +21,9 @@ const MovieModal = ({ data, open, close }) => {
           {/* <div className="open-newTab" onClick={() => openInNewTab(data.link)}>
             <i className="fas fa-external-link-alt fa-2x"></i>
           </div> */}
-          <div onClick={close} className="closeBtn" tabIndex="0">
+          <Link title="Close" onClick={close} className="closeBtn">
             <i className="fas fa-times fa-lg"></i>
-          </div>
+          </Link>
 
           <div  className="">
             <Title id={data?.id} titleSource={data?.source} titleType={data?.titleType}></Title>

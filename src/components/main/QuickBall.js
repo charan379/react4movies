@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import useOnOutSideClick from '../../utils/hooks/useOnOutSideClick';
 import useTheme from '../../utils/hooks/useTheme';
 
@@ -18,14 +18,14 @@ const QuickBall = () => {
   );
 
   const links = [
-    {title: "test", url: "/test"},
+    { title: "test", url: "/test" },
     { title: 'Search Tmdb', url: '/discover/tmdb' },
     { title: 'Settings', url: '/settings' },
     { title: 'View Logs', url: '/logs' },
     { title: 'Collection', url: '/collection' },
     { title: 'Treanding', url: '/treanding' },
     { title: 'Home', url: '/' },
-    
+
   ];
 
   const toggleQuickBall = () => {
@@ -39,9 +39,9 @@ const QuickBall = () => {
   return (
     <div ref={quickBallRef} className="quick-ball-container">
       <div className={`quick-ball-shadow ${theme}`} />
-      <div className="quick-ball" onClick={toggleQuickBall} tabIndex={0}>
-        <span className={`quick-ball-icon ${theme}`} > {!showQuickBall ?<i class="fas fa-bars"></i> : <i class="fas fa-times"></i>}</span>
-      </div>
+      <Link className="quick-ball" onClick={toggleQuickBall} title="Quick links">
+        <span className={`quick-ball-icon ${theme}`} > {!showQuickBall ? <i class="fas fa-bars"></i> : <i class="fas fa-times"></i>}</span>
+      </Link>
       {showQuickBall && (
         <div className={`quick-ball-links${showQuickBall ? " show" : ""} ${theme}`}>
           {links.map((link, index) => (

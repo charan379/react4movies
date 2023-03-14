@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import useTheme from "../../utils/hooks/useTheme";
 
 const Pagination = ({ total_pages, currentPage, setPageNo }) => {
@@ -99,83 +100,83 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
         <div className={`pages ${theme}`}>
           {/* First Page */}
           {total_pages > 1 ? (
-            <div
+            <Link
               data-page={1}
               data-page-type="first"
               className={`page navigate ${currentPage === 1 ? "active" : ""}`}
-                tabIndex="0"
+              tabIndex="4"
               onClick={handlePageClick}
               title="First Page"
             >
               <i data-page={1} data-page-type="first" className="fas fa-fast-backward"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-fast-backward"></i>
-            </div>
+            </Link>
           )}
 
           {/* navigate to previous page */}
           {currentPage > 1 ? (
-            <div
+            <Link
               className="page navigate"
               onClick={handlePrevPage}
               title="Previous Page"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-left"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Previous page not available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-left"></i>
-            </div>
+            </Link>
           )}
 
           {/* prev pages group */}
           {minPageLimit > 1 ? (
-            <div
+            <Link
               className="page"
               onClick={handlePrevPageGroupClick}
               title="Previous Pages Set"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-left"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Previous pages set not available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-left"></i>
-            </div>
+            </Link>
           )}
 
           {/* page numbers */}
           {pages.map((page) => {
             if (page <= maxPageLimit && page >= minPageLimit) {
               return (
-                <div
+                <Link
                   key={page}
                   data-page={page}
                   data-page-type="normal"
                   className={`page ${currentPage === page ? "active" : ""}`}
-                  tabIndex="0"
+                  tabIndex="4"
                   onClick={handlePageClick}
                 >
                   {page}
-                </div>
+                </Link>
               );
             } else {
               return null;
@@ -184,49 +185,49 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
 
           {/* next pages group */}
           {pages.length > maxPageLimit ? (
-            <div
+            <Link
               className="page"
               onClick={handleNextPageGroupClick}
               title="Next Pages Set"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-right"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Next pages set not available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-right"></i>
-            </div>
+            </Link>
           )}
 
           {/* Next Page */}
           {currentPage < total_pages ? (
-            <div
+            <Link
               className="page navigate"
               onClick={handleNextPage}
               title="Next Page"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-right"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Next Page Not Available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-angle-right"></i>
-            </div>
+            </Link>
           )}
 
           {/* last page */}
           {total_pages > 1 ? (
-            <div
+            <Link
               data-page={total_pages}
               data-page-type="last"
               className={`page navigate ${currentPage === total_pages
@@ -235,19 +236,19 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
                 }`}
               onClick={handlePageClick}
               title="Last Page"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i data-page={total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
-              tabIndex="0"
+              tabIndex="4"
             >
               <i className="fas fa-fast-forward"></i>
-            </div>
+            </Link>
           )}
         </div>
       </div>

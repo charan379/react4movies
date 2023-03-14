@@ -1,4 +1,4 @@
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import user from "../../static/icons/user.svg";
 import day from "../../static/icons/day.svg";
@@ -51,12 +51,13 @@ const Header = () => {
                     </li> */}
           <ToogleTheme className="nav-item">
             <li className="nav-item">
-              <img
-                className="nav-img"
-                src={theme === "light" ? day : night}
-                alt={`toggle ${theme} theme`}
-                tabIndex="0"
-              ></img>
+              <Link title="Toggle theme">
+                <img
+                  className="nav-img"
+                  src={theme === "light" ? day : night}
+                  alt={`toggle ${theme} theme`}
+                ></img>
+              </Link>
             </li>
           </ToogleTheme>
 
@@ -65,7 +66,9 @@ const Header = () => {
               className="nav-item"
               onClick={() => setShwoDropdown(!showDropdown)}
             >
-              <img className="nav-img" src={user} alt="User Controls" tabIndex="0"></img>
+              <Link title="User Controls">
+                <img className="nav-img" src={user} alt="User Controls"></img>
+              </Link>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div

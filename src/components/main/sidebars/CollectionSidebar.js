@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 import useCollectionSearch from '../../../utils/hooks/useCollectionSearch';
 import useTheme from '../../../utils/hooks/useTheme';
@@ -52,6 +53,7 @@ const CollectionSidebar = () => {
             required="required"
             onChange={handleChange}
             value={collectionQuery.title_type}
+            tabIndex="-1"
           >
             <option value="movie">Movie</option>
             <option value="tv">TV Series</option>
@@ -73,6 +75,7 @@ const CollectionSidebar = () => {
             required="required"
             onChange={handleChange}
             value={collectionQuery.genre}
+            tabIndex="-1"
           >
             <option value="Action">Action</option>
             <option value="Fantacy">Fantacy</option>
@@ -95,6 +98,7 @@ const CollectionSidebar = () => {
             required="required"
             onChange={handleChange}
             value={collectionQuery.language}
+            tabIndex="-1"
           >
             <option value="te">Telugu</option>
             <option value="en">English</option>
@@ -118,6 +122,7 @@ const CollectionSidebar = () => {
             required="required"
             onChange={handleChange}
             value={collectionQuery.sort_by}
+            tabIndex="-1"
           >
             <option value="movie">Movie</option>
             <option value="tv">TV Series</option>
@@ -141,6 +146,7 @@ const CollectionSidebar = () => {
             required="required"
             onChange={handleChange}
             value={collectionQuery.limit}
+            tabIndex="-1"
           >
             <option value={5}>5</option>
             <option value={10}>10</option>
@@ -183,132 +189,143 @@ const CollectionSidebar = () => {
 
         {(collectionQuery?.movie == 1)
           &&
-          (<i className={`fas fa-film icon menu-item`}
+          (<Link className={`fas fa-film icon menu-item`}
             data-id="movie"
             data-name="movie"
             data-value={1}
             data-toggle={0}
             title="filters with movies"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.movie == 0)
           &&
-          (<i className={`fas fa-film icon menu-item`}
+          (<Link className={`fas fa-film icon menu-item`}
             data-id="movie"
             data-name="movie"
             data-value={0}
             data-toggle={1}
             title="filters without movies"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.tv == 1)
           &&
-          (<i className={`fas fa-tv icon menu-item`}
+          (<Link className={`fas fa-tv icon menu-item`}
             data-id="tv"
             data-name="tv"
             data-value={1}
             data-toggle={0}
             title="filters with tv shows"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.tv == 0)
           &&
-          (<i className={`fas fa-tv icon menu-item`}
+          (<Link className={`fas fa-tv icon menu-item`}
             data-id="tv"
             data-name="tv"
             data-value={0}
             data-toggle={1}
             title="filters without tv shows"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.seen == 1)
           &&
-          (<i className={`fas fa-eye icon menu-item`}
+          (<Link className={`fas fa-eye icon menu-item`}
             data-id="seen"
             data-name="seen"
             data-value={1}
             data-toggle={-1}
             title="filters seen titles"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.seen == -1)
           &&
-          (<i className={`fas fa-eye-slash icon menu-item`}
+          (<Link className={`fas fa-eye-slash icon menu-item`}
             data-id="seen"
             data-name="seen"
             data-value={-1}
             data-toggle={0}
             title="filters unseen titles"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.seen == 0)
           &&
-          (<i className={`far fa-eye icon menu-item`}
+          (<Link className={`far fa-eye icon menu-item`}
             data-id="seen"
             data-name="seen"
             data-value={0}
             data-toggle={1}
             title="filter disabled"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.favourite == 1)
           &&
-          (<i className={`fas fa-heart icon menu-item`}
+          (<Link className={`fas fa-heart icon menu-item`}
             data-id="favourite"
             data-name="favourite"
             data-value={1}
             data-toggle={0}
             title="filters favourite titles"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.favourite == 0)
           &&
-          (<i className={`far fa-heart icon menu-item`}
+          (<Link className={`far fa-heart icon menu-item`}
             data-id="favourite"
             data-name="favourite"
             data-value={0}
             data-toggle={1}
             title="filter disabled"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.starred == 1)
           &&
-          (<i className={`fas fa-star icon menu-item`}
+          (<Link className={`fas fa-star icon menu-item`}
             data-id="starred"
             data-name="starred"
             data-value={1}
             data-toggle={0}
             title="filters starred titles"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }
 
         {(collectionQuery?.starred == 0)
           &&
-          (<i className={`far fa-star icon menu-item`}
+          (<Link className={`far fa-star icon menu-item`}
             data-id="starred"
             data-name="starred"
             data-value={0}
             data-toggle={1}
             title="filter disabled"
+            aria-hidden="false"
             onClick={handleFilterToggle}
           />)
         }

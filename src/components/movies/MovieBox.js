@@ -11,7 +11,7 @@ const MovieBox = ({ movieData }) => {
   };
 
   return (
-    <div className={`movie-box ${theme}`} tabIndex="0">
+    <div className={`movie-box ${theme}`}>
       {/* Movie poster */}
 
       <div className={`movie-poster ${theme}`}>
@@ -45,6 +45,7 @@ const MovieBox = ({ movieData }) => {
 
         <div className={`movie-ratting ${theme}`}>
           <span>{movieData.ratting}</span>
+          {console.log(movieData)}
         </div>
 
         <div className={`movie-title ${theme}`}>

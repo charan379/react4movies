@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import MovieBox from "./MovieBox";
 import MovieModal from "./MovieModal";
 import useTheme from "../../utils/hooks/useTheme";
+import { Link } from "react-router-dom";
 
 const MoviesList = ({ source, list }) => {
   const { theme } = useTheme();
@@ -23,7 +24,8 @@ const MoviesList = ({ source, list }) => {
         {source === "tmdb"
           ? list.map((movie, index) => {
             return (
-              <div
+              <Link title={movie.title}
+                tabIndex="3"
                 id={"box-" + index}
                 key={"box-" + index}
                 onClick={() => handleOnClick({
@@ -46,7 +48,7 @@ const MoviesList = ({ source, list }) => {
                     source: movie?.source
                   }}
                 />
-              </div>
+              </Link>
             );
           })
           : null}

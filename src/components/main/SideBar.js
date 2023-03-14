@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
 import CollectionSidebar from "./sidebars/CollectionSidebar";
@@ -70,13 +70,13 @@ const SideBar = () => {
           </div>
 
           {/* Sidebar toggle */}
-          <i
+          <Link
+            title="Toggle Sidebar"
             preload="eager"
             loading="eager"
             className={`fas fa-chevron-right toggle ${theme}`}
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            tabIndex="0"
-          ></i>
+          ></Link>
         </header>
         {/* Sidebar menu-wrapper */}
         <div
