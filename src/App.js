@@ -20,6 +20,7 @@ import {
   LevelZero,
 } from "./constants/AuthRoles";
 import Title from "./components/movies/Title";
+import Test1 from "./components/main/sidebars/test";
 
 const App = () => {
 
@@ -47,7 +48,7 @@ const App = () => {
             </Route>
 
             <Route path="/loader" element={<Loader />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/test" element={<Test1 />} />
             <Route path="/lep" element={<Episode />} />
             <Route path="/login" element={<Login />} />
             <Route path="/un-authorized" element={<Unauthorized />} />

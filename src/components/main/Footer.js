@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <>
       <div className={`footer ${theme}`}>
-        <Link to="#"><b><u>M</u></b>ovie<b><u>B</u></b>unkers-v</Link><code>2.0</code>
+        <Link to="#" tabIndex="-1"><b><u>M</u></b>ovie<b><u>B</u></b>unkers-v</Link><code>2.0</code>
       </div>
     </>
   );

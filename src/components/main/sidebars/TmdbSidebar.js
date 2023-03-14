@@ -27,13 +27,14 @@ const TmdbSidebar = () => {
           value={tmdbSearch.query}
           placeholder="Search..."
           onChange={handleChange}
+          
         />
       </li>
 
       {/* Movie or TV */}
       <li className={`menu-item ${theme}`}>
         <i className={`${tmdbSearch.type === "tv" ? "fas fa-tv" : "fas fa-film"} icon`} />
-        <label className={`sidebar-select ${theme}`} htmlFor="slct">
+        <label className={`sidebar-select ${theme}`} htmlFor="slct" >
           <select
             data-form="tmdbSearchForm"
             data-id="type"
@@ -60,6 +61,7 @@ const TmdbSidebar = () => {
           value={tmdbSearch.year}
           placeholder="Release Year"
           onChange={handleChange}
+          
         ></input>
       </li>
 

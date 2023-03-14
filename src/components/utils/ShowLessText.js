@@ -18,7 +18,7 @@ const ShowLessText = ({ text, limit }) => {
           cursor: "pointer",
           color:"#4787d6"
         }
-      } onClick={() => setShowMore(!showMore)}>
+      } onClick={() => setShowMore(!showMore)} tabIndex="0">
         {showMore ? " ...less" : " ...more"}
       </span>
     </>

@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../helpers/axios.auth.requests";
 import useAuth from "../../utils/hooks/useAuth";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
@@ -73,6 +73,7 @@ const Logout = ({ open, close }) => {
               className="logout-button"
               style={{ float: "left" }}
               type="submit"
+              tabIndex="0"
             >
               <span></span>
               <span></span>
@@ -81,17 +82,18 @@ const Logout = ({ open, close }) => {
               Logout
             </button>
 
-            <a
+            <Link
               className="form-button"
               style={{ float: "right" }}
               onClick={close}
+              tabIndex="0"
             >
               <span></span>
               <span></span>
               <span></span>
               <span></span>
               Cancel
-            </a>
+            </Link>
           </div>
           <br />
         </form>

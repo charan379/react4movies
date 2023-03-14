@@ -54,7 +54,8 @@ const Header = () => {
               <img
                 className="nav-img"
                 src={theme === "light" ? day : night}
-                alt={theme}
+                alt={`toggle ${theme} theme`}
+                tabIndex="0"
               ></img>
             </li>
           </ToogleTheme>
@@ -64,7 +65,7 @@ const Header = () => {
               className="nav-item"
               onClick={() => setShwoDropdown(!showDropdown)}
             >
-              <img className="nav-img" src={user} alt="user lgo"></img>
+              <img className="nav-img" src={user} alt="User Controls" tabIndex="0"></img>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>
             <div

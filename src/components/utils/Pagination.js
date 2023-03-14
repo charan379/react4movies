@@ -102,8 +102,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
             <div
               data-page={1}
               data-page-type="first"
-              className={`page navigate ${currentPage === 1 ? "active" : ""
-                }`}
+              className={`page navigate ${currentPage === 1 ? "active" : ""}`}
+                tabIndex="0"
               onClick={handlePageClick}
               title="First Page"
             >
@@ -114,6 +114,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
+              tabIndex="0"
             >
               <i className="fas fa-fast-backward"></i>
             </div>
@@ -125,6 +126,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate"
               onClick={handlePrevPage}
               title="Previous Page"
+              tabIndex="0"
             >
               <i className="fas fa-angle-left"></i>
             </div>
@@ -133,6 +135,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Previous page not available"
+              tabIndex="0"
             >
               <i className="fas fa-angle-left"></i>
             </div>
@@ -144,6 +147,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page"
               onClick={handlePrevPageGroupClick}
               title="Previous Pages Set"
+              tabIndex="0"
             >
               <i className="fas fa-angle-double-left"></i>
             </div>
@@ -152,6 +156,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Previous pages set not available"
+              tabIndex="0"
             >
               <i className="fas fa-angle-double-left"></i>
             </div>
@@ -165,8 +170,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
                   key={page}
                   data-page={page}
                   data-page-type="normal"
-                  className={`page ${currentPage === page ? "active" : ""
-                    }`}
+                  className={`page ${currentPage === page ? "active" : ""}`}
+                  tabIndex="0"
                   onClick={handlePageClick}
                 >
                   {page}
@@ -183,6 +188,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page"
               onClick={handleNextPageGroupClick}
               title="Next Pages Set"
+              tabIndex="0"
             >
               <i className="fas fa-angle-double-right"></i>
             </div>
@@ -191,6 +197,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Next pages set not available"
+              tabIndex="0"
             >
               <i className="fas fa-angle-double-right"></i>
             </div>
@@ -202,6 +209,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate"
               onClick={handleNextPage}
               title="Next Page"
+              tabIndex="0"
             >
               <i className="fas fa-angle-right"></i>
             </div>
@@ -210,6 +218,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Next Page Not Available"
+              tabIndex="0"
             >
               <i className="fas fa-angle-right"></i>
             </div>
@@ -226,6 +235,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
                 }`}
               onClick={handlePageClick}
               title="Last Page"
+              tabIndex="0"
             >
               <i data-page={total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
             </div>
@@ -234,6 +244,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
+              tabIndex="0"
             >
               <i className="fas fa-fast-forward"></i>
             </div>

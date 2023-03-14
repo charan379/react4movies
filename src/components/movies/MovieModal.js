@@ -20,7 +20,7 @@ const MovieModal = ({ data, open, close }) => {
           {/* <div className="open-newTab" onClick={() => openInNewTab(data.link)}>
             <i className="fas fa-external-link-alt fa-2x"></i>
           </div> */}
-          <div onClick={close} className="closeBtn">
+          <div onClick={close} className="closeBtn" tabIndex="0">
             <i className="fas fa-times fa-lg"></i>
           </div>
 

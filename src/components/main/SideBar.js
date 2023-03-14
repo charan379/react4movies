@@ -1,10 +1,8 @@
-import React, {
-  useRef,
-  useState,
-} from "react";
+import React, { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
+import CollectionSidebar from "./sidebars/CollectionSidebar";
 import TmdbSidebar from "./sidebars/TmdbSidebar";
 
 const SideBar = () => {
@@ -44,12 +42,14 @@ const SideBar = () => {
               className="sidebar-logo"
               onClick={() => setIsSidebarOpen(true)}
             >
-              <img preload="eager" loading="eager"
+              <img
+                preload="eager"
+                loading="eager"
                 src={
                   require("../../static/icons/movie-player-play-video-svgrepo-com.svg")
                     .default
                 }
-                alt="logo"
+                alt="sidebar toggle"
               ></img>
             </span>
 
@@ -70,9 +70,12 @@ const SideBar = () => {
           </div>
 
           {/* Sidebar toggle */}
-          <i preload="eager" loading="eager"
+          <i
+            preload="eager"
+            loading="eager"
             className={`fas fa-chevron-right toggle ${theme}`}
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            tabIndex="0"
           ></i>
         </header>
         {/* Sidebar menu-wrapper */}
@@ -81,208 +84,10 @@ const SideBar = () => {
           onClick={() => setIsSidebarOpen(true)}
         >
           <div className={`sidebar-menu`}>
-            {discoverPattren.test(location.pathname)
-              ?
-              // tmdb
-              <TmdbSidebar />
-              : collectionPattren.test(location.pathname) ? (
-                // colection
-                <form className="sidebar-form">
-                  {/* search box */}
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-search-alt-2 icon"></i>
-                    <input type="text" placeholder="Search.."></input>
-                  </li>
 
-                  {/* category filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Genre</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-folder-open icon"></i>
-                    {/*  */}
-                    <label className={`sidebar-select ${theme}`} htmlFor="slct">
-                      <select id="slct" required="required">
-                        <option value="" disabled="disabled" selected="selected">
-                          Select option
-                        </option>
-                        <option value="#">One</option>
-                        <option value="#">Two</option>
-                        <option value="#">Seven</option>
-                      </select>
-                    </label>
-                  </li>
+            {discoverPattren.test(location.pathname) && (<TmdbSidebar />)}
 
-                  {/* language filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Language</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="fa fa-globe icon" aria-hidden="true"></i>
-                    <label className={`sidebar-select ${theme}`} htmlFor="slct">
-                      <select id="slct" required="required">
-                        <option value="" disabled="disabled" selected="selected">
-                          Select option
-                        </option>
-                        <option value="#">One</option>
-                        <option value="#">Two</option>
-                        <option value="#">Four</option>
-                        <option value="#">Five</option>
-                        <option value="#">Six</option>
-                        <option value="#">Seven</option>
-                      </select>
-                    </label>
-                  </li>
-
-                  {/* Sort */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Sort By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-sort icon"></i>
-                    <label className={`sidebar-select ${theme}`} htmlFor="slct">
-                      <select id="slct" required="required">
-                        <option value="" disabled="disabled" selected="selected">
-                          Select option
-                        </option>
-                        <option value="#">One</option>
-                        <option value="#">Two</option>
-                      </select>
-                    </label>
-                  </li>
-
-                  {/* Age filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Age Rating</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-user icon"></i>
-                    <label className={`sidebar-select ${theme}`} htmlFor="slct">
-                      <select id="slct" required="required">
-                        <option value="" disabled="disabled" selected="selected">
-                          Select option
-                        </option>
-                        <option value="#">One</option>
-                        <option value="#">Two</option>
-                      </select>
-                    </label>
-                  </li>
-
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                  {/* movie filter */}
-                  <li className="menu-item-header">
-                    <span className="nonlink-menu-item-info">Filter By</span>
-                  </li>
-                  <li className={`menu-item ${theme}`}>
-                    <i className="bx bx-filter-alt icon"></i>
-                  </li>
-                </form>
-              ) : null}
+            {collectionPattren.test(location.pathname) && (<CollectionSidebar />)}
 
             {/* <ul className="sidebar-menu-links">
               <li className="sidebar-nav-link">
