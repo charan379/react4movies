@@ -157,7 +157,12 @@ header .sidebar-image-text .sidebar-header-text {
   height: 15px;
   margin-top: 8px;
   margin-left: 3px;
-  font-size: 13pt;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   list-style: none;
   display: flex;
   align-items: center;
@@ -167,6 +172,7 @@ header .sidebar-image-text .sidebar-header-text {
 /* closed sidebar */
 .sidebar.close .menu-item-header {
   opacity: 0;
+  display: none;
 }
 .sidebar li .icon {
   display: flex;
@@ -176,6 +182,31 @@ header .sidebar-image-text .sidebar-header-text {
   min-width: 40px;
   font-size: 23px;
   transition: opacity var(---trans-sidebar-toggle);
+}
+
+.sidebar li .icon.text {
+  font-style: normal;
+  font-weight: bold;
+}
+.sidebar li .icon.menu-item {
+  margin: 2px;
+  cursor: pointer;
+}
+
+.sidebar.dark li .icon.menu-item[data-value="0"] {
+  color: #ffffff4f;
+}
+
+.sidebar.light li .icon.menu-item[data-value="0"] {
+  color: #0000004f;
+}
+
+.sidebar li .icon.closed {
+  display: none;
+}
+
+.sidebar.close li .icon.closed {
+  display: flex;
 }
 
 .sidebar .menu-item {
@@ -215,7 +246,9 @@ header .sidebar-image-text .sidebar-header-text {
   background-color: var(--ui-elemnet-dark);
 }
 
-.sidebar.close .menu-item input {
+.sidebar.close .menu-item input,
+.sidebar.close .menu-item div,
+.sidebar.close li .icon.menu-item {
   /* opacity: 0; */
   display: none;
 }
@@ -227,19 +260,7 @@ header .sidebar-image-text .sidebar-header-text {
   text-decoration: none;
 }
 
-.sidebar li a:hover {
-  background-color: black;
-}
 
-.sidebar .menu-item.light:hover {
-  color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
-}
-
-.sidebar .menu-item.dark:hover {
-  color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
-}
 
 /*Select */
 .sidebar select {
@@ -313,5 +334,29 @@ header .sidebar-image-text .sidebar-header-text {
   /* sidebar close */
   .sidebar.close {
     width: 70px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sidebar li a:hover {
+    background-color: black;
+  }
+  
+  .sidebar .menu-item.light:hover {
+    color: var(--font-color-dark);
+    background-color: var(--ui-elemnet-dark);
+  }
+  
+  .sidebar .menu-item.dark:hover {
+    color: var(--font-color-light);
+    background-color: var(--ui-elemnet-light);
+  }
+
+  .sidebar.dark li:hover .icon.menu-item[data-value="0"] {
+    color: #0000004f;
+  }
+
+  .sidebar.light li:hover .icon.menu-item[data-value="0"] {
+    color: #ffffff4f;
   }
 }

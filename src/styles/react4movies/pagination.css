@@ -58,17 +58,7 @@
     border-color: var(--ui-elemnet-light);
 }
 
-.pages.light .page:hover{
-    background-color: var(--ui-elemnet-dark);
-    color: var(--font-color-dark);
-    border-color: var(--ui-elemnet-light);
-}
 
-.pages.dark .page:hover{
-    background-color: var(--ui-elemnet-light);
-    color: var(--font-color-light);
-    border-color: var(--ui-elemnet-dark);
-}
 
 .pages .page.active {
     background-color: green;
@@ -86,14 +76,33 @@
     border-color: var(--ui-elemnet-dark);
 }
 
-.pages.light .page.active:hover {
-    background-color: var(--ui-elemnet-light);
-    color: var(--font-color-light);
-    border-color: var(--ui-elemnet-dark);
-}
 
-.pages.dark .page.active:hover {
-    background-color: var(--ui-elemnet-dark);
-    color: var(--font-color-dark);
-    border-color: var(--ui-elemnet-light);
+
+@media (hover: hover) and (pointer: fine) {
+
+
+    .pages.light .page:hover{
+        background-color: var(--ui-elemnet-dark);
+        color: var(--font-color-dark);
+        border-color: var(--ui-elemnet-light);
+    }
+    
+    .pages.dark .page:hover{
+        background-color: var(--ui-elemnet-light);
+        color: var(--font-color-light);
+        border-color: var(--ui-elemnet-dark);
+    }
+
+    
+    .pages.light .page.active:hover {
+        background-color: var(--ui-elemnet-light);
+        color: var(--font-color-light);
+        border-color: var(--ui-elemnet-dark);
+    }
+    
+    .pages.dark .page.active:hover {
+        background-color: var(--ui-elemnet-dark);
+        color: var(--font-color-dark);
+        border-color: var(--ui-elemnet-light);
+    }
 }

@@ -19,11 +19,11 @@
 }
 
 .quick-ball-shadow.light {
-  background-color: rgba(0, 0, 0, 0.231);
+  background-color: rgba(0, 0, 0, 0.218);
 }
 
 .quick-ball-shadow.dark {
-  background-color: rgba(255, 255, 255, 0.145);
+  background-color: rgba(255, 255, 255, 0.218);
 }
 
 .quick-ball {
@@ -59,7 +59,9 @@
   padding: 10px;
   border-radius: 10px;
   width: 60vw;
-  height: 60vh;
+  max-width: 580px;
+  height: 58vh;
+  max-height: 720px;
   align-items: flex-end;
   flex-wrap: nowrap;
   flex-direction: column-reverse;
@@ -67,11 +69,11 @@
 }
 
 .quick-ball-links.light {
-  background-color: #0e0d0d7e;
+  background-color: #0e0d0dc3;
 }
 
 .quick-ball-links.dark {
-  background-color: #efebeb7e;
+  background-color: #0e0d0dc3;
 }
 
 .quick-ball-links.show {
@@ -112,8 +114,11 @@
   margin-bottom: 15px;
   font-size: 18px;
   font-family: "Courier New", Courier, monospace;
-  font-weight: 600;
+  font-weight: bold;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border-radius: 10px;
   padding: 5px 10px 5px 10px;
   text-align: right;
@@ -131,16 +136,6 @@
   visibility: visible;
   transition: opacity 0.1s, visibility 0.1s;
   animation: fade-in 0.5s forwards;
-}
-
-.quick-ball-link.light:hover {
-  background-color: var(--ui-elemnet-dark);
-  color: var(--font-color-dark);
-}
-
-.quick-ball-link.dark:hover {
-  background-color: var(--ui-elemnet-light);
-  color: var(--font-color-light);
 }
 
 /* .quick-ball-link.dark.active {
@@ -192,7 +187,7 @@
 @media (max-width: 720px) {
   .quick-ball-container {
     bottom: 120px;
-    right: 8px;
+    right: 18px;
   }
 
   .quick-ball,
@@ -213,7 +208,7 @@
 @media (max-width: 580px) {
   .quick-ball-container {
     bottom: 100px;
-    right: 6px;
+    right: 18px;
   }
 
   .quick-ball,
@@ -234,7 +229,7 @@
 @media (max-width: 420px) {
   .quick-ball-container {
     bottom: 120px;
-    right: 4px;
+    right: 18px;
   }
 
   .quick-ball,
@@ -287,20 +282,44 @@
 
 
 /* height */
-@media (max-height: 480px) {
+
+@media (max-height: 580px) {
   .quick-ball-container {
     bottom: 60px;
-    right: 8px;
+    right: 18px;
   }
 
   .quick-ball,
   .quick-ball-shadow {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   .quick-ball-links {
+    bottom: 70px;
+    height: 280px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+
+@media (max-height: 480px) {
+  .quick-ball-container {
     bottom: 60px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 60px;
+    height: 60px;
+  }
+
+  .quick-ball-links {
+    bottom: 70px;
     height: 175px;
   }
 
@@ -311,14 +330,14 @@
 
 @media (max-height: 380px) {
   .quick-ball-container {
-    bottom: 40px;
-    right: 8px;
+    bottom: 35px;
+    right: 18px;
   }
 
   .quick-ball,
   .quick-ball-shadow {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
   }
 
   .quick-ball-icon {
@@ -326,8 +345,8 @@
   }
 
   .quick-ball-links {
-    bottom: 50px;
-    height: 160px;
+    bottom: 65px;
+    height: 150px;
   }
 
   .quick-ball-link {
@@ -335,16 +354,18 @@
   }
 }
 
-@media (max-height: 320px) {
+
+
+@media (max-height: 280px) {
   .quick-ball-container {
     bottom: 40px;
-    right: 8px;
+    right: 18px;
   }
 
   .quick-ball,
   .quick-ball-shadow {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
 
   .quick-ball-icon {
@@ -352,11 +373,24 @@
   }
 
   .quick-ball-links {
-    bottom: 40px;
-    height: 100px;
+    bottom: 60px;
+    height: 110px;
   }
 
   .quick-ball-link {
-    font-size: 12px;
+    font-size: 14px;
+  }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .quick-ball-link.light:hover {
+    background-color: var(--ui-elemnet-dark);
+    color: var(--font-color-dark);
+  }
+  
+  .quick-ball-link.dark:hover {
+    background-color: var(--ui-elemnet-light);
+    color: var(--font-color-light);
   }
 }
