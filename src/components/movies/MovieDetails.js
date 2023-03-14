@@ -2,6 +2,7 @@ import React from "react";
 import useTheme from "../../utils/hooks/useTheme";
 import ShowLessNames from "../utils/ShowLessNames";
 import ShowLessText from "../utils/ShowLessText";
+import WatchProviders from "./WatchProviders";
 
 const MovieDetails = ({ titleData, titleType }) => {
   const { theme } = useTheme();
@@ -156,6 +157,12 @@ const MovieDetails = ({ titleData, titleType }) => {
           <b>TMDB Ratting :</b>
         </div>
       </div>
+
+      <div className={`movie-watch-providers`}>
+        <h6>Watch Providers</h6>
+        {titleData?.tmdb_id && (<WatchProviders tmdb_id={titleData?.tmdb_id} title_type={titleData?.title_type}/>) }
+      </div>
+
       <div className={`movie-overview`}>
         <h6>Overview</h6>
         {titleData.overview ? <ShowLessText text={titleData.overview} limit={150} /> : "No Data"}

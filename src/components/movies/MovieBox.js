@@ -45,7 +45,6 @@ const MovieBox = ({ movieData }) => {
 
         <div className={`movie-ratting ${theme}`}>
           <span>{movieData.ratting}</span>
-          {console.log(movieData)}
         </div>
 
         <div className={`movie-title ${theme}`}>
