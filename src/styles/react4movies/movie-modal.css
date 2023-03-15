@@ -52,6 +52,7 @@
     align-items: center;
     cursor: pointer;
     text-decoration: none;
+    z-index: 999;
 }
 
 /* .movie-overlay.light .closeBtn {

@@ -3,8 +3,9 @@
 .movie-page {
   padding: 5px;
   display: grid;
-  grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
   /* grid-template-rows: 1fr 9fr; */
+  gap: 10px;
   grid-template-areas:
     "movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title"
     "movie-poster movie-poster  movie-poster movie-details movie-details movie-details movie-details movie-details movie-details movie-details"
@@ -22,6 +23,7 @@
   font-weight: bold;
   font-size: larger;
   font-family: "Courier New", Courier, monospace;
+  padding: 10px;
 }
 
 .movie-page.light .movie-title {
@@ -40,6 +42,7 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: flex-start;
+  padding: 10px;
 }
 
 .movie-page .movie-details {
@@ -49,11 +52,9 @@
 
 .movie-page .tv-seasons {
   grid-area: tv-seasons;
-  /* margin-right: 0px; */
   border-radius: 10px;
   padding: 5px;
   text-align: left;
-  /* theme */
   font-size: small;
 }
 
@@ -199,7 +200,6 @@
   transform: translateY(-50%) rotate(180deg);
   height: 35px;
   width: 35px;
-  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;

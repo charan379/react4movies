@@ -26,8 +26,8 @@
   border-radius: 5px;
 }
 .genres-container .genre {
-  padding: 5px;
-  border-radius: 3px;
+  padding: 8px;
+  border-radius: 5px;
   margin: 5px 5px 5px 0px;
   font-weight: 500;
 }
@@ -107,11 +107,31 @@
   flex-direction: column;
   padding: 5px;
   text-align: initial;
-  padding: 5px;
   width: -webkit-fill-available;
   border-radius: 5px;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.movie-cast .cast-toggle {
+  display: flex;
+  position: relative;
+  top: -10px;
+  left: calc(100% - 30px);
+  font-size: 28px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform var(---trans-sidebar-toggle),
+    background-color var(---trans-theme), color var(---trans-theme),
+    display var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle);
+
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.movie-cast .cast-toggle.expand {
+  transform: translateY(-50%);
 }
 
 .movie-cast .person-list-container {
@@ -121,6 +141,8 @@
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  top: -20px;
+  position: relative;
 }
 
 .movie-cast .person {

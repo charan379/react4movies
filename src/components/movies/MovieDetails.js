@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import useTheme from "../../utils/hooks/useTheme";
 import ShowLessNames from "../utils/ShowLessNames";
 import ShowLessText from "../utils/ShowLessText";
@@ -7,6 +8,8 @@ import WatchProviders from "./WatchProviders";
 
 const MovieDetails = ({ titleData, titleType }) => {
   const { theme } = useTheme();
+
+  const [showCast, setShowCast] = useState(false);
 
   return (
     <div className={`movie-info-box ${theme}`}>
@@ -159,7 +162,22 @@ const MovieDetails = ({ titleData, titleType }) => {
 
       <div className={`movie-cast`}>
         <h6>Top Cast</h6>
-        {titleData?.cast && <MovieCast cast={titleData?.cast} />}
+
+        <div className={`cast-toggle ${showCast ? "expand" : ""}`}>
+          <i
+            onClick={() => setShowCast(!showCast)}
+            className={`fas fa-chevron-circle-down`}
+          ></i>
+        </div>
+        {!showCast
+          ?
+          <div className="person-list-container" style={{color:" rgb(71, 135, 214)", fontWeight:"bold", fontFamily:"monospace", cursor:"pointer", width:"100%", height:"15px"}} onClick={() => setShowCast(!showCast)}>
+            Tap to see cast details
+          </div>
+          : null
+        }
+
+        {titleData?.cast && showCast && <MovieCast cast={titleData?.cast} />}
       </div>
     </div>
   );
