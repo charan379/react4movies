@@ -14,7 +14,7 @@ function TmdbMovie({ movieData }) {
   const { theme } = useTheme();
   const location = useLocation();
   const {
-    titleType = movieData.titleType,
+    titleType = movieData.title_type,
     tmdbId = movieData.tmdb_id,
     title = movieData.title,
   } = useParams();

@@ -14,7 +14,7 @@ const Logout = ({ open, close }) => {
 
   const logoutRef = useRef(null);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     const toastId = toast.loading("Logging out...");
@@ -29,8 +29,8 @@ const Logout = ({ open, close }) => {
         });
         removeAuth();
         setTimeout(() => {
-            navigate("/")
-            close();
+          navigate("/")
+          close();
         }, 500);
       })
       .catch((error) => {
@@ -66,10 +66,10 @@ const Logout = ({ open, close }) => {
         <h2>
           <i class="fas fa-exclamation-triangle"></i> Confirm Logout
         </h2>
-        <h6 style={{textAlign: "center"}}>Are you sure you want to log out ?</h6>
+        <h6 style={{ textAlign: "center" }}>Are you sure you want to log out ?</h6>
         <form onSubmit={handleSubmit}>
           <div className="container">
-            <Link
+            <button
               className="logout-button"
               style={{ float: "left" }}
               type="submit"
@@ -79,9 +79,9 @@ const Logout = ({ open, close }) => {
               <span></span>
               <span></span>
               Logout
-            </Link>
+            </button>
 
-            <Link
+            <button
               className="form-button"
               style={{ float: "right" }}
               onClick={close}
@@ -91,7 +91,7 @@ const Logout = ({ open, close }) => {
               <span></span>
               <span></span>
               Cancel
-            </Link>
+            </button>
           </div>
           <br />
         </form>
