@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import empty from "../../static/empty.svg";
 import useTheme from "../../utils/hooks/useTheme";
+import MovieActions from "./MovieActions";
 
-const MoviePoster = ({data}) => {
+const MoviePoster = ({ data }) => {
   const { theme } = useTheme();
 
   const handleImageError = (img) => {
@@ -33,6 +35,10 @@ const MoviePoster = ({data}) => {
 
       {/* movie tagline */}
       <div className={`movie-tagline ${theme}`}>{data.tagline}</div>
+
+      {/* movie actions */}
+      <MovieActions />
+
     </>
   );
 };
