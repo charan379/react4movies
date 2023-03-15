@@ -26,7 +26,7 @@ const CollapsibleSeason = ({ season, index }) => {
       </div>
       <i
         onClick={handleClick}
-        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : null
+        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : ""
           }`}
       ></i>
       {isExpanded ? (
