@@ -2,6 +2,7 @@ import React from "react";
 import useTheme from "../../utils/hooks/useTheme";
 import ShowLessNames from "../utils/ShowLessNames";
 import ShowLessText from "../utils/ShowLessText";
+import MovieCast from "./MovieCast";
 import WatchProviders from "./WatchProviders";
 
 const MovieDetails = ({ titleData, titleType }) => {
@@ -43,9 +44,13 @@ const MovieDetails = ({ titleData, titleType }) => {
           <b>IMDB ID : </b>
           {titleData?.imdb_id}
         </div>
-
         <div className="info-item">
-          <b>Age Ratting :</b>
+          <b>Ratting : </b>
+          {titleData?.ratting ?? 0}
+        </div>
+        <div className="info-item">
+          <b>Censor Certificate : </b>
+          {titleData?.age_rattings.find(certificate => certificate.country === "IN")?.ratting ?? "MB-26"}
         </div>
         <div className="info-item">
           <b>Production Companies : </b>
@@ -74,18 +79,6 @@ const MovieDetails = ({ titleData, titleType }) => {
 
         </div>
 
-        <div className="info-item">
-          <b>Top Cast : </b>
-          {titleData.cast
-            ?
-            <ShowLessNames
-              commaSepratedText={titleData.cast?.map((cast) => cast.name).join(", ")}
-              limit={5} />
-            :
-            "No Data"
-          }
-        </div>
-
         {titleType === "movie" ? (
           <>
             <div className="info-item">
@@ -106,6 +99,7 @@ const MovieDetails = ({ titleData, titleType }) => {
               <b>Rumtime : </b>
               {titleData?.runtime ?? 0} minutes
             </div>
+
           </>
         ) : (
           <>
@@ -151,21 +145,21 @@ const MovieDetails = ({ titleData, titleType }) => {
           <b>Streaming On : </b>
           {titleData?.providers?.map((provider) => provider).join(",")}
         </div>
-
-
-        <div className="info-item">
-          <b>TMDB Ratting :</b>
-        </div>
       </div>
 
       <div className={`movie-watch-providers`}>
         <h6>Watch Providers</h6>
-        {titleData?.tmdb_id && (<WatchProviders tmdb_id={titleData?.tmdb_id} title_type={titleData?.title_type}/>) }
+        {titleData?.tmdb_id && (<WatchProviders tmdb_id={titleData?.tmdb_id} title_type={titleData?.title_type} />)}
       </div>
 
       <div className={`movie-overview`}>
         <h6>Overview</h6>
         {titleData.overview ? <ShowLessText text={titleData.overview} limit={150} /> : "No Data"}
+      </div>
+
+      <div className={`movie-cast`}>
+        <h6>Top Cast</h6>
+        {titleData?.cast && <MovieCast cast={titleData?.cast} />}
       </div>
     </div>
   );
