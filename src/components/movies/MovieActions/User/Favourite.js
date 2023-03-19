@@ -31,7 +31,7 @@ const Favourite = ({ toast }) => {
     }
 
     const removeFromFavouriteTitles = (base64TitleId) => {
-        const toastId = toast.loading("Removing from favourites...", { position: "top-right", closeButton: true, autoClose: 1000 });
+        // const toastId = toast.loading("Removing from favourites...", { position: "top-right", closeButton: true, autoClose: 1000 });
         axios.post(`${API}/userdata/remove-from-favourite/${base64TitleId}`, {}, { withCredentials: true })
             .then((response) => {
                 // toast.update(toastId, {
