@@ -29,7 +29,7 @@ const WatchProviders = ({ tmdb_id, title_type, country }) => {
     //     ]
     // }
 
-    
+
     const [mainLink, setMainLink] = useState("");
 
     const [providers, setProviders] = useState([]);
@@ -55,9 +55,9 @@ const WatchProviders = ({ tmdb_id, title_type, country }) => {
     return (
         <>
             <div>
-                {providers.map(provider => {
+                {providers.map((provider, index) => {
                     return (
-                        <Link title={provider.provider_name} onClick={() => window.open(mainLink, "_blank", "noreferrer")}>
+                        <Link key={`${index}`} id={`provider-${index}`} title={provider.provider_name} onClick={() => window.open(mainLink, "_blank", "noreferrer")}>
                             <img src={provider.logo_path} alt={provider.provider_name} className="watch-provider" />
                         </Link>
                     )
