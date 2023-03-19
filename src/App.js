@@ -21,6 +21,7 @@ import {
 } from "./constants/AuthRoles";
 import Title from "./components/movies/Title";
 import Test1 from "./components/main/sidebars/test";
+import SearchMovieBunkers from "./components/movies/SearchMovieBunkers";
 
 const App = () => {
 
@@ -34,14 +35,14 @@ const App = () => {
             <Route index element={<Home />} />
 
             <Route element={<RouteProtector allowedRoles={LevelZero} />}>
-              <Route path="/collection" element={<Collection />} />
+              <Route path="/collection" element={<SearchMovieBunkers />} />
               <Route path="/fetch-title" element={<FetchTitle />} />
               <Route path="/add-title" element={<AddTitle />} />
               <Route path="/discover/tmdb" element={<DiscoverTmdb />} />
 
               <Route element={<RouteProtector allowedRoles={LevelOne} />}>
                 <Route
-                  path="/view/title/:_titleSource/:_titleType/:_title/:_id"
+                  path="/view/title/:_titleState/:_titleType/:_title/:_id"
                   element={<Title />}
                 />
               </Route>
