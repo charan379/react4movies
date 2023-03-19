@@ -7,7 +7,7 @@ import Seasons from './tmdb/Tv/Seasons';
 const Tv = ({ tv }) => {
 
     const { theme } = useTheme();
-    
+
     return (
         <>
             <div className={`movie-page ${theme}`}>
@@ -26,6 +26,7 @@ const Tv = ({ tv }) => {
 
                             tagline: tv?.tagline,
                         }}
+                        title={{ ...tv }}
                     />
                 </div>
 
@@ -39,12 +40,12 @@ const Tv = ({ tv }) => {
 
 
                 <Seasons
-                      data={{
+                    data={{
                         latest_episode: tv?.last_episode_aired,
                         upcoming_episode: tv?.next_episode_to_air,
                         seasons: tv?.seasons,
-                      }}
-                    />
+                    }}
+                />
             </div>
         </>
     )

@@ -1,66 +1,85 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { fetchTitle } from '../../helpers/moviebunkers.requests';
 import { fetchTmdbTitle } from '../../helpers/tmdb.requests';
+import useTitle from '../../utils/hooks/useTitle';
 import useToastify from '../../utils/hooks/useToast';
 import Loader from '../utils/Loader';
 import Movie from './Movie';
 import Tv from './Tv';
 
-const Title = ({ id, titleSource, titleType, title }) => {
-
+const Title = ({ id, titleState, titleType }) => {
+    console.log(titleState)
     const {
         _id = id,
-        _titleSource = titleSource,
+        _titleState = titleState,
         _titleType = titleType,
     } = useParams();
 
+    const { title, setTitle, flushTitle } = useTitle();
+
     const [errors, setErrors] = useState();
+
     const [isLoading, setIsLoading] = useState(false);
-    const [titleData, setTitleData] = useState({})
+
     const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
-    const fetchData = async ({_id, _titleType, _titleSource, cancelToken}) => {
-        switch (_titleSource) {
-            case "tmdb": return await fetchTmdbTitle({ id: _id, titleType: _titleType, cancelToken });
-            default: return 0;
-        }
-    }
-
-    useEffect(() => {
-        const source = axios.CancelToken.source();
-        setIsLoading(isLoading => !isLoading);
-        setTitleData({});
-        setTimeout(() => {
-            fetchData({ _id, _titleType, _titleSource, cancelToken: source.token })
+    const fetchData = ({ _id, _titleType, _titleState, cancelToken }) => {
+        switch (_titleState) {
+            case "tmdb": fetchTmdbTitle({ id: _id, titleType: _titleType, cancelToken })
                 .then((result) => {
-                    setErrors("");
-                    setTitleData({ ...result });
+                    setTitle({ ...result, state: _titleState })
                     setIsLoading(isLoading => !isLoading);
                 })
                 .catch((error) => {
                     toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
                     setErrors(error)
                     setIsLoading(isLoading => !isLoading);
+                }, 500);
+                break;
+
+            case "moviebunkers": fetchTitle({ id: _id, cancelToken })
+                .then((result) => {
+                    setTitle({ ...result, state: _titleState })
+                    setIsLoading(isLoading => !isLoading);
                 })
-        }, 500);
+                .catch((error) => {
+                    toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
+                    setErrors(error)
+                    setIsLoading(isLoading => !isLoading);
+                }, 500);
+                break;
+            default: return 0;
+        }
+    }
+
+    useEffect(() => {
+        const source = axios.CancelToken.source();
+        flushTitle();
+        setIsLoading(isLoading => !isLoading);
+        setErrors("");
+        setTimeout(() => {
+            console.log({ _id, _titleType, _titleState, cancelToken: source.token })
+            fetchData({ _id, _titleType, _titleState, cancelToken: source.token })
+        });
 
         return () => {
             source.cancel();
         }
         // eslint-disable-next-line 
-    }, [_id, _titleSource, _titleType])
+    }, [_id, _titleState, _titleType])
 
     return (
         <>
 
             {isLoading ? <Loader /> : null}
 
-            {(Object.keys(titleData).length === 0) ? <Loader /> : null}
+            {(Object.keys(title).length === 0) ? <Loader /> : null}
 
-            {titleData?.title_type === "movie" ? <Movie movie={{ ...titleData }} /> : null}
+            {title?.title_type === "movie" ? <Movie movie={{ ...title }} /> : null}
 
-            {titleData?.title_type === "tv" ? <Tv tv={titleData}></Tv> : null}
+            {title?.title_type === "tv" ? <Tv tv={{ ...title }}></Tv> : null}
 
             {errors
                 ?
