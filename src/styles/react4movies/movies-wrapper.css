@@ -1,4 +1,4 @@
- @import "./variables.css";
+@import "./variables.css";
 
 /* movies  */
 /* just a wraper to  */
@@ -39,7 +39,6 @@ Height = ?
      ##################################
 */
 
-
 /* movie box */
 /* box */
 .movie-box {
@@ -57,7 +56,7 @@ Height = ?
   border-radius: 6px 6px 3px 3px;
   z-index: 1;
   width: 200px;
-  height: 315px;   /* 275px img width + 40px for title */
+  height: 315px; /* 275px img width + 40px for title */
   margin: 10px 7px 10px 7px;
 }
 
@@ -75,20 +74,20 @@ Height = ?
 
 /* movie poster */
 .movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop{
-  display : flex;
+.movie-box .movie-poster .movie-poster-backdrop {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 200px;
-  height: 275px;    /* movie-box width 40px */
+  height: 275px; /* movie-box width 40px */
   overflow: hidden;
   position: absolute;
-  border-radius: 5px 5px 0 0;
+  border-radius: 6px 8px 0 0;
   right: 0px;
 }
 
-.movie-box  .movie-poster .movie-poster-backdrop {
+.movie-box .movie-poster .movie-poster-backdrop {
   opacity: 0.3;
   z-index: 0;
 }
@@ -97,20 +96,19 @@ Height = ?
   z-index: 1;
 }
 
-.movie-poster .poster-img img{
+.movie-poster .poster-img img {
   width: inherit;
   height: inherit;
 }
-
 
 /* titile */
 .movie-box .movie-title {
   bottom: 0px;
   right: 0px;
   padding: 6px 3px 2px 5px;
-  height: 40px; 
+  height: 40px;
   width: 200px;
-  position: absolute ;
+  position: absolute;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,7 +116,7 @@ Height = ?
   z-index: 2;
   font-weight: 300;
   font-size: medium;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .movie-box.light .movie-title {
@@ -134,43 +132,42 @@ Height = ?
   border-top: 3px solid var(--movie-box-title-dark);
 }
 
-
 /* movie info */
 .movie-box .movie-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    overflow: hidden;
-    padding: 10px;
-    font-weight: 400;
-    font-size: 14px;
-    border-radius: 5px 5px 0 0;
-    z-index: 2;
-    opacity: 0;
-    width: 200px;
-    height: 275px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 5px 5px 0 0;
+  z-index: 2;
+  opacity: 0;
+  width: 200px;
+  height: 275px;
 }
 
 .movie-box.light .movie-info:hover {
-  opacity: .9;
+  opacity: 0.9;
   color: var(--font-color-light);
   background-color: var(--ui-elemnet-light);
 }
 
 .movie-box.dark .movie-info:hover {
-  opacity: .9;
+  opacity: 0.9;
   color: var(--font-color-dark);
   background-color: var(--ui-elemnet-dark);
 }
 
 /* movie Year */
-.movie-box .movie-year{
+.movie-box .movie-year {
   position: absolute;
   font-weight: 500;
   font-size: 14px;
@@ -199,22 +196,22 @@ Height = ?
 }
 
 /* movie Ratting */
-.movie-box .movie-ratting{
-    position: absolute;
-    font-weight: 500;
-    font-size: 14px;
-    bottom: 40px;
-    right: 0px;
-    height: 20px;
-    width: 35px;
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 5px 0px 0px 0px;
-    padding: 2px;
-    align-items: center;
-    align-content: center;
-    justify-content: space-evenly;
-    z-index: 3;
+.movie-box .movie-ratting {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  bottom: 40px;
+  right: 0px;
+  height: 20px;
+  width: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px 0px 0px 0px;
+  padding: 2px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
 }
 
 .movie-box.light .movie-ratting {
@@ -227,8 +224,67 @@ Height = ?
   background-color: var(--ui-elemnet-dark);
 }
 
+.movie-box .north-east-block {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  top: 0;
+  right: 0;
+  width: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px 0px 5px 5px;
+  padding: 0px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  align-content: center;
+}
+/* movie title-type */
+/* .movie-box .movie-title-type {
+  height: 20px;
+  width: 20px;
+  padding: 1px;
+} */
 
+.movie-box.light .north-east-block {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
 
+.movie-box.dark .north-east-block {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+}
+
+/* movie star */
+/* .movie-box .movie-star {
+  position: absolute;
+  font-weight: 500;
+  font-size: 22px;
+  top: 30px;
+  right: 0;
+  height: 28px;
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 2px;
+  padding: 1px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
+}
+
+.movie-box.light .movie-star {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
+
+.movie-box.dark .movie-star {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+} */
 
 /* for 530px screens and below */
 @media (max-width: 530px) {
@@ -240,9 +296,9 @@ Height = ?
     height: 280px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 178px;
     height: 245px;
   }
@@ -259,14 +315,14 @@ Height = ?
     height: 245px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 12px;
     bottom: 35.5px;
     height: 17px;
     width: 35.5px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 12px;
     bottom: 35.5px;
     height: 17px;
@@ -284,9 +340,9 @@ Height = ?
     height: 280px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 178px;
     height: 245px;
   }
@@ -303,21 +359,20 @@ Height = ?
     height: 245px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 12px;
     bottom: 35.5px;
     height: 17px;
     width: 35.5px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 12px;
     bottom: 35.5px;
     height: 17px;
     width: 25px;
   }
 }
-
 
 /* for 485px screens and below */
 @media (max-width: 485px) {
@@ -327,9 +382,9 @@ Height = ?
     height: 256px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 162.5px;
     height: 223.6px;
   }
@@ -346,14 +401,14 @@ Height = ?
     height: 223.6px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 12px;
     bottom: 32.5px;
     height: 17px;
     width: 35.5px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 12px;
     bottom: 32.5px;
     height: 17px;
@@ -369,9 +424,9 @@ Height = ?
     height: 229px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 145px;
     height: 200px;
   }
@@ -388,14 +443,14 @@ Height = ?
     height: 200px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 29px;
     height: 15px;
     width: 29px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 29px;
     height: 15px;
@@ -411,9 +466,9 @@ Height = ?
     height: 212.5px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 134.5px;
     height: 185.6px;
   }
@@ -430,14 +485,14 @@ Height = ?
     height: 185.6px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 27px;
     height: 15px;
     width: 27px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 27px;
     height: 15px;
@@ -454,9 +509,9 @@ Height = ?
     margin: 5px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 119px;
     height: 165px;
   }
@@ -473,14 +528,14 @@ Height = ?
     height: 165px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 24px;
     height: 15px;
     width: 29px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 24px;
     height: 15px;
@@ -496,9 +551,9 @@ Height = ?
     height: 172px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 109.5px;
     height: 150px;
   }
@@ -515,14 +570,14 @@ Height = ?
     height: 150px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 22px;
     height: 15px;
     width: 29px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 22px;
     height: 15px;
@@ -538,9 +593,9 @@ Height = ?
     height: 172px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 110px;
     height: 150px;
   }
@@ -557,14 +612,14 @@ Height = ?
     height: 150px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 22px;
     height: 15px;
     width: 29px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 22px;
     height: 15px;
@@ -581,9 +636,9 @@ Height = ?
     margin: 5px;
   }
 
-/* movie poster */
-.movie-box .movie-poster .poster-img,
-.movie-box  .movie-poster .movie-poster-backdrop {
+  /* movie poster */
+  .movie-box .movie-poster .poster-img,
+  .movie-box .movie-poster .movie-poster-backdrop {
     width: 101px;
     height: 136px;
   }
@@ -600,14 +655,14 @@ Height = ?
     height: 136px;
   }
 
-  .movie-box .movie-year{
+  .movie-box .movie-year {
     font-size: 10px;
     bottom: 20px;
     height: 12px;
     width: 29px;
   }
 
-  .movie-box .movie-ratting{
+  .movie-box .movie-ratting {
     font-size: 10px;
     bottom: 20px;
     height: 12px;

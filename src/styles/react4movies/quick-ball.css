@@ -134,9 +134,11 @@
 }
 
 .quick-ball-link.show {
+  display: flex;
   visibility: visible;
   transition: opacity 0.1s, visibility 0.1s;
   animation: fade-in 0.5s forwards;
+  align-items: center;
 }
 
 /* .quick-ball-link.dark.active {
@@ -281,7 +283,6 @@
   }
 }
 
-
 /* height */
 
 @media (max-height: 580px) {
@@ -305,7 +306,6 @@
     font-size: 18px;
   }
 }
-
 
 @media (max-height: 480px) {
   .quick-ball-container {
@@ -355,8 +355,6 @@
   }
 }
 
-
-
 @media (max-height: 280px) {
   .quick-ball-container {
     bottom: 40px;
@@ -383,13 +381,12 @@
   }
 }
 
-
 @media (hover: hover) and (pointer: fine) {
   .quick-ball-link.light:hover {
     background-color: var(--ui-elemnet-dark);
     color: var(--font-color-dark);
   }
-  
+
   .quick-ball-link.dark:hover {
     background-color: var(--ui-elemnet-light);
     color: var(--font-color-light);
