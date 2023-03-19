@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   authenticateUser,
   fetchWhoAmI,
-} from "../../helpers/axios.auth.requests";
+} from "../../helpers/moviebunkers.auth.requests";
 import useAuth from "../../utils/hooks/useAuth";
 import useTheme from "../../utils/hooks/useTheme";
 import useToastify from "../../utils/hooks/useToast";

@@ -5,7 +5,7 @@ import MovieModal from "./MovieModal";
 import useTheme from "../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 
-const MoviesList = ({ source, list }) => {
+const MoviesList = ({ source, list,state, setState }) => {
   const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
@@ -21,8 +21,8 @@ const MoviesList = ({ source, list }) => {
       {/* Movies List  */}
       <div className={`movies ${theme}`}>
         {/* if list source = tmdb */}
-        {source === "tmdb"
-          ? list.map((movie, index) => {
+        {list?.length > 0 &&
+          list.map((movie, index) => {
             return (
               <Link title={movie.title}
                 tabIndex="3"
@@ -32,32 +32,35 @@ const MoviesList = ({ source, list }) => {
                   id: movie?._id ?? movie?.tmdb_id,
                   title: movie.title,
                   year: movie?.year,
-                  titleType: movie.title_type,
-                  source: movie?.source
+                  title_type: movie.title_type,
+                  titleState: source
                 })}
               >
                 <MovieBox
                   movieData={{
                     id: movie?._id ?? movie?.tmdb_id,
                     index: index,
-                    poster: movie?.poster_path,
+                    poster_path: movie?.poster_path,
                     title: movie.title,
-                    titleType: movie.title_type,
+                    title_type: movie.title_type,
                     year: movie?.year,
                     ratting: movie?.ratting,
-                    source: movie?.source
+                    titleState: source,
+                    seenByUser: movie?.seenByUser,
+                    unseenByUser: movie?.unseenByUser,
+                    starredByUser: movie?.starredByUser,
+                    favouriteByUser: movie?.favouriteByUser,
                   }}
                 />
               </Link>
             );
-          })
-          : null}
+          })}
 
         {openModal ? (
           <MovieModal
             data={movieData}
             open={openModal}
-            close={() => setOpenModal(false)}
+            close={() => { setOpenModal(false); setState(state+1) }}
           />
         ) : null}
       </div>
@@ -75,7 +78,7 @@ MoviesList.defaultProps = {
         link: "url",
         poster: "poster path",
         title: "Movie Title 1",
-        titleType: "movie",
+        title_type: "movie",
         year: 1998,
         ratting: 7.4,
       },
@@ -84,7 +87,7 @@ MoviesList.defaultProps = {
         link: "url",
         poster: "poster path",
         title: "Movie Title 2",
-        titleType: "movie",
+        title_type: "movie",
         year: 1999,
         ratting: 7.5,
       },

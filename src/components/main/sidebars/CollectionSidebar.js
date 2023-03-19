@@ -35,7 +35,7 @@ const CollectionSidebar = () => {
           data-id="search"
           name="search"
           type="text"
-          value={collectionQuery.query}
+          value={collectionQuery.search}
           placeholder="Search..."
           onChange={handleChange}
           
@@ -43,7 +43,7 @@ const CollectionSidebar = () => {
       </li>
 
       {/* Movie or TV */}
-      <li className={`menu-item ${theme}`}>
+      {/* <li className={`menu-item ${theme}`}>
         <i className={`${collectionQuery.title_type === "tv" ? "fas fa-tv" : "fas fa-film"} icon`} />
         <label className={`sidebar-select ${theme}`} htmlFor="title_type" >
           <select
@@ -59,7 +59,7 @@ const CollectionSidebar = () => {
             <option value="tv">TV Series</option>
           </select>
         </label>
-      </li>
+      </li> */}
 
       {/* genre*/}
       <li className="menu-item-header">
@@ -77,6 +77,7 @@ const CollectionSidebar = () => {
             value={collectionQuery.genre}
             tabIndex="-1"
           >
+            <option value="">All</option>
             <option value="Action">Action</option>
             <option value="Fantacy">Fantacy</option>
           </select>
@@ -100,6 +101,7 @@ const CollectionSidebar = () => {
             value={collectionQuery.language}
             tabIndex="-1"
           >
+            <option value="">All</option>
             <option value="te">Telugu</option>
             <option value="en">English</option>
           </select>
@@ -124,8 +126,10 @@ const CollectionSidebar = () => {
             value={collectionQuery.sort_by}
             tabIndex="-1"
           >
-            <option value="movie">Movie</option>
-            <option value="tv">TV Series</option>
+            <option value="year.desc">Year Desc</option>
+            <option value="year.asc">Year Asc</option>
+            <option value="createdAt.desc">Added Desc</option>
+            <option value="createdAt.asc">Added Asc</option>
           </select>
         </label>
       </li>
@@ -170,9 +174,9 @@ const CollectionSidebar = () => {
           className={`horizontal-slider ${theme}`}
           thumbClassName="range-slider-thumb"
           trackClassName={`range-slider-track`}
-          defaultValue={[8, 18]}
+          defaultValue={[0, 26]}
           max={26}
-          min={2}
+          min={0}
           minDistance={5}
           renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
           onChange={handleAgeChange}

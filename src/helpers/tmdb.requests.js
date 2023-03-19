@@ -12,10 +12,10 @@ export async function searchTmdb({ query, cancelToken }) {
         return response?.data;
     } catch (error) {
         const errorResponse = error?.response?.data;
-
+        console.log(error);
         if (axios.isCancel(error)) {
             console.log(error);
-        } else if (errorResponse) {
+        } else if (errorResponse?.error?.message) {
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;
@@ -33,7 +33,8 @@ export async function fetchTmdbTitle({ id, titleType, cancelToken }) {
 
         if (axios.isCancel(error)) {
             console.log(error);
-        } else if (errorResponse) {
+        } else if (errorResponse?.message) {
+            console.log(errorResponse)
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;
@@ -44,14 +45,14 @@ export async function fetchTmdbTitle({ id, titleType, cancelToken }) {
 
 export async function fetchTmdbTvSeason({ tmdbShowId, seasonNumber, cancelToken }) {
     try {
-        const response = await axios.get(`${API}/tv/${tmdbShowId}/season/${seasonNumber}`, { cancelToken: cancelToken ?? null});
+        const response = await axios.get(`${API}/tv/${tmdbShowId}/season/${seasonNumber}`, { cancelToken: cancelToken ?? null });
         return response?.data;
     } catch (error) {
         const errorResponse = error?.response?.data;
 
         if (axios.isCancel(error)) {
             console.log(error);
-        } else if (errorResponse) {
+        } else if (errorResponse?.error?.message) {
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;

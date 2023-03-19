@@ -25,18 +25,15 @@ const MovieModal = ({ data, open, close }) => {
             <i className="fas fa-times fa-lg"></i>
           </Link>
 
-          <div  className="">
-            <Title id={data?.id} titleSource={data?.source} titleType={data?.titleType}></Title>
-            {/* {data.source === "tmdb" ? (
-              <TmdbMovie
-                movieData={{
-                  tmdb_id: data.tmdb_id,
-                  tittle: data.tittle,
-                  year: data.year,
-                  titleType: data.title_type,
-                }}
-              />
-            ) : null} */}
+          <div className="">
+            <Title
+              id={(data?.titleState === "moviebunkers")
+                ? btoa(data?.id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+                :
+                data?.id
+              }
+              titleState={data?.titleState}
+              titleType={data?.title_type}></Title>
           </div>
         </div>
       </div>

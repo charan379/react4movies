@@ -1,13 +1,20 @@
 const initialState = {
     search: "",
+    genre: "",
+    language: "",
     movie: 1,
     tv: 1,
-    seen: 0,
-    favourite: 0,
     starred: 0,
+    favourite: 0,
+    seen: 0,
+    "age.gte": 0,
+    "age.lte": 26,
+    country: "IN",
+    sort_by: "createdAt.desc",
     limit: 20,
+    pageNo: 1,
     minimal:true,
-    pageNo: "",
+
 };
 
 

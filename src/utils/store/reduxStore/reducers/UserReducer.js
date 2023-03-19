@@ -2,9 +2,9 @@ const initialState = {
   userName: "",
   email: "",
   status: "",
-  role:"",
+  role: "",
   createdAt: "",
-  updatedAt: "",    
+  updatedAt: "",
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -13,8 +13,8 @@ const UserReducer = (state = initialState, action) => {
     case "SET_USER": {
       return { ...state, ...payload };
     }
-    case 'REMOVE_USER': {
-        return {...state, ...initialState}
+    case "REMOVE_USER": {
+      return { ...initialState }
     }
     default:
       return state;
