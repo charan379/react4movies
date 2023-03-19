@@ -5,6 +5,8 @@ import useTheme from "../../utils/hooks/useTheme";
 
 const MovieBox = ({ movieData }) => {
   const { theme } = useTheme();
+
+
   const handleImageError = (img) => {
     img.target.onerror = null;
     img.target.src = empty;
@@ -19,7 +21,7 @@ const MovieBox = ({ movieData }) => {
           <img
             loading="lazy"
             onError={handleImageError}
-            src={`${movieData.poster}`}
+            src={`${movieData.poster_path}`}
             alt={`${movieData.title}`}
           ></img>
         </div>
@@ -36,7 +38,7 @@ const MovieBox = ({ movieData }) => {
         <div className={`movie-info ${theme}`}>
           {movieData.title}
           <br />
-          {movieData.titleType}
+          {movieData.title_type}
         </div>
 
         <div className={`movie-year ${theme}`}>
@@ -46,6 +48,24 @@ const MovieBox = ({ movieData }) => {
         <div className={`movie-ratting ${theme}`}>
           <span>{movieData.ratting}</span>
         </div>
+
+        <div className="north-east-block ">
+          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv fa-xs"></i></span>}
+          {(movieData?.unseenByUser) && <span><i class="fas fa-eye-slash fa-xs"></i></span>}
+          {(movieData?.favouriteByUser) && <span><i class="fas fa-heart fa-xs"></i></span>}
+          {(movieData?.starredByUser) && <span><i class="fas fa-star fa-xs"></i></span>}
+        </div>
+
+        {/* <div className="movie-title-type">
+          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv"></i></span>}
+        </div> */}
+
+        {/* <div className="movie-star">
+          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv"></i></span>}
+        </div> */}
 
         <div className={`movie-title ${theme}`}>
           <span>{movieData.title}</span>
@@ -62,7 +82,7 @@ MovieBox.defaultProps = {
     link: "link",
     poster: "path",
     title: "movie title",
-    titleType: "movie",
+    title_type: "movie",
     year: 0,
     ratting: 0,
   },
@@ -70,12 +90,15 @@ MovieBox.defaultProps = {
 
 MovieBox.propTypes = {
   movieData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
     index: PropTypes.number,
     link: PropTypes.string,
     poster: PropTypes.string,
     title: PropTypes.string,
-    titleType: PropTypes.string,
+    title_type: PropTypes.string,
     year: PropTypes.number,
     ratting: PropTypes.number,
   }),
