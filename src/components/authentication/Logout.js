@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../helpers/axios.auth.requests";
+import { logout } from "../../helpers/moviebunkers.auth.requests";
 import useAuth from "../../utils/hooks/useAuth";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
@@ -17,10 +17,11 @@ const Logout = ({ open, close }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    const toastId = toast.loading("Logging out...");
     event.preventDefault();
+    const toastId = toast.loading("Logging out...");
     logout()
       .then((response) => {
+        console.log(response)
         toast.update(toastId, {
           render: response?.message,
           type: "success",
@@ -34,16 +35,17 @@ const Logout = ({ open, close }) => {
         }, 500);
       })
       .catch((error) => {
+        console.log(error)
         if (error instanceof MovieBunkersException) {
           toast.update(toastId, {
-            render: error?.message,
+            render: error?.message ?? "Somthing went worng !",
             type: "error",
             isLoading: false,
             autoClose: 5000,
           });
         } else {
           toast.update(toastId, {
-            render: error?.message || "Somthing went worng !",
+            render: error?.message ?? "Somthing went worng !",
             type: "error",
             isLoading: false,
             autoClose: 5000,
