@@ -7,6 +7,7 @@ import useTmdbSearch from "../../../utils/hooks/useTmdbSearch";
 import MovieBunkersException from "../../../utils/MovieBunkersException";
 import { searchTmdb } from "../../../helpers/tmdb.requests";
 import useToastify from "../../../utils/hooks/useToast";
+import addTitlesDump from "./addTitlesDump";
 
 const DiscoverTmdb = () => {
 
@@ -29,19 +30,20 @@ const DiscoverTmdb = () => {
     setTmdbSearch({ ...tmdbSearch, pageNo: pageNo });
   }
 
-  const fetchData = ({cancelToken}) => {
-    searchTmdb({query : tmdbSearch, cancelToken}).then((result) => {
-      setMoviesPage((moviePage) => ({ ...result }));
+  const fetchData = ({ cancelToken }) => {
+    searchTmdb({ query: tmdbSearch, cancelToken }).then((result) => {
+      setMoviesPage({ ...result });
       setIsLoading((isLoading) => !isLoading);
 
-    }).catch(error => {
+    }).catch((error) => {
+      console.log(error)
       toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
       if (error instanceof MovieBunkersException) {
         setError(error);
       } else {
         setError(error);
       }
-      setMoviesPage((moviePage) => { })
+      setMoviesPage({})
       setIsLoading((isLoading) => !isLoading);
     })
   }
@@ -49,10 +51,10 @@ const DiscoverTmdb = () => {
   useEffect(() => {
     const source = axios.CancelToken.source();
     setError(null);
-    setMoviesPage((moviePage) => { })
+    setMoviesPage({})
     setIsLoading((isLoading) => !isLoading);
     setTimeout(() => {
-      fetchData({cancelToken: source.token})
+      fetchData({ cancelToken: source.token })
     }, 500)
 
     return () => {
@@ -71,15 +73,16 @@ const DiscoverTmdb = () => {
         <>
           <div id="results">
             <MoviesList
-              source={moviesPage?.source}
+              source={"tmdb"}
               list={moviesPage?.list}
             />
           </div>
 
+          {/* {addTitlesDump(moviesPage?.list)} */}
+
           <Pagination
             total_pages={moviesPage.total_pages}
             currentPage={parseInt(moviesPage.page)}
-            resetOn={tmdbSearch}
             setPageNo={setPageNo}
           />
         </>

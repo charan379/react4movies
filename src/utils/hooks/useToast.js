@@ -2,23 +2,23 @@ import { ToastContainer, toast } from "react-toastify";
 import useTheme from "./useTheme";
 
 const useToastify = () => {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const toastContainerOptions = {
-    position:"top-right",
-    autoClose:5000,
-    hideProgressBar:false,
-    newestOnTop:true,
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    newestOnTop: true,
     closeOnClick: true,
-    rtl:false,
+    rtl: false,
     pauseOnFocusLoss: true,
     draggable: true,
     pauseOnHover: true,
-    theme:theme,
+    theme: theme,
   }
-  
 
-  return { ToastContainer: ToastContainer,toastContainerOptions: toastContainerOptions,  toast: toast };
+
+  return { ToastContainer: ToastContainer, toastContainerOptions: toastContainerOptions, toast: toast };
 };
 
 

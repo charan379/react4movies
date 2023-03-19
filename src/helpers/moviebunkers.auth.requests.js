@@ -1,8 +1,8 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { Config } from "../utils/Config";
 import MovieBunkersException from "../utils/MovieBunkersException";
 
-const API = Config.SERVER;
+const API = Config.MOVIEBUNKERS_API;
 
 export async function fetchWhoAmI(source = axios.CancelToken.source()) {
   try {
@@ -12,8 +12,8 @@ export async function fetchWhoAmI(source = axios.CancelToken.source()) {
     });
     return response?.data;
   } catch (error) {
-    const errorResponse = error?.response?.data;
-    if (errorResponse) {
+    const errorResponse = error?.response?.data?.message;
+    if (errorResponse?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;
@@ -42,7 +42,7 @@ export async function authenticateUser(
     return response?.data;
   } catch (error) {
     const errorResponse = error?.response?.data;
-    if (errorResponse) {
+    if (errorResponse?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;
@@ -59,7 +59,7 @@ export async function logout(source = axios.CancelToken.source()) {
     return response?.data;
   } catch (error) {
     const errorResponse = error?.response?.data;
-    if (errorResponse) {
+    if (errorResponse?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;
