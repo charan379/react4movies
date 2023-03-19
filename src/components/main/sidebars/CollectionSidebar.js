@@ -174,7 +174,7 @@ const CollectionSidebar = () => {
           className={`horizontal-slider ${theme}`}
           thumbClassName="range-slider-thumb"
           trackClassName={`range-slider-track`}
-          defaultValue={[0, 26]}
+          defaultValue={[collectionQuery?.["age.gte"] ?? 0, collectionQuery?.["age.lte"] ?? 26]}
           max={26}
           min={0}
           minDistance={5}
