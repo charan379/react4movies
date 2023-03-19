@@ -142,8 +142,7 @@ const MovieDetails = ({ titleData, titleType }) => {
         </div>
         <div className="info-item">
           <b>Release Date : </b>
-          {titleData?.release_date}
-        </div>
+          {titleData?.release_date && new Date(titleData?.release_date).toLocaleString("en-US", { year: 'numeric', month: 'short', day: '2-digit', weekday: "short", hour: '2-digit', hour12: false, minute: '2-digit', timeZone: "Asia/Kolkata" }).replace(/,/g, ' -')}</div>
         <div className="info-item">
           <b>Streaming On : </b>
           {titleData?.providers?.map((provider) => provider).join(",")}
@@ -171,7 +170,7 @@ const MovieDetails = ({ titleData, titleType }) => {
         </div>
         {!showCast
           ?
-          <div className="person-list-container" style={{color:" rgb(71, 135, 214)", fontWeight:"bold", fontFamily:"monospace", cursor:"pointer", width:"100%", height:"15px"}} onClick={() => setShowCast(!showCast)}>
+          <div className="person-list-container" style={{ color: " rgb(71, 135, 214)", fontWeight: "bold", fontFamily: "monospace", cursor: "pointer", width: "100%", height: "15px" }} onClick={() => setShowCast(!showCast)}>
             Tap to see cast details
           </div>
           : null
