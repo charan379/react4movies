@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import MovieBox from "./MovieBox";
-import MovieModal from "./MovieModal";
-import useTheme from "../../utils/hooks/useTheme";
+import MovieModal from "../title/MovieModal";
+import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 
 const MoviesList = ({ source, list,state, setState }) => {

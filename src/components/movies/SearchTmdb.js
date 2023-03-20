@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import MoviesList from "../MoviesList";
+import MoviesList from "./collection/MoviesList";
 import axios from "axios";
-import Pagination from "../../utils/Pagination";
-import Loader from "../../utils/Loader";
-import useTmdbSearch from "../../../utils/hooks/useTmdbSearch";
-import MovieBunkersException from "../../../utils/MovieBunkersException";
-import { searchTmdb } from "../../../helpers/tmdb.requests";
-import useToastify from "../../../utils/hooks/useToast";
-import addTitlesDump from "./addTitlesDump";
+import Pagination from "../utils/Pagination";
+import Loader from "../utils/Loader";
+import useTmdbSearch from "../../utils/hooks/useTmdbSearch";
+import MovieBunkersException from "../../utils/MovieBunkersException";
+import { searchTmdb } from "../../helpers/tmdb.requests";
+import useToastify from "../../utils/hooks/useToast";
+import addTitlesDump from "./tmdb/addTitlesDump";
 
-const DiscoverTmdb = () => {
+const SearchTmdb = () => {
 
   const { tmdbSearch, setTmdbSearch } = useTmdbSearch();
 
@@ -97,4 +97,4 @@ const DiscoverTmdb = () => {
   );
 };
 
-export default DiscoverTmdb;
+export default SearchTmdb;

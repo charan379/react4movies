@@ -66,7 +66,7 @@ const CollectionSidebar = () => {
         <span className="nonlink-menu-item-info">Genre</span>
       </li>
       <li className={`menu-item ${theme}`}>
-        <i class="fas fa-th icon" ></i>
+        <i className="fas fa-th icon" ></i>
         <label className={`sidebar-select ${theme}`} htmlFor="genre" >
           <select
             data-form="collectionQueryForm"
@@ -90,7 +90,7 @@ const CollectionSidebar = () => {
         <span className="nonlink-menu-item-info">Language</span>
       </li>
       <li className={`menu-item ${theme}`}>
-        <i class="fas fa-language icon" ></i>
+        <i className="fas fa-language icon" ></i>
         <label className={`sidebar-select ${theme}`} htmlFor="language" >
           <select
             data-form="collectionQueryForm"

@@ -12,8 +12,8 @@ export async function fetchWhoAmI(source = axios.CancelToken.source()) {
     });
     return response?.data;
   } catch (error) {
-    const errorResponse = error?.response?.data?.message;
-    if (errorResponse?.message) {
+    const errorResponse = error?.response?.data;
+    if (errorResponse?.error?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;
@@ -42,7 +42,7 @@ export async function authenticateUser(
     return response?.data;
   } catch (error) {
     const errorResponse = error?.response?.data;
-    if (errorResponse?.message) {
+    if (errorResponse?.error?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;
@@ -59,7 +59,7 @@ export async function logout(source = axios.CancelToken.source()) {
     return response?.data;
   } catch (error) {
     const errorResponse = error?.response?.data;
-    if (errorResponse?.message) {
+    if (errorResponse?.error?.message) {
       throw new MovieBunkersException(errorResponse);
     } else {
       throw error;

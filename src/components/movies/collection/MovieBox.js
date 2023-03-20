@@ -1,7 +1,7 @@
 import React from "react";
-import empty from "../../static/empty.svg";
+import empty from "../../../static/empty.svg";
 import PropTypes from "prop-types";
-import useTheme from "../../utils/hooks/useTheme";
+import useTheme from "../../../utils/hooks/useTheme";
 
 const MovieBox = ({ movieData }) => {
   const { theme } = useTheme();
@@ -50,21 +50,21 @@ const MovieBox = ({ movieData }) => {
         </div>
 
         <div className="north-east-block ">
-          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
-          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv fa-xs"></i></span>}
-          {(movieData?.unseenByUser) && <span><i class="fas fa-eye-slash fa-xs"></i></span>}
-          {(movieData?.favouriteByUser) && <span><i class="fas fa-heart fa-xs"></i></span>}
-          {(movieData?.starredByUser) && <span><i class="fas fa-star fa-xs"></i></span>}
+          {(movieData?.title_type === "movie") && <span><i className="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i className="fas fa-tv fa-xs"></i></span>}
+          {(movieData?.unseenByUser) && <span><i className="fas fa-eye-slash fa-xs"></i></span>}
+          {(movieData?.favouriteByUser) && <span><i className="fas fa-heart fa-xs"></i></span>}
+          {(movieData?.starredByUser) && <span><i className="fas fa-star fa-xs"></i></span>}
         </div>
 
         {/* <div className="movie-title-type">
-          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
-          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv"></i></span>}
+          {(movieData?.title_type === "movie") && <span><i className="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i className="fas fa-tv"></i></span>}
         </div> */}
 
         {/* <div className="movie-star">
-          {(movieData?.title_type === "movie") && <span><i class="fas fa-film"></i></span>}
-          {(movieData?.title_type === "tv") && <span><i class="fas fa-tv"></i></span>}
+          {(movieData?.title_type === "movie") && <span><i className="fas fa-film"></i></span>}
+          {(movieData?.title_type === "tv") && <span><i className="fas fa-tv"></i></span>}
         </div> */}
 
         <div className={`movie-title ${theme}`}>

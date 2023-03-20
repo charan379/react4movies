@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
-import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
-import useTheme from "../../utils/hooks/useTheme";
+import useOnOutSideClick from "../../../utils/hooks/useOnOutSideClick";
+import useTheme from "../../../utils/hooks/useTheme";
 import Title from "./Title";
 
 const MovieModal = ({ data, open, close }) => {

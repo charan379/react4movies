@@ -14,8 +14,8 @@ export async function search({ query, cancelToken }) {
         const errorResponse = error?.response?.data;
 
         if (axios.isCancel(error)) {
-            console.log(error);
-        } else if (errorResponse?.error) {
+            console.log("Request Cancelled");
+        } else if (errorResponse?.error?.message) {
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;
@@ -31,8 +31,8 @@ export async function fetchTitle({ id, cancelToken }) {
     } catch (error) {
         const errorResponse = error?.response?.data;
         if (axios.isCancel(error)) {
-            console.log(error);
-        } else if (errorResponse?.error) {
+            console.log("Request Cancelled");
+        } else if (errorResponse?.error?.message) {
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;
@@ -47,8 +47,8 @@ export async function newTitle({ title, cancelToken }) {
     } catch (error) {
         const errorResponse = error?.response?.data;
         if (axios.isCancel(error)) {
-            console.log(error);
-        } else if (errorResponse?.error) {
+            console.log("Request Cancelled");
+        } else if (errorResponse?.error?.message) {
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;

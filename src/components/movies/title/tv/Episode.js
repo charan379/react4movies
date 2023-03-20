@@ -1,6 +1,6 @@
 import React from "react";
 import ShowLessText from "../../../utils/ShowLessText";
-import EpisodePoster from "../../EpisodePoster";
+import EpisodePoster from "./EpisodePoster";
 
 const Episode = ({episode, index}) => {
   return (

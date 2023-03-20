@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useLocation, useParams } from "react-router-dom";
 import Loader from "../../utils/Loader";
-import MovieDetails from "../MovieDetails";
-import MoviePoster from "../MoviePoster";
+import MovieDetails from "../title/titleDetails/MovieDetails";
+import MoviePoster from "../title/titleDetails/MoviePoster";
 import getTmdbMovie from "../../../utils/tmdb_api/getTmdbMovie";
 import getTmdbTv from "../../../utils/tmdb_api/getTmdbTv";
-import Seasons from "./Tv/Seasons";
+import Seasons from "../TvComponents/Seasons";
 import useTheme from "../../../utils/hooks/useTheme";
 
 function TmdbMovie({ movieData }) {

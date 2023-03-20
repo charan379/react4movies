@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import empty from '../../static/empty.svg'
+import React from 'react'
+import empty from '../../../../static/empty.svg'
 const MovieCast = ({ cast }) => {
     const handleImageError = (img) => {
         img.target.onerror = null;

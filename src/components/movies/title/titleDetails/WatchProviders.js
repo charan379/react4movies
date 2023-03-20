@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Config } from '../../utils/Config';
+import { Config } from '../../../../utils/Config';
 
 const WatchProviders = ({ tmdb_id, title_type, country }) => {
 

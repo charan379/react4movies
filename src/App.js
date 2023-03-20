@@ -1,15 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainComponent from "./components/main/MainComponent";
 import RouteProtector from "./components/authentication/RouteProtector";
-import Collection from "./components/movies/Collection";
-import FetchTitle from "./components/movies/FetchTitle";
 import Home from "./components/movies/Home";
-import AddTitle from "./components/movies/AddTitle";
 import PageNotFound from "./components/main/PageNotFound";
-import DiscoverTmdb from "./components/movies/tmdb/DiscoverTmdb";
-import Loader from "./components//utils/Loader";
-import Test from "./rough/test";
-import Episode from "./components/movies/tmdb/Tv/Episode";
+import DiscoverTmdb from "./components/movies/SearchTmdb";
 import Login from "./components/authentication/Login";
 import Unauthorized from "./components/authentication/Unauthorized";
 import React from "react";
@@ -19,9 +13,9 @@ import {
   LevelTwo,
   LevelZero,
 } from "./constants/AuthRoles";
-import Title from "./components/movies/Title";
-import Test1 from "./components/main/sidebars/test";
+import Title from "./components/movies/title/Title";
 import SearchMovieBunkers from "./components/movies/SearchMovieBunkers";
+import SearchTmdb from "./components/movies/SearchTmdb";
 
 const App = () => {
 
@@ -30,27 +24,21 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
+          {/* Layout */}
           <Route path="/" element={<MainComponent />}>
-            {/* Layout */}
+
+            {/* Home Page */}
             <Route index element={<Home />} />
 
+            {/* Level Zero Routes */}
             <Route element={<RouteProtector allowedRoles={LevelZero} />}>
               <Route path="/collection" element={<SearchMovieBunkers />} />
-              <Route path="/fetch-title" element={<FetchTitle />} />
-              <Route path="/add-title" element={<AddTitle />} />
-              <Route path="/discover/tmdb" element={<DiscoverTmdb />} />
-
-              <Route element={<RouteProtector allowedRoles={LevelOne} />}>
-                <Route
-                  path="/view/title/:_titleState/:_titleType/:_title/:_id"
-                  element={<Title />}
-                />
-              </Route>
+              <Route path="/discover/tmdb" element={<SearchTmdb />} />
+              <Route path="/view/title/:_titleState/:_titleType/:_title/:_id" element={<Title />}
+              />
             </Route>
 
-            <Route path="/loader" element={<Loader />} />
-            <Route path="/test" element={<Test1 />} />
-            <Route path="/lep" element={<Episode />} />
+            {/* Public Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/un-authorized" element={<Unauthorized />} />
             <Route path="*" element={<PageNotFound />} />

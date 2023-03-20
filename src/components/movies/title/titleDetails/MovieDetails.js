@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useTheme from "../../utils/hooks/useTheme";
-import ShowLessNames from "../utils/ShowLessNames";
-import ShowLessText from "../utils/ShowLessText";
+import useTheme from "../../../../utils/hooks/useTheme";
+import ShowLessNames from "../../../utils/ShowLessNames";
+import ShowLessText from "../../../utils/ShowLessText";
 import MovieCast from "./MovieCast";
 import WatchProviders from "./WatchProviders";
 

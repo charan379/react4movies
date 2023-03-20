@@ -1,9 +1,8 @@
 import React from "react";
-import empty from "../../static/empty.svg";
-import matrix from "../../styles/matrix.jpg";
-import useTheme from "../../utils/hooks/useTheme";
+import useTheme from "../../../../utils/hooks/useTheme";
+import empty from "../../../../static/empty.svg";
 
-const EpisodePoster = ({data}) => {
+const SeasonPoster = ({data}) => {
   const { theme } = useTheme();
 
   const handleImageError = (img) => {
@@ -14,9 +13,9 @@ const EpisodePoster = ({data}) => {
   return (
     <>
       {/* movie poster box */}
-      <div className={`episode-poster-box ${theme}`}>
+      <div className={`season-poster-box ${theme}`}>
         {/* Movie poster */}
-        <div className="episode-poster-img">
+        <div className="season-poster-img">
           <img
             loading="lazy"
             onError={handleImageError}
@@ -25,7 +24,7 @@ const EpisodePoster = ({data}) => {
           ></img>
         </div>
         {/* postor backdrop*/}
-        <div className={`episode-poster-backdrop ${theme}`}>
+        <div className={`season-poster-backdrop ${theme}`}>
           <i className="far fa-image fa-2x" aria-hidden="true"></i>
           <br />
           No Image
@@ -35,4 +34,4 @@ const EpisodePoster = ({data}) => {
   );
 };
 
-export default EpisodePoster;
+export default SeasonPoster;

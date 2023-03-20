@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { fetchTitle } from '../../helpers/moviebunkers.requests';
-import { fetchTmdbTitle } from '../../helpers/tmdb.requests';
-import useTitle from '../../utils/hooks/useTitle';
-import useToastify from '../../utils/hooks/useToast';
-import Loader from '../utils/Loader';
-import Movie from './Movie';
-import Tv from './Tv';
+import { fetchTitle } from '../../../helpers/moviebunkers.requests';
+import { fetchTmdbTitle } from '../../../helpers/tmdb.requests';
+import useTitle from '../../../utils/hooks/useTitle';
+import useToastify from '../../../utils/hooks/useToast';
+import Loader from '../../utils/Loader';
+import Movie from './titleTypes/Movie';
+import Tv from './titleTypes/Tv';
 
 const Title = ({ id, titleState, titleType }) => {
     console.log(titleState)
