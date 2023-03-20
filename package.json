@@ -2,6 +2,7 @@
   "name": "react4movies",
   "version": "2.1.4",
   "private": true,
+  "homepage": "https://dev.local/",
   "description": "Web Client for moviebunkers API",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -10,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.3",
     "bootstrap": "^5.2.3",
+    "https": "^1.0.0",
     "jquery": "^3.6.3",
     "popper.js": "^1.16.1",
     "prop-types": "^15.8.1",
@@ -29,6 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev-ssl": "set HTTPS=true&&set SSL_CRT_FILE=E:\\Development\\localhost-cert\\cert.pem&&set SSL_KEY_FILE=E:\\Development\\localhost-cert\\key.pem&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test ",
     "eject": "react-scripts eject"
