@@ -1,22 +1,15 @@
-/** 
- *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	@createedOn : 2023-01-18 00:01:44                               
- *      @lastModifiedOn : 2023-01-18 00:01:45
- *  	@desc   : [description]							
- *  										 								
- *  #########################################################
- */
- 
- import {applyMiddleware , createStore} from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers'
-import {composeWithDevTools} from 'redux-devtools-extension'
+import {configureStore} from '@reduxjs/toolkit';
+import thunk from "redux-thunk";
+import { persistStore } from 'redux-persist';
+import persistedReducer from "./reducers";
 
-const store = createStore(
-    rootReducer, composeWithDevTools(applyMiddleware(thunk))
-)
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: [thunk],
+    devTools: process.env.NODE_ENV !== 'production',
+})
+
+
+export const persistor = persistStore(store);
 
 export default store;

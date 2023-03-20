@@ -1,23 +1,12 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-07 18:43:21
- *      @lastModifiedOn : 2023-02-02 20:40:57
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
 import MovieBox from "./MovieBox";
 import MovieModal from "./MovieModal";
+import useTheme from "../../utils/hooks/useTheme";
+import { Link } from "react-router-dom";
 
-const MoviesList = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
+const MoviesList = ({ source, list,state, setState }) => {
+  const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -32,37 +21,46 @@ const MoviesList = ({ data }) => {
       {/* Movies List  */}
       <div className={`movies ${theme}`}>
         {/* if list source = tmdb */}
-        {data.source === "tmdb"
-          ? data.movieList.map((movie, index) => {
-              return (
-                <div
-                  id={"box-" + index}
-                  key={"box-" + index}
-                  onClick={() => handleOnClick({ ...movie })}
-                >
-                  <MovieBox
-                    movieData={{
-                      id: movie.tmdb_id,
-                      index: index,
-                      link: movie.link,
-                      poster: movie.poster_path,
-                      title: movie.title,
-                      titleType: movie.type,
-                      year: movie.year,
-                      ratting: movie.ratting,
-                      source: movie.source
-                    }}
-                  />
-                </div>
-              );
-            })
-          : null}
+        {list?.length > 0 &&
+          list.map((movie, index) => {
+            return (
+              <Link title={movie.title}
+                tabIndex="3"
+                id={"box-" + index}
+                key={"box-" + index}
+                onClick={() => handleOnClick({
+                  id: movie?._id ?? movie?.tmdb_id,
+                  title: movie.title,
+                  year: movie?.year,
+                  title_type: movie.title_type,
+                  titleState: source
+                })}
+              >
+                <MovieBox
+                  movieData={{
+                    id: movie?._id ?? movie?.tmdb_id,
+                    index: index,
+                    poster_path: movie?.poster_path,
+                    title: movie.title,
+                    title_type: movie.title_type,
+                    year: movie?.year,
+                    ratting: movie?.ratting,
+                    titleState: source,
+                    seenByUser: movie?.seenByUser,
+                    unseenByUser: movie?.unseenByUser,
+                    starredByUser: movie?.starredByUser,
+                    favouriteByUser: movie?.favouriteByUser,
+                  }}
+                />
+              </Link>
+            );
+          })}
 
         {openModal ? (
           <MovieModal
             data={movieData}
             open={openModal}
-            close={() => setOpenModal(false)}
+            close={() => { setOpenModal(false); setState(state+1) }}
           />
         ) : null}
       </div>
@@ -77,21 +75,19 @@ MoviesList.defaultProps = {
     movieList: [
       {
         id: 1,
-        index: 1,
         link: "url",
         poster: "poster path",
         title: "Movie Title 1",
-        titleType: "movie",
+        title_type: "movie",
         year: 1998,
         ratting: 7.4,
       },
       {
         id: 2,
-        index: 2,
         link: "url",
         poster: "poster path",
         title: "Movie Title 2",
-        titleType: "movie",
+        title_type: "movie",
         year: 1999,
         ratting: 7.5,
       },

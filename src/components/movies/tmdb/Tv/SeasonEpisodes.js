@@ -1,56 +1,80 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import getTmdbTvSeason from "../../../../utils/tmdb_api/getTmdbTvSeason";
+import { fetchTmdbTvSeason } from "../../../../helpers/tmdb.requests";
+import useToastify from "../../../../utils/hooks/useToast";
 import Loader from "../../../utils/Loader";
 import Episode from "./Episode";
 
-const SeasonEpisodes = ({ showId, seasonNumber }) => {
+const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
+
+  const { toast } = useToastify();
+
   const [episodes, setEpisodes] = useState([]);
+
   const [error, setError] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
-  const fetchEpisodes = ({ tmdb_show_id, season_number }, source) => {
-    setLoading(true);
-    getTmdbTvSeason(
-      { tv_id: tmdb_show_id, season_number: season_number },
-      source
-    )
+  const fetchData = ({ tmdbShowId, seasonNumber , cancelToken}) => {
+    fetchTmdbTvSeason({ tmdbShowId, seasonNumber, cancelToken })
       .then((result) => {
-        setEpisodes(result.episodes);
-        console.log(result);
-        setError(null);
-        setLoading(false);
+        setEpisodes(result?.episodes);
+        setLoading(loading => !loading);
       })
       .catch((error) => {
         setEpisodes([]);
         setError(error);
-        setLoading(false);
+        setLoading(loading => !loading);
       });
   };
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    fetchEpisodes(
-      { tmdb_show_id: showId, season_number: seasonNumber },
-      source
+    setLoading(loading => !loading);
+    setError(null);
+    fetchData(
+      { tmdbShowId, seasonNumber, cancelToken: source.token }
     );
+
     return () => {
       source.cancel();
     };
-  }, [showId, seasonNumber]);
+  }, [tmdbShowId, seasonNumber]);
 
+
+  if (loading) return <Loader />
+
+  if (error) {
+    toast.error(error?.message ?? "Something went wrong !", { autoClose: 3000, position: "top-right" })
+    return (
+      <>
+        <div className={"error-message"} style={{ marginTop: "unset", paddingBottom: "50px" }}>
+          {error?.message ?? "No Results Found"}
+        </div>
+      </>
+    )
+  }
+
+  if (!episodes.length > 0) return (
+    <>
+      <>
+        <Loader />
+        {/* <div className={"error-message"} style={{ marginTop: "unset", paddingBottom: "50px" }}>
+          {"No Results Found"}
+        </div> */}
+      </>
+    </>
+  )
   return (
     <>
-      {loading ? <Loader /> : null}
-      {error ? error.message : null}
       {episodes.length > 0
-        ? episodes.map((episode) => {
-            return (
-              <div className="episode">
-                <Episode episode={episode} />
-              </div>
-            );
-          })
+        ? episodes.map((episode, index) => {
+          return (
+            <div key={`${index}`} id={`E${index}`} className="episode">
+              <Episode episode={episode} index={index} />
+            </div>
+          );
+        })
         : null}
     </>
   );

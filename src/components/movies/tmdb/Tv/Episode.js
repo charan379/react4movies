@@ -2,7 +2,7 @@ import React from "react";
 import ShowLessText from "../../../utils/ShowLessText";
 import EpisodePoster from "../../EpisodePoster";
 
-const Episode = ({episode}) => {
+const Episode = ({episode, index}) => {
   return (
     <>
       <div className="title">
@@ -36,7 +36,7 @@ const Episode = ({episode}) => {
             <b>Directors : </b> {episode.directors ? episode.directors.map(person => person).join(','): "No Data"}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText data={{text : episode.overview}} />
+            <b>Overview : </b> <ShowLessText text={episode?.overview} limit={150} />
           </li>
         </ul>
       </div>

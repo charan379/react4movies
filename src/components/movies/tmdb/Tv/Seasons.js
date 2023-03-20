@@ -1,44 +1,52 @@
-import React, { useContext } from "react";
+import React from "react";
 import Episode from "./Episode";
 import PropTypes from "prop-types";
-import { ThemeContext } from "../../../../utils/store/contextAPI/themeToggler/ThemeContext";
 import CollapsibleSeason from "./CollapsibleSeason";
+import useTheme from "../../../../utils/hooks/useTheme";
+import { useLocation } from "react-router-dom";
 
 const Seasons = ({ data }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTheme();
+  const location = useLocation();
+
+  const LatestEpisode = data.upcoming_episode ? (
+    <>
+      <h6>Upcoming Episode</h6>
+      <div className="episode">
+        <Episode episode={data.upcoming_episode} />
+      </div>
+    </>
+  ) : null
+
+  const UpCommingEpisode = data?.latest_episode ? (
+    <>
+      <h6>Latest Episode</h6>
+      <div className="episode">
+        <Episode episode={data.latest_episode} />
+      </div>
+    </>
+  ) : null;
+
+  if (!(/^\/view.{0,}/.test(location.pathname))) {
+    return (
+      <div className={`tv-seasons ${theme}`}>
+        {LatestEpisode ?? null}
+        {UpCommingEpisode ?? null}
+      </div>
+    )
+  }
+
+
   return (
     <div className={`tv-seasons ${theme}`}>
       <h5>Seasons Data</h5>
-
-      {data.latest_episode ? (
-        <>
-          <h6>Latest Episode</h6>
-          <div className="episode">
-            <Episode episode={data.latest_episode} />
-          </div>
-        </>
-      ) : null}
-
-      <br />
-
-      {data.upcoming_episode ? (
-        <>
-          <h6>Upcoming Episode</h6>
-          <div className="episode">
-            <Episode episode={data.upcoming_episode} />
-          </div>
-        </>
-      ) : null}
-
+      {LatestEpisode ?? null}
+      {UpCommingEpisode ?? null}
       <br />
       {data.seasons ? (
         <>
-          {data.seasons.map((season) => {
-            return (
-              <>
-                <CollapsibleSeason season={season} />
-              </>
-            );
+          {data.seasons.map((season, index) => {
+            return <CollapsibleSeason season={season} index={index} key={index} />
           })}
         </>
       ) : null}

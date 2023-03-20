@@ -3,7 +3,7 @@ import useOnOutSideClick from "../../../../utils/hooks/useOnOutSideClick";
 import Season from "./Season";
 import SeasonEpisodes from "./SeasonEpisodes";
 
-const CollapsibleSeason = ({ season }) => {
+const CollapsibleSeason = ({ season, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const seasonRef = useRef();
@@ -18,23 +18,24 @@ const CollapsibleSeason = ({ season }) => {
   const handleClick = () => {
     setIsExpanded(!isExpanded);
   };
+  
   return (
-    <div ref={seasonRef}>
-      <div className="season" onClick={handleClick}>
+    <div ref={seasonRef} key={`${index}`} id={`Season-wrapper-${index}`}>
+      <div key={`${index}`} id={`S${index}`} className="season" onClick={handleClick}>
         <Season season={season} />
       </div>
       <i
         onClick={handleClick}
-        className={`fas fa-chevron-circle-down toggle ${
-          isExpanded ? "expand" : null
-        }`}
+        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : ""
+          }`}
       ></i>
       {isExpanded ? (
         <>
-          <div className="episodes">
+          <div className="episodes" key={`episodes`}>
+            <h4 style={{textAlign:"center"}}>Episodes</h4>
             {
               <SeasonEpisodes
-                showId={season.tmdb_show_id}
+                tmdbShowId={season.tmdb_show_id}
                 seasonNumber={season.season_number}
               />
             }

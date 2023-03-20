@@ -1,20 +1,25 @@
-/** 
- *	#########################################################
- *  										 									
- *      @author : charanteja379                                 			
- *      @email  : charanteja379@gmail.com                                  
- *  	@createedOn : 2023-01-18 00:02:02                               
- *      @lastModifiedOn : 2023-01-18 00:02:02
- *  	@desc   : [description]							
- *  										 								
- *  #########################################################
- */
- 
- import {combineReducers} from 'redux';
-import DiscoverReducer from './DiscoverReducer';
+import { combineReducers } from "redux";
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import UserReducer from "./UserReducer";
+import TmdbSearchReducer from "./TmdbSearchReducer";
+import CollectionSearchReducer from "./CollectionSearchReducer"
+import TitleReducer from "./TitleReducer"
+import TmdbTitleReducer from "./TmdbTitleReducer"
 
 const rootReducer = combineReducers({
-    DiscoverReducer,
-})
+  UserReducer,
+  TmdbSearchReducer,
+  CollectionSearchReducer,
+  TitleReducer,
+  TmdbTitleReducer,
+});
 
-export default rootReducer;
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;

@@ -14,11 +14,13 @@
 .navbar.light {
     background-color: var(--bg-light);
     border-bottom: 2px solid var(--ui-elemnet-dark);
+    color: var(--font-color-light);
     /* background-color: var(--ui-elemnet-light); */
 }
 .navbar.dark {
     background-color: var(--bg-dark);
     border-bottom: 2px solid var(--ui-elemnet-light);
+    color: var(--font-color-dark);
     /* background-color: var(--ui-elemnet-dark); */
 }
 
@@ -77,15 +79,16 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    box-shadow: -11px -10px 111px 12px rgba(19, 19, 153, 1);
+    box-shadow: 0 0 5px #272525, 0 0 10px #7a66ed, 0 0 5px #7a66ed,
+    0 0 10px #272525;
 }
-
 .navbar-dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     border-radius: 10px;
+    letter-spacing: 1px;
 }
 
 

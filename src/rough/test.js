@@ -1,13 +1,24 @@
-import { useState } from "react";
-import CollapsibleSeason from "../components/movies/tmdb/Tv/CollapsibleSeason";
-import getTmdbTvSeason from "../utils/tmdb_api/getTmdbTvSeason";
+// import { useState } from "react";
+// import Login from "../components/authentication/Login";
+// import CollapsibleSeason from "../components/movies/tmdb/Tv/CollapsibleSeason";
+// // import Modal from "../components/utils/Modal";
+// import getTmdbTvSeason from "../utils/tmdb_api/getTmdbTvSeason";
 
 const Test = () => {
+  // const [openModal, setOpenModal] = useState(false);
+
+  // const [movieData, setMovieData] = useState({});
   return (
     <div>
-      Test
-      <br />
-      <CollapsibleSeason />
+      {/* {/* {openModal ? (
+          <Modal
+            data={<Login />}
+            open={openModal}
+            close={() => setOpenModal(false)}
+          ><Login/></Modal>
+        ) : null} */}
+
+        {/* <button onClick={() => setOpenModal(true)}> Open Modal</button> */} 
     </div>
   );
 };

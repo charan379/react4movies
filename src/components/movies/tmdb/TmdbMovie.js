@@ -1,22 +1,20 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
-import { TmdbConfig } from "../../../utils/Config";
-import { ThemeContext } from "../../../utils/store/contextAPI/themeToggler/ThemeContext";
+import { useLocation, useParams } from "react-router-dom";
 import Loader from "../../utils/Loader";
 import MovieDetails from "../MovieDetails";
 import MoviePoster from "../MoviePoster";
 import getTmdbMovie from "../../../utils/tmdb_api/getTmdbMovie";
 import getTmdbTv from "../../../utils/tmdb_api/getTmdbTv";
-import Episode from "./Tv/Episode";
 import Seasons from "./Tv/Seasons";
+import useTheme from "../../../utils/hooks/useTheme";
 
 function TmdbMovie({ movieData }) {
-  const { theme } = useContext(ThemeContext);
-
+  const { theme } = useTheme();
+  const location = useLocation();
   const {
-    titleType = movieData.titleType,
+    titleType = movieData.title_type,
     tmdbId = movieData.tmdb_id,
     title = movieData.title,
   } = useParams();
@@ -111,7 +109,7 @@ function TmdbMovie({ movieData }) {
                   />
                 </div>
 
-                {titleType === "tv" ? (
+                {titleType === "tv" & (/^\/view.{0,}/.test(location.pathname)) ? (
                   <>
                     <Seasons
                       data={{
@@ -126,6 +124,9 @@ function TmdbMovie({ movieData }) {
             )}
           </>
         )}
+        <div>
+          <button>View on full details</button>
+        </div>
       </div>
     </>
   );

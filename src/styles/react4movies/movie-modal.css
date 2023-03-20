@@ -35,25 +35,34 @@
 }
 
 .movie-overlay .closeBtn{
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
     border-radius: 25px;
     position: fixed;
     right: 5px;
     top: 15px;
     text-align: center;
     padding: 4px;
-    font-size: large;
+    font-size: 30px;
+    color: #fff;
+    background-color: #dc143c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 999;
 }
 
-.movie-overlay.light .closeBtn {
+/* .movie-overlay.light .closeBtn {
     color: var(--font-color-dark);
     background-color: var(--movie-modal-bg-dark);
 }
 .movie-overlay.dark .closeBtn {
     color: var(--font-color-light);
     background-color: var(--movie-modal-bg-light);
-}
+} */
 
 .movie-overlay .open-newTab{
     width: 45px;

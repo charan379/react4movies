@@ -28,7 +28,7 @@ const Season = ({ season }) => {
             <b>Release Date : </b> {season.air_date}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText data={{ text: season.overview }} />
+            <b>Overview : </b> <ShowLessText text= {season?.overview} limit={150} />
           </li>
         </ul>
       </div>

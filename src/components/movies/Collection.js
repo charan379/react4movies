@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import MoviesList from './MoviesList'
-import {ThemeContext} from '../../utils/store/contextAPI/themeToggler/ThemeContext'
+import useTheme from '../../utils/hooks/useTheme'
 
 const Collection = () => {
-    const {theme} = useContext(ThemeContext)
+    const {theme} = useTheme();
     return (
         <React.Fragment>
             <div className="row">

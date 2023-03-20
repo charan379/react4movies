@@ -1,44 +1,29 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-18 22:08:29
- *      @lastModifiedOn : 2023-01-28 13:10:44
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
+import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import useTheme from "../../utils/hooks/useTheme";
 
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+const Pagination = ({ total_pages, currentPage, setPageNo }) => {
 
-const Pagination = (props) => {
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useTheme();
   const pageNumberLimit = 4;
-  const [minPageLimit, setMinPageLimit] = useState(0);
-  const [maxPageLimit, setMaxPageLimit] = useState(pageNumberLimit);
+  const [minPageLimit, setMinPageLimit] = useState(currentPage > pageNumberLimit ? currentPage - 2 : 1);
+  const [maxPageLimit, setMaxPageLimit] = useState(currentPage > pageNumberLimit ? currentPage + 2 : pageNumberLimit);
   const pages = useMemo(() => {
     const pagesArray = [];
-    for (let i = 1; i <= props.data.total_pages; i++) {
+    for (let i = 1; i <= total_pages; i++) {
       pagesArray.push(i);
     }
     return pagesArray;
-  }, [props.data.total_pages]);
-
-  useEffect(() => {
-    setMinPageLimit(0);
-    setMaxPageLimit(pageNumberLimit);
-  }, [props.query]);
+  }, [total_pages]);
 
   const handlePageClick = (event) => {
     switch (event.target.dataset.pageType) {
       case "normal":
-        return props.setPageNo(event.target.dataset.page);
+        return setPageNo(event.target.dataset.page);
       case "first":
         return (
           <>
-            {props.setPageNo(event.target.dataset.page)}
+            {setPageNo(event.target.dataset.page)}
             {setMaxPageLimit(pageNumberLimit)}
             {setMinPageLimit(0)}
           </>
@@ -46,7 +31,7 @@ const Pagination = (props) => {
       case "last":
         return (
           <>
-            {props.setPageNo(event.target.dataset.page)}
+            {setPageNo(event.target.dataset.page)}
             {setMaxPageLimit(event.target.dataset.page)}
             {setMinPageLimit(
               event.target.dataset.page - pageNumberLimit
@@ -59,30 +44,30 @@ const Pagination = (props) => {
   };
 
   const handlePrevPage = () => {
-    if (maxPageLimit - 1 === props.data.total_pages) {
-      setMaxPageLimit(props.data.total_pages);
-      setMinPageLimit(props.data.total_pages - pageNumberLimit);
-      props.setPageNo(props.data.currentPage - 1);
+    if (maxPageLimit - 1 === total_pages) {
+      setMaxPageLimit(total_pages);
+      setMinPageLimit(total_pages - pageNumberLimit);
+      setPageNo(currentPage - 1);
     } else if (maxPageLimit <= pageNumberLimit) {
-      props.setPageNo(props.data.currentPage - 1);
+      setPageNo(currentPage - 1);
     } else {
       setMinPageLimit(minPageLimit - 1);
       setMaxPageLimit(maxPageLimit - 1);
-      props.setPageNo(props.data.currentPage - 1);
+      setPageNo(currentPage - 1);
     }
   };
 
   const handleNextPage = () => {
-    if (props.data.currentPage + 1 <= props.data.total_pages) {
-      if (minPageLimit + 1 >= props.data.total_pages - pageNumberLimit) {
+    if (currentPage + 1 <= total_pages) {
+      if (minPageLimit + 1 >= total_pages - pageNumberLimit) {
         setMaxPageLimit(maxPageLimit + 1);
-        setMinPageLimit(props.data.total_pages - pageNumberLimit);
+        setMinPageLimit(total_pages - pageNumberLimit);
       } else {
-        setMaxPageLimit(props.data.currentPage + pageNumberLimit);
-        setMinPageLimit(props.data.currentPage);
+        setMaxPageLimit(currentPage + pageNumberLimit);
+        setMinPageLimit(currentPage);
       }
 
-      props.setPageNo(props.data.currentPage + 1);
+      setPageNo(currentPage + 1);
     }
   };
 
@@ -90,23 +75,23 @@ const Pagination = (props) => {
     if (minPageLimit - pageNumberLimit > 1) {
       setMinPageLimit(minPageLimit - pageNumberLimit);
       setMaxPageLimit(maxPageLimit - pageNumberLimit);
-      props.setPageNo(minPageLimit);
+      setPageNo(minPageLimit);
     } else {
       setMinPageLimit(0);
       setMaxPageLimit(pageNumberLimit);
-      props.setPageNo(1);
+      setPageNo(1);
     }
   };
 
   const handleNextPageGroupClick = () => {
-    if (maxPageLimit + pageNumberLimit <= props.data.total_pages) {
+    if (maxPageLimit + pageNumberLimit <= total_pages) {
       setMaxPageLimit(maxPageLimit + pageNumberLimit);
       setMinPageLimit(minPageLimit + pageNumberLimit);
-      props.setPageNo(maxPageLimit + pageNumberLimit);
+      setPageNo(maxPageLimit + pageNumberLimit);
     } else {
-      setMinPageLimit(props.data.total_pages - pageNumberLimit);
-      setMaxPageLimit(props.data.total_pages);
-      props.setPageNo(props.data.total_pages);
+      setMinPageLimit(total_pages - pageNumberLimit);
+      setMaxPageLimit(total_pages);
+      setPageNo(total_pages);
     }
   };
   return (
@@ -114,82 +99,84 @@ const Pagination = (props) => {
       <div className="pagination">
         <div className={`pages ${theme}`}>
           {/* First Page */}
-          {props.data.total_pages > 1 ? (
-            <div
+          {total_pages > 1 ? (
+            <Link
               data-page={1}
               data-page-type="first"
-              className={`page navigate ${
-                props.data.currentPage === 1 ? "active" : ""
-              }`}
+              className={`page navigate ${currentPage === 1 ? "active" : ""}`}
+              tabIndex="4"
               onClick={handlePageClick}
               title="First Page"
             >
               <i data-page={1} data-page-type="first" className="fas fa-fast-backward"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
+              tabIndex="4"
             >
               <i className="fas fa-fast-backward"></i>
-            </div>
+            </Link>
           )}
 
           {/* navigate to previous page */}
-          {props.data.currentPage > 1 ? (
-            <div
+          {currentPage > 1 ? (
+            <Link
               className="page navigate"
               onClick={handlePrevPage}
               title="Previous Page"
+              tabIndex="4"
             >
               <i className="fas fa-angle-left"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Previous page not available"
+              tabIndex="4"
             >
               <i className="fas fa-angle-left"></i>
-            </div>
+            </Link>
           )}
 
           {/* prev pages group */}
           {minPageLimit > 1 ? (
-            <div
+            <Link
               className="page"
               onClick={handlePrevPageGroupClick}
               title="Previous Pages Set"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-left"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Previous pages set not available"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-left"></i>
-            </div>
+            </Link>
           )}
 
           {/* page numbers */}
           {pages.map((page) => {
-            // if (page <= maxPageLimit && page >= minPageLimit && (page !== 1 &&page !== Number(props.data.total_pages))
             if (page <= maxPageLimit && page >= minPageLimit) {
               return (
-                <div
+                <Link
                   key={page}
                   data-page={page}
                   data-page-type="normal"
-                  className={`page ${
-                    props.data.currentPage === page ? "active" : ""
-                  }`}
+                  className={`page ${currentPage === page ? "active" : ""}`}
+                  tabIndex="4"
                   onClick={handlePageClick}
                 >
                   {page}
-                </div>
+                </Link>
               );
             } else {
               return null;
@@ -198,65 +185,70 @@ const Pagination = (props) => {
 
           {/* next pages group */}
           {pages.length > maxPageLimit ? (
-            <div
+            <Link
               className="page"
               onClick={handleNextPageGroupClick}
               title="Next Pages Set"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-right"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Next pages set not available"
+              tabIndex="4"
             >
               <i className="fas fa-angle-double-right"></i>
-            </div>
+            </Link>
           )}
 
           {/* Next Page */}
-          {props.data.currentPage < props.data.total_pages ? (
-            <div
+          {currentPage < total_pages ? (
+            <Link
               className="page navigate"
               onClick={handleNextPage}
               title="Next Page"
+              tabIndex="4"
             >
               <i className="fas fa-angle-right"></i>
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Next Page Not Available"
+              tabIndex="4"
             >
               <i className="fas fa-angle-right"></i>
-            </div>
+            </Link>
           )}
 
           {/* last page */}
-          {props.data.total_pages > 1 ? (
-            <div
-              data-page={props.data.total_pages}
+          {total_pages > 1 ? (
+            <Link
+              data-page={total_pages}
               data-page-type="last"
-              className={`page navigate ${
-                props.data.currentPage === props.data.total_pages
-                  ? "active"
-                  : ""
-              }`}
+              className={`page navigate ${currentPage === total_pages
+                ? "active"
+                : ""
+                }`}
               onClick={handlePageClick}
               title="Last Page"
+              tabIndex="4"
             >
-              <i data-page={props.data.total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
-            </div>
+              <i data-page={total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
+            </Link>
           ) : (
-            <div
+            <Link
               className="page navigate disabled"
               disabled={true}
               title="Not Available"
+              tabIndex="4"
             >
               <i className="fas fa-fast-forward"></i>
-            </div>
+            </Link>
           )}
         </div>
       </div>

@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
-import { ThemeContext } from '../../utils/store/contextAPI/themeToggler/ThemeContext'
+import React from 'react'
+import useTheme from '../../utils/hooks/useTheme'
 
 const Loader = () => {
-    const {theme} = useContext(ThemeContext);
+  const { theme } = useTheme();
   return (
-    <div className={`loader ${theme}`}>Loading...</div>
+    <div className={'loader-container'}>
+      <div className={`loader ${theme}`}>Loading...</div>
+    </div>
   )
 }
 

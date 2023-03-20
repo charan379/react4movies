@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../utils/store/contextAPI/themeToggler/ThemeContext";
+import React from "react";
 import empty from "../../static/empty.svg";
-import matrix from "../../styles/matrix.jpg";
+import useTheme from "../../utils/hooks/useTheme";
+import MovieActions from "./MovieActions";
 
-const MoviePoster = ({data}) => {
-  const { theme } = useContext(ThemeContext);
+const MoviePoster = ({ data, title }) => {
+  const { theme } = useTheme();
 
   const handleImageError = (img) => {
     img.target.onerror = null;
@@ -34,6 +34,10 @@ const MoviePoster = ({data}) => {
 
       {/* movie tagline */}
       <div className={`movie-tagline ${theme}`}>{data.tagline}</div>
+
+      {/* movie actions */}
+      <MovieActions title={{ ...title }} />
+
     </>
   );
 };

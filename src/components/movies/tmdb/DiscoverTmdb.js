@@ -1,114 +1,98 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	  @createedOn : 2023-01-17 13:39:06
- *      @lastModifiedOn : 2023-01-31 17:06:41
- *  	  @desc   : [description]
- *
- *  #########################################################
- */
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MoviesList from "../MoviesList";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import Pagination from "../../utils/Pagination";
 import Loader from "../../utils/Loader";
-import searchTmdb from "../../../utils/tmdb_api/searchTmdb";
+import useTmdbSearch from "../../../utils/hooks/useTmdbSearch";
+import MovieBunkersException from "../../../utils/MovieBunkersException";
+import { searchTmdb } from "../../../helpers/tmdb.requests";
+import useToastify from "../../../utils/hooks/useToast";
+import addTitlesDump from "./addTitlesDump";
 
 const DiscoverTmdb = () => {
-  const isMounted = useRef(false);
 
-  const discoverQuery = useSelector((state) => state.DiscoverReducer);
+  const { tmdbSearch, setTmdbSearch } = useTmdbSearch();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  //  {
-  //     page: 1,
-  //     movieList: [],
-  //     total_pages: 1,
-  //     total_results: 1,
-  //  }
-
-  const [movies, setMovies] = useState({
+  const [moviesPage, setMoviesPage] = useState({
     page: 1,
-    movieList: [],
+    list: [],
     total_pages: 1,
     total_results: 1,
   });
 
-  const [error, setError] = useState({});
+  const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
-  const [pageNo, setPageNo] = useState(1);
+  const [error, setError] = useState(null);
+
+  const setPageNo = (pageNo) => {
+    setTmdbSearch({ ...tmdbSearch, pageNo: pageNo });
+  }
+
+  const fetchData = ({ cancelToken }) => {
+    searchTmdb({ query: tmdbSearch, cancelToken }).then((result) => {
+      setMoviesPage({ ...result });
+      setIsLoading((isLoading) => !isLoading);
+
+    }).catch((error) => {
+      console.log(error)
+      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
+      if (error instanceof MovieBunkersException) {
+        setError(error);
+      } else {
+        setError(error);
+      }
+      setMoviesPage({})
+      setIsLoading((isLoading) => !isLoading);
+    })
+  }
 
   useEffect(() => {
-    setIsLoading(true);
     const source = axios.CancelToken.source();
-
-    searchTmdb({ ...discoverQuery, pageNo: pageNo }, source)
-      .then((result) => {
-        setMovies({ ...result });
-        setIsLoading(false);
-        // console.log(result);
-      })
-      .catch((error) => {
-        setError(error);
-        setIsLoading(false);
-        setMovies({
-          page: 1,
-          movieList: [],
-          total_pages: 1,
-          total_results: 1,
-        });
-        console.log(error);
-      });
+    setError(null);
+    setMoviesPage({})
+    setIsLoading((isLoading) => !isLoading);
+    setTimeout(() => {
+      fetchData({ cancelToken: source.token })
+    }, 500)
 
     return () => {
       source.cancel();
     };
-  }, [discoverQuery, pageNo]);
-
-  useEffect(() => {
-    if (isMounted.current) {
-      setPageNo(1);
-    } else {
-      isMounted.current = true;
-    }
-  }, [sessionStorage.getItem("discoverForm_query")]);
+    // eslint-disable-next-line 
+  }, [tmdbSearch]);
 
   return (
     <>
-      {movies.movieList.length > 0 ? (
+
+      {isLoading ? <Loader /> : null}
+
+      {moviesPage?.list?.length > 0
+        ? // true
         <>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div id="results">
-              <MoviesList
-                data={{
-                  source: movies.source,
-                  movieList: movies.movieList,
-                }}
-              />
-            </div>
-          )}
+          <div id="results">
+            <MoviesList
+              source={"tmdb"}
+              list={moviesPage?.list}
+            />
+          </div>
+
+          {/* {addTitlesDump(moviesPage?.list)} */}
 
           <Pagination
-            data={{
-              total_pages: movies.total_pages,
-              currentPage: movies.page,
-            }}
-            query={discoverQuery}
+            total_pages={moviesPage.total_pages}
+            currentPage={parseInt(moviesPage.page)}
             setPageNo={setPageNo}
           />
         </>
-      ) : (
+        : // false
+        <div className={"error-message"}>
+          {error?.message ?? "No Results Found"}
+        </div>
+      }
 
-        <div>{error.message ? error.message : ""}</div>
-        
-      )}
+      <ToastContainer {...toastContainerOptions} />
     </>
   );
 };
