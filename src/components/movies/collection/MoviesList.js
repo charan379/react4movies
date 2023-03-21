@@ -5,7 +5,7 @@ import MovieModal from "../title/MovieModal";
 import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 
-const MoviesList = ({ source, list,state, setState }) => {
+const MoviesList = ({ source, list, state, setState }) => {
   const { theme } = useTheme();
 
   const [openModal, setOpenModal] = useState(false);
@@ -60,7 +60,11 @@ const MoviesList = ({ source, list,state, setState }) => {
           <MovieModal
             data={movieData}
             open={openModal}
-            close={() => { setOpenModal(false); setState(state+1) }}
+            close={() => {
+              setOpenModal(false); if (source === "moviebunkers") {
+                setState(state + 1)
+              }
+            }}
           />
         ) : null}
       </div>
