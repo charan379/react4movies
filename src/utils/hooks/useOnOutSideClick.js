@@ -1,15 +1,3 @@
-/**
- *	#########################################################
- *
- *      @author : charanteja379
- *      @email  : charanteja379@gmail.com
- *  	@createedOn : 2023-01-07 19:27:59
- *      @lastModifiedOn : 2023-02-22 23:54:53
- *  	@desc   : [description]
- *
- *  #########################################################
- */
-
 import { useEffect } from "react";
 
 function useOnOutSideClick(ref, handlerFunc) {

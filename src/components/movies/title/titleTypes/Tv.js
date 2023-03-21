@@ -1,8 +1,8 @@
 import React from 'react'
-import useTheme from '../../utils/hooks/useTheme';
-import MovieDetails from './MovieDetails';
-import MoviePoster from './MoviePoster';
-import Seasons from './tmdb/Tv/Seasons';
+import useTheme from '../../../../utils/hooks/useTheme';
+import MovieDetails from '../titleDetails/MovieDetails';
+import MoviePoster from '../titleDetails/MoviePoster';
+import Seasons from '../tv/Seasons';
 
 const Tv = ({ tv }) => {
 

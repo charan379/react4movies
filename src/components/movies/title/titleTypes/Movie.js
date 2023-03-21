@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import useTheme from '../../utils/hooks/useTheme';
-import MovieDetails from './MovieDetails';
-import MoviePoster from './MoviePoster';
+import useTheme from '../../../../utils/hooks/useTheme';
+import MovieDetails from '../titleDetails/MovieDetails';
+import MoviePoster from '../titleDetails/MoviePoster';
 
 const Movie = ({ movie }) => {
   const { theme } = useTheme();

@@ -1,8 +1,9 @@
 import React from "react";
-import empty from "../../static/empty.svg";
-import useTheme from "../../utils/hooks/useTheme";
+import empty from "../../../../static/empty.svg";
+import useTheme from "../../../../utils/hooks/useTheme";
+import MovieActions from "../../actionButtons";
 
-const SeasonPoster = ({data}) => {
+const MoviePoster = ({ data, title }) => {
   const { theme } = useTheme();
 
   const handleImageError = (img) => {
@@ -13,9 +14,9 @@ const SeasonPoster = ({data}) => {
   return (
     <>
       {/* movie poster box */}
-      <div className={`season-poster-box ${theme}`}>
+      <div className={`movie-poster-box ${theme}`}>
         {/* Movie poster */}
-        <div className="season-poster-img">
+        <div className="movie-poster-img">
           <img
             loading="lazy"
             onError={handleImageError}
@@ -24,14 +25,21 @@ const SeasonPoster = ({data}) => {
           ></img>
         </div>
         {/* postor backdrop*/}
-        <div className={`season-poster-backdrop ${theme}`}>
+        <div className={`movie-poster-backdrop ${theme}`}>
           <i className="far fa-image fa-2x" aria-hidden="true"></i>
           <br />
           No Image
         </div>
       </div>
+
+      {/* movie tagline */}
+      <div className={`movie-tagline ${theme}`}>{data.tagline}</div>
+
+      {/* movie actions */}
+      <MovieActions title={{ ...title }} />
+
     </>
   );
 };
 
-export default SeasonPoster;
+export default MoviePoster;

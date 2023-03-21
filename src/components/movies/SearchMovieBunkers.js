@@ -4,7 +4,7 @@ import useCollectionSearch from "../../utils/hooks/useCollectionSearch";
 import useToastify from "../../utils/hooks/useToast";
 import { search } from "../../helpers/moviebunkers.requests";
 import MovieBunkersException from "../../utils/MovieBunkersException";
-import MoviesList from "./MoviesList";
+import MoviesList from "./collection/MoviesList";
 import Loader from "../utils/Loader";
 import Pagination from "../utils/Pagination";
 

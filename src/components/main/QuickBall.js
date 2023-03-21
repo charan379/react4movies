@@ -40,7 +40,7 @@ const QuickBall = () => {
     <div ref={quickBallRef} className="quick-ball-container">
       <div className={`quick-ball-shadow ${theme}`} />
       <Link className="quick-ball" onClick={toggleQuickBall} title="Quick links">
-        <span className={`quick-ball-icon ${theme}`} > {!showQuickBall ? <i class="fas fa-bars"></i> : <i class="fas fa-times"></i>}</span>
+        <span className={`quick-ball-icon ${theme}`} > {!showQuickBall ? <i className="fas fa-bars"></i> : <i className="fas fa-times"></i>}</span>
       </Link>
       {showQuickBall && (
         <div className={`quick-ball-links${showQuickBall ? " show" : ""} ${theme}`}>

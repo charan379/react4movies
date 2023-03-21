@@ -1,6 +1,6 @@
 import React from 'react'
 import MoviesList from './MoviesList'
-import useTheme from '../../utils/hooks/useTheme'
+import useTheme from '../../../utils/hooks/useTheme'
 
 const Collection = () => {
     const {theme} = useTheme();

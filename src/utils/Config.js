@@ -8,6 +8,8 @@ const TmdbConfig = {
 
 const Config = {
   MOVIEBUNKERS_API: process.env.REACT_APP_MOVIEBUNKERS_API,
-  TMDB_API: process.env.REACT_APP_TMDB_API_WRAPPER
+  TMDB_API: process.env.REACT_APP_TMDB_API_WRAPPER,
+  GUEST_USERNAME: process.env.REACT_APP_GUEST_USERNAME,
+  GUEST_PASSWORD: process.env.REACT_APP_GUEST_PASSWORD,
 };
 export { TmdbConfig, Config };

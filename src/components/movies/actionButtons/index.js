@@ -1,14 +1,14 @@
 import React from 'react'
-import useTheme from '../../../utils/hooks/useTheme'
+import useTheme from '../../../utils/hooks/useTheme';
 import useTitle from '../../../utils/hooks/useTitle';
 import useToastify from '../../../utils/hooks/useToast';
-import AddTitle from './Moderator/AddTitle';
-import DeleteTitle from './Moderator/DeleteTitle';
-import EditTitle from './Moderator/EditTitle';
-import UpdateTitle from './Moderator/UpdateTitle';
-import Favourite from './User/Favourite';
-import Seen from './User/Seen';
-import Star from './User/Star';
+import AddTitle from './moderatorActions/AddTitle';
+import DeleteTitle from './moderatorActions/DeleteTitle';
+import EditTitle from './moderatorActions/EditTitle';
+import UpdateTitle from './moderatorActions/UpdateTitle';
+import Favourite from './userActions/Favourite';
+import Seen from './userActions/Seen';
+import Star from './userActions/Star';
 
 const MovieActions = () => {
 

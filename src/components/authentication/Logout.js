@@ -66,7 +66,7 @@ const Logout = ({ open, close }) => {
         </Link>
 
         <h2>
-          <i class="fas fa-exclamation-triangle"></i> Confirm Logout
+          <i className="fas fa-exclamation-triangle"></i> Confirm Logout
         </h2>
         <h6 style={{ textAlign: "center" }}>Are you sure you want to log out ?</h6>
         <form onSubmit={handleSubmit}>
