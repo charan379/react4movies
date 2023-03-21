@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <link href="%PUBLIC_URL%/main.css" rel="stylesheet" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://kit.fontawesome.com/3315c30955.css" crossorigin="anonymous"> -->
     <script
       src="https://kit.fontawesome.com/3315c30955.js"
       crossorigin="anonymous"
@@ -18,13 +16,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <meta name="author" content="Narah C, Ajet email@gmail.com">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="This is a MERN Full Stack Application"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -40,6 +40,33 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <!-- apple pwa start up -->
+    <link href="splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+    <!-- og tags -->
+
+    <meta name="og:site_name" content="react4movies" />
+    <meta name="og:title" content="Movies Library" />
+    <meta name="og:description" content="This ia MERN Full Stack Application" />
+    <meta name="url" content="https://moviebunkers01.netlify.app">
+    <meta name="og:type" content="website" />
+    <meta name="og:image" content="%PUBLIC_URL%/android-chrome-512x512.png" />
+    <meta property="twitter:card" content="react4movies">
+    <meta property="twitter:image" content="%PUBLIC_URL%/android-chrome-512x512.png">
+    <meta property="twitter:url" content="https://moviebunkers01.netlify.app/">
+    <meta property="twitter:description" content="Full Stack MERN Application for movies">
+    <meta property="twitter:title" content="MovieBunkers">
+    <!-- og tags end -->
     <title>MovieBunkers</title>
   </head>
   <body>

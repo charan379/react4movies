@@ -3,7 +3,6 @@ import MainComponent from "./components/main/MainComponent";
 import RouteProtector from "./components/authentication/RouteProtector";
 import Home from "./components/movies/Home";
 import PageNotFound from "./components/main/PageNotFound";
-import DiscoverTmdb from "./components/movies/SearchTmdb";
 import Login from "./components/authentication/Login";
 import Unauthorized from "./components/authentication/Unauthorized";
 import React from "react";
