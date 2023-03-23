@@ -42,7 +42,7 @@ const CollectionSidebar = () => {
         });
       }
     }).catch(err => {
-      console.log(err)
+
     })
 
     return () => {
@@ -59,7 +59,7 @@ const CollectionSidebar = () => {
         });
       }
     }).catch(err => {
-      console.log(err)
+
     })
 
     return () => {

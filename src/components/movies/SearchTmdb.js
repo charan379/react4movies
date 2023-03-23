@@ -36,7 +36,6 @@ const SearchTmdb = () => {
       setIsLoading((isLoading) => !isLoading);
 
     }).catch((error) => {
-      console.log(error)
       toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
       if (error instanceof MovieBunkersException) {
         setError(error);

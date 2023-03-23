@@ -67,7 +67,6 @@ const Login = () => {
 
     authenticateUser(username, password)
       .then((response) => {
-        console.log(response)
         toast.update(toastId, {
           render: response?.message,
           type: "success",

@@ -10,7 +10,6 @@ import Movie from './titleTypes/Movie';
 import Tv from './titleTypes/Tv';
 
 const Title = ({ id, titleState, titleType }) => {
-    console.log(titleState)
     const {
         _id = id,
         _titleState = titleState,
@@ -60,7 +59,6 @@ const Title = ({ id, titleState, titleType }) => {
         setIsLoading(isLoading => !isLoading);
         setErrors("");
         setTimeout(() => {
-            console.log({ _id, _titleType, _titleState, cancelToken: source.token })
             fetchData({ _id, _titleType, _titleState, cancelToken: source.token })
         });
 

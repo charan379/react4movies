@@ -1,4 +1,6 @@
 import React from 'react'
+import { LevelThere, LevelTwo } from '../../../constants/AuthRoles';
+import useAuth from '../../../utils/hooks/useAuth';
 import useTheme from '../../../utils/hooks/useTheme';
 import useTitle from '../../../utils/hooks/useTitle';
 import useToastify from '../../../utils/hooks/useToast';
@@ -13,6 +15,8 @@ import Star from './userActions/Star';
 const MovieActions = () => {
 
     const { ToastContainer, toastContainerOptions, toast } = useToastify();
+
+    const { auth } = useAuth();
 
     const { title } = useTitle();
 
@@ -33,20 +37,25 @@ const MovieActions = () => {
                 )}
             </div>
 
-            <div className="moderator-related">
-                {title?.state === "moviebunkers" && (
-                    <>
-                        <EditTitle toast={toast} />
-                        <UpdateTitle toast={toast} />
-                        <DeleteTitle toast={toast} />
-                    </>
-                )}
-                {title?.state === "tmdb" && (
-                    <>
-                        <AddTitle toast={toast} />
-                    </>
-                )}
-            </div>
+            {LevelTwo.includes(auth?.role) && (
+                <div className="moderator-related">
+                    {title?.state === "moviebunkers" && (
+                        <>
+                            <EditTitle toast={toast} />
+                            <UpdateTitle toast={toast} />
+                            {LevelThere.includes(auth?.role) && (
+                                <DeleteTitle toast={toast} />
+                            )}
+                        </>
+                    )}
+                    {title?.state === "tmdb" && (
+                        <>
+                            <AddTitle toast={toast} />
+                        </>
+                    )}
+                </div>
+            )}
+
             <ToastContainer {...toastContainerOptions} />
         </div>
     )
