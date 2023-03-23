@@ -1,12 +1,15 @@
 import React from 'react'
 import useTheme from '../../../../utils/hooks/useTheme';
+import useTitle from '../../../../utils/hooks/useTitle';
 import MovieDetails from '../titleDetails/MovieDetails';
 import MoviePoster from '../titleDetails/MoviePoster';
 import Seasons from '../tv/Seasons';
 
-const Tv = ({ tv }) => {
+const Tv = () => {
 
     const { theme } = useTheme();
+
+    const { title: tv } = useTitle();
 
     return (
         <>

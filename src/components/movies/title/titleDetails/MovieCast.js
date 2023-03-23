@@ -1,6 +1,10 @@
 import React from 'react'
 import empty from '../../../../static/empty.svg'
-const MovieCast = ({ cast }) => {
+import useTitle from '../../../../utils/hooks/useTitle';
+const MovieCast = () => {
+
+    const { title } = useTitle();
+
     const handleImageError = (img) => {
         img.target.onerror = null;
         img.target.src = empty;
@@ -8,7 +12,7 @@ const MovieCast = ({ cast }) => {
 
     return (
         <div className='person-list-container'>
-            {cast?.map((person, index) => {
+            {title?.cast?.map((person, index) => {
                 return (
                     <div className='person' key={index}>
                         <div className='profile'>
