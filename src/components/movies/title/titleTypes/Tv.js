@@ -1,57 +1,54 @@
-import React from 'react'
-import useTheme from '../../../../utils/hooks/useTheme';
-import useTitle from '../../../../utils/hooks/useTitle';
-import MovieDetails from '../titleDetails/MovieDetails';
-import MoviePoster from '../titleDetails/MoviePoster';
-import Seasons from '../tv/Seasons';
+import React from "react";
+import useTheme from "../../../../utils/hooks/useTheme";
+import useTitle from "../../../../utils/hooks/useTitle";
+import MovieDetails from "../titleDetails/MovieDetails";
+import MoviePoster from "../titleDetails/MoviePoster";
+import Seasons from "../tv/Seasons";
 
 const Tv = () => {
+  const { theme } = useTheme();
 
-    const { theme } = useTheme();
+  const { title: tv } = useTitle();
 
-    const { title: tv } = useTitle();
+  return (
+    <>
+      {/* movie page */}
+      <div className={`movie-page ${theme}`}>
+        {/* movie title */}
+        <div className="movie-title">
+          {tv?.title}
+          <small> ({tv?.year})</small>
+        </div>
 
-    return (
-        <>
-            <div className={`movie-page ${theme}`}>
+        {/* movie poster */}
+        <div className="movie-poster">
+          <MoviePoster
+            data={{
+              url: tv?.poster_path,
 
-                <div className="movie-title">
-                    {tv?.title}
-                    <small> ({tv?.year})</small>
-                </div>
+              alt: tv?.title,
 
-                <div className="movie-poster">
-                    <MoviePoster
-                        data={{
-                            url: tv?.poster_path,
+              tagline: tv?.tagline,
+            }}
+          />
+        </div>
 
-                            alt: tv?.title,
+        {/* movie details */}
+        <div className="movie-details">
+          <MovieDetails />
+        </div>
 
-                            tagline: tv?.tagline,
-                        }}
-                        title={{ ...tv }}
-                    />
-                </div>
+        {/* tv seasons */}
+        <Seasons
+          data={{
+            latest_episode: tv?.last_episode_aired,
+            upcoming_episode: tv?.next_episode_to_air,
+            seasons: tv?.seasons,
+          }}
+        />
+      </div>
+    </>
+  );
+};
 
-
-                <div className="movie-details">
-                    <MovieDetails
-                        titleData={{ ...tv }}
-                        titleType={tv.title_type}
-                    />
-                </div>
-
-
-                <Seasons
-                    data={{
-                        latest_episode: tv?.last_episode_aired,
-                        upcoming_episode: tv?.next_episode_to_air,
-                        seasons: tv?.seasons,
-                    }}
-                />
-            </div>
-        </>
-    )
-}
-
-export default Tv
+export default Tv;

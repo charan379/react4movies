@@ -77,7 +77,7 @@ const Title = ({ id, titleState, titleType }) => {
 
             {title?.title_type === "movie" ? <Movie movie={{ ...title }} /> : null}
 
-            {title?.title_type === "tv" ? <Tv tv={{ ...title }}></Tv> : null}
+            {title?.title_type === "tv" ? <Tv /> : null}
 
             {errors
                 ?
