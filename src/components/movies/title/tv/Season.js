@@ -1,8 +1,11 @@
 import React from "react";
+import { LevelOne } from "../../../../constants/AuthRoles";
+import useAuth from "../../../../utils/hooks/useAuth";
 import ShowLessText from "../../../utils/ShowLessText";
 import SeasonPoster from "./SeasonPoster";
 
 const Season = ({ season }) => {
+  const { auth } = useAuth();
   return (
     <>
       <div className="title">
@@ -16,7 +19,7 @@ const Season = ({ season }) => {
         />
       </div>
       <div className="details">
-      
+
         <ul>
           <li>
             <b>Season : </b> {season.name}
@@ -28,11 +31,11 @@ const Season = ({ season }) => {
             <b>Release Date : </b> {season.air_date}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText text= {season?.overview} limit={150} />
+            <b>Overview : </b> <ShowLessText text={season?.overview} limit={150} />
           </li>
         </ul>
       </div>
-      <div className="download">Download</div>
+      {LevelOne.includes(auth?.role) && (<div className="download">Download</div>)}
     </>
   );
 };

@@ -1,8 +1,11 @@
 import React from "react";
+import { LevelOne, LevelTwo } from "../../../../constants/AuthRoles";
+import useAuth from "../../../../utils/hooks/useAuth";
 import ShowLessText from "../../../utils/ShowLessText";
 import EpisodePoster from "./EpisodePoster";
 
-const Episode = ({episode, index}) => {
+const Episode = ({ episode, index }) => {
+  const { auth } = useAuth();
   return (
     <>
       <div className="title">
@@ -33,14 +36,14 @@ const Episode = ({episode, index}) => {
             <b>Release Date : </b> {episode.air_date}
           </li>
           <li>
-            <b>Directors : </b> {episode.directors ? episode.directors.map(person => person).join(','): "No Data"}
+            <b>Directors : </b> {episode.directors ? episode.directors.map(person => person).join(',') : "No Data"}
           </li>
           <li>
             <b>Overview : </b> <ShowLessText text={episode?.overview} limit={150} />
           </li>
         </ul>
       </div>
-      <div className="download">DownLoad</div>
+      {LevelOne.includes(auth?.role) && (<div className="download">DownLoad</div>)}
     </>
   );
 };
@@ -49,14 +52,14 @@ Episode.defaultProps = {
   episode: {
     air_date: "2020-12-18",
     episode_number: 8,
-    tmdb_id : 2464381,
+    tmdb_id: 2464381,
     name: "Chapter 16: The Rescue",
     overview: "The Mandalorian and his allies attempt a daring rescue.",
     runtime: 48,
     season_number: 2,
     show_id: 82856,
     still_path: "https://image.tmdb.org/t/p/w500/o2b0S3rSMhAlfsCRQyD6EsDzqca.jpg",
-    directors : ['No Data']    
+    directors: ['No Data']
   },
 };
 

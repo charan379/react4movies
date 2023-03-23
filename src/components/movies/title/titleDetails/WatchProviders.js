@@ -5,6 +5,7 @@ import { Config } from '../../../../utils/Config';
 
 const WatchProviders = ({ tmdb_id, title_type, country }) => {
 
+    // test data
     // const data = {
     //     "tmdb_link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=US",
     //     "providers": [

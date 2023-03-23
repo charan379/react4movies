@@ -3,7 +3,7 @@ import empty from "../../../../static/empty.svg";
 import useTheme from "../../../../utils/hooks/useTheme";
 import MovieActions from "../../actionButtons";
 
-const MoviePoster = ({ data, title }) => {
+const MoviePoster = ({ data }) => {
   const { theme } = useTheme();
 
   const handleImageError = (img) => {
@@ -36,8 +36,7 @@ const MoviePoster = ({ data, title }) => {
       <div className={`movie-tagline ${theme}`}>{data.tagline}</div>
 
       {/* movie actions */}
-      <MovieActions title={{ ...title }} />
-
+      <MovieActions />
     </>
   );
 };

@@ -1,23 +1,27 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
-import useTheme from '../../../../utils/hooks/useTheme';
-import MovieDetails from '../titleDetails/MovieDetails';
-import MoviePoster from '../titleDetails/MoviePoster';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import useTheme from "../../../../utils/hooks/useTheme";
+import useTitle from "../../../../utils/hooks/useTitle";
+import MovieDetails from "../titleDetails/MovieDetails";
+import MoviePoster from "../titleDetails/MoviePoster";
 
-const Movie = ({ movie }) => {
+const Movie = () => {
   const { theme } = useTheme();
   const location = useLocation();
 
+  const { title: movie } = useTitle();
 
   return (
     <>
+      {/* movie page */}
       <div className={`movie-page ${theme}`}>
-
+        {/* movie title */}
         <div className="movie-title">
           {movie?.title}
           <small> ({movie?.year})</small>
         </div>
 
+        {/* movie poster */}
         <div className="movie-poster">
           <MoviePoster
             data={{
@@ -27,20 +31,16 @@ const Movie = ({ movie }) => {
 
               tagline: movie?.tagline,
             }}
-            title={{ ...movie }}
           />
         </div>
 
-
+        {/* movie details */}
         <div className="movie-details">
-          <MovieDetails
-            titleData={{ ...movie }}
-            titleType={movie.title_type}
-          />
+          <MovieDetails />
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Movie
+export default Movie;

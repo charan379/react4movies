@@ -12,7 +12,6 @@ export async function searchTmdb({ query, cancelToken }) {
         return response?.data;
     } catch (error) {
         const errorResponse = error?.response?.data;
-        console.log(error);
         if (axios.isCancel(error)) {
             console.log(error);
         } else if (errorResponse?.error?.message) {
@@ -34,7 +33,6 @@ export async function fetchTmdbTitle({ id, titleType, cancelToken }) {
         if (axios.isCancel(error)) {
             console.log(error);
         } else if (errorResponse?.message) {
-            console.log(errorResponse)
             throw new MovieBunkersException(errorResponse);
         } else {
             throw error;

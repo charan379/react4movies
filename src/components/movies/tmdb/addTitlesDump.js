@@ -13,7 +13,6 @@ const addTitlesDump = (titles) => {
         fetchTmdbTitle({ id: titles[i]?.tmdb_id, titleType: titles[i]?.title_type, cancelToken: null })
             .then(res => {
                 setTimeout(() => {
-                    console.log(res)
                     newTitle({ title: res, cancelToken: null }).then((res) => {
                         console.log(`titles added ${count + 1}`);
                     }, 5000);

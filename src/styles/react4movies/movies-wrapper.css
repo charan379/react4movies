@@ -154,18 +154,6 @@ Height = ?
   height: 275px;
 }
 
-.movie-box.light .movie-info:hover {
-  opacity: 0.9;
-  color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
-}
-
-.movie-box.dark .movie-info:hover {
-  opacity: 0.9;
-  color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
-}
-
 /* movie Year */
 .movie-box .movie-year {
   position: absolute;
@@ -668,4 +656,22 @@ Height = ?
     height: 12px;
     width: 23px;
   }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .movie-box:hover {
+    scale: 1.1;
+  }
+
+  /* .movie-box.light .movie-info:hover {
+    opacity: 0.9;
+    color: var(--font-color-light);
+    background-color: var(--ui-elemnet-light);
+  }
+
+  .movie-box.dark .movie-info:hover {
+    opacity: 0.9;
+    color: var(--font-color-dark);
+    background-color: var(--ui-elemnet-dark);
+  } */
 }

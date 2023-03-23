@@ -24,17 +24,20 @@ const MoviesList = ({ source, list, state, setState }) => {
         {list?.length > 0 &&
           list.map((movie, index) => {
             return (
-              <Link title={movie.title}
+              <Link
+                title={movie.title}
                 tabIndex="3"
                 id={"box-" + index}
                 key={"box-" + index}
-                onClick={() => handleOnClick({
-                  id: movie?._id ?? movie?.tmdb_id,
-                  title: movie.title,
-                  year: movie?.year,
-                  title_type: movie.title_type,
-                  titleState: source
-                })}
+                onClick={() =>
+                  handleOnClick({
+                    id: movie?._id ?? movie?.tmdb_id,
+                    title: movie.title,
+                    year: movie?.year,
+                    title_type: movie.title_type,
+                    titleState: source,
+                  })
+                }
               >
                 <MovieBox
                   movieData={{
@@ -58,11 +61,14 @@ const MoviesList = ({ source, list, state, setState }) => {
 
         {openModal ? (
           <MovieModal
+            id={movieData?._id ?? movieData?.tmdb_id}
+            titleState={source}
             data={movieData}
             open={openModal}
             close={() => {
-              setOpenModal(false); if (source === "moviebunkers") {
-                setState(state + 1)
+              setOpenModal(false);
+              if (source === "moviebunkers") {
+                setState(state + 1);
               }
             }}
           />

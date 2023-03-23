@@ -21,7 +21,6 @@ const Logout = ({ open, close }) => {
     const toastId = toast.loading("Logging out...");
     logout()
       .then((response) => {
-        console.log(response)
         toast.update(toastId, {
           render: response?.message,
           type: "success",
@@ -35,7 +34,6 @@ const Logout = ({ open, close }) => {
         }, 500);
       })
       .catch((error) => {
-        console.log(error)
         if (error instanceof MovieBunkersException) {
           toast.update(toastId, {
             render: error?.message ?? "Somthing went worng !",

@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import useTheme from "../../../../utils/hooks/useTheme";
+import useTitle from "../../../../utils/hooks/useTitle";
 import ShowLessNames from "../../../utils/ShowLessNames";
 import ShowLessText from "../../../utils/ShowLessText";
 import MovieCast from "./MovieCast";
 import WatchProviders from "./WatchProviders";
 
-const MovieDetails = ({ titleData, titleType }) => {
+const MovieDetails = () => {
   const { theme } = useTheme();
+
+  const { title } = useTitle();
 
   const [showCast, setShowCast] = useState(false);
 
   return (
     <div className={`movie-info-box ${theme}`}>
-
+      {/* genres contrainer */}
       <div className={`genres-container ${theme}`}>
-        {titleData.genres.map((genre, index) => {
+        {title?.genres.map((genre, index) => {
           return (
             <div key={index} className="genre">
               {genre}
@@ -24,159 +26,228 @@ const MovieDetails = ({ titleData, titleType }) => {
         })}
       </div>
 
+      {title?.languages?.length > 0 && (
+        // languages-container
+        <div className={`languages-container ${theme}`}>
+          <h6>Languages</h6>
+          <div className="languages">
+            {title.languages.map((language, index) => {
+              return (
+                <div
+                  key={index}
+                  className="language"
+                  title={language?.native_name}
+                >
+                  {language?.english_name}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {/* info box */}
       <div className="movie-info">
+        {/* title */}
         <div className="info-item">
           <b>Title : </b>
-          {titleData?.title}
+          {title?.title}
         </div>
+
+        {/* Original Languaage */}
         <div className="info-item">
           <b>Original Language : </b>
-          {titleData?.original_language?.english_name}
+          {title?.original_language?.english_name}
         </div>
 
+        {/* title type */}
         <div className="info-item">
-          <b>Ttile Type : </b> {(titleData?.title_type).toUpperCase()}
+          <b>Title Type : </b> {(title?.title_type).toUpperCase()}
         </div>
 
+        {/* tmdb id */}
         <div className="info-item">
           <b>TMDB ID : </b>
-          {titleData?.tmdb_id}
+          {title?.tmdb_id}
         </div>
 
+        {/* imdb id */}
         <div className="info-item">
           <b>IMDB ID : </b>
-          {titleData?.imdb_id}
+          {title?.imdb_id}
         </div>
+
+        {/* ratting */}
         <div className="info-item">
           <b>Ratting : </b>
-          {titleData?.ratting ?? 0}
+          {title?.ratting ?? 0}
         </div>
+
+        {/* censor certification */}
         <div className="info-item">
           <b>Censor Certificate : </b>
-          {titleData?.age_rattings.find(certificate => certificate.country === "IN")?.ratting ?? "MB-26"}
+          {title?.age_rattings.find(
+            (certificate) => certificate.country === "IN"
+          )?.ratting ?? "MB-26"}
         </div>
-        <div className="info-item">
-          <b>Production Companies : </b>
 
-          {titleData?.production_companies
-            ?
+        {/* production companies */}
+
+        {title?.production_companies?.length > 0 && (
+          <div className="info-item">
+            <b>Production Companies : </b>
             <ShowLessNames
-              commaSepratedText={titleData?.production_companies?.map((company) => company).join(", ")}
-              limit={5} />
-            :
-            "No Data"
-          }
-        </div>
+              commaSepratedText={title?.production_companies
+                ?.map((company) => company)
+                .join(", ")}
+              limit={5}
+            />
+          </div>
+        )}
 
-        <div className="info-item">
-          <b>Production Countries : </b>
+        {/* production countries */}
 
-          {titleData?.production_countries
-            ?
+        {title?.production_countries?.length > 0 && (
+          <div className="info-item">
+            <b>Production Countries : </b>
             <ShowLessNames
-              commaSepratedText={titleData?.production_countries?.map((country) => country).join(", ")}
-              limit={5} />
-            :
-            "No Data"
-          }
+              commaSepratedText={title?.production_countries
+                ?.map((country) => country)
+                .join(", ")}
+              limit={5}
+            />
+          </div>
+        )}
 
-        </div>
-
-        {titleType === "movie" ? (
+        {/* Movie Directors */}
+        {title?.title_type === "movie" && (
           <>
             <div className="info-item">
               <b>Director : </b>
 
-              {titleData?.directors
-                ?
+              {title?.directors?.length > 0 && (
                 <ShowLessNames
-                  commaSepratedText={titleData.directors?.map((director) => director).join(", ")}
-                  limit={5} />
-                :
-                "No Data"
-              }
-
+                  commaSepratedText={title.directors
+                    ?.map((director) => director)
+                    .join(", ")}
+                  limit={5}
+                />
+              )}
             </div>
 
+            {/* movie runtime */}
             <div className="info-item">
               <b>Rumtime : </b>
-              {titleData?.runtime ?? 0} minutes
-            </div>
-
-          </>
-        ) : (
-          <>
-            <div className="info-item">
-              <b>Creators : </b>
-
-              {titleData?.created_by
-                ?
-                <ShowLessNames
-                  commaSepratedText={titleData.created_by?.map((creator) => creator).join(", ")}
-                  limit={5} />
-                :
-                "No Data"
-              }
-
-            </div>
-
-            <div className="info-item">
-              <b>Seasons : </b>
-              {titleData.number_of_seasons}
-            </div>
-
-            <div className="info-item">
-              <b>Episodes : </b>
-              {titleData.number_of_episodes}
-            </div>
-
-            <div className="info-item">
-              <b>Episode Rumtime : </b>
-              {titleData.runtime}
+              {title?.runtime ?? 0} minutes
             </div>
           </>
         )}
+
+        {title?.title_type === "tv" && (
+          <>
+            {/* show creators */}
+            {title?.created_by?.length > 0 && (
+              <div className="info-item">
+                <b>Creators : </b>
+                <ShowLessNames
+                  commaSepratedText={title.created_by
+                    ?.map((creator) => creator)
+                    .join(", ")}
+                  limit={5}
+                />
+              </div>
+            )}
+
+            {/* number of seasons */}
+            <div className="info-item">
+              <b>Seasons : </b>
+              {title.number_of_seasons}
+            </div>
+
+            {/* number of episodes */}
+            <div className="info-item">
+              <b>Episodes : </b>
+              {title.number_of_episodes}
+            </div>
+
+            {/* avg episode run time */}
+            <div className="info-item">
+              <b>Episode avg rumtime : </b>
+              {title.runtime}
+            </div>
+          </>
+        )}
+
+        {/* status */}
         <div className="info-item">
           <b>Status : </b>
-          {titleData?.status}
+          {title?.status}
         </div>
-        <div className="info-item">
-          <b>Release Date : </b>
-          {titleData?.release_date && new Date(titleData?.release_date).toLocaleString("en-US", { year: 'numeric', month: 'short', day: '2-digit', weekday: "short", hour: '2-digit', hour12: false, minute: '2-digit', timeZone: "Asia/Kolkata" }).replace(/,/g, ' -')}</div>
-        <div className="info-item">
-          <b>Streaming On : </b>
-          {titleData?.providers?.map((provider) => provider).join(",")}
-        </div>
+
+        {/* release data */}
+        {title?.release_date && (
+          <>
+            <div className="info-item">
+              <b>Release Date : </b>
+
+              {new Date(title?.release_date)
+                .toLocaleDateString("en-IN", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                  timeZone: "Asia/Kolkata",
+                })
+                .replace(/[^a-zA-Z0-9]/g, "-")}
+            </div>
+          </>
+        )}
       </div>
 
+      {/* watch providers */}
       <div className={`movie-watch-providers`}>
         <h6>Watch Providers</h6>
-        {titleData?.tmdb_id && (<WatchProviders tmdb_id={titleData?.tmdb_id} title_type={titleData?.title_type} />)}
+        {title?.tmdb_id && (
+          <WatchProviders
+            tmdb_id={title?.tmdb_id}
+            title_type={title?.title_type}
+          />
+        )}
       </div>
 
-      <div className={`movie-overview`}>
-        <h6>Overview</h6>
-        {titleData.overview ? <ShowLessText text={titleData.overview} limit={150} /> : "No Data"}
-      </div>
+      {/* overview */}
+      {title.overview && (
+        <div className={`movie-overview`}>
+          <h6>Overview</h6>
+          <ShowLessText text={title.overview} limit={150} />
+        </div>
+      )}
 
+      {/* top cast */}
       <div className={`movie-cast`}>
         <h6>Top Cast</h6>
-
         <div className={`cast-toggle ${showCast ? "expand" : ""}`}>
           <i
             onClick={() => setShowCast(!showCast)}
             className={`fas fa-chevron-circle-down`}
           ></i>
         </div>
-        {!showCast
-          ?
-          <div className="person-list-container" style={{ color: " rgb(71, 135, 214)", fontWeight: "bold", fontFamily: "monospace", cursor: "pointer", width: "100%", height: "15px" }} onClick={() => setShowCast(!showCast)}>
+        {!showCast ? (
+          <div
+            className="person-list-container"
+            style={{
+              color: " rgb(71, 135, 214)",
+              fontWeight: "bold",
+              fontFamily: "monospace",
+              cursor: "pointer",
+              width: "100%",
+              height: "15px",
+            }}
+            onClick={() => setShowCast(!showCast)}
+          >
             Tap to see cast details
           </div>
-          : null
-        }
+        ) : null}
 
-        {titleData?.cast && showCast && <MovieCast cast={titleData?.cast} />}
+        {title?.cast && showCast && <MovieCast />}
       </div>
     </div>
   );

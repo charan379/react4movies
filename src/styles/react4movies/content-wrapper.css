@@ -4,6 +4,7 @@
 /*  movies list wrapper */
 .content-wrapper {
   text-align: center; /* center all the contnets */
+  padding: 10px 0px 20px 0px;
 }
 
 .content-wrapper.light {
@@ -30,6 +31,6 @@
   text-align: center;
   color: rgb(176, 42, 69);
   font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   margin-top: 100px;
 }
