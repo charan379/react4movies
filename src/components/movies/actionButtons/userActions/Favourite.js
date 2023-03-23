@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { data, error } from 'jquery';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Config } from '../../../../utils/Config';

@@ -5,6 +5,7 @@
     max-width: 500px;
     height: 50px;
     padding: 0px;
+    z-index: 0;
 }
 
 .horizontal-slider .range-slider-track {
