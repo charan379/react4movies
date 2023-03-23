@@ -58,6 +58,8 @@ const MoviesList = ({ source, list, state, setState }) => {
 
         {openModal ? (
           <MovieModal
+            id={movieData?._id ?? movieData?.tmdb_id}
+            titleState={source}
             data={movieData}
             open={openModal}
             close={() => {

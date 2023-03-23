@@ -1,11 +1,14 @@
 import React, { useCallback, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useOnOutSideClick from "../../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../../utils/hooks/useTheme";
 import Title from "./Title";
 
 const MovieModal = ({ data, open, close }) => {
+  console.log(data)
   const { theme } = useTheme();
+
+  const navigate = useNavigate();
   const movieModalRef = useRef();
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noreferrer");
@@ -35,6 +38,14 @@ const MovieModal = ({ data, open, close }) => {
               titleState={data?.titleState}
               titleType={data?.title_type}></Title>
           </div>
+
+          <a className="more-details" onClick={() => openInNewTab(`/view/title/${data?.titleState}/${data?.title_type}/${(encodeURIComponent(data?.title) + "-" + encodeURIComponent(data?.year)).replace(/[^a-zA-Z0-9]/g, "-")}/${(data?.titleState === "moviebunkers")
+            ? btoa(data?.id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+            :
+            data?.id
+            }`)}>
+            Full details
+          </a>
         </div>
       </div>
     </>

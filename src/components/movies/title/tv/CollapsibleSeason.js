@@ -1,9 +1,12 @@
 import React, { useCallback, useRef, useState } from "react";
 import useOnOutSideClick from "../../../../utils/hooks/useOnOutSideClick";
+import useTitle from "../../../../utils/hooks/useTitle";
 import Season from "./Season";
 import SeasonEpisodes from "./SeasonEpisodes";
 
 const CollapsibleSeason = ({ season, index }) => {
+
+  const { title } = useTitle();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const seasonRef = useRef();
@@ -18,7 +21,7 @@ const CollapsibleSeason = ({ season, index }) => {
   const handleClick = () => {
     setIsExpanded(!isExpanded);
   };
-  
+
   return (
     <div ref={seasonRef} key={`${index}`} id={`Season-wrapper-${index}`}>
       <div key={`${index}`} id={`S${index}`} className="season" onClick={handleClick}>
@@ -32,10 +35,10 @@ const CollapsibleSeason = ({ season, index }) => {
       {isExpanded ? (
         <>
           <div className="episodes" key={`episodes`}>
-            <h4 style={{textAlign:"center"}}>Episodes</h4>
+            <h4 style={{ textAlign: "center" }}>Episodes</h4>
             {
               <SeasonEpisodes
-                tmdbShowId={season.tmdb_show_id}
+                tmdbShowId={title?.tmdb_id}
                 seasonNumber={season.season_number}
               />
             }
