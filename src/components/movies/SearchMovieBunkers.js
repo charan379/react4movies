@@ -42,7 +42,7 @@ const SearchMovieBunkers = () => {
     }).catch(error => {
       toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
       if (error instanceof MovieBunkersException) {
-        if (error.includes('Unauthorized')) {
+        if (error?.message.includes('Unauthorized')) {
           removeAuth();
         }
         setError(error);
