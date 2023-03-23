@@ -268,6 +268,17 @@ header .sidebar-image-text .sidebar-header-text {
   text-decoration: none;
 }
 
+/* lable */
+.sidebar label {
+  transition: width var(---trans-sidebar-toggle),
+    opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle);
+  width: 170px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+}
+
 /*Select */
 .sidebar select {
   transition: width var(---trans-sidebar-toggle),
@@ -281,12 +292,14 @@ header .sidebar-image-text .sidebar-header-text {
   position: relative;
 }
 
-.sidebar.close select {
+.sidebar.close select,
+.sidebar.close label {
   opacity: 0%;
   width: 0px;
   padding: 0;
 }
-.sidebar select {
+.sidebar select,
+.sidebar label {
   appearance: none;
 }
 /* For IE10 */
@@ -294,10 +307,9 @@ header .sidebar-image-text .sidebar-header-text {
   display: none;
 }
 
-/* .sidebar-select select {
- 
+.sidebar-select select {
   transition: opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle), width var(---trans-sidebar-toggle);
-} */
+}
 
 .sidebar-select.light select {
   color: var(--font-color-light);

@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import ReactSlider from 'react-slider';
+import { Config } from '../../../utils/Config';
 import useCollectionSearch from '../../../utils/hooks/useCollectionSearch';
 import useTheme from '../../../utils/hooks/useTheme';
-
+import ReactSelector from './ReactSelector';
+import iso from '../../../utils/iso369-1.json'
 
 const CollectionSidebar = () => {
 
@@ -12,10 +15,8 @@ const CollectionSidebar = () => {
   const { collectionQuery, setCollectionQuery } = useCollectionSearch();
 
   const handleChange = (event) => {
-
     setCollectionQuery({ ...collectionQuery, [event.target.dataset.id]: event.target.value, pageNo: 1 })
   }
-
 
   const handleAgeChange = (ageLimit) => {
     setCollectionQuery({ ...collectionQuery, "age.gte": ageLimit[0], "age.lte": ageLimit[1], pageNo: 1 })
@@ -24,6 +25,48 @@ const CollectionSidebar = () => {
   const handleFilterToggle = (event) => {
     setCollectionQuery({ ...collectionQuery, [event.target.dataset.id]: event.target.dataset.toggle, pageNo: 1 })
   }
+
+  const handleSelectChange = (selectedOption, event) => {
+    setCollectionQuery({ ...collectionQuery, [event.name]: selectedOption.value, pageNo: 1 })
+  };
+
+  const allLanguages = [{ value: '', label: 'All' }]
+  const allGenres = [{ value: '', label: 'All' }]
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    axios.get(`${Config.MOVIEBUNKERS_API}/titles/available-languages`, { cancelToken: source.token }).then(res => {
+      if (res?.data && res?.data?.length) {
+        res.data.forEach(element => {
+          allLanguages.push({ value: element?.ISO_639_1_code, label: element?.english_name })
+        });
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+
+    return () => {
+      source.cancel();
+    }
+  }, [allLanguages])
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+    axios.get(`${Config.MOVIEBUNKERS_API}/titles/available-genres`, { cancelToken: source.token }).then(res => {
+      if (res?.data && res?.data?.length) {
+        res.data.forEach(element => {
+          allGenres.push({ value: element, label: element })
+        });
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+
+    return () => {
+      source.cancel();
+    }
+  }, [allGenres])
+
   return (
     <form className='sidebar-form'>
 
@@ -38,77 +81,45 @@ const CollectionSidebar = () => {
           value={collectionQuery.search}
           placeholder="Search..."
           onChange={handleChange}
-          
+
         />
       </li>
 
-      {/* Movie or TV */}
-      {/* <li className={`menu-item ${theme}`}>
-        <i className={`${collectionQuery.title_type === "tv" ? "fas fa-tv" : "fas fa-film"} icon`} />
-        <label className={`sidebar-select ${theme}`} htmlFor="title_type" >
-          <select
-            data-form="collectionQueryForm"
-            data-id="title_type"
-            name="title_type"
-            required="required"
-            onChange={handleChange}
-            value={collectionQuery.title_type}
-            tabIndex="-1"
-          >
-            <option value="movie">Movie</option>
-            <option value="tv">TV Series</option>
-          </select>
-        </label>
-      </li> */}
-
-      {/* genre*/}
+      {/* genre react-select */}
       <li className="menu-item-header">
         <span className="nonlink-menu-item-info">Genre</span>
       </li>
       <li className={`menu-item ${theme}`}>
         <i className="fas fa-th icon" ></i>
         <label className={`sidebar-select ${theme}`} htmlFor="genre" >
-          <select
-            data-form="collectionQueryForm"
-            data-id="genre"
-            name="genre"
-            required="required"
-            onChange={handleChange}
-            value={collectionQuery.genre}
-            tabIndex="-1"
-          >
-            <option value="">All</option>
-            <option value="Action">Action</option>
-            <option value="Fantacy">Fantacy</option>
-          </select>
+          <ReactSelector
+            name={'genre'}
+            handleSelectChange={handleSelectChange}
+            selectedOption={{ value: collectionQuery.genre, label: collectionQuery.genre ? collectionQuery.genre : "All" }}
+            options={allGenres} />
         </label>
       </li>
 
-
-      {/* language*/}
+      {/* language react-select */}
       <li className="menu-item-header">
         <span className="nonlink-menu-item-info">Language</span>
       </li>
       <li className={`menu-item ${theme}`}>
-        <i className="fas fa-language icon" ></i>
+        <i className="fas fa-th icon" ></i>
         <label className={`sidebar-select ${theme}`} htmlFor="language" >
-          <select
-            data-form="collectionQueryForm"
-            data-id="language"
-            name="language"
-            required="required"
-            onChange={handleChange}
-            value={collectionQuery.language}
-            tabIndex="-1"
-          >
-            <option value="">All</option>
-            <option value="te">Telugu</option>
-            <option value="en">English</option>
-          </select>
+          <ReactSelector
+            name={'language'}
+            handleSelectChange={handleSelectChange}
+            selectedOption={{
+              value: collectionQuery.language, label: collectionQuery.language ? iso.map(lang => {
+                if (lang["639_1_code"] === collectionQuery.language) {
+                  return lang['english_name']
+                }
+              }) : "All"
+            }}
+            options={allLanguages} />
         </label>
       </li>
-
-
 
       {/* Sort By*/}
       <li className="menu-item-header">
@@ -189,7 +200,7 @@ const CollectionSidebar = () => {
         <span className="nonlink-menu-item-info">Filter By</span>
       </li>
       <li className={`menu-item ${theme}`}>
-        <i className={`fas fa-filter icon closed`}/>
+        <i className={`fas fa-filter icon closed`} />
 
         {(collectionQuery?.movie == 1)
           &&

@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import "./styles/react4movies.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
-import { CookiesProvider } from "react-cookie";
 import store, { persistor } from "./utils/store/reduxStore/Store";
 import { PersistGate } from "redux-persist/integration/react";
 import ThemeContextProvider from "./utils/store/contextAPI/themeToggler/ThemeContextProvider";
@@ -15,13 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
  <React.StrictMode>
     <ThemeContextProvider>
-      <CookiesProvider>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <App />
           </PersistGate>
         </Provider>
-      </CookiesProvider>
     </ThemeContextProvider>
    </React.StrictMode>
 );
