@@ -74,8 +74,8 @@ const Header = () => {
             <div
               className={
                 showDropdown
-                  ? "navbar-dropdown-content show"
-                  : "navbar-dropdown-content"
+                  ? `navbar-dropdown-content ${theme} show`
+                  : `navbar-dropdown-content ${theme}`
               }
             >
               {auth?.userName ? (

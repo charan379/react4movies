@@ -7,10 +7,13 @@ import MovieBunkersException from "../../utils/MovieBunkersException";
 import MoviesList from "./collection/MoviesList";
 import Loader from "../utils/Loader";
 import Pagination from "../utils/Pagination";
+import useAuth from "../../utils/hooks/useAuth";
 
 const SearchMovieBunkers = () => {
 
   const { collectionQuery, setCollectionQuery } = useCollectionSearch();
+
+  const { removeAuth } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,6 +42,9 @@ const SearchMovieBunkers = () => {
     }).catch(error => {
       toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
       if (error instanceof MovieBunkersException) {
+        if (error.includes('Unauthorized')) {
+          removeAuth();
+        }
         setError(error);
       } else {
         setError(error);

@@ -105,7 +105,7 @@ const CollectionSidebar = () => {
         <span className="nonlink-menu-item-info">Language</span>
       </li>
       <li className={`menu-item ${theme}`}>
-        <i className="fas fa-th icon" ></i>
+        <i className="fas fa-language icon" ></i>
         <label className={`sidebar-select ${theme}`} htmlFor="language" >
           <ReactSelector
             name={'language'}
