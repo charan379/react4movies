@@ -25,12 +25,12 @@
   justify-content: flex-start;
   align-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  margin-bottom: 150px;
+  padding-top: 5px;
   /* transition: margin-left var(---trans-container-margin); */
-  
 }
 
-.sidebar.close + .main-container{
+.sidebar.close + .main-container {
   margin-left: 70px;
 }
 
@@ -38,10 +38,9 @@
   margin-left: 240px;
 }
 
-.sidebar.none + .main-container{
+.sidebar.none + .main-container {
   margin-left: 3px;
 }
-
 
 .container.light {
   background-color: var(--bg-light);
@@ -54,6 +53,4 @@
   /* .main-container {
     margin-left: 70px;
   } */
-
-
 }
