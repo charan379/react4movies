@@ -11,7 +11,12 @@ const SideBar = () => {
   const sidebarRef = useRef();
   const discoverPattren = /^\/discover.{0,}/;
   const collectionPattren = /^\/collection.{0,}/;
-  const noSidebar = [/^\/view.{0,}/, /^\/login.{0,}/, /^\/test.{0,}/];
+  const noSidebar = [
+    /^\/view.{0,}/,
+    /^\/login.{0,}/,
+    /^\/test.{0,}/,
+    /^\/downloads.{0,}/,
+  ];
   const location = useLocation();
 
   useOnOutSideClick(
@@ -84,10 +89,9 @@ const SideBar = () => {
           onClick={() => setIsSidebarOpen(true)}
         >
           <div className={`sidebar-menu`}>
+            {discoverPattren.test(location.pathname) && <TmdbSidebar />}
 
-            {discoverPattren.test(location.pathname) && (<TmdbSidebar />)}
-
-            {collectionPattren.test(location.pathname) && (<CollectionSidebar />)}
+            {collectionPattren.test(location.pathname) && <CollectionSidebar />}
 
             {/* <ul className="sidebar-menu-links">
               <li className="sidebar-nav-link">

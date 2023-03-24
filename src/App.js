@@ -15,17 +15,15 @@ import {
 import Title from "./components/movies/title/Title";
 import SearchMovieBunkers from "./components/movies/SearchMovieBunkers";
 import SearchTmdb from "./components/movies/SearchTmdb";
+import TorrentsHome from "./components/torrents/TorrentsHome";
 
 const App = () => {
-
-
   return (
     <>
       <BrowserRouter>
         <Routes>
           {/* Layout */}
           <Route path="/" element={<MainComponent />}>
-
             {/* Home Page */}
             <Route index element={<Home />} />
 
@@ -33,8 +31,15 @@ const App = () => {
             <Route element={<RouteProtector allowedRoles={LevelZero} />}>
               <Route path="/collection" element={<SearchMovieBunkers />} />
               <Route path="/discover/tmdb" element={<SearchTmdb />} />
-              <Route path="/view/title/:_titleState/:_titleType/:_title/:_id" element={<Title />}
+              <Route
+                path="/view/title/:_titleState/:_titleType/:_title/:_id"
+                element={<Title />}
               />
+            </Route>
+
+            {/* Level one Routes */}
+            <Route element={<RouteProtector allowedRoles={LevelOne} />}>
+              <Route path="/downloads/torrent-search" element={<TorrentsHome />} />
             </Route>
 
             {/* Public Routes */}

@@ -59,6 +59,7 @@ const MovieModal = ({ data, open, close }) => {
           >
             Full details
           </a>
+
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import { LevelOne } from "../../../../constants/AuthRoles";
+import convertIsoData from "../../../../utils/convertIsoDate";
 import useAuth from "../../../../utils/hooks/useAuth";
 import ShowLessText from "../../../utils/ShowLessText";
 import SeasonPoster from "./SeasonPoster";
@@ -19,7 +20,6 @@ const Season = ({ season }) => {
         />
       </div>
       <div className="details">
-
         <ul>
           <li>
             <b>Season : </b> {season.name}
@@ -28,14 +28,17 @@ const Season = ({ season }) => {
             <b>Number Of Episodes : </b> {season.episode_count}
           </li>
           <li>
-            <b>Release Date : </b> {season.air_date}
+            <b>Release Date : </b> {convertIsoData(season?.air_date)}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText text={season?.overview} limit={150} />
+            <b>Overview : </b>{" "}
+            <ShowLessText text={season?.overview} limit={150} />
           </li>
         </ul>
       </div>
-      {LevelOne.includes(auth?.role) && (<div className="download">Download</div>)}
+      {LevelOne.includes(auth?.role) && (
+        <div className="download">Download</div>
+      )}
     </>
   );
 };

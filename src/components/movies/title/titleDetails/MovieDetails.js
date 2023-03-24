@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import convertIsoData from "../../../../utils/convertIsoDate";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import ShowLessNames from "../../../utils/ShowLessNames";
@@ -188,15 +189,7 @@ const MovieDetails = () => {
           <>
             <div className="info-item">
               <b>Release Date : </b>
-
-              {new Date(title?.release_date)
-                .toLocaleDateString("en-IN", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                  timeZone: "Asia/Kolkata",
-                })
-                .replace(/[^a-zA-Z0-9]/g, "-")}
+              {convertIsoData(title?.release_date)}
             </div>
           </>
         )}
