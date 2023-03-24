@@ -1,7 +1,7 @@
 @import "./variables.css";
 
 .movie-page {
-  padding: 5px;
+  padding: 5px 5px 5px 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
   /* grid-template-rows: 1fr 9fr; */
