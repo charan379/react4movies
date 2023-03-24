@@ -94,6 +94,11 @@ const TorrentList = ({ query, provider, pageNo }) => {
                     </tr>
 
                     <tr>
+                      <th>Size:</th>
+                      <td>{torrent?.Size}</td>
+                    </tr>
+                    
+                    <tr>
                       <th>Magnet:</th>
                       <td>
                         <a
