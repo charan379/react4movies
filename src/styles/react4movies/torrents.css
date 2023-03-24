@@ -1,0 +1,129 @@
+@import "./variables.css";
+
+.torrent-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.torrent-container .providers {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.providers .provider {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.providers.light .provider,
+.providers.dark .provider.true {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
+
+.providers.dark .provider,
+.providers.light .provider.true {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+}
+
+.torrent-container .torrent-list {
+  display: flex;
+  flex-direction: row;
+  width: 95vw;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.torrent-list .torrent-box {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+
+.torrent-list .magnet-link {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 150px;
+  font-weight: bold;
+}
+
+.torrent-list.light .magnet-link {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.torrent-list.dark .magnet-link {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.torrent-container table {
+  border-collapse: collapse;
+}
+
+.torrent-container.light .torrent-box {
+  border-collapse: collapse;
+  background-color: var(--ui-elemnet-dark);
+}
+.torrent-container.dark .torrent-box {
+  border-collapse: collapse;
+  background-color: var(--ui-elemnet-light);
+}
+
+.torrent-container th {
+  width: 40px;
+}
+
+.torrent-container td {
+  width: 210px;
+}
+
+.torrent-box .info-data {
+  display: inline-block;
+  width: 190px;
+  overflow-wrap: break-word;
+}
+
+.torrent-container.light th {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.torrent-container.dark td {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.torrent-container.light td {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.torrent-container.dark td {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.torrent-container th,
+.torrent-container td {
+  text-align: left !important;
+  border: 1px solid rgba(0, 0, 0, 0);
+  padding: 8px;
+  text-align: center;
+}

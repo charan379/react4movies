@@ -5,8 +5,8 @@ import Season from "./Season";
 import SeasonEpisodes from "./SeasonEpisodes";
 
 const CollapsibleSeason = ({ season, index }) => {
-
   const { title } = useTitle();
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const seasonRef = useRef();
@@ -23,18 +23,19 @@ const CollapsibleSeason = ({ season, index }) => {
   };
 
   return (
-    <div ref={seasonRef} key={`${index}`} id={`Season-wrapper-${index}`}>
-      <div key={`${index}`} id={`S${index}`} className="season" onClick={handleClick}>
+    <div key={`${index}`} id={`Season-wrapper-${index}`}>
+      <div key={`${index}`} id={`S${index}`} className="season">
         <Season season={season} />
       </div>
       <i
         onClick={handleClick}
-        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : ""
-          }`}
+        className={`fas fa-chevron-circle-down toggle ${
+          isExpanded ? "expand" : ""
+        }`}
       ></i>
       {isExpanded ? (
         <>
-          <div className="episodes" key={`episodes`}>
+          <div ref={seasonRef} className="episodes" key={`episodes`}>
             <h4 style={{ textAlign: "center" }}>Episodes</h4>
             {
               <SeasonEpisodes

@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import useTheme from "../../utils/hooks/useTheme";
 
 const Pagination = ({ total_pages, currentPage, setPageNo }) => {
-
   const { theme } = useTheme();
   const pageNumberLimit = 4;
-  const [minPageLimit, setMinPageLimit] = useState(currentPage > pageNumberLimit ? currentPage - 2 : 1);
-  const [maxPageLimit, setMaxPageLimit] = useState(currentPage > pageNumberLimit ? currentPage + 2 : pageNumberLimit);
+  const [minPageLimit, setMinPageLimit] = useState(
+    currentPage > pageNumberLimit ? currentPage - 2 : 1
+  );
+  const [maxPageLimit, setMaxPageLimit] = useState(
+    currentPage > pageNumberLimit ? currentPage + 2 : pageNumberLimit
+  );
   const pages = useMemo(() => {
     const pagesArray = [];
     for (let i = 1; i <= total_pages; i++) {
@@ -17,6 +20,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
   }, [total_pages]);
 
   const handlePageClick = (event) => {
+    event.preventDefault();
     switch (event.target.dataset.pageType) {
       case "normal":
         return setPageNo(event.target.dataset.page);
@@ -33,9 +37,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
           <>
             {setPageNo(event.target.dataset.page)}
             {setMaxPageLimit(event.target.dataset.page)}
-            {setMinPageLimit(
-              event.target.dataset.page - pageNumberLimit
-            )}
+            {setMinPageLimit(event.target.dataset.page - pageNumberLimit)}
           </>
         );
       default:
@@ -43,7 +45,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
     }
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = (event) => {
+    event.preventDefault();
     if (maxPageLimit - 1 === total_pages) {
       setMaxPageLimit(total_pages);
       setMinPageLimit(total_pages - pageNumberLimit);
@@ -57,7 +60,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
     }
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = (event) => {
+    event.preventDefault();
     if (currentPage + 1 <= total_pages) {
       if (minPageLimit + 1 >= total_pages - pageNumberLimit) {
         setMaxPageLimit(maxPageLimit + 1);
@@ -71,7 +75,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
     }
   };
 
-  const handlePrevPageGroupClick = () => {
+  const handlePrevPageGroupClick = (event) => {
+    event.preventDefault();
     if (minPageLimit - pageNumberLimit > 1) {
       setMinPageLimit(minPageLimit - pageNumberLimit);
       setMaxPageLimit(maxPageLimit - pageNumberLimit);
@@ -83,7 +88,8 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
     }
   };
 
-  const handleNextPageGroupClick = () => {
+  const handleNextPageGroupClick = (event) => {
+    event.preventDefault();
     if (maxPageLimit + pageNumberLimit <= total_pages) {
       setMaxPageLimit(maxPageLimit + pageNumberLimit);
       setMinPageLimit(minPageLimit + pageNumberLimit);
@@ -108,7 +114,11 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
               onClick={handlePageClick}
               title="First Page"
             >
-              <i data-page={1} data-page-type="first" className="fas fa-fast-backward"></i>
+              <i
+                data-page={1}
+                data-page-type="first"
+                className="fas fa-fast-backward"
+              ></i>
             </Link>
           ) : (
             <Link
@@ -230,15 +240,18 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
             <Link
               data-page={total_pages}
               data-page-type="last"
-              className={`page navigate ${currentPage === total_pages
-                ? "active"
-                : ""
-                }`}
+              className={`page navigate ${
+                currentPage === total_pages ? "active" : ""
+              }`}
               onClick={handlePageClick}
               title="Last Page"
               tabIndex="4"
             >
-              <i data-page={total_pages} data-page-type="last" className="fas fa-fast-forward"></i>
+              <i
+                data-page={total_pages}
+                data-page-type="last"
+                className="fas fa-fast-forward"
+              ></i>
             </Link>
           ) : (
             <Link

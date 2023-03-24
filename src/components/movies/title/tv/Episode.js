@@ -1,5 +1,6 @@
 import React from "react";
 import { LevelOne, LevelTwo } from "../../../../constants/AuthRoles";
+import convertIsoData from "../../../../utils/convertIsoDate";
 import useAuth from "../../../../utils/hooks/useAuth";
 import ShowLessText from "../../../utils/ShowLessText";
 import EpisodePoster from "./EpisodePoster";
@@ -24,7 +25,8 @@ const Episode = ({ episode, index }) => {
             <b>Season : </b> {episode.season_number}
           </li>
           <li>
-            <b>Episode Name : </b>{episode.name}
+            <b>Episode Name : </b>
+            {episode.name}
           </li>
           <li>
             <b>Episode Number : </b> {episode.episode_number}
@@ -33,17 +35,23 @@ const Episode = ({ episode, index }) => {
             <b>Run Time : </b> {episode.runtime} Mins
           </li>
           <li>
-            <b>Release Date : </b> {episode.air_date}
+            <b>Release Date : </b> {convertIsoData(episode?.air_date)}
           </li>
           <li>
-            <b>Directors : </b> {episode.directors ? episode.directors.map(person => person).join(',') : "No Data"}
+            <b>Directors : </b>{" "}
+            {episode.directors
+              ? episode.directors.map((person) => person).join(",")
+              : "No Data"}
           </li>
           <li>
-            <b>Overview : </b> <ShowLessText text={episode?.overview} limit={150} />
+            <b>Overview : </b>{" "}
+            <ShowLessText text={episode?.overview} limit={150} />
           </li>
         </ul>
       </div>
-      {LevelOne.includes(auth?.role) && (<div className="download">DownLoad</div>)}
+      {LevelOne.includes(auth?.role) && (
+        <div className="download">DownLoad</div>
+      )}
     </>
   );
 };
@@ -58,8 +66,9 @@ Episode.defaultProps = {
     runtime: 48,
     season_number: 2,
     show_id: 82856,
-    still_path: "https://image.tmdb.org/t/p/w500/o2b0S3rSMhAlfsCRQyD6EsDzqca.jpg",
-    directors: ['No Data']
+    still_path:
+      "https://image.tmdb.org/t/p/w500/o2b0S3rSMhAlfsCRQyD6EsDzqca.jpg",
+    directors: ["No Data"],
   },
 };
 

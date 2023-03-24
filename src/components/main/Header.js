@@ -51,13 +51,13 @@ const Header = () => {
                     </li> */}
           <ToogleTheme className="nav-item">
             <li className="nav-item">
-              <Link title="Toggle theme">
+              <span title="Toggle theme">
                 <img
                   className="nav-img"
                   src={theme === "light" ? day : night}
                   alt={`toggle ${theme} theme`}
                 ></img>
-              </Link>
+              </span>
             </li>
           </ToogleTheme>
 
