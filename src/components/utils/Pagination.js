@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import useTheme from "../../utils/hooks/useTheme";
+import scrollToTop from "../../utils/scrollToTop";
 
 const Pagination = ({ total_pages, currentPage, setPageNo }) => {
   const { theme } = useTheme();
@@ -21,6 +22,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
 
   const handlePageClick = (event) => {
     event.preventDefault();
+    scrollToTop();
     switch (event.target.dataset.pageType) {
       case "normal":
         return setPageNo(event.target.dataset.page);
@@ -58,6 +60,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
       setMaxPageLimit(maxPageLimit - 1);
       setPageNo(currentPage - 1);
     }
+    scrollToTop();
   };
 
   const handleNextPage = (event) => {
@@ -73,6 +76,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
 
       setPageNo(currentPage + 1);
     }
+    scrollToTop();
   };
 
   const handlePrevPageGroupClick = (event) => {
@@ -86,6 +90,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
       setMaxPageLimit(pageNumberLimit);
       setPageNo(1);
     }
+    scrollToTop();
   };
 
   const handleNextPageGroupClick = (event) => {
@@ -99,6 +104,7 @@ const Pagination = ({ total_pages, currentPage, setPageNo }) => {
       setMaxPageLimit(total_pages);
       setPageNo(total_pages);
     }
+    scrollToTop();
   };
   return (
     <>

@@ -54,7 +54,7 @@ const TorrentList = ({ query, provider, pageNo }) => {
                         <span className="info-data">
                           <ShowLessText
                             text={torrent?.Name}
-                            limit={30}
+                            limit={20}
                           ></ShowLessText>
                         </span>
                       </td>

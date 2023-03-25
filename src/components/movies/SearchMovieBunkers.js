@@ -10,7 +10,6 @@ import Pagination from "../utils/Pagination";
 import useAuth from "../../utils/hooks/useAuth";
 
 const SearchMovieBunkers = () => {
-
   const { collectionQuery, setCollectionQuery } = useCollectionSearch();
 
   const { removeAuth } = useAuth();
@@ -32,26 +31,30 @@ const SearchMovieBunkers = () => {
 
   const setPageNo = (pageNo) => {
     setCollectionQuery({ ...collectionQuery, pageNo: pageNo });
-  }
+  };
 
   const fetchData = ({ cancelToken }) => {
-    search({ query: collectionQuery, cancelToken }).then((result) => {
-      setMoviesPage({ ...result });
-      setIsLoading((isLoading) => !isLoading);
-
-    }).catch(error => {
-      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
-      if (error instanceof MovieBunkersException) {
-        if (error?.message.includes('Unauthorized')) {
-          removeAuth();
+    search({ query: collectionQuery, cancelToken })
+      .then((result) => {
+        setMoviesPage({ ...result });
+        setIsLoading((isLoading) => !isLoading);
+      })
+      .catch((error) => {
+        toast.error(error?.message ?? "Something Went Wrong", {
+          autoClose: 3000,
+          position: "top-right",
+        });
+        if (error instanceof MovieBunkersException) {
+          if (error?.message.includes("Unauthorized")) {
+            removeAuth();
+          }
+          setError(error);
+        } else {
+          setError(error);
         }
-        setError(error);
-      } else {
-        setError(error);
-      }
-      setIsLoading((isLoading) => !isLoading);
-    })
-  }
+        setIsLoading((isLoading) => !isLoading);
+      });
+  };
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -61,25 +64,24 @@ const SearchMovieBunkers = () => {
       list: [],
       total_pages: 1,
       total_results: 1,
-    })
+    });
     setIsLoading((isLoading) => !isLoading);
     setTimeout(() => {
-      fetchData({ cancelToken: source.token })
-    }, 500)
+      fetchData({ cancelToken: source.token });
+    }, 500);
 
     return () => {
       source.cancel();
     };
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [collectionQuery, updateState]);
 
   return (
     <>
-
       {isLoading ? <Loader /> : null}
 
-      {moviesPage?.list?.length > 0
-        ? // true
+      {moviesPage?.list?.length > 0 && (
+        // true
         <>
           <div id="results">
             <MoviesList
@@ -89,18 +91,22 @@ const SearchMovieBunkers = () => {
               setState={setUpdateState}
             />
           </div>
-
-          <Pagination
-            total_pages={moviesPage.total_pages}
-            currentPage={parseInt(moviesPage.page)}
-            setPageNo={setPageNo}
-          />
         </>
-        : // false
-        <div className={"error-message"}>
-          {error?.message ?? "No Results Found"}
-        </div>
-      }
+      )}
+
+      {error?.message && (
+        <div className={"error-message"}>{error?.message}</div>
+      )}
+
+      {moviesPage?.list?.length === 0 && !error?.message && !isLoading && (
+        <div className={"error-message"}>No Results Found</div>
+      )}
+
+      <Pagination
+        total_pages={moviesPage.total_pages}
+        currentPage={parseInt(moviesPage.page)}
+        setPageNo={setPageNo}
+      />
 
       <ToastContainer {...toastContainerOptions} />
     </>

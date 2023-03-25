@@ -10,7 +10,6 @@ import useToastify from "../../utils/hooks/useToast";
 import addTitlesDump from "./tmdb/addTitlesDump";
 
 const SearchTmdb = () => {
-
   const { tmdbSearch, setTmdbSearch } = useTmdbSearch();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -28,53 +27,53 @@ const SearchTmdb = () => {
 
   const setPageNo = (pageNo) => {
     setTmdbSearch({ ...tmdbSearch, pageNo: pageNo });
-  }
+  };
 
   const fetchData = ({ cancelToken }) => {
-    searchTmdb({ query: tmdbSearch, cancelToken }).then((result) => {
-      setMoviesPage({ ...result });
-      setIsLoading((isLoading) => !isLoading);
-
-    }).catch((error) => {
-      toast.error(error?.message ?? "Something Went Wrong", { autoClose: 3000, position: "top-right" })
-      if (error instanceof MovieBunkersException) {
-        setError(error);
-      } else {
-        setError(error);
-      }
-      setMoviesPage({})
-      setIsLoading((isLoading) => !isLoading);
-    })
-  }
+    searchTmdb({ query: tmdbSearch, cancelToken })
+      .then((result) => {
+        setMoviesPage({ ...result });
+        setIsLoading((isLoading) => !isLoading);
+      })
+      .catch((error) => {
+        toast.error(error?.message ?? "Something Went Wrong", {
+          autoClose: 3000,
+          position: "top-right",
+        });
+        if (error instanceof MovieBunkersException) {
+          setError(error);
+        } else {
+          setError(error);
+        }
+        setMoviesPage({});
+        setIsLoading((isLoading) => !isLoading);
+      });
+  };
 
   useEffect(() => {
     const source = axios.CancelToken.source();
     setError(null);
-    setMoviesPage({})
+    setMoviesPage({});
     setIsLoading((isLoading) => !isLoading);
     setTimeout(() => {
-      fetchData({ cancelToken: source.token })
-    }, 500)
+      fetchData({ cancelToken: source.token });
+    }, 500);
 
     return () => {
       source.cancel();
     };
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [tmdbSearch]);
 
   return (
     <>
-
       {isLoading ? <Loader /> : null}
 
-      {moviesPage?.list?.length > 0
-        ? // true
+      {moviesPage?.list?.length > 0 && (
+        // true
         <>
           <div id="results">
-            <MoviesList
-              source={"tmdb"}
-              list={moviesPage?.list}
-            />
+            <MoviesList source={"tmdb"} list={moviesPage?.list} />
           </div>
 
           {/* {addTitlesDump(moviesPage?.list)} */}
@@ -85,12 +84,15 @@ const SearchTmdb = () => {
             setPageNo={setPageNo}
           />
         </>
-        : // false
-        <div className={"error-message"}>
-          {error?.message ?? "No Results Found"}
-        </div>
-      }
+      )}
 
+      {error?.message && (
+        <div className={"error-message"}>{error?.message}</div>
+      )}
+
+      {moviesPage?.list?.length === 0 && !error?.message && !isLoading && (
+        <div className={"error-message"}>No Results Found</div>
+      )}
       <ToastContainer {...toastContainerOptions} />
     </>
   );
