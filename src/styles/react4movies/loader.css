@@ -1,7 +1,7 @@
 @import "./variables.css";
 
 .loader-container {
-
+  height: 60vh;
   justify-items: center;
   display: flex;
   flex-direction: column;
