@@ -1,12 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { LevelOne } from "../../../../constants/AuthRoles";
 import convertIsoData from "../../../../utils/convertIsoDate";
 import useAuth from "../../../../utils/hooks/useAuth";
+import useTitle from "../../../../utils/hooks/useTitle";
+import pad from "../../../../utils/pad";
 import ShowLessText from "../../../utils/ShowLessText";
 import SeasonPoster from "./SeasonPoster";
 
 const Season = ({ season }) => {
   const { auth } = useAuth();
+  const { title } = useTitle();
   return (
     <>
       <div className="title">
@@ -37,7 +41,14 @@ const Season = ({ season }) => {
         </ul>
       </div>
       {LevelOne.includes(auth?.role) && (
-        <div className="download">Download</div>
+        <Link
+          className="download"
+          to={`/downloads/torrent-search?query=${encodeURI(
+            `${title?.title} S${pad(season?.season_number ?? 1)}`
+          )}&provider=${"1337x"}&pageNo=1`}
+        >
+          Download
+        </Link>
       )}
     </>
   );

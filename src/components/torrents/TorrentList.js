@@ -117,7 +117,7 @@ const TorrentList = ({ query, provider, pageNo }) => {
             })}
           </>
         ) : (
-          <div className="message">{error}</div>
+          <div className="error-message">{error}</div>
         )}
       </div>
     </>
