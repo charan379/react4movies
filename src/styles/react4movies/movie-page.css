@@ -127,6 +127,9 @@
   padding: 15px;
   border-radius: 10px;
   margin: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white !important;
   background-color: blueviolet;
 }
 
@@ -189,6 +192,9 @@
   padding: 15px;
   border-radius: 10px;
   margin: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white !important;
   background-color: blueviolet;
 }
 

@@ -9,12 +9,10 @@ body {
 
 body.light {
   background-color: var(--bg-light);
-  color: var(--font-color-light);
 }
 
 body.dark {
   background-color: var(--bg-dark);
-  color: var(--font-color-dark);
 }
 div#root {
   /* height: 100vh; */

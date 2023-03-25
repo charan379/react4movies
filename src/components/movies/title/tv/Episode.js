@@ -1,12 +1,16 @@
 import React from "react";
-import { LevelOne, LevelTwo } from "../../../../constants/AuthRoles";
+import { Link } from "react-router-dom";
+import { LevelOne } from "../../../../constants/AuthRoles";
 import convertIsoData from "../../../../utils/convertIsoDate";
 import useAuth from "../../../../utils/hooks/useAuth";
+import useTitle from "../../../../utils/hooks/useTitle";
+import pad from "../../../../utils/pad";
 import ShowLessText from "../../../utils/ShowLessText";
 import EpisodePoster from "./EpisodePoster";
 
-const Episode = ({ episode, index }) => {
+const Episode = ({ episode }) => {
   const { auth } = useAuth();
+  const { title } = useTitle();
   return (
     <>
       <div className="title">
@@ -50,7 +54,16 @@ const Episode = ({ episode, index }) => {
         </ul>
       </div>
       {LevelOne.includes(auth?.role) && (
-        <div className="download">DownLoad</div>
+        <Link
+          className="download"
+          to={`/downloads/torrent-search?query=${encodeURI(
+            `${title?.title} S${pad(episode?.season_number ?? 1)}E${pad(
+              episode?.episode_number ?? 1
+            )}`
+          )}&provider=${"1337x"}&pageNo=1`}
+        >
+          Download
+        </Link>
       )}
     </>
   );

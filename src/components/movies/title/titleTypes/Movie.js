@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import MovieDetails from "../titleDetails/MovieDetails";
