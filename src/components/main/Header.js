@@ -66,7 +66,7 @@ const Header = () => {
               className="nav-item"
               onClick={() => setShwoDropdown(!showDropdown)}
             >
-              <Link title="User Controls">
+              <Link title="User Controls" tabIndex="0">
                 <img className="nav-img" src={user} alt="User Controls"></img>
               </Link>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
