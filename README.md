@@ -39,14 +39,14 @@ React based web client for [MovieBunkers](https://github.com/charan379/moviebunk
 
 ## Screenshots
 
-![site-preview](documentation\screenshots\site.gif)
-![login-preview](documentation\screenshots\login.jpg)
-![sidebar-preview](documentation\screenshots\sidebar.jpg)
-![collection-preview](documentation\screenshots\collection.jpg)
-![title-light-preview](documentation\screenshots\title_modal_light.jpg)
-![title-dark-preview](documentation\screenshots\title_modal_dark.jpg)
-![cast-dark-preview](documentation\screenshots\cast2.jpg)
-![cast-light-preview](documentation\screenshots\cast.jpg)
+![site-preview](documentation/screenshots/site.gif)
+![login-preview](documentation/screenshots/login.jpg)
+![sidebar-preview](documentation/screenshots/sidebar.jpg)
+![collection-preview](documentation/screenshots/collection.jpg)
+![title-light-preview](documentation/screenshots/title_modal_light.jpg)
+![title-dark-preview](documentation/screenshots/title_modal_dark.jpg)
+![cast-dark-preview](documentation/screenshots/cast2.jpg)
+![cast-light-preview](documentation/screenshots/cast.jpg)
 
 ## Installation
 
