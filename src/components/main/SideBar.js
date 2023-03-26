@@ -76,7 +76,7 @@ const SideBar = () => {
                 </b>
                 unkers
               </span>
-              <span className="app-version">version-0.1</span>
+              <span className="app-version">version-2.1.8</span>
             </div>
           </div>
 
