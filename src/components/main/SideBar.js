@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import useCtrlPlusKey from "../../utils/hooks/useCtrlPlusKey";
+import useEscapeKey from "../../utils/hooks/useEscapeKey";
 import useOnOutSideClick from "../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../utils/hooks/useTheme";
 import CollectionSidebar from "./sidebars/CollectionSidebar";
@@ -9,6 +11,7 @@ const SideBar = () => {
   const { theme } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef();
+  const searchRef = useRef(null);
   const discoverPattren = /^\/discover.{0,}/;
   const collectionPattren = /^\/collection.{0,}/;
   const noSidebar = [
@@ -21,11 +24,14 @@ const SideBar = () => {
 
   useOnOutSideClick(
     sidebarRef,
-    () => setIsSidebarOpen(false)
-    // useCallback(() => {
-    //   setIsSidebarOpen(false);
-    // }, [])
+    useCallback(() => {
+      setIsSidebarOpen(false);
+    }, [])
   );
+
+  useEscapeKey(() => setIsSidebarOpen(false));
+
+  useCtrlPlusKey("q", () => setIsSidebarOpen(true), searchRef);
 
   if (noSidebar.some((pattern) => pattern.test(location.pathname))) {
     return null;
@@ -81,6 +87,7 @@ const SideBar = () => {
             loading="eager"
             className={`fas fa-chevron-right toggle ${theme}`}
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            tabIndex="-1"
           ></Link>
         </header>
         {/* Sidebar menu-wrapper */}
@@ -91,7 +98,9 @@ const SideBar = () => {
           <div className={`sidebar-menu`}>
             {discoverPattren.test(location.pathname) && <TmdbSidebar />}
 
-            {collectionPattren.test(location.pathname) && <CollectionSidebar />}
+            {collectionPattren.test(location.pathname) && (
+              <CollectionSidebar searchRef={searchRef} />
+            )}
 
             {/* <ul className="sidebar-menu-links">
               <li className="sidebar-nav-link">

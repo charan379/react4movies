@@ -1,21 +1,25 @@
-import React from 'react'
-import useTheme from '../../../utils/hooks/useTheme';
-import useTmdbSearch from '../../../utils/hooks/useTmdbSearch'
+import React from "react";
+import useCtrlPlusKey from "../../../utils/hooks/useCtrlPlusKey";
+import useTheme from "../../../utils/hooks/useTheme";
+import useTmdbSearch from "../../../utils/hooks/useTmdbSearch";
 
 const TmdbSidebar = () => {
-
   const { theme } = useTheme();
 
-  const { tmdbSearch, setTmdbSearch } = useTmdbSearch();
+  const { tmdbSearch, setTmdbSearch, restTmdbSearch } = useTmdbSearch();
+
+  useCtrlPlusKey("d", restTmdbSearch);
 
   const handleChange = (event) => {
-    
-    setTmdbSearch({ ...tmdbSearch, [event.target.dataset.id]: event.target.value, pageNo: 1 })
-  }
+    setTmdbSearch({
+      ...tmdbSearch,
+      [event.target.dataset.id]: event.target.value,
+      pageNo: 1,
+    });
+  };
 
   return (
-    <form className='sidebar-form'>
-      
+    <form className="sidebar-form">
       {/* title */}
       <li className={`menu-item ${theme}`}>
         <i className="fa fa-search icon"></i>
@@ -27,14 +31,17 @@ const TmdbSidebar = () => {
           value={tmdbSearch.query}
           placeholder="Search..."
           onChange={handleChange}
-          
         />
       </li>
 
       {/* Movie or TV */}
       <li className={`menu-item ${theme}`}>
-        <i className={`${tmdbSearch.type === "tv" ? "fas fa-tv" : "fas fa-film"} icon`} />
-        <label className={`sidebar-select ${theme}`} htmlFor="slct" >
+        <i
+          className={`${
+            tmdbSearch.type === "tv" ? "fas fa-tv" : "fas fa-film"
+          } icon`}
+        />
+        <label className={`sidebar-select ${theme}`} htmlFor="slct">
           <select
             data-form="tmdbSearchForm"
             data-id="type"
@@ -47,7 +54,6 @@ const TmdbSidebar = () => {
             <option value="tv">TV Series</option>
           </select>
         </label>
-
       </li>
 
       {/* year */}
@@ -61,13 +67,10 @@ const TmdbSidebar = () => {
           value={tmdbSearch.year}
           placeholder="Release Year"
           onChange={handleChange}
-          
         ></input>
       </li>
-
     </form>
   );
+};
 
-}
-
-export default TmdbSidebar
+export default TmdbSidebar;

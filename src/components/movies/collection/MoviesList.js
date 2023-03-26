@@ -4,6 +4,7 @@ import MovieBox from "./MovieBox";
 import MovieModal from "../title/MovieModal";
 import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
+import waitForElementById from "../../../utils/waitForElemnetById";
 
 const MoviesList = ({ source, list, state, setState }) => {
   const { theme } = useTheme();
@@ -26,7 +27,6 @@ const MoviesList = ({ source, list, state, setState }) => {
             return (
               <Link
                 title={movie.title}
-                tabIndex="3"
                 id={"box-" + index}
                 key={"box-" + index}
                 onClick={() =>
@@ -36,6 +36,7 @@ const MoviesList = ({ source, list, state, setState }) => {
                     year: movie?.year,
                     title_type: movie.title_type,
                     titleState: source,
+                    index: index,
                   })
                 }
               >
@@ -53,6 +54,7 @@ const MoviesList = ({ source, list, state, setState }) => {
                     unseenByUser: movie?.unseenByUser,
                     starredByUser: movie?.starredByUser,
                     favouriteByUser: movie?.favouriteByUser,
+                    index: index,
                   }}
                 />
               </Link>
@@ -70,6 +72,15 @@ const MoviesList = ({ source, list, state, setState }) => {
               if (source === "moviebunkers") {
                 setState(state + 1);
               }
+
+              setTimeout(() => {
+                waitForElementById(`box-${movieData?.index}`, 3000).then(
+                  (element) => {
+                    element.scrollIntoView();
+                    element.focus();
+                  }
+                );
+              }, 500);
             }}
           />
         ) : null}

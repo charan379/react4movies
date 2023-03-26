@@ -48,7 +48,7 @@ const MovieBox = ({ movieData }) => {
           <span>{movieData.ratting}</span>
         </div>
 
-        <div className="north-east-block ">
+        <div className="north-east-block " id={`box-${movieData?.index}-top`}>
           {movieData?.title_type === "movie" && (
             <span>
               <i className="fas fa-film"></i>

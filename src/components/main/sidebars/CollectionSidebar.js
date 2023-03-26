@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ReactSlider from "react-slider";
 import { Config } from "../../../utils/Config";
@@ -8,11 +8,15 @@ import useTheme from "../../../utils/hooks/useTheme";
 import ReactSelector from "./ReactSelector";
 import iso from "../../../utils/iso369-1.json";
 import scrollToTop from "../../../utils/scrollToTop";
+import useCtrlPlusKey from "../../../utils/hooks/useCtrlPlusKey";
 
-const CollectionSidebar = () => {
+const CollectionSidebar = ({ searchRef }) => {
   const { theme } = useTheme();
 
-  const { collectionQuery, setCollectionQuery } = useCollectionSearch();
+  const { collectionQuery, setCollectionQuery, resetCollectionSearch } =
+    useCollectionSearch();
+
+  useCtrlPlusKey("d", resetCollectionSearch, null, false);
 
   const handleChange = (event) => {
     setCollectionQuery({
@@ -103,6 +107,9 @@ const CollectionSidebar = () => {
       <li className={`menu-item ${theme}`}>
         <i className="fa fa-search icon"></i>
         <input
+          ref={searchRef}
+          id="side-search"
+          autoFocus
           data-form="collectionQueryForm"
           data-id="search"
           name="search"
@@ -110,6 +117,7 @@ const CollectionSidebar = () => {
           value={collectionQuery.search}
           placeholder="Search..."
           onChange={handleChange}
+          tabIndex="0"
         />
       </li>
 
@@ -214,6 +222,7 @@ const CollectionSidebar = () => {
       <li className={`menu-item ${theme}`}>
         <i className="fas fa-users icon"></i>
         <ReactSlider
+          key={"age-slider-" + collectionQuery?.restTime}
           data-form="collectionQueryForm"
           data-id="age"
           className={`horizontal-slider ${theme}`}
@@ -225,7 +234,7 @@ const CollectionSidebar = () => {
           ]}
           max={26}
           min={0}
-          minDistance={5}
+          minDistance={6}
           renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
           onChange={handleAgeChange}
         />
