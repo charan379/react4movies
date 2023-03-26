@@ -1,6 +1,7 @@
 {
   "short_name": "MovieBunkers",
   "name": "react4movies",
+  "version": "2.1.8",
   "icons": [
     {
       "src": "favicon.ico",
