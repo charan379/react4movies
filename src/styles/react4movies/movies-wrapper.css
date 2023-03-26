@@ -221,7 +221,7 @@ Height = ?
   width: 20px;
   display: flex;
   flex-wrap: wrap;
-  border-radius: 5px 0px 5px 5px;
+  border-radius: 3px 0 3px 3px;
   padding: 0px;
   align-items: center;
   justify-content: center;
