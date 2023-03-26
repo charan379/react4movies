@@ -54,13 +54,13 @@ React based web client for [MovieBunkers](https://github.com/charan379/moviebunk
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`GENERATE_SOURCEMAP`
-`REACT_APP_MOVIEBUNKERS_API`
-`REACT_APP_TMDB_API_WRAPPER`
-`REACT_APP_TORRENT_API`
-`REACT_APP_GUEST_USERNAME`
-`REACT_APP_GUEST_PASSWORD`
-`NODE_ENV`
+`GENERATE_SOURCEMAP`  
+`REACT_APP_MOVIEBUNKERS_API`  
+`REACT_APP_TMDB_API_WRAPPER`  
+`REACT_APP_TORRENT_API` 
+`REACT_APP_GUEST_USERNAME`  
+`REACT_APP_GUEST_PASSWORD`  
+`NODE_ENV`  
 
 ##### Clone this repository
 
