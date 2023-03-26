@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# react4movies :clapper:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![VERSION](https://img.shields.io/badge/VERSION-v2.1.8-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-26--March--2023-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/286d2ee8-b609-4db1-886a-99b2f3a4bab2/deploy-status)](https://app.netlify.com/sites/moviebunkers01/deploys)
 
-## Available Scripts
+React based web client for [MovieBunkers](https://github.com/charan379/moviebunkers)
 
-In the project directory, you can run:
+## `Features`
 
-### `npm start`
+- Add movies to collection from tmdb
+- Search movies
+- Know where movie is available for streaming
+- Filters
+  - filter by language
+  - filter by genre
+  - filter by movie/tv
+  - filter by Age/Film Board Certification
+  - filter by seen/unseen
+  - filter by favourite
+  - filter by starred
+- Sort
+  - year asc
+  - year desc
+  - added asc
+  - added desc
+- Set movie as seee, unseen, star, favourite
+- Toggle between light/dark themes
+- Multi user view
+  - Guest
+  - User
+  - Moderator
+  - Admin
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Keyboard Shortcuts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- CTRL+Q => Opens Sidebar, If sidebar already opened focus search field
+- CTRL+D => Clears all filters and search query
+- Esc => closes sidebar, movie modal
 
-### `npm test`
+## Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![site-preview](documentation\screenshots\site.gif)
+![login-preview](documentation\screenshots\login.jpg)
+![sidebar-preview](documentation\screenshots\sidebar.jpg)
+![collection-preview](documentation\screenshots\collection.jpg)
+![title-light-preview](documentation\screenshots\title_modal_light.jpg)
+![title-dark-preview](documentation\screenshots\title_modal_dark.jpg)
+![cast-dark-preview](documentation\screenshots\cast2.jpg)
+![cast-light-preview](documentation\screenshots\cast.jpg)
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### Environment Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run this project, you will need to add the following environment variables to your .env file
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`GENERATE_SOURCEMAP`
+`REACT_APP_MOVIEBUNKERS_API`
+`REACT_APP_TMDB_API_WRAPPER`
+`REACT_APP_TORRENT_API`
+`REACT_APP_GUEST_USERNAME`
+`REACT_APP_GUEST_PASSWORD`
+`NODE_ENV`
 
-### `npm run eject`
+##### Clone this repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+    git clone https://github.com/charan379/react4movies.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+    cd react4movies
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+##### To run dev env
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+    npm start
+```
 
-## Learn More
+##### Build
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+    npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### Deployment
 
-### Code Splitting
+```bash
+    npx serve -s build -l port-number
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Todo
 
-### Analyzing the Bundle Size
+- Code cleaning
+- delete movie
+- update movie from tmdb
+- admin page to manage users
+- password reset page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Requirements
 
-### Making a Progressive Web App
+#### Backend APIs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [MovieBunkers API](https://github.com/charan379/moviebunkers) it is main backend server for which react4movies acts as frontend
+- [tmdb-api-wrapper](https://github.com/charan379/tmdb-api-wrapper) for retriving movies data from Tmdb
+- [torrent-api](https://github.com/charan379/torrent-api) in case you want to include (optional & not recommended)
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+[![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-brightgreen)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
-### Deployment
+react4movies is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You should have received a copy of the GNU Affero General Public License along with react4movies. If not, see https://www.gnu.org/licenses/agpl-3.0.en.html.
