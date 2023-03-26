@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
+import useEscapeKey from "../../../utils/hooks/useEscapeKey";
 import useOnOutSideClick from "../../../utils/hooks/useOnOutSideClick";
 import useTheme from "../../../utils/hooks/useTheme";
 import makePrettyUrl from "../../../utils/makePrettyUrl";
@@ -13,6 +14,9 @@ const MovieModal = ({ data, open, close }) => {
   };
 
   useOnOutSideClick(movieModalRef, useCallback(close, []));
+
+  useEscapeKey(close);
+
   if (!open) return null;
 
   return (
@@ -59,7 +63,6 @@ const MovieModal = ({ data, open, close }) => {
           >
             Full details
           </a>
-
         </div>
       </div>
     </>
