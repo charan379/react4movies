@@ -40,7 +40,7 @@ const WatchProviders = ({ tmdb_id, title_type, country }) => {
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        axios.get(`${Config.TMDB_API}/providers/${title_type}/${tmdb_id}/${country ?? 'IN'}`)
+        axios.get(`${Config.TMDB_API}/providers/${title_type}/${tmdb_id}/${country ?? 'IN'}`, { cancelToken: source.token })
             .then(result => {
                 setError("")
                 setMainLink(result.data?.tmdb_link);
