@@ -5,6 +5,7 @@ const initialState = {
   role: "",
   createdAt: "",
   updatedAt: "",
+  token:"",
 };
 
 const UserReducer = (state = initialState, action) => {
