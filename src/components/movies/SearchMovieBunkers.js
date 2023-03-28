@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useCollectionSearch from "../../utils/hooks/useCollectionSearch";
 import useToastify from "../../utils/hooks/useToast";
-import { search } from "../../helpers/moviebunkers.requests";
-import MovieBunkersException from "../../utils/MovieBunkersException";
 import MoviesList from "./collection/MoviesList";
 import Loader from "../utils/Loader";
 import Pagination from "../utils/Pagination";
 import useAuth from "../../utils/hooks/useAuth";
+import useMovieBunkersAPI from "../../utils/hooks/useMovieBunkersAPI";
 
 const SearchMovieBunkers = () => {
   const { collectionQuery, setCollectionQuery } = useCollectionSearch();
 
   const { removeAuth } = useAuth();
+
+  const { movieBunkersAPI } = useMovieBunkersAPI();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,24 +35,23 @@ const SearchMovieBunkers = () => {
   };
 
   const fetchData = ({ cancelToken }) => {
-    search({ query: collectionQuery, cancelToken })
-      .then((result) => {
-        setMoviesPage({ ...result });
-        setIsLoading((isLoading) => !isLoading);
+    movieBunkersAPI.get(`/titles`, { params: { ...collectionQuery }, cancelToken: (cancelToken ?? null) })
+      .then((response) => {
+        setMoviesPage({ ...response?.data });
       })
       .catch((error) => {
-        toast.error(error?.message ?? "Something Went Wrong", {
-          autoClose: 3000,
-          position: "top-right",
-        });
-        if (error instanceof MovieBunkersException) {
-          if (error?.message.includes("Unauthorized")) {
-            removeAuth();
-          }
-          setError(error);
-        } else {
-          setError(error);
+        if (axios.isCancel(error)) {
+          console.log("Request Cancelled");
+          return 0;
+        };
+        const message = error?.response?.data?.error?.message ?? error?.message ?? "Something went wrong";
+        toast.error(message, { autoClose: 2000, position: "top-right", delay: 50 });
+        setError(message)
+        if (message.includes("Please")) {
+          removeAuth();
         }
+      })
+      .finally(() => {
         setIsLoading((isLoading) => !isLoading);
       });
   };

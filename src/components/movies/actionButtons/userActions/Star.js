@@ -1,69 +1,67 @@
-import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Config } from '../../../../utils/Config';
+import useMovieBunkersAPI from '../../../../utils/hooks/useMovieBunkersAPI';
 import useTitle from '../../../../utils/hooks/useTitle';
 
 const Star = ({ toast }) => {
-
-    const API = Config.MOVIEBUNKERS_API;
-
     const { title, setTitle } = useTitle();
 
+    const [isLoading, setIsLoading] = useState(false);
 
-    const addToStarredTitles = (base64TitleId) => {
-        // const toastId = toast.loading("Adding to starred...", { position: "top-right", closeButton: true, autoClose: 1000 });
-        axios.post(`${API}/userdata/add-to-starred/${base64TitleId}`, {}, { withCredentials: true })
+    const { movieBunkersAPI } = useMovieBunkersAPI();
+
+    const addToStarredTitles = (event, base64TitleId) => {
+        event.preventDefault();
+        setIsLoading(true);
+        movieBunkersAPI.post(`/userdata/add-to-starred/${base64TitleId}`)
             .then((response) => {
-                // toast.update(toastId, {
-                //     render: response.data?.message,
-                //     type: "success",
-                //     isLoading: false,
-                //     autoClose: 2000,
-                //     delay: 50,
-                // });
                 setTitle({ ...title, starredByUser: true })
-            }).catch((error) => {
+                // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
+            })
+            .catch((error) => {
                 const errMsg = error?.response?.data?.error?.message
-                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 3000, position: "top-right", closeButton: true })
+                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 2000, position: "top-right", closeButton: true })
+            }).finally(() => {
+                setIsLoading(false);
             })
     }
 
-    const removeFromStarredTitles = (base64TitleId) => {
-        // const toastId = toast.loading("Removing from starred...", { position: "top-right", closeButton: true, autoClose: 1000 });
-        axios.post(`${API}/userdata/remove-from-starred/${base64TitleId}`, {}, { withCredentials: true })
+    const removeFromStarredTitles = (event, base64TitleId) => {
+        event.preventDefault();
+        setIsLoading(true);
+        movieBunkersAPI.post(`/userdata/remove-from-starred/${base64TitleId}`)
             .then((response) => {
-                // toast.update(toastId, {
-                //     render: response.data?.message,
-                //     type: "success",
-                //     autoClose: 2000,
-                //     delay: 50,
-                // });
-                setTitle({ ...title, starredByUser: false })
-            }).catch((error) => {
-                const errMsg = error?.response?.data?.error?.message
-
-                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 3000, position: "top-right", closeButton: true })
+                setTitle({ ...title, seenByUser: true, starredByUser: false })
+                // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
             })
-
+            .catch((error) => {
+                const errMsg = error?.response?.data?.error?.message
+                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 2000, position: "top-right", closeButton: true })
+            }).finally(() => {
+                setIsLoading(false);
+            })
     }
-
 
     return (
 
         <>
             {title?.starredByUser && (
-                <Link className="action-button" onClick={() => removeFromStarredTitles(btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
-                    <span style={{ color: "rgba(255, 172, 0, 1)" }}>
-                        <i className="fas fa-star fa-lg"></i>
-                    </span>
+                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                    {isLoading
+                        ? <span><i class="fas fa-circle-notch fa-pulse fa-lg"></i></span>
+                        : <span style={{ color: "rgba(255, 172, 0, 1)" }}>
+                            <i className="fas fa-star fa-lg"></i>
+                        </span>
+                    }
                 </Link>
             )}
 
             {!title?.starredByUser && (
-                <Link className="action-button" onClick={() => addToStarredTitles(btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
                     <span>
-                        <i className="far fa-star fa-lg"></i>
+                        {isLoading
+                            ? <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            : <i className="far fa-star fa-lg"></i>}
                     </span>
                 </Link>
             )}
