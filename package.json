@@ -1,6 +1,6 @@
 {
   "name": "react4movies",
-  "version": "2.1.8",
+  "version": "2.2.0",
   "private": true,
   "homepage": "https://dev.local/",
   "description": "Web Client for moviebunkers API",
