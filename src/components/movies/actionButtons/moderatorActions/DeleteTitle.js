@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useMovieBunkersAPI from '../../../../utils/hooks/useMovieBunkersAPI';
 import useTitle from '../../../../utils/hooks/useTitle';
 
@@ -8,8 +8,6 @@ const DeleteTitle = ({ toast }) => {
     const { title } = useTitle();
 
     const location = useLocation();
-
-    const navigate = useNavigate();
 
     const { movieBunkersAPI } = useMovieBunkersAPI();
 
@@ -23,7 +21,7 @@ const DeleteTitle = ({ toast }) => {
                 toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true });
                 setTimeout(() => {
                     if (/^\/view.{0,}/.test(location.pathname)) {
-                        navigate(-1)
+                        window.close();
                     } else {
                         const closeBtn = document.getElementsByClassName('closeBtn')[0];
                         const clickEvent = new MouseEvent('click', { bubbles: true });
