@@ -31,7 +31,7 @@ const Star = ({ toast }) => {
         setIsLoading(true);
         movieBunkersAPI.post(`/userdata/remove-from-starred/${base64TitleId}`)
             .then((response) => {
-                setTitle({ ...title, seenByUser: true, starredByUser: false })
+                setTitle({ ...title, starredByUser: false })
                 // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
             })
             .catch((error) => {
