@@ -1,44 +1,46 @@
-import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { newTitle } from '../../../../helpers/moviebunkers.requests';
+import useMovieBunkersAPI from '../../../../utils/hooks/useMovieBunkersAPI';
 import useTitle from '../../../../utils/hooks/useTitle';
 
 const AddTitle = ({ toast }) => {
 
     const { title } = useTitle();
 
-    const addTitle = ({ title }) => {
-        const toastId = toast.loading("Adding new title...", { position: "top-right" });
-        newTitle({ title, cancelToken: axios.CancelToken.source().token }).then((result) => {
-            toast.update(toastId, {
-                render: result?.message,
-                type: "success",
-                isLoading: false,
-                autoClose: 2000,
-                delay: 50,
-            });
-        }).catch((error) => {
-            toast.update(toastId, {
-                render: error?.message ?? "Somthing went wrong",
-                type: "error",
-                isLoading: false,
-                autoClose: 4000,
-            });
-        })
+    const { movieBunkersAPI } = useMovieBunkersAPI();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const addTitle = (event, title) => {
+        event.preventDefault();
+        setIsLoading(true)
+        movieBunkersAPI.post(`/titles/new`, { ...title })
+            .then((response) => {
+                toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true });
+            })
+            .catch((error) => {
+                const errMsg = error?.response?.data?.error?.message
+                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 2000, position: "top-right", closeButton: true })
+            }).finally(() => {
+                setIsLoading(false)
+            })
+
     }
-
-
     return (
         <Link
             className="action-button"
-            onClick={() => addTitle({ title: title })}>
-            <span>
-                <i
-                    className="fas fa-cloud-download-alt fa-lg">
-                </i>
-                Add to collection
-            </span>
+            onClick={(event) => addTitle(event, title)}>
+
+            {isLoading
+                ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                    Adding....
+                </span>
+                : <span>
+                    <i className="fas fa-cloud-download-alt fa-lg"></i>
+                    Add to collection
+                </span>
+            }
+
         </Link>
     )
 }
