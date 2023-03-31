@@ -19,6 +19,7 @@ const SideBar = () => {
     /^\/login.{0,}/,
     /^\/test.{0,}/,
     /^\/downloads.{0,}/,
+    /^\/update.{0,}/,
   ];
   const location = useLocation();
 

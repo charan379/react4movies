@@ -5,6 +5,7 @@ import MovieModal from "../title/MovieModal";
 import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 import waitForElementById from "../../../utils/waitForElemnetById";
+import { Config } from "../../../utils/Config";
 
 const MoviesList = ({ source, list, state, setState }) => {
   const { theme } = useTheme();
@@ -44,7 +45,7 @@ const MoviesList = ({ source, list, state, setState }) => {
                   movieData={{
                     id: movie?._id ?? movie?.tmdb_id,
                     index: index,
-                    poster_path: movie?.poster_path,
+                    poster_path: source === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
                     title: movie.title,
                     title_type: movie.title_type,
                     year: movie?.year,

@@ -6,7 +6,7 @@ const useMovieBunkersAPI = () => {
     const { auth } = useAuth();
 
     const movieBunkersAPI = axios.create({
-        timeout: 10000,
+        timeout: 60000,
         baseURL: Config.MOVIEBUNKERS_API,
         headers: {
             Authorization: `Bearer ${auth?.token}`,
