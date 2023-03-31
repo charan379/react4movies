@@ -1,4 +1,5 @@
 import React from "react";
+import { Config } from "../../../../utils/Config";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import MovieDetails from "../titleDetails/MovieDetails";
@@ -24,7 +25,7 @@ const Tv = () => {
         <div className="movie-poster">
           <MoviePoster
             data={{
-              url: tv?.poster_path,
+              url: tv?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + tv?.poster_path : tv?.poster_path,
 
               alt: tv?.title,
 

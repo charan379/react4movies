@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Config } from "../../../../utils/Config";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import MovieDetails from "../titleDetails/MovieDetails";
@@ -25,7 +26,7 @@ const Movie = () => {
         <div className="movie-poster">
           <MoviePoster
             data={{
-              url: movie?.poster_path,
+              url: movie?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
 
               alt: movie?.title,
 

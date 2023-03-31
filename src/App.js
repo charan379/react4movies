@@ -16,6 +16,7 @@ import Title from "./components/movies/title/Title";
 import SearchMovieBunkers from "./components/movies/SearchMovieBunkers";
 import SearchTmdb from "./components/movies/SearchTmdb";
 import TorrentsHome from "./components/torrents/TorrentsHome";
+import UpdateAll from "./components/movies/UpdateAll";
 
 const App = () => {
   return (
@@ -40,6 +41,11 @@ const App = () => {
             {/* Level one Routes */}
             <Route element={<RouteProtector allowedRoles={LevelOne} />}>
               <Route path="/downloads/torrent-search" element={<TorrentsHome />} />
+            </Route>
+
+            {/* Level two Routes */}
+            <Route element={<RouteProtector allowedRoles={LevelTwo} />}>
+              <Route path="/update-all" element={<UpdateAll />} />
             </Route>
 
             {/* Public Routes */}
