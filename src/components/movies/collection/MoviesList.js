@@ -45,7 +45,8 @@ const MoviesList = ({ source, list, state, setState }) => {
                   movieData={{
                     id: movie?._id ?? movie?.tmdb_id,
                     index: index,
-                    poster_path: source === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
+                    // poster_path: source === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
+                    poster_path: movie?.poster_path,
                     title: movie.title,
                     title_type: movie.title_type,
                     year: movie?.year,

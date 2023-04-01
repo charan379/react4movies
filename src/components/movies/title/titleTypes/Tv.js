@@ -25,7 +25,8 @@ const Tv = () => {
         <div className="movie-poster">
           <MoviePoster
             data={{
-              url: tv?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + tv?.poster_path : tv?.poster_path,
+              // url: tv?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + tv?.poster_path : tv?.poster_path,
+              url: tv?.poster_path,
 
               alt: tv?.title,
 
