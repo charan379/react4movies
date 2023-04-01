@@ -21,7 +21,6 @@ const Login = () => {
 
   const forwardToRequestedRoute = (requestedRoute, cancelToken) => {
     const toastId = toast.loading("Fetching User details...", { position: "top-right", });
-    console.log(auth?.token)
     movieBunkersAPI.get(`/auth/who-am-i`, { cancelToken: cancelToken })
       .then((response) => {
         setAuth({ ...response?.data });

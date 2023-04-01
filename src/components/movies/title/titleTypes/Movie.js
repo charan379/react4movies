@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import { Config } from "../../../../utils/Config";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
@@ -8,7 +7,6 @@ import MoviePoster from "../titleDetails/MoviePoster";
 
 const Movie = () => {
   const { theme } = useTheme();
-  const location = useLocation();
 
   const { title: movie } = useTitle();
 
@@ -26,7 +24,8 @@ const Movie = () => {
         <div className="movie-poster">
           <MoviePoster
             data={{
-              url: movie?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
+              // url: movie?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
+              url: movie?.poster_path,
 
               alt: movie?.title,
 

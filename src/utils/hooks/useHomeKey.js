@@ -4,7 +4,6 @@ const KEY_NAME_ESC = "Home";
 const KEY_EVENT_TYPE = "keyup";
 
 function useHomeKey(handleOpen) {
-    console.log("df")
   const handleHomeKey = useCallback(
     (event) => {    
       if (event.key === KEY_NAME_ESC) {

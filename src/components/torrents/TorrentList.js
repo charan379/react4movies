@@ -26,7 +26,6 @@ const TorrentList = ({ query, provider, pageNo }) => {
       })
       .catch((error) => {
         if (!axios.isCancel(error)) {
-          console.log(error);
           setError(error?.response?.data?.errorMessage ?? error?.message);
           setLoading(false);
         }

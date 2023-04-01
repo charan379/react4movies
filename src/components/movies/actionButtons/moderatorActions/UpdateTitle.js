@@ -27,7 +27,6 @@ const UpdateTitle = ({ toast }) => {
     }
 
     const updateTitle = (event, titleId) => {
-        console.log('u[da')
         event.preventDefault();
         setIsLoading(true);
         if (tmdbTitle) {
