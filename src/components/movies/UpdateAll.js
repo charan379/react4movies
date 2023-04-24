@@ -5,7 +5,7 @@ import useTmdbAPI from '../../utils/hooks/useTmdbAPI'
 import Logger from '../utils/Logger';
 import ProgressBar from '../utils/ProgresBar'
 import formatTime from '../../utils/formatTime';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const UpdateAll = () => {
     const { theme } = useTheme();
