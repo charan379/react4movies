@@ -4,7 +4,7 @@ import { Config } from "../Config";
 const useTmdbAPI = () => {
 
     const tmdbAPI = axios.create({
-        timeout: 120000,
+        timeout: 60000,
         baseURL: Config.TMDB_API,
     });
 

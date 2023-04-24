@@ -7,6 +7,7 @@ import useToastify from "../../utils/hooks/useToast"; // Import another custom h
 import { Config } from "../../utils/Config"; // Import a configuration file
 import useProgressBar from "../../utils/hooks/useProgressBar"; // Import yet another custom hook
 import { debounce } from "lodash";
+import useTmdbAPI from "../../utils/hooks/useTmdbAPI";
 
 
 const SearchTmdb = () => {
@@ -15,7 +16,7 @@ const SearchTmdb = () => {
   const { increaseProgress20, increaseProgressCustom, completeProgressBar } = useProgressBar(); // A hook for displaying a progress bar
   const { tmdbSearch, setTmdbSearch } = useTmdbSearch(); // A hook for managing search parameters
   const { ToastContainer, toastContainerOptions, toast } = useToastify(); // A hook for displaying toast messages
-
+  const { tmdbAPI } = useTmdbAPI();
 
   // Define state variables that will be used in this component
   const [isLoading, setIsLoading] = useState(false); // A flag indicating whether data is being loaded
@@ -44,7 +45,7 @@ const SearchTmdb = () => {
     increaseProgressCustom(10); // Increase the progress bar by 10%
 
     try {
-      const response = await axios.get(`${Config.TMDB_API}/search`, { params: { ...tmdbSearch }, cancelToken });
+      const response = await tmdbAPI.get(`/search`, { params: { ...tmdbSearch }, cancelToken });
       increaseProgress20(); // Increase the progress bar by 20%
       setMoviesPage({ ...response?.data }); // Set the movies page state with the API response data
     } catch (error) {
