@@ -6,6 +6,7 @@ import TmdbSearchReducer from "./TmdbSearchReducer";
 import CollectionSearchReducer from "./CollectionSearchReducer"
 import TitleReducer from "./TitleReducer"
 import TmdbTitleReducer from "./TmdbTitleReducer"
+import ProgressReducer from "./ProgressReducer"
 
 const rootReducer = combineReducers({
   UserReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   CollectionSearchReducer,
   TitleReducer,
   TmdbTitleReducer,
+  ProgressReducer
 });
 
 const persistConfig = {
