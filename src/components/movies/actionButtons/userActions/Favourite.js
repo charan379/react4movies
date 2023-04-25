@@ -5,41 +5,44 @@ import useTitle from '../../../../utils/hooks/useTitle';
 
 const Favourite = ({ toast }) => {
 
+    // Custom hook to manage the document title
     const { title, setTitle } = useTitle();
 
+    // Custom hook to manage API requests
     const { movieBunkersAPI } = useMovieBunkersAPI();
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const addToFavouriteTitles = (event, base64TitleId) => {
+    // Add the current title to the user's favourite titles
+    const addToFavouriteTitles = async (event, base64TitleId) => {
         event.preventDefault();
         setIsLoading(true);
-        movieBunkersAPI.post(`/userdata/add-to-favourite/${base64TitleId}`)
-            .then((response) => {
-                setTitle({ ...title, favouriteByUser: true })
-                // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true })
-            }).catch((error) => {
-                const errMsg = error?.response?.data?.error?.message
-                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 2000, position: "top-right", closeButton: true, delay: 50 })
-            }).finally(() => {
-                setIsLoading(false);
-            })
+        try {
+            const response = await movieBunkersAPI.post(`/userdata/add-to-favourite/${base64TitleId}`);
+            setTitle({ ...title, favouriteByUser: true });
+            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true })
+        } catch (error) {
+            const errMsg = error?.response?.data?.error?.message;
+            toast.error(errMsg ?? "Something went wrong", { autoClose: 2000, position: "top-right", closeButton: true, delay: 50 });
+        } finally {
+            setIsLoading(false);
+        }
     }
 
-    const removeFromFavouriteTitles = (event, base64TitleId) => {
+    // Remove the current title from the user's favourite titles
+    const removeFromFavouriteTitles = async (event, base64TitleId) => {
         event.preventDefault();
         setIsLoading(true);
-        movieBunkersAPI.post(`/userdata/remove-from-favourite/${base64TitleId}`)
-            .then((response) => {
-                setTitle({ ...title, favouriteByUser: false })
-                // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
-            })
-            .catch((error) => {
-                const errMsg = error?.response?.data?.error?.message
-                toast.error(errMsg ?? "Somthing went wrong", { autoClose: 2000, position: "top-right", closeButton: true })
-            }).finally(() => {
-                setIsLoading(false);
-            })
+        try {
+            const response = await movieBunkersAPI.post(`/userdata/remove-from-favourite/${base64TitleId}`);
+            setTitle({ ...title, favouriteByUser: false });
+            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
+        } catch (error) {
+            const errMsg = error?.response?.data?.error?.message;
+            toast.error(errMsg ?? "Something went wrong", { autoClose: 2000, position: "top-right", closeButton: true });
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (

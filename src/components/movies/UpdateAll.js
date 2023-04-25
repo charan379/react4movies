@@ -6,6 +6,7 @@ import Logger from '../utils/Logger';
 import ProgressBar from '../utils/ProgresBar'
 import formatTime from '../../utils/formatTime';
 import { Link } from 'react-router-dom';
+import useSeasonsUpdater from '../../utils/hooks/useSeasonsUpdater';
 
 const UpdateAll = () => {
     const { theme } = useTheme();
@@ -13,6 +14,7 @@ const UpdateAll = () => {
     const [title, setTitle] = useState({});
     const { movieBunkersAPI } = useMovieBunkersAPI();
     const { tmdbAPI } = useTmdbAPI();
+    const { updateSeasons } = useSeasonsUpdater();
     const [movies, setMovies] = useState([]);
     const [totalMovies, setTotalMovies] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,8 +42,11 @@ const UpdateAll = () => {
                 setCurrentIndex(i + 1);
                 setTitle({ ...movie });
                 const res = await tmdbAPI.get(`${movie?.title_type}/${movie?.tmdb_id}`);
-                const updatedMovie = res?.data;
-                await movieBunkersAPI.put(`/titles/update/id/${btoa(movie?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')}`, updatedMovie);
+                const update = res?.data;
+                const { data: { title: updatedTitle } } = await movieBunkersAPI.put(`/titles/update/id/${btoa(movie?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')}`, update);
+                if (updatedTitle?.title_type === 'tv') {
+                    await updateSeasons({ tmdbTvId: updatedTitle?.tmdb_id, moviebunkersTitleId: updatedTitle?._id, numberOfSeasons: updatedTitle?.number_of_seasons })
+                }
                 setState(Math.floor(((i + 1) / movies.length) * 100));
                 setUpdated((updated) => [...updated, { name: `${movie?.title} : ${movie?.tmdb_id}`, status: 'Updated' }])
             } catch (error) {

@@ -8,12 +8,23 @@ import CollectionSidebar from "./sidebars/CollectionSidebar";
 import TmdbSidebar from "./sidebars/TmdbSidebar";
 
 const SideBar = () => {
+  // Get the current theme using a custom hook
   const { theme } = useTheme();
+
+  // Initialize state to control whether the sidebar is open or not
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Create a ref to the sidebar DOM element
   const sidebarRef = useRef();
+
+  // Create a ref to the search input DOM element
   const searchRef = useRef(null);
+
+  // Define regular expressions to match the current URL path
   const discoverPattren = /^\/discover.{0,}/;
   const collectionPattren = /^\/collection.{0,}/;
+
+  // Define regular expressions to match paths where the sidebar should not appear
   const noSidebar = [
     /^\/view.{0,}/,
     /^\/login.{0,}/,
@@ -21,8 +32,11 @@ const SideBar = () => {
     /^\/downloads.{0,}/,
     /^\/update.{0,}/,
   ];
+
+  // Get the current location using the useLocation hook from react-router-dom
   const location = useLocation();
 
+  // Add a listener to close the sidebar when the user clicks outside of it
   useOnOutSideClick(
     sidebarRef,
     useCallback(() => {
@@ -30,22 +44,26 @@ const SideBar = () => {
     }, [])
   );
 
+  // Add a listener to close the sidebar when the user presses the escape key
   useEscapeKey(() => setIsSidebarOpen(false));
 
+  // Add a listener to open the sidebar when the user presses "Ctrl + Q"
   useCtrlPlusKey("q", () => setIsSidebarOpen(true), searchRef);
 
+  // If the current URL matches one of the patterns in noSidebar, don't render the sidebar
   if (noSidebar.some((pattern) => pattern.test(location.pathname))) {
     return null;
   }
 
+  // Render the sidebar
   return (
     <>
-      {/* sidebar */}
+      {/* Sidebar */}
       <nav
         ref={sidebarRef}
         className={`sidebar ${isSidebarOpen ? "" : "close"} ${theme}`}
       >
-        {/* sidebar header */}
+        {/* Sidebar header */}
         <header>
           {/* App Logo and App Name */}
           <div className="sidebar-image-text">
@@ -102,15 +120,6 @@ const SideBar = () => {
             {collectionPattren.test(location.pathname) && (
               <CollectionSidebar searchRef={searchRef} />
             )}
-
-            {/* <ul className="sidebar-menu-links">
-              <li className="sidebar-nav-link">
-                <a href="#">
-                  <i className="bx bx-home-alt icon"></i>
-                  <span className="text sidebar-nav-text">DashBoard</span>
-                </a>
-              </li>
-            </ul> */}
           </div>
         </div>
       </nav>

@@ -5,7 +5,6 @@ import MovieModal from "../title/MovieModal";
 import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 import waitForElementById from "../../../utils/waitForElemnetById";
-import { Config } from "../../../utils/Config";
 
 const MoviesList = ({ source, list, state, setState }) => {
   const { theme } = useTheme();
