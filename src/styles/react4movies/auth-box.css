@@ -19,13 +19,13 @@
 .auth-box.light {
   color: var(--font-color-light);
   background: var(--ui-elemnet-light);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .auth-box.dark {
   color: var(--font-color-dark);
   background: var(--ui-elemnet-dark);
-  box-shadow: 0 15px 25px rgba(3, 3, 117, 0.6);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 .auth-box .closeBtn {
@@ -84,7 +84,7 @@
 }
 
 .auth-box form .form-button,
-.auth-box form .logout-button{
+.auth-box form .logout-button {
   position: relative;
   display: inline-block;
   color: inherit;
@@ -137,14 +137,11 @@
     0 0 10px #f76606bf;
 }
 
-
-
 .auth-box .form-button span,
 .auth-box .logout-button span {
   position: absolute;
   display: block;
 }
-
 
 .auth-box .form-button span:nth-child(1),
 .auth-box .logout-button span:nth-child(1) {
@@ -155,7 +152,6 @@
   background: linear-gradient(90deg, transparent, #7a66ed);
   animation: btn-anim1 1s linear infinite;
 }
-
 
 @keyframes btn-anim1 {
   0% {
@@ -168,7 +164,7 @@
 }
 
 .auth-box .form-button span:nth-child(2),
-.auth-box .logout-button span:nth-child(2){
+.auth-box .logout-button span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -177,8 +173,6 @@
   animation: btn-anim2 1s linear infinite;
   animation-delay: 0.25s;
 }
-
-
 
 @keyframes btn-anim2 {
   0% {
@@ -236,7 +230,6 @@
   .auth-box {
     width: 380px;
   }
- 
 }
 
 @media (max-width: 400px) {

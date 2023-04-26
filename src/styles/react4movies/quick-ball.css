@@ -19,11 +19,11 @@
 }
 
 .quick-ball-shadow.light {
-  background-color: rgba(0, 0, 0, 0.218);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .quick-ball-shadow.dark {
-  background-color: rgba(255, 255, 255, 0.218);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 .quick-ball {
