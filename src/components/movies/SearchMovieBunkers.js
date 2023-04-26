@@ -17,7 +17,7 @@ const SearchMovieBunkers = () => {
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
   // Define state variables that will be used in this component
-  const [updateState, setUpdateState] = useState(0);
+  const [updateList, setUpdateList] = useState(0); // A State variable to re-render list 
   const [isLoading, setIsLoading] = useState(false); // A flag indicating whether data is being loaded
   const [moviesPage, setMoviesPage] = useState({ // An object that holds information about the search results
     page: 1, // The current page number
@@ -70,7 +70,7 @@ const SearchMovieBunkers = () => {
     debouncedFetchData({ cancelToken: source.token }); // Use the debounced version of fetchData
     return () => source.cancel();
     // eslint-disable-next-line
-  }, [collectionQuery, updateState]);
+  }, [collectionQuery, updateList]);
 
   return (
     <>
@@ -82,8 +82,8 @@ const SearchMovieBunkers = () => {
             <MoviesList
               source={"moviebunkers"}
               list={moviesPage?.list}
-              state={updateState}
-              setState={setUpdateState}
+              currentUpdateCount={updateList}
+              setUpdateCount={setUpdateList}
             />
           </div>
         </>
