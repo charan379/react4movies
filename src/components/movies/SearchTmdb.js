@@ -4,7 +4,6 @@ import axios from "axios"; // Import the Axios library for making API requests
 import Pagination from "../utils/Pagination"; // Import another custom component
 import useTmdbSearch from "../../utils/hooks/useTmdbSearch"; // Import a custom hook
 import useToastify from "../../utils/hooks/useToast"; // Import another custom hook
-import { Config } from "../../utils/Config"; // Import a configuration file
 import useProgressBar from "../../utils/hooks/useProgressBar"; // Import yet another custom hook
 import { debounce } from "lodash";
 import useTmdbAPI from "../../utils/hooks/useTmdbAPI";
