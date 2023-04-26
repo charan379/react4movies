@@ -75,7 +75,7 @@ const Star = ({ toast }) => {
                     {/* Display a loading spinner if the button is in a loading state */}
                     {isLoading
                         ? <span><i class="fas fa-circle-notch fa-pulse fa-lg"></i></span>
-                        : <span style={{ color: "rgba(255, 172, 0, 1)" }}>
+                        : <span style={{ color: "rgb(255 149 0)" }}>
                             <i className="fas fa-star fa-lg"></i>
                         </span>
                     }
