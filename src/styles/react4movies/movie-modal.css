@@ -17,10 +17,10 @@
 }
 
 .movie-overlay.light {
-  background-color: var(--movie-modal-bg-light);
+  background-color: var(--bg-light);
 }
 .movie-overlay.dark {
-  background-color: var(--movie-modal-bg-dark);
+  background-color: var(--bg-dark);
 }
 
 .movie-modalContainer {
