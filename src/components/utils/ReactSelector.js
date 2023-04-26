@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from "react-select";
-import useTheme from '../../../utils/hooks/useTheme';
+import useTheme from '../../utils/hooks/useTheme';
 
 
 const ReactSelector = ({ options, handleSelectChange, selectedOption, name }) => {

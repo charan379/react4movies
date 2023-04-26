@@ -5,7 +5,7 @@ import ReactSlider from "react-slider";
 import { Config } from "../../../utils/Config";
 import useCollectionSearch from "../../../utils/hooks/useCollectionSearch";
 import useTheme from "../../../utils/hooks/useTheme";
-import ReactSelector from "./ReactSelector";
+import ReactSelector from "../../utils/ReactSelector";
 import iso from "../../../utils/iso369-1.json";
 import scrollToTop from "../../../utils/scrollToTop";
 import useCtrlPlusKey from "../../../utils/hooks/useCtrlPlusKey";
@@ -74,7 +74,7 @@ const CollectionSidebar = ({ searchRef }) => {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
 
     return () => {
       source.cancel();
@@ -94,7 +94,7 @@ const CollectionSidebar = ({ searchRef }) => {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
 
     return () => {
       source.cancel();
@@ -154,10 +154,10 @@ const CollectionSidebar = ({ searchRef }) => {
               value: collectionQuery.language,
               label: collectionQuery.language
                 ? iso.map((lang) => {
-                    if (lang["639_1_code"] === collectionQuery.language) {
-                      return lang["english_name"];
-                    }
-                  })
+                  if (lang["639_1_code"] === collectionQuery.language) {
+                    return lang["english_name"];
+                  }
+                })
                 : "All",
             }}
             options={allLanguages}
