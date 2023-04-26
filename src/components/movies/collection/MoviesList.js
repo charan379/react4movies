@@ -6,32 +6,36 @@ import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 import waitForElementById from "../../../utils/waitForElemnetById";
 
-const MoviesList = ({ source, list, state, setState }) => {
+const MoviesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
+  // Get the current theme from the useTheme hook
   const { theme } = useTheme();
 
+  // currentUpdateCount hooks for the modal
   const [openModal, setOpenModal] = useState(false);
-
   const [movieData, setMovieData] = useState({});
 
-  const handleOnClick = (data) => {
-    setMovieData({ ...data });
+  // Event handler for when a movie box is clicked
+  const handleOnClick = ({ id, title, year, title_type, titleState, index, }) => {
+    // Set the movie data and open the modal
+    setMovieData({ id, title, year, title_type, titleState, index });
     setOpenModal(true);
   };
+
   return (
     <>
-      {/* Movies List  */}
+      {/* Movies List */}
       <div className={`movies ${theme}`}>
-        {/* if list source = tmdb */}
-        {list?.length > 0 &&
-          list.map((movie, index) => {
+        {/* If list source is from TMDB search */}
+        {list?.length > 0 && // Check that the list is not empty
+          list.map((movie, index) => { // Map over the list to create MovieBox components
             return (
               <Link
                 title={movie.title}
                 id={"box-" + index}
                 key={"box-" + index}
-                onClick={() =>
+                onClick={() => // Set the movie data and open the modal when a MovieBox is clicked
                   handleOnClick({
-                    id: movie?._id ?? movie?.tmdb_id,
+                    id: movie?._id ?? movie?.tmdb_id, // Use the _id field if it exists, otherwise use the tmdb_id field
                     title: movie.title,
                     year: movie?.year,
                     title_type: movie.title_type,
@@ -40,40 +44,40 @@ const MoviesList = ({ source, list, state, setState }) => {
                   })
                 }
               >
+                {/* Pass props to the MovieBox component */}
                 <MovieBox
-                  movieData={{
-                    id: movie?._id ?? movie?.tmdb_id,
-                    index: index,
-                    // poster_path: source === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
-                    poster_path: movie?.poster_path,
-                    title: movie.title,
-                    title_type: movie.title_type,
-                    year: movie?.year,
-                    ratting: movie?.ratting,
-                    titleState: source,
-                    seenByUser: movie?.seenByUser,
-                    unseenByUser: movie?.unseenByUser,
-                    starredByUser: movie?.starredByUser,
-                    favouriteByUser: movie?.favouriteByUser,
-                    index: index,
-                  }}
+                  index={index}
+                  id={movie?._id ?? movie?.tmdb_id}
+                  titleState={source}
+                  title={movie.title}
+                  title_type={movie.title_type}
+                  poster_path={movie?.poster_path}
+                  year={movie?.year}
+                  ratting={movie?.ratting}
+                  seenByUser={movie?.seenByUser}
+                  unseenByUser={movie?.unseenByUser}
+                  starredByUser={movie?.starredByUser}
+                  favouriteByUser={movie?.favouriteByUser}
                 />
               </Link>
             );
           })}
 
+        {/* If the modal is open, display it */}
         {openModal ? (
           <MovieModal
-            id={movieData?._id ?? movieData?.tmdb_id}
-            titleState={source}
-            data={movieData}
+            title={movieData}
             open={openModal}
             close={() => {
+              // Close the modal
               setOpenModal(false);
+
+              // If the source is moviebunkers, update the currentUpdateCount to force a re-render
               if (source === "moviebunkers") {
-                setState(state + 1);
+                setUpdateCount(currentUpdateCount + 1);
               }
 
+              // Scroll to and focus the movie box that was clicked
               setTimeout(() => {
                 waitForElementById(`box-${movieData?.index}`, 3000).then(
                   (element) => {
@@ -90,39 +94,15 @@ const MoviesList = ({ source, list, state, setState }) => {
   );
 };
 
-// Default Props
-MoviesList.defaultProps = {
-  data: {
-    source: "tmdb",
-    movieList: [
-      {
-        id: 1,
-        link: "url",
-        poster: "poster path",
-        title: "Movie Title 1",
-        title_type: "movie",
-        year: 1998,
-        ratting: 7.4,
-      },
-      {
-        id: 2,
-        link: "url",
-        poster: "poster path",
-        title: "Movie Title 2",
-        title_type: "movie",
-        year: 1999,
-        ratting: 7.5,
-      },
-    ],
-  },
+
+// Define the prop types for MoviesList
+
+const propTypes = {
+  source: PropTypes.string.isRequired,
+  list: PropTypes.array.isRequired,
+  currentUpdateCount: PropTypes.number,
+  setUpdateCount: PropTypes.func,
 };
 
-//  Prop-Types
 
-MoviesList.propTypes = {
-  data: PropTypes.shape({
-    source: PropTypes.string,
-    movieList: PropTypes.array,
-  }),
-};
 export default MoviesList;
