@@ -12,43 +12,43 @@ const ReactSelector = ({ options, handleSelectChange, selectedOption, name }) =>
         option: (defaultStyles, state) => ({
             ...defaultStyles,
             color: theme === "light" && state.isSelected
-                ? "#DDDDDD"
+                ? "#c8d9ec"
                 : theme === "dark" && state.isSelected
-                    ? "#383838"
+                    ? "#020d1a"
                     : theme === "light" && state.isFocused
-                        ? "#FFFF"
+                        ? "#FFFFFF"
                         : theme === "dark" && state.isFocused
-                            ? '#FFFF'
+                            ? '#FFFFFF'
                             : theme === "light"
-                                ? "#383838"
-                                : "#DDDDDD",
+                                ? "#020d1a"
+                                : "#c8d9ec",
 
             backgroundColor: theme === "light" && state.isSelected
-                ? "#383838"
+                ? "#020d1a"
                 : theme === "dark" && state.isSelected
-                    ? "#DDDDDD"
+                    ? "#c8d9ec"
                     : theme === "light" && state.isFocused
                         ? "#3498db"
                         : theme === "dark" && state.isFocused
                             ? '#3498db'
                             : theme === "light"
-                                ? "#DDDDDD"
-                                : "#383838",
+                                ? "#c8d9ec"
+                                : "#020d1a",
             cursor: "pointer",
 
         }),
 
         control: (defaultStyles) => ({
             ...defaultStyles,
-            backgroundColor: theme === "light" ? "#DDDDDD" : "#333333",
+            backgroundColor: theme === "light" ? "#c8d9ec" : "#22303c",
             cursor: "pointer",
             border: "none",
             boxShadow: "none",
         }),
 
-        singleValue: (defaultStyles) => ({ ...defaultStyles, color: theme === "light" ? "#383838" : "#DDDDDD", cursor: "pointer", }),
+        singleValue: (defaultStyles) => ({ ...defaultStyles, color: theme === "light" ? "#020d1a" : "#c8d9ec", cursor: "pointer", }),
 
-        input: (defaultStyles) => ({ ...defaultStyles, color: theme === "light" ? "#383838" : "#DDDDDD", cursor: "pointer", }),
+        input: (defaultStyles) => ({ ...defaultStyles, color: theme === "light" ? "#020d1a" : "#c8d9ec", cursor: "pointer", }),
 
     }
 

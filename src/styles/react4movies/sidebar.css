@@ -23,13 +23,13 @@
 }
 
 .sidebar.light {
-  background-color: var(--hsf-bg-light);
+  background-color: var(--bg-light);
   /* background-color: red; */
   color: var(--font-color-light);
 }
 
 .sidebar.dark {
-  background-color: var(--hsf-bg-dark);
+  background-color: var(--bg-dark);
   color: var(--font-color-dark);
 }
 
@@ -308,7 +308,8 @@ header .sidebar-image-text .sidebar-header-text {
 }
 
 .sidebar-select select {
-  transition: opacity var(---trans-sidebar-toggle), display var(---trans-sidebar-toggle), width var(---trans-sidebar-toggle);
+  transition: opacity var(---trans-sidebar-toggle),
+    display var(---trans-sidebar-toggle), width var(---trans-sidebar-toggle);
 }
 
 .sidebar-select.light select {
