@@ -6,7 +6,7 @@ import useTheme from "../../../utils/hooks/useTheme";
 import makePrettyUrl from "../../../utils/makePrettyUrl";
 import Title from "./Title";
 
-const MovieModal = ({ title, open, close }) => {
+const TitleModal = ({ title, open, close }) => {
   // Get the current theme using the `useTheme` hook
   const { theme } = useTheme();
 
@@ -87,7 +87,7 @@ const MovieModal = ({ title, open, close }) => {
 };
 
 // Define the prop types for the MovieModal component
-MovieModal.propTypes = {
+TitleModal.propTypes = {
   title: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     titleState: PropTypes.string,
@@ -99,4 +99,4 @@ MovieModal.propTypes = {
   close: PropTypes.func.isRequired,
 };
 
-export default MovieModal;
+export default TitleModal;

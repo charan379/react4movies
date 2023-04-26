@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import MovieBox from "./MovieBox";
-import MovieModal from "../title/MovieModal";
+import TitleModal from "../title/TitleModal";
 import useTheme from "../../../utils/hooks/useTheme";
 import { Link } from "react-router-dom";
 import waitForElementById from "../../../utils/waitForElemnetById";
@@ -65,7 +65,7 @@ const MoviesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
 
         {/* If the modal is open, display it */}
         {openModal ? (
-          <MovieModal
+          <TitleModal
             title={movieData}
             open={openModal}
             close={() => {
