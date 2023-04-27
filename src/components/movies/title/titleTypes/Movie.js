@@ -1,15 +1,15 @@
 import React from "react";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
-import MovieDetails from "../titleDetails/MovieDetails";
-import MoviePoster from "../titleDetails/MoviePoster";
+import MovieDetails from "../titleCompnents/MovieDetails";
+import MoviePoster from "../titleCompnents/MoviePoster";
 
 // Movie component
 const Movie = () => {
   // Get the theme from the useTheme hook
   const { theme } = useTheme();
 
-  // Get the title of the movie from the useTitle hook
+  // Get the title from the useTitle hook
   const { title: movie } = useTitle();
 
   // Render the movie page

@@ -53,6 +53,11 @@
 .movie-page .tv-seasons {
   grid-area: tv-seasons;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   padding: 5px;
   text-align: left;
   font-size: small;
@@ -71,7 +76,7 @@
 }
 .tv-seasons .episode {
   display: grid;
-  grid-template-columns: 2fr 7fr 1fr;
+  grid-template-columns: 2fr 6fr 2fr;
   grid-template-rows: 0.2fr 0.8fr;
   grid-template-areas:
     "title title title"
@@ -81,6 +86,7 @@
   align-items: center;
   align-content: center;
   margin-bottom: 10px;
+  width: calc(100% - 30px);
 }
 
 .tv-seasons.light .episode {
@@ -135,17 +141,20 @@
 
 .tv-seasons .season {
   display: grid;
-  grid-template-columns: 1.5fr 7fr 1.5fr;
-  grid-template-rows: 0.2fr 0.8fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 0.4fr 0.3fr 0.2fr;
   grid-template-areas:
-    "title title title"
-    "poster details download";
+    "title"
+    "poster"
+    "details"
+    "download";
   border-radius: 5px;
   justify-content: center;
   align-items: center;
   align-content: center;
   margin-bottom: 25px;
   cursor: pointer;
+  max-width: 350px;
 }
 
 .tv-seasons.light .season {

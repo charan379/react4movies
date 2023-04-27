@@ -1,27 +1,31 @@
 import React from "react";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
-import MovieDetails from "../titleDetails/MovieDetails";
-import MoviePoster from "../titleDetails/MoviePoster";
+import MovieDetails from "../titleCompnents/MovieDetails";
+import MoviePoster from "../titleCompnents/MoviePoster";
 import Seasons from "../tv/Seasons";
 
+// Tv component
 const Tv = () => {
+  // Get the theme from the useTheme hook
   const { theme } = useTheme();
 
+  // Get the title from the useTitle hook
   const { title: tv } = useTitle();
 
   return (
     <>
-      {/* movie page */}
-      <div className={`movie-page ${theme}`}>
-        {/* movie title */}
-        <div className="movie-title">
+      <div className={`movie-page ${theme}`}>{/* Movie page */}
+        <div className="movie-title">{/* Movie title */}
+          {/* Render the movie title and year */}
           {tv?.title}
-          <small> ({tv?.year})</small>
+          <small>
+            ({tv?.year})
+          </small>
         </div>
 
-        {/* movie poster */}
-        <div className="movie-poster">
+        <div className="movie-poster">{/* Movie poster */}
+          {/* Render the movie poster */}
           <MoviePoster
             url={tv?.poster_path}
             alt={tv?.title}
@@ -29,8 +33,8 @@ const Tv = () => {
           />
         </div>
 
-        {/* movie details */}
-        <div className="movie-details">
+        <div className="movie-details">{/* Movie details */}
+          {/* Render the movie details */}
           <MovieDetails />
         </div>
 
