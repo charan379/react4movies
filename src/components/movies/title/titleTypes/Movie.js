@@ -1,41 +1,40 @@
 import React from "react";
-import { Config } from "../../../../utils/Config";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import MovieDetails from "../titleDetails/MovieDetails";
 import MoviePoster from "../titleDetails/MoviePoster";
 
+// Movie component
 const Movie = () => {
+  // Get the theme from the useTheme hook
   const { theme } = useTheme();
 
+  // Get the title of the movie from the useTitle hook
   const { title: movie } = useTitle();
 
+  // Render the movie page
   return (
     <>
-      {/* movie page */}
-      <div className={`movie-page ${theme}`}>
-        {/* movie title */}
-        <div className="movie-title">
+      <div className={`movie-page ${theme}`}>{/* Movie page */}
+        <div className="movie-title">{/* Movie title */}
+          {/* Render the movie title and year */}
           {movie?.title}
-          <small> ({movie?.year})</small>
+          <small>
+            ({movie?.year})
+          </small>
         </div>
 
-        {/* movie poster */}
-        <div className="movie-poster">
+        <div className="movie-poster">{/* Movie poster */}
+          {/* Render the movie poster */}
           <MoviePoster
-            data={{
-              // url: movie?.state === 'moviebunkers' ? Config.MOVIEBUNKERS_IMAGES + "/" + movie?.poster_path : movie?.poster_path,
-              url: movie?.poster_path,
-
-              alt: movie?.title,
-
-              tagline: movie?.tagline,
-            }}
+            url={movie?.poster_path}
+            alt={movie?.title}
+            tagline={movie?.tagline}
           />
         </div>
 
-        {/* movie details */}
-        <div className="movie-details">
+        <div className="movie-details">{/* Movie details */}
+          {/* Render the movie details */}
           <MovieDetails />
         </div>
       </div>
@@ -43,4 +42,5 @@ const Movie = () => {
   );
 };
 
+// Export the Movie component
 export default Movie;

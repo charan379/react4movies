@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import convertIsoData from "../../../../utils/convertIsoDate";
+import convertIsoDate from "../../../../utils/convertIsoDate";
 import useTheme from "../../../../utils/hooks/useTheme";
 import useTitle from "../../../../utils/hooks/useTitle";
 import ShowLessNames from "../../../utils/ShowLessNames";
@@ -8,28 +8,35 @@ import MovieCast from "./MovieCast";
 import WatchProviders from "./WatchProviders";
 
 const MovieDetails = () => {
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // useTheme custom hook to get theme data
 
-  const { title } = useTitle();
+  const { title } = useTitle(); // useTitle custom hook to get movie/TV show details
 
-  const [showCast, setShowCast] = useState(false);
+  const [showCast, setShowCast] = useState(false); // state variable to toggle displaying of cast list
 
   return (
-    <div className={`movie-info-box ${theme}`}>
-      {/* genres contrainer */}
-      <div className={`genres-container ${theme}`}>
-        {title?.genres.map((genre, index) => {
-          return (
-            <div key={index} className="genre">
-              {genre}
-            </div>
-          );
-        })}
-      </div>
+    // Render movie details 
+    <div className={`movie-info-box ${theme}`}> {/* movie info box */}
 
-      {title?.languages?.length > 0 && (
-        // languages-container
-        <div className={`languages-container ${theme}`}>
+      {/* Display the list of genres, if available */}
+      {(title?.genres instanceof Array && title?.genres?.length > 0) && (
+        <>
+          <div className={`genres-container ${theme}`}> {/* genres contrainer */}
+            {title.genres.map((genre, index) => {
+              return (
+                <div key={index}
+                  className="genre">
+                  {genre}
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+
+      {/* Display the list of languages, if available */}
+      {(title?.genres instanceof Array && title?.languages?.length > 0) && (
+        <div className={`languages-container ${theme}`}> {/* languages container */}
           <h6>Languages</h6>
           <div className="languages">
             {title.languages.map((language, index) => {
@@ -46,55 +53,44 @@ const MovieDetails = () => {
           </div>
         </div>
       )}
-      {/* info box */}
-      <div className="movie-info">
-        {/* title */}
-        <div className="info-item">
-          <b>Title : </b>
-          {title?.title}
+
+      <div className="movie-info"> {/* movie meta data */}
+        <div className="info-item"> {/* title */}
+          <b>Title : </b>{title?.title}
         </div>
 
-        {/* Original Languaage */}
-        <div className="info-item">
-          <b>Original Language : </b>
-          {title?.original_language?.english_name}
+        <div className="info-item"> {/* Original Languaage */}
+          <b>Original Language : </b> {title?.original_language?.english_name}
         </div>
 
-        {/* title type */}
-        <div className="info-item">
+        <div className="info-item"> {/* title type */}
           <b>Title Type : </b> {(title?.title_type).toUpperCase()}
         </div>
 
-        {/* tmdb id */}
-        <div className="info-item">
-          <b>TMDB ID : </b>
-          {title?.tmdb_id}
+        <div className="info-item"> {/* tmdb id */}
+          <b>TMDB ID : </b> {title?.tmdb_id}
         </div>
 
-        {/* imdb id */}
-        <div className="info-item">
-          <b>IMDB ID : </b>
-          {title?.imdb_id}
+        {title?.imdb_id && (
+          <div className="info-item"> {/* imdb id */}
+            <b>IMDB ID : </b> {title?.imdb_id}
+          </div>
+        )}
+
+        <div className="info-item"> {/* ratting */}
+          <b>Ratting : </b> {title?.ratting ?? 0}
         </div>
 
-        {/* ratting */}
-        <div className="info-item">
-          <b>Ratting : </b>
-          {title?.ratting ?? 0}
-        </div>
-
-        {/* censor certification */}
-        <div className="info-item">
+        <div className="info-item"> {/* censor certification */}
           <b>Censor Certificate : </b>
           {title?.age_rattings.find(
             (certificate) => certificate.country === "IN"
           )?.ratting ?? "MB-26"}
         </div>
 
-        {/* production companies */}
-
-        {title?.production_companies?.length > 0 && (
-          <div className="info-item">
+        {/* Display the list of production companies, if available */}
+        {(title?.production_companies instanceof Array && title?.production_companies?.length > 0) && (
+          <div className="info-item">  {/* production companies */}
             <b>Production Companies : </b>
             <ShowLessNames
               commaSepratedText={title?.production_companies
@@ -105,10 +101,9 @@ const MovieDetails = () => {
           </div>
         )}
 
-        {/* production countries */}
-
-        {title?.production_countries?.length > 0 && (
-          <div className="info-item">
+        {/* Display the list of production countries, if available */}
+        {(title?.production_countries instanceof Array && title?.production_countries?.length > 0) && (
+          <div className="info-item"> {/* production countries */}
             <b>Production Countries : </b>
             <ShowLessNames
               commaSepratedText={title?.production_countries
@@ -119,13 +114,12 @@ const MovieDetails = () => {
           </div>
         )}
 
-        {/* Movie Directors */}
         {title?.title_type === "movie" && (
           <>
-            <div className="info-item">
+            <div className="info-item"> {/* Movie Directors */}
               <b>Director : </b>
-
-              {title?.directors?.length > 0 && (
+              {/* Display the list of directors, if available */}
+              {(title?.directors instanceof Array && title?.directors?.length > 0) && (
                 <ShowLessNames
                   commaSepratedText={title.directors
                     ?.map((director) => director)
@@ -135,8 +129,7 @@ const MovieDetails = () => {
               )}
             </div>
 
-            {/* movie runtime */}
-            <div className="info-item">
+            <div className="info-item"> {/* movie runtime */}
               <b>Rumtime : </b>
               {title?.runtime ?? 0} minutes
             </div>
@@ -145,8 +138,8 @@ const MovieDetails = () => {
 
         {title?.title_type === "tv" && (
           <>
-            {/* show creators */}
-            {title?.created_by?.length > 0 && (
+            {/* Display the list of show creators, if available */}
+            {(title?.created_by instanceof Array && title?.created_by?.length > 0) && (
               <div className="info-item">
                 <b>Creators : </b>
                 <ShowLessNames
@@ -189,7 +182,7 @@ const MovieDetails = () => {
           <>
             <div className="info-item">
               <b>Release Date : </b>
-              {convertIsoData(title?.release_date)}
+              {convertIsoDate(title?.release_date)}
             </div>
           </>
         )}
@@ -240,7 +233,7 @@ const MovieDetails = () => {
           </div>
         ) : null}
 
-        {title?.cast && showCast && <MovieCast />}
+        {title?.cast && showCast && <MovieCast cast={title?.cast} />}
       </div>
     </div>
   );
