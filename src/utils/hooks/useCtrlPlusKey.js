@@ -19,7 +19,9 @@ const useCtrlPlusKey = (
         // call our callback method
         callMethodIfCtrlS();
         if (refToFocus) {
-          refToFocus?.current.focus();
+          setTimeout(() => {
+            refToFocus?.current.focus();
+          }, 50);
         }
 
         if (reloadTrue) {
