@@ -3,14 +3,19 @@ import useCtrlPlusKey from "../../../utils/hooks/useCtrlPlusKey";
 import useTheme from "../../../utils/hooks/useTheme";
 import useTmdbSearch from "../../../utils/hooks/useTmdbSearch";
 
-const TmdbSidebar = () => {
+const TmdbSidebar = ({ searchRef }) => {
+  // Get the current theme using the `useTheme` hook
   const { theme } = useTheme();
 
+  // Get the current search query and related functions using the `useTmdbSearch` hook
   const { tmdbSearch, setTmdbSearch, restTmdbSearch } = useTmdbSearch();
 
+  // Use the `useCtrlPlusKey` hook to reset the search query when the "Ctrl + d" key combination is pressed
   useCtrlPlusKey("d", restTmdbSearch);
 
+  // Define a function to handle changes in the search input fields
   const handleChange = (event) => {
+    // Update the search query state with the new value
     setTmdbSearch({
       ...tmdbSearch,
       [event.target.dataset.id]: event.target.value,
@@ -19,11 +24,14 @@ const TmdbSidebar = () => {
   };
 
   return (
+    // Render a form with search input fields
     <form className="sidebar-form">
-      {/* title */}
+      {/* Search title */}
       <li className={`menu-item ${theme}`}>
         <i className="fa fa-search icon"></i>
+        {/* Render an input field for the search query, using the `searchRef` prop to focus on this field when the component is mounted */}
         <input
+          ref={searchRef}
           data-form="tmdbSearchForm"
           data-id="query"
           name="query"
@@ -34,13 +42,11 @@ const TmdbSidebar = () => {
         />
       </li>
 
-      {/* Movie or TV */}
+      {/* Search type */}
       <li className={`menu-item ${theme}`}>
-        <i
-          className={`${
-            tmdbSearch.type === "tv" ? "fas fa-tv" : "fas fa-film"
-          } icon`}
-        />
+        {/* Render an icon for the search type (movie or TV series) */}
+        <i className={`${tmdbSearch.type === "tv" ? "fas fa-tv" : "fas fa-film"} icon`} />
+        {/* Render a dropdown select field for the search type */}
         <label className={`sidebar-select ${theme}`} htmlFor="slct">
           <select
             data-form="tmdbSearchForm"
@@ -56,9 +62,11 @@ const TmdbSidebar = () => {
         </label>
       </li>
 
-      {/* year */}
+      {/* Search year */}
       <li className={`menu-item ${theme}`}>
+        {/* Render an icon for the search year */}
         <i className="fa fa-calendar icon"></i>
+        {/* Render an input field for the search year */}
         <input
           data-form="tmdbSearchForm"
           data-id="year"

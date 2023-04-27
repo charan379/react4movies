@@ -115,8 +115,12 @@ const SideBar = () => {
           onClick={() => setIsSidebarOpen(true)}
         >
           <div className={`sidebar-menu`}>
-            {discoverPattren.test(location.pathname) && <TmdbSidebar />}
+            {/* Display the TmdbSidebar component if the current path matches the discover pattern */}
+            {discoverPattren.test(location.pathname) && (
+              <TmdbSidebar searchRef={searchRef} />
+            )}
 
+            {/* Display the CollectionSidebar component if the current path matches the collection pattern */}
             {collectionPattren.test(location.pathname) && (
               <CollectionSidebar searchRef={searchRef} />
             )}

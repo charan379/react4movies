@@ -1,105 +1,153 @@
 import axios from "axios";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSlider from "react-slider";
-import { Config } from "../../../utils/Config";
 import useCollectionSearch from "../../../utils/hooks/useCollectionSearch";
 import useTheme from "../../../utils/hooks/useTheme";
 import ReactSelector from "../../utils/ReactSelector";
-import iso from "../../../utils/iso369-1.json";
+import iso369Language from "../../../utils/iso369-1.json";
 import scrollToTop from "../../../utils/scrollToTop";
 import useCtrlPlusKey from "../../../utils/hooks/useCtrlPlusKey";
+import useMovieBunkersAPI from "../../../utils/hooks/useMovieBunkersAPI";
 
 const CollectionSidebar = ({ searchRef }) => {
+  // get the current theme from the ThemeProvider
   const { theme } = useTheme();
 
-  const { collectionQuery, setCollectionQuery, resetCollectionSearch } =
-    useCollectionSearch();
+  // Import custom hooks
+  const { movieBunkersAPI } = useMovieBunkersAPI();
+  const { collectionQuery, setCollectionQuery, resetCollectionSearch } = useCollectionSearch();
 
+  // Define state variables
+  const [allLanguages, setAllLanguages] = useState([{ value: "", label: "All" }]);
+  const [allGenres, setAllGenres] = useState([{ value: "", label: "All" }]);
+
+  // Memoize options for better performance
+  const memoizedLanguageOptions = useMemo(() => allLanguages, [allLanguages]);
+  const memoizedGenreOptions = useMemo(() => allGenres, [allGenres]);
+
+  // Add keyboard shortcut for resetting search
   useCtrlPlusKey("d", resetCollectionSearch, null, false);
 
+  // Event handlers for updating search parameters
+
+  // Updates the search parameters when input field value changes
   const handleChange = (event) => {
     setCollectionQuery({
       ...collectionQuery,
-      [event.target.dataset.id]: event.target.value,
-      pageNo: 1,
+      [event.target.dataset.id]: event.target.value, // Update the search parameter with the input field value
+      pageNo: 1, // Reset the page number to 1
     });
-    scrollToTop();
+    scrollToTop(); // Scroll to top of page
   };
 
+  // Updates the search parameters when age filter changes
   const handleAgeChange = (ageLimit) => {
     setCollectionQuery({
       ...collectionQuery,
-      "age.gte": ageLimit[0],
-      "age.lte": ageLimit[1],
-      pageNo: 1,
+      "age.gte": ageLimit[0], // Update minimum age limit
+      "age.lte": ageLimit[1], // Update maximum age limit
+      pageNo: 1, // Reset the page number to 1
     });
-    scrollToTop();
+    scrollToTop(); // Scroll to top of page
   };
 
+  // Updates the search parameters when filter toggle switches
   const handleFilterToggle = (event) => {
     setCollectionQuery({
       ...collectionQuery,
-      [event.target.dataset.id]: event.target.dataset.toggle,
-      pageNo: 1,
+      [event.target.dataset.id]: event.target.dataset.toggle, // Update the search parameter with the filter toggle value
+      pageNo: 1, // Reset the page number to 1
     });
-    scrollToTop();
+    scrollToTop(); // Scroll to top of page
   };
 
+  // Updates the search parameters when a select option is chosen
   const handleSelectChange = (selectedOption, event) => {
     setCollectionQuery({
       ...collectionQuery,
-      [event.name]: selectedOption.value,
-      pageNo: 1,
+      [event.name]: selectedOption.value, // Update the search parameter with the selected option value
+      pageNo: 1, // Reset the page number to 1
     });
-    scrollToTop();
+    scrollToTop(); // Scroll to top of page
   };
 
-  const allLanguages = [{ value: "", label: "All" }];
-  const allGenres = [{ value: "", label: "All" }];
+  /**
+   * Fetches the available languages from the API and updates the state with them.
+   * 
+   * @param {CancelTokenSource} source - The cancel token source to use for the request.
+   * @param {function} setAllLanguages - The state update function for the languages.
+   */
+  const fetchAvailableLanguages = async (source, setAllLanguages) => {
+    try {
+      // Make the API request to get the available languages.
+      const res = await movieBunkersAPI.get(`/titles/available-languages`, { cancelToken: source.token });
 
+      // Map the response data to the format expected by the select input.
+      const allLanguages = res?.data?.map((element) => ({
+        value: element?.ISO_639_1_code,
+        label: element?.english_name,
+      })) || [];
+
+      // Update the state with the new languages.
+      setAllLanguages((prevLanguages) => [...prevLanguages, ...allLanguages,]);
+    } catch (error) {
+      // Get error message from response, or use a generic message.
+      const message = error?.response?.data?.error?.message ?? error?.message ?? "Something went wrong";
+      // Handle the cancellation error separately from other errors.
+      if (axios.isCancel(error)) {
+        console.log("Request cancelled:", message);
+      } else {
+        console.log("Error fetching available languages:", message);
+      }
+    }
+  };
+
+  /**
+    * Fetches the available genres from the API and updates the state with them.
+    * 
+    * @param {CancelTokenSource} source - The cancel token source to use for the request.
+    * @param {function} setAllGenres - The state update function for the genres.
+    */
+  const fetchAvailableGenres = async (source, setAllGenres) => {
+    try {
+      // Make the API request to get available genres
+      const res = await movieBunkersAPI.get(`/titles/available-genres`, { cancelToken: source.token });
+
+      // Map the response data to an array of objects with value and label properties
+      const allGenres = res?.data?.map((element) => ({
+        value: element,
+        label: element,
+      })) || [];
+
+      // Append the new genres to the existing list of genres using the setAllGenres updater function
+      setAllGenres((prevGenres) => [...prevGenres, ...allGenres]);
+    } catch (error) {
+      // Get error message from response, or use a generic message.
+      const message = error?.response?.data?.error?.message ?? error?.message ?? "Something went wrong";
+      // Handle errors by logging the appropriate message
+      if (axios.isCancel(error)) {
+        console.log("Request cancelled:", message);
+      } else {
+        console.log("Error fetching available genres:", message);
+      }
+    }
+  };
+
+
+
+  // Fetch available languages and genres on component mount
   useEffect(() => {
     const source = axios.CancelToken.source();
-    axios
-      .get(`${Config.MOVIEBUNKERS_API}/titles/available-languages`, {
-        cancelToken: source.token,
-      })
-      .then((res) => {
-        if (res?.data && res?.data?.length) {
-          res.data.forEach((element) => {
-            allLanguages.push({
-              value: element?.ISO_639_1_code,
-              label: element?.english_name,
-            });
-          });
-        }
-      })
-      .catch((err) => { });
-
+    // Fetch available languages from API and update state
+    fetchAvailableLanguages(source, setAllLanguages);
+    // Fetch available genres from API and update state
+    fetchAvailableGenres(source, setAllGenres);
+    // Clean up function to cancel ongoing requests on component unmount
     return () => {
       source.cancel();
     };
-  }, [allLanguages]);
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-    axios
-      .get(`${Config.MOVIEBUNKERS_API}/titles/available-genres`, {
-        cancelToken: source.token,
-      })
-      .then((res) => {
-        if (res?.data && res?.data?.length) {
-          res.data.forEach((element) => {
-            allGenres.push({ value: element, label: element });
-          });
-        }
-      })
-      .catch((err) => { });
-
-    return () => {
-      source.cancel();
-    };
-  }, [allGenres]);
+  }, []);
 
   return (
     <form className="sidebar-form">
@@ -135,7 +183,7 @@ const CollectionSidebar = ({ searchRef }) => {
               value: collectionQuery.genre,
               label: collectionQuery.genre ? collectionQuery.genre : "All",
             }}
-            options={allGenres}
+            options={memoizedGenreOptions}
           />
         </label>
       </li>
@@ -153,14 +201,14 @@ const CollectionSidebar = ({ searchRef }) => {
             selectedOption={{
               value: collectionQuery.language,
               label: collectionQuery.language
-                ? iso.map((lang) => {
+                ? iso369Language.map((lang) => {
                   if (lang["639_1_code"] === collectionQuery.language) {
                     return lang["english_name"];
                   }
                 })
                 : "All",
             }}
-            options={allLanguages}
+            options={memoizedLanguageOptions}
           />
         </label>
       </li>

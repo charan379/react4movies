@@ -2,9 +2,9 @@ import React from 'react'
 import useTheme from '../../utils/hooks/useTheme';
 
 const PageNotFound = () => {
-  const {theme}  = useTheme();
+  const { theme } = useTheme();
   return (
-    <div className={`content ${theme}`}>Page Not Found</div>
+    <div className={`error-message ${theme}`}>Page Not Found</div>
   )
 }
 
