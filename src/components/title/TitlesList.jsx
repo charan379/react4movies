@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import MovieBox from "./MovieBox";
-import TitleModal from "../title/TitleModal";
-import useTheme from "../../../hooks/useTheme";
+import { TitleBox } from "components/title";
+import { TitleModal } from "components/title";
+import { useTheme } from "hooks";
 import { Link } from "react-router-dom";
-import waitForElementById from "../../../utils/waitForElemnetById";
+import waitForElementById from "utils/waitForElemnetById";
 
-const MoviesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
+const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
   // Get the current theme from the useTheme hook
   const { theme } = useTheme();
 
@@ -27,13 +27,13 @@ const MoviesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
       <div className={`movies ${theme}`}>
         {/* If list source is from TMDB search */}
         {list?.length > 0 && // Check that the list is not empty
-          list.map((movie, index) => { // Map over the list to create MovieBox components
+          list.map((movie, index) => { // Map over the list to create TitleBox components
             return (
               <Link
                 title={movie.title}
                 id={"box-" + index}
                 key={"box-" + index}
-                onClick={() => // Set the movie data and open the modal when a MovieBox is clicked
+                onClick={() => // Set the movie data and open the modal when a TitleBox is clicked
                   handleOnClick({
                     id: movie?._id ?? movie?.tmdb_id, // Use the _id field if it exists, otherwise use the tmdb_id field
                     title: movie.title,
@@ -44,8 +44,8 @@ const MoviesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
                   })
                 }
               >
-                {/* Pass props to the MovieBox component */}
-                <MovieBox
+                {/* Pass props to the TitleBox component */}
+                <TitleBox
                   index={index}
                   id={movie?._id ?? movie?.tmdb_id}
                   titleState={source}
@@ -105,4 +105,4 @@ const propTypes = {
 };
 
 
-export default MoviesList;
+export { TitlesList };

@@ -22,4 +22,4 @@ function useEscapeKey(handleClose) {
   }, [handleEscKey]);
 }
 
-export default useEscapeKey;
+export { useEscapeKey };

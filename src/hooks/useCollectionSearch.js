@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   resetCollectionSearch,
   updateCollectionSearch,
-} from "../store/actions/CollectionSearchActions";
+} from "store/actions/CollectionSearchActions";
 
 const useCollectionSearch = () => {
   const dispatch = useDispatch();
@@ -21,4 +21,4 @@ const useCollectionSearch = () => {
   };
 };
 
-export default useCollectionSearch;
+export { useCollectionSearch };

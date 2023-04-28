@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { increaseProgressByCustom, increaseProgressBy20, competeProgress, resetProgress } from "../store/actions/ProgressActions";
+import { increaseProgressByCustom, increaseProgressBy20, competeProgress, resetProgress } from "store/actions/ProgressActions";
 
 
 const useProgressBar = () => {
@@ -31,4 +31,4 @@ const useProgressBar = () => {
 
 }
 
-export default useProgressBar;
+export { useProgressBar };

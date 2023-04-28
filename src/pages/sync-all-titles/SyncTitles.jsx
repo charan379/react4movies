@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import useMoviebunkersAPI from 'hooks/useMoviebunkersAPI'
-import useTheme from 'hooks/useTheme';
-import useTmdbAPI from 'hooks/useTmdbAPI'
 import formatTime from 'utils/formatTime';
 import { Link } from 'react-router-dom';
-import useSeasonsUpdater from 'hooks/useSeasonsUpdater';
 import { Logger, ProgressBar } from 'components/common';
+import { useMoviebunkersAPI, useSeasonsUpdater, useTheme, useTmdbAPI } from 'hooks';
 
 const SyncTitles = () => {
     // Load theme from custom hook

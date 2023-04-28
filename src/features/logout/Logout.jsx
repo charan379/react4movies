@@ -2,10 +2,7 @@ import React, { useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Custom hooks for managing authentication, theme, and displaying toast notifications
-import useAuth from "hooks/useAuth";
-import useOnOutSideClick from "hooks/useOnOutSideClick";
-import useTheme from "hooks/useTheme";
-import useToastify from "hooks/useToast";
+import { useTheme, useAuth, useOnOutSideClick, useToastify } from "hooks";
 
 // Component for logging out a user
 const Logout = ({ open, close }) => {

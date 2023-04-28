@@ -11,4 +11,4 @@ const useTmdbAPI = () => {
     return { tmdbAPI };
 };
 
-export default useTmdbAPI;
+export { useTmdbAPI };

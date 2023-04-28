@@ -5,7 +5,7 @@ const KEY_EVENT_TYPE = "keyup";
 
 function useHomeKey(handleOpen) {
   const handleHomeKey = useCallback(
-    (event) => {    
+    (event) => {
       if (event.key === KEY_NAME_ESC) {
         handleOpen();
       }
@@ -22,4 +22,4 @@ function useHomeKey(handleOpen) {
   }, [handleHomeKey]);
 }
 
-export default useHomeKey;
+export { useHomeKey };

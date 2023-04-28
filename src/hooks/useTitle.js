@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { removeTitle, updateTitle } from "../store/actions/TitleActions";
+import { removeTitle, updateTitle } from "store/actions/TitleActions";
 
 
 
@@ -16,4 +16,4 @@ const useTitle = () => {
     return { title: titleData, setTitle: setTitleData, flushTitle: flushTitleData }
 }
 
-export default useTitle;
+export { useTitle };

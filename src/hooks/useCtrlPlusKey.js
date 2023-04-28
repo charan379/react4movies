@@ -39,4 +39,4 @@ const useCtrlPlusKey = (
     };
   });
 };
-export default useCtrlPlusKey;
+export { useCtrlPlusKey };

@@ -1,10 +1,10 @@
 import React from "react";
 import empty from "assets/empty.svg";
 import PropTypes from "prop-types";
-import useTheme from "hooks/useTheme";
+import { useTheme } from "hooks";
 
 // Define the props for the MovieBox component
-const MovieBox = ({
+const TitleBox = ({
   index,
   id,
   titleState,
@@ -113,7 +113,7 @@ const MovieBox = ({
 };
 
 // Define the prop types for the MovieBox component
-MovieBox.propTypes = {
+TitleBox.propTypes = {
   index: PropTypes.number.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   titleState: PropTypes.string.isRequired,
@@ -129,4 +129,4 @@ MovieBox.propTypes = {
 };
 
 
-export default MovieBox;
+export { TitleBox };

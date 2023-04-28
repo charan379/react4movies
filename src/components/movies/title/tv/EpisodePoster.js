@@ -1,6 +1,6 @@
 import React from "react";
 import empty from "assets/empty.svg";
-import useTheme from "hooks/useTheme";
+import { useTheme } from "hooks";
 
 const EpisodePoster = ({ data }) => {
   const { theme } = useTheme();

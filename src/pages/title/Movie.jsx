@@ -1,8 +1,6 @@
 import React from "react";
-import useTheme from "../../../../hooks/useTheme";
-import useTitle from "../../../../hooks/useTitle";
-import MovieDetails from "../titleCompnents/MovieDetails";
-import MoviePoster from "../titleCompnents/MoviePoster";
+import { useTheme, useTitle } from "hooks";
+import { TitleDetails, TitlePoster } from "components/title";
 
 // Movie component
 const Movie = () => {
@@ -26,7 +24,7 @@ const Movie = () => {
 
         <div className="movie-poster">{/* Movie poster */}
           {/* Render the movie poster */}
-          <MoviePoster
+          <TitlePoster
             url={movie?.poster_path}
             alt={movie?.title}
             tagline={movie?.tagline}
@@ -35,7 +33,7 @@ const Movie = () => {
 
         <div className="movie-details">{/* Movie details */}
           {/* Render the movie details */}
-          <MovieDetails />
+          <TitleDetails />
         </div>
       </div>
     </>
@@ -43,4 +41,4 @@ const Movie = () => {
 };
 
 // Export the Movie component
-export default Movie;
+export { Movie };

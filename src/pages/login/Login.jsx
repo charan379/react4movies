@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "hooks/useAuth";
-import useMoviebunkersAPI from "hooks/useMoviebunkersAPI";
-import useTheme from "hooks/useTheme";
-import useToastify from "hooks/useToast";
+import { useAuth, useMoviebunkersAPI, useTheme, useToastify } from "hooks";
 import { AppConfig } from "setup/app-config";
 
 const Login = () => {

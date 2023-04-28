@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useMoviebunkersAPI from '../../../../hooks/useMoviebunkersAPI';
-import useTitle from '../../../../hooks/useTitle';
-import useSeasonsUpdater from '../../../../hooks/useSeasonsUpdater';
+import { useTitle, useMoviebunkersAPI, useSeasonsUpdater } from 'hooks';
 
 const AddTitle = ({ toast }) => {
     // Get the title from the custom hook

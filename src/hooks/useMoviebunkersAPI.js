@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AppConfig } from "setup/app-config";
-import useAuth from "hooks/useAuth";
+import { useAuth } from "hooks";
 
 const useMoviebunkersAPI = () => {
     const { auth } = useAuth();
@@ -16,4 +16,4 @@ const useMoviebunkersAPI = () => {
     return { movieBunkersAPI };
 };
 
-export default useMoviebunkersAPI;
+export { useMoviebunkersAPI };

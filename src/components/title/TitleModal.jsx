@@ -1,10 +1,8 @@
 import React, { useCallback, useRef } from "react";
 import PropTypes from "prop-types";
-import useEscapeKey from "../../../hooks/useEscapeKey";
-import useOnOutSideClick from "../../../hooks/useOnOutSideClick";
-import useTheme from "../../../hooks/useTheme";
-import makePrettyUrl from "../../../utils/makePrettyUrl";
-import Title from "./Title";
+import { useTheme, useEscapeKey, useOnOutSideClick } from "hooks";
+import makePrettyUrl from "../../utils/makePrettyUrl";
+import { Title } from "pages/title";
 
 const TitleModal = ({ title, open, close }) => {
   // Get the current theme using the `useTheme` hook
@@ -65,10 +63,10 @@ const TitleModal = ({ title, open, close }) => {
             className="more-details"
             onClick={() =>
               openInNewTab(
-                `/view/title/${title?.titleState}/${title?.title_type
-                }/${encodeURIComponent(
-                  makePrettyUrl(title?.title + "-" + title?.year)
-                )}/${title?.titleState === "moviebunkers"
+                `/view/title/${title?.title_type}` + // title_type
+                `/${encodeURIComponent(makePrettyUrl(title?.title + "-" + title?.year))}` + // title ( name ),  year
+                `/${title?.titleState}` + // title state
+                `/${title?.titleState === "moviebunkers" // title id
                   ? btoa(title?.id)
                     .replace(/=/g, "")
                     .replace(/\+/g, "-")
@@ -99,4 +97,4 @@ TitleModal.propTypes = {
   close: PropTypes.func.isRequired,
 };
 
-export default TitleModal;
+export { TitleModal };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LoadingBar from 'react-top-loading-bar';
-import useProgressBar from 'hooks/useProgressBar';
+import { useProgressBar } from 'hooks';
 
 const TopLoadingBar = () => {
     // Use the `useProgressBar` hook to get the current progress and reset function.

@@ -20,4 +20,4 @@ function useOnOutSideClick(ref, handlerFunc) {
   }, [ref, handlerFunc]);
 }
 
-export default useOnOutSideClick;
+export { useOnOutSideClick };

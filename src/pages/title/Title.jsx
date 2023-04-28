@@ -1,13 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import useAuth from 'hooks/useAuth';
-import useMoviebunkersAPI from 'hooks/useMoviebunkersAPI';
-import useTitle from 'hooks/useTitle';
-import useToastify from 'hooks/useToast';
-import Movie from './titleTypes/Movie';
-import Tv from './titleTypes/Tv';
-import useTmdbAPI from 'hooks/useTmdbAPI';
+import { useAuth, useTitle, useToastify, useMoviebunkersAPI, useTmdbAPI } from 'hooks';
+import { Movie } from './Movie';
+import { Tv } from './Tv';
 import { Loader } from 'components/common';
 
 const Title = ({ id, titleState, titleType }) => {
@@ -150,7 +146,7 @@ const Title = ({ id, titleState, titleType }) => {
 
             {/*If the title is a movie, render the movie component.
             If the title is a tv show, render the tv component.*/}
-            {title?.title_type === "movie" && <Movie movie={{ ...title }} />}
+            {title?.title_type === "movie" && <Movie />}
             {title?.title_type === "tv" && <Tv />}
 
             {/*If there are errors, render the error message.Otherwise, render nothing.*/}
@@ -166,4 +162,4 @@ const Title = ({ id, titleState, titleType }) => {
     )
 }
 
-export default Title;
+export { Title };

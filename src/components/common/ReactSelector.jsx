@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from "react-select";
-import useTheme from 'hooks/useTheme';
+import { useTheme } from 'hooks';
 
 // Component for a customizable select dropdown using react-select library
 const ReactSelector = ({ options, handleSelectChange, selectedOption, name }) => {

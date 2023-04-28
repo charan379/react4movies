@@ -3,12 +3,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSlider from "react-slider";
 import iso369Language from "constants/iso369-1.json"
-import useCollectionSearch from "hooks/useCollectionSearch";
-import useTheme from "hooks/useTheme";
+import { useTheme, useCollectionSearch, useCtrlPlusKey, useMoviebunkersAPI } from "hooks";
 import { ReactSelector } from "components/common";
 import scrollToTop from "utils/scrollToTop";
-import useCtrlPlusKey from "hooks/useCtrlPlusKey";
-import useMoviebunkersAPI from "hooks/useMoviebunkersAPI";
 
 const MoviebunkersListSidebar = ({ searchRef }) => {
   // get the current theme from the ThemeProvider

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import useMoviebunkersAPI from '../../../../hooks/useMoviebunkersAPI';
-import useTitle from '../../../../hooks/useTitle';
+import { useTitle, useMoviebunkersAPI } from 'hooks';
 
 const DeleteTitle = ({ toast }) => {
     const { title } = useTitle(); // retrieve title from custom hook

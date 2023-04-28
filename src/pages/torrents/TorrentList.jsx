@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import useTheme from "hooks/useTheme";
 import { AppConfig } from "setup/app-config";
 import { Loader, ShowLessText } from "components/common";
+import { useTheme } from "hooks";
 
 const TorrentList = ({ query, provider, pageNo }) => {
   const { theme } = useTheme();

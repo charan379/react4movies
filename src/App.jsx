@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "layout";
 import RouteProtector from "./hoc/RouteProtector";
-import Home from "./components/movies/Home";
 import React from "react";
 import {
   LevelOne,
@@ -9,13 +8,14 @@ import {
   LevelTwo,
   LevelZero,
 } from "constants/AuthRoles";
-import Title from "./components/movies/title/Title";
-import { Torrents } from "./pages/torrents/Torrents";
+import { Home } from "./pages/home";
 import { Unauthorized } from "pages/unauthorized";
 import { PageNotFound } from "pages/404";
 import { Login } from "pages/login";
 import { Collection } from "pages/collection";
 import { SearchTmdb } from "pages/discover";
+import { Title } from "./pages/title";
+import { Torrents } from "./pages/torrents/Torrents";
 import { SyncTitles } from "pages/sync-all-titles";
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
               <Route path="/collection" element={<Collection />} />
               <Route path="/discover/tmdb" element={<SearchTmdb />} />
               <Route
-                path="/view/title/:_titleState/:_titleType/:_title/:_id"
+                path="/view/title/:_titleType/:_title/:_titleState/:_id"
                 element={<Title />}
               />
             </Route>

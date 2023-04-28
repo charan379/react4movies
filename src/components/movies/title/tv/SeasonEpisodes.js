@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { fetchTmdbTvSeason } from "helpers/tmdb.requests";
-import useToastify from "hooks/useToast";
+import { useToastify } from "hooks";
 import Episode from "./Episode";
 import { Loader } from "components/common";
 

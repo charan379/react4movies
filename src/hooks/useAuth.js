@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser, setUser } from "../store/actions/UserActions";
+import { removeUser, setUser } from "store/actions/UserActions";
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -10,4 +10,4 @@ const useAuth = () => {
   };
 };
 
-export default useAuth;
+export { useAuth };

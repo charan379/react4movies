@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "./header";
 import { Outlet } from "react-router-dom";
 import { SideBar } from "./sidebar";
-import useTheme from "hooks/useTheme";
+import { useTheme } from "hooks";
 import { QuickBall } from "features/quick-ball";
 import { TopLoadingBar } from "features/top-loading-bar";
 import { Footer } from "./footer";

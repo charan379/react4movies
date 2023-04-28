@@ -1,9 +1,7 @@
 import React from "react";
-import useTheme from "../../../../hooks/useTheme";
-import useTitle from "../../../../hooks/useTitle";
-import MovieDetails from "../titleCompnents/MovieDetails";
-import MoviePoster from "../titleCompnents/MoviePoster";
-import Seasons from "../tv/Seasons";
+import { useTheme, useTitle } from "hooks";
+import { TitleDetails, TitlePoster } from "components/title";
+import Seasons from "components/movies/title/tv/Seasons";
 
 // Tv component
 const Tv = () => {
@@ -26,7 +24,7 @@ const Tv = () => {
 
         <div className="movie-poster">{/* Movie poster */}
           {/* Render the movie poster */}
-          <MoviePoster
+          <TitlePoster
             url={tv?.poster_path}
             alt={tv?.title}
             tagline={tv?.tagline}
@@ -35,7 +33,7 @@ const Tv = () => {
 
         <div className="movie-details">{/* Movie details */}
           {/* Render the movie details */}
-          <MovieDetails />
+          <TitleDetails />
         </div>
 
         {/* tv seasons */}
@@ -51,4 +49,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export { Tv };

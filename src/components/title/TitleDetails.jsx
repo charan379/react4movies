@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import convertIsoDate from "utils/convertIsoDate";
-import useTheme from "hooks/useTheme";
-import useTitle from "hooks/useTitle";
-import MovieCast from "./MovieCast";
-import WatchProviders from "./WatchProviders";
+import { useTheme, useTitle } from "hooks";
+import { TitleCast } from "components/title";
+import { WatchProviders } from "features/watch-providers";
 import { ShowLessNames, ShowLessText } from "components/common";
+import convertIsoDate from "utils/convertIsoDate";
 
-const MovieDetails = () => {
+const TitleDetails = () => {
   const { theme } = useTheme(); // useTheme custom hook to get theme data
 
   const { title } = useTitle(); // useTitle custom hook to get movie/TV show details
@@ -232,10 +231,10 @@ const MovieDetails = () => {
           </div>
         ) : null}
 
-        {title?.cast && showCast && <MovieCast cast={title?.cast} />}
+        {title?.cast && showCast && <TitleCast cast={title?.cast} />}
       </div>
     </div>
   );
 };
 
-export default MovieDetails;
+export { TitleDetails };

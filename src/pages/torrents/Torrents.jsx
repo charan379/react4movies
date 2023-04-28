@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import useTheme from "hooks/useTheme";
 import { TorrentList } from "./TorrentList";
 import { Pagination } from "components/common";
+import { useTheme } from "hooks";
 
 const Torrents = () => {
   const { theme } = useTheme();

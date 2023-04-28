@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { removeTmdbTitle, updateTmdbTitle } from "../store/actions/TmdbTitleActions";
+import { removeTmdbTitle, updateTmdbTitle } from "store/actions/TmdbTitleActions";
 
 
 
@@ -17,4 +17,4 @@ const useTmdbTitle = () => {
     return { tmdbTitle: title, setTmdbTitle: setTitle, removeTmdbTitle: removeTitle }
 }
 
-export default useTmdbTitle;
+export { useTmdbTitle };

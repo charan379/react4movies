@@ -1,6 +1,6 @@
 import React from "react";
+import { useTheme } from "hooks/useTheme";
 import { Link } from "react-router-dom";
-import useTheme from "hooks/useTheme";
 import tmdbLogo from "assets/tmdb-logo.svg"
 
 const Footer = () => {

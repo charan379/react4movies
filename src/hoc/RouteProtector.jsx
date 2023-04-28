@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "hooks";
 
 const RouteProtector = ({ allowedRoles }) => {
   const { auth } = useAuth();

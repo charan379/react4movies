@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   resetTmdbSearch,
   updateTmdbSearch,
-} from "../store/actions/TmdbSearchActions";
+} from "store/actions/TmdbSearchActions";
 
 const useTmdbSearch = () => {
   const dispatch = useDispatch();
@@ -20,4 +20,4 @@ const useTmdbSearch = () => {
   };
 };
 
-export default useTmdbSearch;
+export { useTmdbSearch };

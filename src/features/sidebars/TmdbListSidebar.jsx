@@ -1,7 +1,5 @@
 import React from "react";
-import useCtrlPlusKey from "../../hooks/useCtrlPlusKey";
-import useTheme from "../../hooks/useTheme";
-import useTmdbSearch from "../../hooks/useTmdbSearch";
+import { useTheme, useCtrlPlusKey, useTmdbSearch } from "hooks";
 
 const TmdbListSidebar = ({ searchRef }) => {
   // Get the current theme using the `useTheme` hook

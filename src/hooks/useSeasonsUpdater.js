@@ -1,5 +1,4 @@
-import useTmdbAPI from './useTmdbAPI'
-import useMoviebunkersAPI from './useMoviebunkersAPI';
+import { useTmdbAPI, useMoviebunkersAPI } from 'hooks'
 
 const useSeasonsUpdater = () => {
 
@@ -88,4 +87,4 @@ const useSeasonsUpdater = () => {
     return { updateSeasons }
 }
 
-export default useSeasonsUpdater
+export { useSeasonsUpdater };

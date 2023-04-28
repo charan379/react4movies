@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"; // Import the required React components
-import MoviesList from "components/movies/collection/MoviesList"; // Import a custom component
+import { TitlesList } from "components/title"; // Import a custom component
 import axios from "axios"; // Import the Axios library for making API requests
-import useTmdbSearch from "hooks/useTmdbSearch"; // Import a custom hook
-import useToastify from "hooks/useToast"; // Import another custom hook
-import useProgressBar from "hooks/useProgressBar"; // Import yet another custom hook
+import { useTmdbSearch, useToastify, useProgressBar, useTmdbAPI } from "hooks"; // Import custom hooks
 import { debounce } from "lodash";
-import useTmdbAPI from "hooks/useTmdbAPI";
 import { Pagination } from "components/common";
 
 
@@ -81,7 +78,7 @@ const SearchTmdb = () => {
       {moviesPage?.list?.length > 0 && (
         <>
           <div id="results">
-            <MoviesList source="tmdb" list={moviesPage.list} />
+            <TitlesList source="tmdb" list={moviesPage.list} />
           </div>
           <Pagination
             total_pages={moviesPage.total_pages}

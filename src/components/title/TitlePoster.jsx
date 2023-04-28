@@ -1,10 +1,9 @@
 import React from "react";
 import empty from "assets/empty.svg"; // default image source
-import useTheme from "hooks/useTheme"; // custom hook for theme
+import { useTheme } from "hooks"; // custom hook for theme
+import { TitleActions } from "features/title-actions"; // component for title action buttons
 
-import MovieActions from "../../actionButtons"; // component for movie action buttons
-
-const MoviePoster = ({ url, alt, tagline }) => {
+const TitlePoster = ({ url, alt, tagline }) => {
   const { theme } = useTheme(); // get the current theme using the custom hook
 
   /**
@@ -42,10 +41,10 @@ const MoviePoster = ({ url, alt, tagline }) => {
       {/* display the tagline for the movie */}
       <div className={`movie-tagline ${theme}`}>{tagline}</div>
 
-      {/* component for displaying movie action buttons */}
-      <MovieActions />
+      {/* component for displaying title action buttons */}
+      <TitleActions />
     </>
   );
 };
 
-export default MoviePoster;
+export { TitlePoster };

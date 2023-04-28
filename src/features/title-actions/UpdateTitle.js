@@ -1,10 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import useMoviebunkersAPI from '../../../../hooks/useMoviebunkersAPI';
-import useTitle from '../../../../hooks/useTitle'
-import useTmdbAPI from '../../../../hooks/useTmdbAPI';
-import useSeasonsUpdater from '../../../../hooks/useSeasonsUpdater';
+import { useTitle, useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater } from 'hooks';
 
 const UpdateTitle = ({ toast }) => {
 

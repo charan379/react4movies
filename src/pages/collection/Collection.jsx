@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react"; // Import the required React components
 import axios from "axios";
-import useCollectionSearch from "hooks/useCollectionSearch";
-import useToastify from "hooks/useToast";
-import MoviesList from "components/movies/collection/MoviesList";
+import { useCollectionSearch, useToastify, useMoviebunkersAPI, useProgressBar } from "hooks";
+import { TitlesList } from "components/title";
 import { Pagination } from "components/common";
-import useMoviebunkersAPI from "hooks/useMoviebunkersAPI";
 import { debounce } from "lodash";
-import useProgressBar from "hooks/useProgressBar";
 
 const Collection = () => {
 
@@ -79,7 +76,7 @@ const Collection = () => {
         // true
         <>
           <div id="results">
-            <MoviesList
+            <TitlesList
               source={"moviebunkers"}
               list={moviesPage?.list}
               currentUpdateCount={updateList}

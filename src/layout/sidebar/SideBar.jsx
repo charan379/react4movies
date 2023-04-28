@@ -1,10 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import playerIcon from "assets/icons/movie-player-play-video-svgrepo-com.svg"
-import useCtrlPlusKey from "hooks/useCtrlPlusKey";
-import useEscapeKey from "hooks/useEscapeKey";
-import useOnOutSideClick from "hooks/useOnOutSideClick";
-import useTheme from "hooks/useTheme";
+import { useCtrlPlusKey, useEscapeKey, useOnOutSideClick, useTheme } from "hooks";
 import { MovieBunkersListSidebar, TmdbListSidebar } from "features/sidebars";
 
 const SideBar = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import empty from "assets/empty.svg";
 
-const MovieCast = ({ cast }) => {
+const TitleCast = ({ cast }) => {
 
   const handleImageError = (img) => {
     img.target.onerror = null;
@@ -39,4 +39,4 @@ const MovieCast = ({ cast }) => {
   );
 };
 
-export default MovieCast;
+export { TitleCast };

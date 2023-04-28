@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
-import useOnOutSideClick from "hooks/useOnOutSideClick";
-import useTheme from "hooks/useTheme";
+import { useTheme, useAuth, useOnOutSideClick } from "hooks";
 import { LevelOne, LevelTwo, LevelZero } from "constants/AuthRoles";
-import useAuth from "hooks/useAuth";
-import { useCallback } from "react";
 
 const QuickBall = () => {
   // Use the useTheme hook to get the current theme

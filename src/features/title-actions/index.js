@@ -1,19 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LevelOne, LevelThere, LevelTwo } from "../../../constants/AuthRoles";
-import useAuth from "../../../hooks/useAuth";
-import useTheme from "../../../hooks/useTheme";
-import useTitle from "../../../hooks/useTitle";
-import useToastify from "../../../hooks/useToast";
-import AddTitle from "./moderatorActions/AddTitle";
-import DeleteTitle from "./moderatorActions/DeleteTitle";
-import EditTitle from "./moderatorActions/EditTitle";
-import UpdateTitle from "./moderatorActions/UpdateTitle";
-import Favourite from "./userActions/Favourite";
-import Seen from "./userActions/Seen";
-import Star from "./userActions/Star";
+import { LevelOne, LevelThere, LevelTwo } from "constants/AuthRoles";
+import { useTheme, useAuth, useTitle, useToastify } from "hooks";
+import AddTitle from "./AddTitle";
+import DeleteTitle from "./DeleteTitle";
+import EditTitle from "./EditTitle";
+import UpdateTitle from "./UpdateTitle";
+import Favourite from "./Favourite";
+import Seen from "./Seen";
+import Star from "./Star";
 
-const MovieActions = () => {
+const TitleActions = () => {
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
   const { auth } = useAuth();
@@ -25,6 +22,7 @@ const MovieActions = () => {
   return (
     <div className={`movie-actions ${theme}`}>
       <div className="user-related">
+        {console.log(title?.state)}
         {title?.state === "moviebunkers" && (
           <>
             <Star toast={toast} />
@@ -72,4 +70,4 @@ const MovieActions = () => {
   );
 };
 
-export default MovieActions;
+export { TitleActions };

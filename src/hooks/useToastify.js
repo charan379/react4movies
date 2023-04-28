@@ -1,5 +1,5 @@
 import { ToastContainer, toast } from "react-toastify";
-import useTheme from "./useTheme";
+import { useTheme } from "hooks";
 
 const useToastify = () => {
   const { theme } = useTheme();
@@ -22,4 +22,4 @@ const useToastify = () => {
 };
 
 
-export default useToastify;
+export { useToastify };

@@ -1,13 +1,11 @@
 import React, { useRef, useState } from "react";
-import useOnOutSideClick from "hooks/useOnOutSideClick";
+import { Link, useNavigate } from "react-router-dom";
 import user from "assets/icons/user.svg";
 import day from "assets/icons/day.svg";
 import night from "assets/icons/night.svg";
 import playerIcon from "assets/icons/movie-player-play-video-svgrepo-com.svg"
 import { ToogleTheme } from "features/theme";
-import { Link, useNavigate } from "react-router-dom";
-import useTheme from "hooks/useTheme";
-import useAuth from "hooks/useAuth";
+import { useTheme, useOnOutSideClick, useAuth } from "hooks";
 import { Logout } from "features/logout";
 
 // Main Header
