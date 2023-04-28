@@ -1,0 +1,42 @@
+@import "./variables.css";
+
+.collection-sync {
+  width: 90vw;
+}
+
+.collection-sync.light {
+  color: var(--font-color-light);
+}
+
+.collection-sync.dark {
+  color: var(--font-color-dark);
+}
+
+.progress-bar-container {
+  margin: 30px;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.collection-sync .button {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  margin: 5px 10px 5px 10px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.collection-sync.light .button {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.collection-sync.dark .button {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}

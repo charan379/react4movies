@@ -1,0 +1,68 @@
+@import "./variables.css";
+
+.movie-actions {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.movie-actions .user-related {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-actions .moderator-related {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.movie-actions .action-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 10px 5px 10px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+}
+
+.user-related .action-button {
+  width: 50px;
+  text-align: center;
+  height: 50px;
+  line-height: 35px;
+}
+.moderator-related .action-button {
+  width: 190px;
+  text-align: center;
+  height: 50px;
+  line-height: 33px;
+}
+
+.moderator-related .action-button span {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 165px;
+  text-overflow: ellipsis;
+}
+
+.movie-actions.light .action-button,
+.movie-actions.dark .action-button:hover {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.movie-actions.dark .action-button,
+.movie-actions.light .action-button:hover {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}

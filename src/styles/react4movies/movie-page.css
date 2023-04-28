@@ -1,0 +1,268 @@
+@import "./variables.css";
+
+.movie-page {
+  padding: 5px 5px 5px 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  /* grid-template-rows: 1fr 9fr; */
+  gap: 10px;
+  grid-template-areas:
+    "movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title movie-title"
+    "movie-poster movie-poster  movie-poster movie-details movie-details movie-details movie-details movie-details movie-details movie-details"
+    "tv-seasons tv-seasons tv-seasons tv-seasons  tv-seasons tv-seasons tv-seasons tv-seasons tv-seasons tv-seasons";
+}
+
+.movie-page .movie-title {
+  grid-area: movie-title;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: larger;
+  font-family: "Courier New", Courier, monospace;
+  padding: 10px;
+}
+
+.movie-page.light .movie-title {
+  color: var(--font-color-light);
+}
+
+.movie-page.dark .movie-title {
+  color: var(--font-color-dark);
+}
+
+.movie-page .movie-poster {
+  grid-area: movie-poster;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  padding: 0px 10px 10px 10px;
+}
+
+.movie-page .movie-details {
+  grid-area: movie-details;
+  margin-right: 0px;
+}
+
+.movie-page .tv-seasons {
+  grid-area: tv-seasons;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 5px;
+  text-align: left;
+  font-size: small;
+}
+
+.movie-page .tv-seasons.light {
+  background-color: var(--seasons-bg-light);
+  color: var(--font-color-light);
+  border-top: 2px solid var(--font-color-light);
+}
+
+.movie-page .tv-seasons.dark {
+  background-color: var(--seasons-bg-dark);
+  color: var(--font-color-dark);
+  border-top: 2px solid var(--font-color-dark);
+}
+.tv-seasons .episode {
+  display: grid;
+  grid-template-columns: 2fr 6fr 2fr;
+  grid-template-rows: 0.2fr 0.8fr;
+  grid-template-areas:
+    "title title title"
+    "poster details download";
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 10px;
+  width: calc(100% - 30px);
+}
+
+.tv-seasons.light .episode {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+  border-top: 2px solid var(--ui-elemnet-dark);
+}
+
+.tv-seasons.dark .episode {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+  border-top: 2px solid var(--ui-elemnet-light);
+}
+
+.episode .title {
+  grid-area: title;
+  text-align: center;
+}
+.episode .poster {
+  grid-area: poster;
+  justify-items: center;
+  align-items: flex-end;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}
+
+.episode .details {
+  grid-area: details;
+  text-align: left;
+}
+
+.details ul {
+  list-style: none;
+  display: inline-block;
+  text-align: left;
+  margin-left: 0px;
+  padding: 10px;
+}
+
+.episode .download {
+  grid-area: download;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white !important;
+  background-color: blueviolet;
+}
+
+.tv-seasons .season {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 0.4fr 0.3fr 0.2fr;
+  grid-template-areas:
+    "title"
+    "poster"
+    "details"
+    "download";
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 25px;
+  cursor: pointer;
+  max-width: 350px;
+}
+
+.tv-seasons.light .season {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+  border-top: 2px solid var(--ui-elemnet-dark);
+}
+
+.tv-seasons.dark .season {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+  border-top: 2px solid var(--ui-elemnet-light);
+}
+
+.season .title {
+  grid-area: title;
+  text-align: center;
+}
+.season .poster {
+  grid-area: poster;
+  justify-items: center;
+  align-items: flex-end;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}
+
+.season .details {
+  grid-area: details;
+  text-align: left;
+}
+
+.season .details ul {
+  list-style: none;
+  display: inline-block;
+  text-align: left;
+  margin-left: 0px;
+  padding: 10px;
+}
+
+.season .download {
+  grid-area: download;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white !important;
+  background-color: blueviolet;
+}
+
+.tv-seasons .toggle {
+  display: flex;
+  position: relative;
+  bottom: 25px;
+  left: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  height: 35px;
+  width: 35px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 30px;
+  transition: transform var(---trans-sidebar-toggle),
+    background-color var(---trans-theme), color var(---trans-theme),
+    display var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle);
+}
+
+.tv-seasons .toggle.expand {
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1080px) {
+  .movie-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 0.2fr 1fr 1.7fr 7.1fr; */
+    grid-template-areas:
+      "movie-title"
+      "movie-poster"
+      "movie-details"
+      "tv-seasons";
+  }
+}
+
+@media (max-width: 840px) {
+  .tv-seasons .episode {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.4fr 0.3fr 0.2fr;
+    grid-template-areas:
+      "title"
+      "poster"
+      "details"
+      "download";
+  }
+}
+@media (max-width: 540px) {
+  .tv-seasons .season {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.4fr 0.3fr 0.2fr;
+    grid-template-areas:
+      "title"
+      "poster"
+      "details"
+      "download";
+  }
+  .tv-seasons .toggle {
+    left: 45%;
+  }
+}
