@@ -1,3 +1,4 @@
+import './layout.style.css';
 import React from "react";
 import { Header } from "./header";
 import { Outlet } from "react-router-dom";
@@ -34,7 +35,7 @@ const Layout = () => {
     
     */}
 
-      <div className={`main-component ${theme}`}>
+      <div className={`layout-container ${theme}`}>
         {/* Top Loading progress bar */}
         <TopLoadingBar />
         {/* header at top */}
@@ -44,7 +45,7 @@ const Layout = () => {
         <SideBar />
 
         {/* main content */}
-        <div className={`main-container ${theme}`}>
+        <div className={`outlet ${theme}`}>
           <div className={`content-wrapper ${theme}`}>
             <Outlet />
           </div>

@@ -1,0 +1,394 @@
+@import "assets/styles/variables.css";
+
+.quick-ball-container {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 10;
+}
+
+.quick-ball-shadow {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  filter: blur(5px);
+}
+
+.quick-ball-shadow.light {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.quick-ball-shadow.dark {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
+}
+
+.quick-ball {
+  width: 65px;
+  height: 65px;
+  background-color: crimson;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.quick-ball:hover .quick-ball-icon {
+  transform: scale(1.2);
+}
+
+.quick-ball-icon {
+  font-size: 24px;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.quick-ball-links {
+  overflow-y: scroll;
+  display: flex;
+  visibility: hidden;
+  position: absolute;
+  bottom: 75px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60vw;
+  max-width: 580px;
+  height: 58vh;
+  max-height: 720px;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  flex-direction: column-reverse;
+  animation: slide-out 0.3s ease-in forwards;
+}
+
+.quick-ball-links.light {
+  background-color: #0e0d0dc3;
+}
+
+.quick-ball-links.dark {
+  background-color: #0e0d0dc3;
+}
+
+.quick-ball-links.show {
+  visibility: visible;
+  animation: slide-in 0.3s ease-out backwards;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.quick-ball-link {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
+  text-align: right;
+  width: max-content;
+  text-decoration: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  transition: opacity 0.1s, visibility 0.1s;
+  animation: fade-out 0.5s backwards;
+}
+
+.quick-ball-link.show {
+  display: flex;
+  visibility: visible;
+  transition: opacity 0.1s, visibility 0.1s;
+  animation: fade-in 0.5s forwards;
+  align-items: center;
+}
+
+/* .quick-ball-link.dark.active {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+} */
+
+.quick-ball-link.light {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.quick-ball-link.dark {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.quick-ball-link.active {
+  background-color: crimson;
+  color: #fff;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .quick-ball-container {
+    bottom: 120px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 55px;
+    height: 55px;
+  }
+
+  .quick-ball-links {
+    bottom: 65px;
+  }
+
+  .quick-ball-link {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 580px) {
+  .quick-ball-container {
+    bottom: 100px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 55px;
+    height: 55px;
+  }
+
+  .quick-ball-links {
+    bottom: 65px;
+  }
+
+  .quick-ball-link {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .quick-ball-container {
+    bottom: 120px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 45px;
+    height: 45px;
+  }
+
+  .quick-ball-links {
+    bottom: 55px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+/* IPHONE SE */
+@media (max-width: 380px) {
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 45px;
+    height: 45px;
+  }
+
+  .quick-ball-links {
+    bottom: 55px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 45px;
+    height: 45px;
+  }
+
+  .quick-ball-links {
+    bottom: 55px;
+  }
+
+  .quick-ball-link {
+    font-size: 15px;
+  }
+}
+
+/* height */
+
+@media (max-height: 580px) {
+  .quick-ball-container {
+    bottom: 60px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 60px;
+    height: 60px;
+  }
+
+  .quick-ball-links {
+    bottom: 70px;
+    height: 280px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 480px) {
+  .quick-ball-container {
+    bottom: 60px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 60px;
+    height: 60px;
+  }
+
+  .quick-ball-links {
+    bottom: 70px;
+    height: 175px;
+  }
+
+  .quick-ball-link {
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 380px) {
+  .quick-ball-container {
+    bottom: 35px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 55px;
+    height: 55px;
+  }
+
+  .quick-ball-icon {
+    font-size: 18px;
+  }
+
+  .quick-ball-links {
+    bottom: 65px;
+    height: 150px;
+  }
+
+  .quick-ball-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 280px) {
+  .quick-ball-container {
+    bottom: 40px;
+    right: 18px;
+  }
+
+  .quick-ball,
+  .quick-ball-shadow {
+    width: 50px;
+    height: 50px;
+  }
+
+  .quick-ball-icon {
+    font-size: 18px;
+  }
+
+  .quick-ball-links {
+    bottom: 60px;
+    height: 110px;
+  }
+
+  .quick-ball-link {
+    font-size: 14px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .quick-ball-link.light:hover {
+    background-color: var(--ui-elemnet-dark);
+    color: var(--font-color-dark);
+  }
+
+  .quick-ball-link.dark:hover {
+    background-color: var(--ui-elemnet-light);
+    color: var(--font-color-light);
+  }
+}

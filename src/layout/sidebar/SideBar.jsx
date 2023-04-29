@@ -1,3 +1,4 @@
+import './sidebar.style.css'
 import React, { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import playerIcon from "assets/icons/movie-player-play-video-svgrepo-com.svg"

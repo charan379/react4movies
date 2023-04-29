@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
+import { TitleActions } from "features/title-actions"; // component for title action buttons
 
 // Movie component
 const Movie = () => {
@@ -10,29 +11,31 @@ const Movie = () => {
   // Get the title from the useTitle hook
   const { title: movie } = useTitle();
 
-  // Render the movie page
+  // Render the title page
   return (
     <>
-      <div className={`movie-page ${theme}`}>{/* Movie page */}
-        <div className="movie-title">{/* Movie title */}
-          {/* Render the movie title and year */}
+      <div className={`title-page ${theme}`}>{/* title page */}
+        <div className="title-title-section">{/* title title */}
+          {/* Render the title title and year */}
           {movie?.title}
           <small>
             ({movie?.year})
           </small>
         </div>
 
-        <div className="movie-poster">{/* Movie poster */}
-          {/* Render the movie poster */}
+        <div className="title-poster-section">{/* title poster */}
+          {/* Render the title poster */}
           <TitlePoster
             url={movie?.poster_path}
             alt={movie?.title}
             tagline={movie?.tagline}
           />
+          {/* component for displaying title action buttons */}
+          <TitleActions />
         </div>
 
-        <div className="movie-details">{/* Movie details */}
-          {/* Render the movie details */}
+        <div className="title-details-section">{/* title details */}
+          {/* Render the title details */}
           <TitleDetails />
         </div>
       </div>
@@ -40,5 +43,5 @@ const Movie = () => {
   );
 };
 
-// Export the Movie component
+// Export the title component
 export { Movie };

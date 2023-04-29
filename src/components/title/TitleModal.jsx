@@ -1,3 +1,4 @@
+import './styles/title-modal.style.css';
 import React, { useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { useTheme, useEscapeKey, useOnOutSideClick } from "hooks";
@@ -9,7 +10,7 @@ const TitleModal = ({ title, open, close }) => {
   const { theme } = useTheme();
 
   // Create a ref that will be used to detect clicks outside the modal
-  const movieModalRef = useRef();
+  const titleModalRef = useRef();
 
   // Function to open a URL in a new tab
   const openInNewTab = (url) => {
@@ -17,7 +18,7 @@ const TitleModal = ({ title, open, close }) => {
   };
 
   // Register a callback to close the modal when the user clicks outside it
-  useOnOutSideClick(movieModalRef, useCallback(close, []));
+  useOnOutSideClick(titleModalRef, useCallback(close, []));
 
   // Register a callback to close the modal when the user presses the Escape key
   useEscapeKey(close);
@@ -28,9 +29,9 @@ const TitleModal = ({ title, open, close }) => {
   return (
     <>
       {/* The modal overlay */}
-      <div ref={movieModalRef} className={`movie-overlay ${theme}`}>
+      <div ref={titleModalRef} className={`title-modal ${theme}`}>
         {/* The modal content */}
-        <div className="movie-modalContainer">
+        <div className="title">
           {/* Close button */}
           <button
             title="Close"
@@ -42,21 +43,19 @@ const TitleModal = ({ title, open, close }) => {
           </button>
 
           {/* The movie title */}
-          <div className="">
-            <Title
-              // Encode the title ID as Base64 and replace certain characters for use in a URL
-              id={
-                title?.titleState === "moviebunkers"
-                  ? btoa(title?.id)
-                    .replace(/=/g, "")
-                    .replace(/\+/g, "-")
-                    .replace(/\//g, "_")
-                  : title?.id
-              }
-              titleState={title?.titleState}
-              titleType={title?.title_type}
-            />
-          </div>
+          <Title
+            // Encode the title ID as Base64 and replace certain characters for use in a URL
+            id={
+              title?.titleState === "moviebunkers"
+                ? btoa(title?.id)
+                  .replace(/=/g, "")
+                  .replace(/\+/g, "-")
+                  .replace(/\//g, "_")
+                : title?.id
+            }
+            titleState={title?.titleState}
+            titleType={title?.title_type}
+          />
 
           {/* Link to view more details */}
           <a

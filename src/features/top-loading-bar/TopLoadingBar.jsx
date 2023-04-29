@@ -15,7 +15,7 @@ const TopLoadingBar = () => {
     }, [currentProgress?.progress]);
 
     return (
-        <div>
+        <>
             {/* Render the `LoadingBar` component with the progress and a few options. */}
             <LoadingBar
                 color='#f11946'
@@ -27,7 +27,7 @@ const TopLoadingBar = () => {
                     resetProgressBar();
                 }}
             />
-        </div>
+        </>
     );
 };
 

@@ -1,3 +1,4 @@
+import './title-actions.style.css';
 import React from "react";
 import { Link } from "react-router-dom";
 import { LevelOne, LevelThere, LevelTwo } from "constants/AuthRoles";
@@ -20,7 +21,7 @@ const TitleActions = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={`movie-actions ${theme}`}>
+    <div className={`title-actions ${theme}`}>
       <div className="user-related">
         {console.log(title?.state)}
         {title?.state === "moviebunkers" && (

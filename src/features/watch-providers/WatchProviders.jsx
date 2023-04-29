@@ -1,3 +1,4 @@
+import './watch-providers.style.css';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -29,7 +30,7 @@ const WatchProviders = ({ tmdb_id, title_type, country }) => {
 
     return (
         <>
-            <div>
+            <div className={`watch-providers`}>
                 {providers.map((provider, index) => {
                     return (
                         <Link key={`${index}`} id={`provider-${index}`} title={provider.provider_name} onClick={() => window.open(mainLink, "_blank", "noreferrer")}>

@@ -1,10 +1,11 @@
+import './styles/title-card.style.css';
 import React from "react";
 import empty from "assets/empty.svg";
 import PropTypes from "prop-types";
 import { useTheme } from "hooks";
 
-// Define the props for the MovieBox component
-const TitleBox = ({
+// Define the props for the TitleBox component
+const TitleCard = ({
   index,
   id,
   titleState,
@@ -21,19 +22,19 @@ const TitleBox = ({
   // Get the theme from the useTheme hook
   const { theme } = useTheme();
 
-  // Handle the case where the movie poster image fails to load
+  // Handle the case where the title poster image fails to load
   const handleImageError = (img) => {
     img.target.onerror = null; // Prevent an infinite loop by removing the error handler
     img.target.src = empty; // Replace the image source with a fallback image
   };
 
-  // Return the JSX for the MovieBox component
+  // Return the JSX for the TitleBox component
   return (
-    <div className={`movie-box ${theme}`}>
-      {/* Movie poster */}
-      <div className={`movie-poster ${theme}`}>
-        <div className="poster-img">
-          {/* Movie poster image */}
+    <div className={`title-card ${theme}`}>
+      {/* card poster */}
+      <div className={`card-poster`}>
+        <div className="card-poster-img">
+          {/* card poster image */}
           <img
             loading="lazy"
             onError={handleImageError}
@@ -42,33 +43,26 @@ const TitleBox = ({
           ></img>
         </div>
 
-        {/* Movie poster backdrop */}
-        <div className={`movie-poster-backdrop ${theme}`}>
+        {/* card poster backdrop */}
+        <div className={`card-poster-backdrop`}>
           <i className="far fa-image fa-2x" aria-hidden="true"></i>
           <br />
           No Image
         </div>
 
-        {/* Movie info */}
-        <div className={`movie-info ${theme}`}>
-          {title}
-          <br />
-          {title_type}
-        </div>
-
-        {/* Movie year */}
-        <div className={`movie-year ${theme}`}>
+        {/* year */}
+        <div className={`year`}>
           <span>{year}</span>
         </div>
 
-        {/* Movie rating */}
-        <div className={`movie-ratting ${theme}`}>
+        {/* rating */}
+        <div className={`ratting`}>
           <span>{ratting}</span>
         </div>
 
         {/* North East block */}
-        <div className="north-east-block " id={`box-${index}-top`}>
-          {/* Display different icons based on the type of the movie or TV show */}
+        <div className="north-east-block " id={`card-${index}-top`}>
+          {/* Display different icons based on the type of the title or TV show */}
           {title_type === "movie" && (
             <span>
               <i className="fas fa-film"></i>
@@ -80,7 +74,7 @@ const TitleBox = ({
             </span>
           )}
 
-          {/* Display icons for whether the movie/TV show has been seen or favorited */}
+          {/* Display icons for whether the title/TV show has been seen or favorited */}
           {unseenByUser && (
             <span>
               <i className="fas fa-eye-slash fa-s"></i>
@@ -103,8 +97,8 @@ const TitleBox = ({
           )}
         </div>
 
-        {/* Movie title */}
-        <div className={`movie-title ${theme}`}>
+        {/* title ( name ) */}
+        <div className={`title`}>
           <span>{title}</span>
         </div>
       </div>
@@ -112,8 +106,8 @@ const TitleBox = ({
   );
 };
 
-// Define the prop types for the MovieBox component
-TitleBox.propTypes = {
+// Define the prop types for the TitleBox component
+TitleCard.propTypes = {
   index: PropTypes.number.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   titleState: PropTypes.string.isRequired,
@@ -129,4 +123,4 @@ TitleBox.propTypes = {
 };
 
 
-export { TitleBox };
+export { TitleCard };

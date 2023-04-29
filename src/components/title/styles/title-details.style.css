@@ -1,0 +1,154 @@
+@import "assets/styles/variables.css";
+
+/* title-details */
+.title-details {
+  display: grid;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-size: 14px;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 0.2fr 0.8fr 0.1fr 0.1fr 0.1fr; */
+  gap: 10px;
+  grid-template-areas:
+    "genres-section genres-section"
+    "languages-section languages-section"
+    "info-section info-section"
+    "watch-providers-section watch-providers-section"
+    "overview-section overview-section"
+    "cast-section cast-section";
+}
+
+/* genres-section */
+.title-details .genres-section {
+  grid-area: genres-section;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 5px;
+}
+.title-details .genres-section .genre {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 0px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.title-details.light .genres-section .genre {
+  background-color: var(--bg-light);
+  color: var(--font-colot-light);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-details.dark .genres-section .genre {
+  background-color: var(--bg-dark);
+  color: var(--font-colot-dark);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+}
+
+/* languages-section */
+.title-details .languages-section {
+  grid-area: languages-section;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.title-details .languages-section .languages {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.title-details .languages-section .language {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 0px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.title-details.light .languages-section .language {
+  background-color: var(--bg-light);
+  color: var(--font-colot-light);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-details.dark .languages-section .language {
+  background-color: var(--bg-dark);
+  color: var(--font-colot-dark);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+}
+
+/* info-section */
+.title-details .info-section {
+  grid-area: info-section;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+.title-details .info-section .info-item b {
+  font-family: inherit;
+}
+.title-details .info-section .info-item {
+  margin-left: 1px;
+  margin-top: 2px;
+  padding: 1px;
+  text-align: initial;
+}
+
+.title-details .watch-providers-section {
+  grid-area: watch-providers-section;
+  text-align: initial;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+/* overview-section */
+.title-details .overview-section {
+  grid-area: overview-section;
+  text-align: initial;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+.title-details .cast-section {
+  grid-area: cast-section;
+  padding: 8px;
+  text-align: initial;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+
+.title-details.light .genres-section,
+.title-details.light .languages-section,
+.title-details.light .info-section,
+.title-details.light .overview-section,
+.title-details.light .watch-providers-section,
+.title-details.light .cast-section {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+  border-top: 2px solid var(--ui-elemnet-dark);
+}
+
+.title-details.dark .genres-section,
+.title-details.dark .languages-section,
+.title-details.dark .info-section,
+.title-details.dark .overview-section,
+.title-details.dark .watch-providers-section,
+.title-details.dark .cast-section {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+  border-top: 2px solid var(--ui-elemnet-light);
+}

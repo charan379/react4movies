@@ -1,3 +1,4 @@
+import './styles/pagination.style.css'
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "hooks";

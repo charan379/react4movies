@@ -1,63 +1,61 @@
+import './styles/title-list.style.css'
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { TitleBox } from "components/title";
+import { TitleCard } from "components/title";
 import { TitleModal } from "components/title";
-import { useTheme } from "hooks";
 import { Link } from "react-router-dom";
 import waitForElementById from "utils/waitForElemnetById";
 
 const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
-  // Get the current theme from the useTheme hook
-  const { theme } = useTheme();
 
   // currentUpdateCount hooks for the modal
   const [openModal, setOpenModal] = useState(false);
-  const [movieData, setMovieData] = useState({});
+  const [titleData, setTitleData] = useState({});
 
-  // Event handler for when a movie box is clicked
+  // Event handler for when a title card is clicked
   const handleOnClick = ({ id, title, year, title_type, titleState, index, }) => {
-    // Set the movie data and open the modal
-    setMovieData({ id, title, year, title_type, titleState, index });
+    // Set the title data and open the modal
+    setTitleData({ id, title, year, title_type, titleState, index });
     setOpenModal(true);
   };
 
   return (
     <>
-      {/* Movies List */}
-      <div className={`movies ${theme}`}>
+      {/* Titles List */}
+      <div className={`titles-list`}>
         {/* If list source is from TMDB search */}
         {list?.length > 0 && // Check that the list is not empty
-          list.map((movie, index) => { // Map over the list to create TitleBox components
+          list.map((title, index) => { // Map over the list to create TitleCard components
             return (
               <Link
-                title={movie.title}
-                id={"box-" + index}
-                key={"box-" + index}
-                onClick={() => // Set the movie data and open the modal when a TitleBox is clicked
+                title={title.title}
+                id={"card-" + index}
+                key={"card-" + index}
+                onClick={() => // Set the title data and open the modal when a TitleBox is clicked
                   handleOnClick({
-                    id: movie?._id ?? movie?.tmdb_id, // Use the _id field if it exists, otherwise use the tmdb_id field
-                    title: movie.title,
-                    year: movie?.year,
-                    title_type: movie.title_type,
+                    id: title?._id ?? title?.tmdb_id, // Use the _id field if it exists, otherwise use the tmdb_id field
+                    title: title.title,
+                    year: title?.year,
+                    title_type: title.title_type,
                     titleState: source,
                     index: index,
                   })
                 }
               >
-                {/* Pass props to the TitleBox component */}
-                <TitleBox
+                {/* Pass props to the TitleCard component */}
+                <TitleCard
                   index={index}
-                  id={movie?._id ?? movie?.tmdb_id}
+                  id={title?._id ?? title?.tmdb_id}
                   titleState={source}
-                  title={movie.title}
-                  title_type={movie.title_type}
-                  poster_path={movie?.poster_path}
-                  year={movie?.year}
-                  ratting={movie?.ratting}
-                  seenByUser={movie?.seenByUser}
-                  unseenByUser={movie?.unseenByUser}
-                  starredByUser={movie?.starredByUser}
-                  favouriteByUser={movie?.favouriteByUser}
+                  title={title.title}
+                  title_type={title.title_type}
+                  poster_path={title?.poster_path}
+                  year={title?.year}
+                  ratting={title?.ratting}
+                  seenByUser={title?.seenByUser}
+                  unseenByUser={title?.unseenByUser}
+                  starredByUser={title?.starredByUser}
+                  favouriteByUser={title?.favouriteByUser}
                 />
               </Link>
             );
@@ -66,7 +64,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
         {/* If the modal is open, display it */}
         {openModal ? (
           <TitleModal
-            title={movieData}
+            title={titleData}
             open={openModal}
             close={() => {
               // Close the modal
@@ -77,9 +75,9 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
                 setUpdateCount(currentUpdateCount + 1);
               }
 
-              // Scroll to and focus the movie box that was clicked
+              // Scroll to and focus the title box that was clicked
               setTimeout(() => {
-                waitForElementById(`box-${movieData?.index}`, 3000).then(
+                waitForElementById(`box-${titleData?.index}`, 3000).then(
                   (element) => {
                     element.scrollIntoView();
                     element.focus();

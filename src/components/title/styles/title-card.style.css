@@ -1,0 +1,566 @@
+@import "assets/styles/variables.css";
+
+/* Title card structure */
+/* in px only
+
+Height = ?
+
+     ##################################
+     #                                #  
+     # <- (Width = Height X 0.635) -> #
+     #                                #
+     #      #- title Poster -#        #
+     #  Height = Height x 0.8735      #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     ##################################
+     #    #- Title     -#             #      
+     #  Height = Height x 0.127       #
+     #                                #
+     ##################################
+*/
+
+/* title card */
+/* card */
+.title-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 0px solid;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px 6px 3px 3px;
+  z-index: 1;
+  width: 200px;
+  height: 315px; /* 275px img width + 40px for title */
+  margin: 10px 7px 10px 7px;
+}
+
+.title-card.light {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-card.dark {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
+}
+
+/* title poster */
+.title-card .card-poster .card-poster-img,
+.title-box .card-poster .card-poster-backdrop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 275px; /* title-box width 40px */
+  overflow: hidden;
+  position: absolute;
+  border-radius: 6px 8px 0 0;
+  right: 0px;
+}
+
+.title-card .card-poster .card-poster-backdrop {
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.title-card .card-poster .card-poster-img {
+  z-index: 1;
+}
+
+.title-card .card-poster .card-poster-img img {
+  width: inherit;
+  height: inherit;
+}
+
+/* titile */
+.title-card .title {
+  bottom: 0px;
+  right: 0px;
+  padding: 6px 3px 2px 5px;
+  height: 40px;
+  width: 200px;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  z-index: 2;
+  font-weight: 300;
+  font-size: medium;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.title-card.light .title {
+  /* color: #5107c0; */
+  color: var(--title-box-title-light);
+  background-color: var(--title-box-title-bg-light);
+  border-top: 3px solid var(--title-box-title-light);
+}
+
+.title-card.dark .title {
+  color: var(--title-box-title-dark);
+  background-color: var(--title-box-title-bg-dark);
+  border-top: 3px solid var(--title-box-title-dark);
+}
+
+/* title Year */
+.title-card .year {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  bottom: 40px;
+  left: 0px;
+  height: 20px;
+  width: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0px 5px 0px 0px;
+  padding: 2px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
+}
+
+.title-card.light .year {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
+
+.title-card.dark .year {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+}
+
+/* title Ratting */
+.title-card .ratting {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  bottom: 40px;
+  right: 0px;
+  height: 20px;
+  width: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px 0px 0px 0px;
+  padding: 2px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
+}
+
+.title-card.light .ratting {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
+
+.title-card.dark .ratting {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+}
+
+.title-card .north-east-block {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  top: 0;
+  right: 0;
+  width: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px 0 3px 3px;
+  padding: 0px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  align-content: center;
+}
+
+.title-card.light .north-east-block {
+  color: var(--font-color-light);
+  background-color: var(--ui-elemnet-light);
+}
+
+.title-card.dark .north-east-block {
+  color: var(--font-color-dark);
+  background-color: var(--ui-elemnet-dark);
+}
+
+/* for 530px screens and below */
+@media (max-width: 530px) {
+  /* title card */
+  .title-card {
+    /* margin-top: 10px; */
+    /* margin-right: 10px; */
+    width: 178px;
+    height: 280px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-box .card-poster .card-poster-backdrop {
+    width: 178px;
+    height: 245px;
+  }
+
+  .title-card .title {
+    padding: 5px 3px 2px 5px;
+    height: 35.5px;
+    width: 178px;
+    font-size: small;
+  }
+
+  .title-card .year {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .title-card .ratting {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 530px screens and below */
+@media (max-width: 530px) {
+  /* title card */
+  .title-card {
+    /* margin-top: 10px; */
+    /* margin-right: 10px; */
+    width: 178px;
+    height: 280px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 178px;
+    height: 245px;
+  }
+
+  .title-card .title {
+    padding: 5px 3px 2px 5px;
+    height: 35.5px;
+    width: 178px;
+    font-size: small;
+  }
+
+  .title-card .year {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .title-card .ratting {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 485px screens and below */
+@media (max-width: 485px) {
+  /* title card */
+  .title-card {
+    width: 162.5px;
+    height: 256px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 162.5px;
+    height: 223.6px;
+  }
+
+  .title-card .title {
+    padding: 5px 3px 2px 5px;
+    height: 32.5px;
+    width: 162.5px;
+    font-size: small;
+  }
+
+  .title-card .year {
+    font-size: 12px;
+    bottom: 32.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .title-card .ratting {
+    font-size: 12px;
+    bottom: 32.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 455px screens and below */
+@media (max-width: 455px) {
+  /* title card */
+  .title-card {
+    width: 145px;
+    height: 229px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 145px;
+    height: 200px;
+  }
+
+  .title-card .title {
+    padding: 5px 3px 2px 5px;
+    height: 29px;
+    width: 145px;
+    font-size: 12px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 29px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 29px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 420px screens and below */
+@media (max-width: 420px) {
+  /* title card */
+  .title-card {
+    width: 134.5px;
+    height: 212.5px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 134.5px;
+    height: 185.6px;
+  }
+
+  .title-card .title {
+    padding: 4px 3px 2px 5px;
+    height: 27px;
+    width: 134.5px;
+    font-size: 12px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 27px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 389px screens and below */
+@media (max-width: 389px) {
+  /* title card */
+  .title-card {
+    width: 119px;
+    height: 189px;
+    margin: 5px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 119px;
+    height: 165px;
+  }
+
+  .title-card .title {
+    padding: 3px 3px 2px 5px;
+    height: 24px;
+    width: 119px;
+    font-size: 10px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 360px screens and below */
+@media (max-width: 359px) {
+  /* title card */
+  .title-card {
+    width: 109.5px;
+    height: 172px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 109.5px;
+    height: 150px;
+  }
+
+  .title-card .title {
+    padding: 3px 3px 2px 5px;
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 339px screens and below */
+@media (max-width: 339px) {
+  /* title card */
+  .title-card {
+    width: 109.5px;
+    height: 172px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 110px;
+    height: 150px;
+  }
+
+  .title-card .title {
+    padding: 3px 3px 2px 5px;
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 338px screens and below */
+@media (max-width: 320px) {
+  /* title card */
+  .title-card {
+    width: 101px;
+    height: 156px;
+    margin: 5px;
+  }
+
+  /* title poster */
+  .title-card .card-poster .card-poster-img,
+  .title-card .card-poster .card-poster-backdrop {
+    width: 101px;
+    height: 136px;
+  }
+
+  .title-card .title {
+    padding: 1px 3px 1px 3px;
+    height: 20px;
+    width: 101px;
+    font-size: 10px;
+  }
+
+  .title-card .info {
+    width: 101px;
+    height: 136px;
+  }
+
+  .title-card .year {
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
+    width: 29px;
+  }
+
+  .title-card .ratting {
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
+    width: 23px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .title-card:hover {
+    scale: 1.1;
+  }
+
+  /* .title-card.light .info:hover {
+      opacity: 0.9;
+      color: var(--font-color-light);
+      background-color: var(--ui-elemnet-light);
+    }
+  
+    .title-card.dark .info:hover {
+      opacity: 0.9;
+      color: var(--font-color-dark);
+      background-color: var(--ui-elemnet-dark);
+    } */
+}

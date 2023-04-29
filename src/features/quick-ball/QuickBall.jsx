@@ -1,3 +1,4 @@
+import './quick-ball.style.css'
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTheme, useAuth, useOnOutSideClick } from "hooks";

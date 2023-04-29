@@ -1,3 +1,4 @@
+import './styles/title-details.style.css'
 import React, { useState } from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleCast } from "components/title";
@@ -10,16 +11,14 @@ const TitleDetails = () => {
 
   const { title } = useTitle(); // useTitle custom hook to get movie/TV show details
 
-  const [showCast, setShowCast] = useState(false); // state variable to toggle displaying of cast list
-
   return (
-    // Render movie details 
-    <div className={`movie-info-box ${theme}`}> {/* movie info box */}
+    // Render title details 
+    <div className={`title-details ${theme}`}> {/* title details  */}
 
       {/* Display the list of genres, if available */}
       {(title?.genres instanceof Array && title?.genres?.length > 0) && (
         <>
-          <div className={`genres-container ${theme}`}> {/* genres contrainer */}
+          <div className={`genres-section`}> {/* genres contrainer */}
             {title.genres.map((genre, index) => {
               return (
                 <div key={index}
@@ -34,7 +33,7 @@ const TitleDetails = () => {
 
       {/* Display the list of languages, if available */}
       {(title?.genres instanceof Array && title?.languages?.length > 0) && (
-        <div className={`languages-container ${theme}`}> {/* languages container */}
+        <div className={`languages-section`}> {/* languages section */}
           <h6>Languages</h6>
           <div className="languages">
             {title.languages.map((language, index) => {
@@ -52,7 +51,7 @@ const TitleDetails = () => {
         </div>
       )}
 
-      <div className="movie-info"> {/* movie meta data */}
+      <div className="info-section"> {/* movie meta data */}
         <div className="info-item"> {/* title */}
           <b>Title : </b>{title?.title}
         </div>
@@ -187,7 +186,7 @@ const TitleDetails = () => {
       </div>
 
       {/* watch providers */}
-      <div className={`movie-watch-providers`}>
+      <div className={`watch-providers-section`}>
         <h6>Watch Providers</h6>
         {title?.tmdb_id && (
           <WatchProviders
@@ -199,39 +198,18 @@ const TitleDetails = () => {
 
       {/* overview */}
       {title.overview && (
-        <div className={`movie-overview`}>
+        <div className={`overview-section`}>
           <h6>Overview</h6>
           <ShowLessText text={title.overview} limit={150} />
         </div>
       )}
 
       {/* top cast */}
-      <div className={`movie-cast`}>
+      <div className={`cast-section`}>
         <h6>Top Cast</h6>
-        <div className={`cast-toggle ${showCast ? "expand" : ""}`}>
-          <i
-            onClick={() => setShowCast(!showCast)}
-            className={`fas fa-chevron-circle-down`}
-          ></i>
-        </div>
-        {!showCast ? (
-          <div
-            className="person-list-container"
-            style={{
-              color: " rgb(71, 135, 214)",
-              fontWeight: "bold",
-              fontFamily: "monospace",
-              cursor: "pointer",
-              width: "100%",
-              height: "15px",
-            }}
-            onClick={() => setShowCast(!showCast)}
-          >
-            Tap to see cast details
-          </div>
-        ) : null}
-
-        {title?.cast && showCast && <TitleCast cast={title?.cast} />}
+        {(title?.cast instanceof Array && title?.cast?.length > 0)
+          ? <TitleCast cast={title?.cast} />
+          : "Cast details not available"}
       </div>
     </div>
   );
