@@ -77,7 +77,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
 
               // Scroll to and focus the title box that was clicked
               setTimeout(() => {
-                waitForElementById(`box-${titleData?.index}`, 3000).then(
+                waitForElementById(`card-${titleData?.index}`, 3000).then(
                   (element) => {
                     element.scrollIntoView();
                     element.focus();

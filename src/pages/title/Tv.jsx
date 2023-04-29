@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import Seasons from "components/movies/title/tv/Seasons";
+import { TitleActions } from "features/title-actions";
 
 // Tv component
 const Tv = () => {
@@ -11,28 +12,31 @@ const Tv = () => {
   // Get the title from the useTitle hook
   const { title: tv } = useTitle();
 
+  // Render the title page
   return (
     <>
-      <div className={`movie-page ${theme}`}>{/* Movie page */}
-        <div className="movie-title">{/* Movie title */}
-          {/* Render the movie title and year */}
+      <div className={`title-page ${theme}`}>{/* Title page */}
+        <div className="title-title-section">{/* title  name*/}
+          {/* Render  title and year */}
           {tv?.title}
           <small>
             ({tv?.year})
           </small>
         </div>
 
-        <div className="movie-poster">{/* Movie poster */}
-          {/* Render the movie poster */}
+        <div className="title-poster-section">{/* title poster */}
+          {/* Render the title poster */}
           <TitlePoster
             url={tv?.poster_path}
             alt={tv?.title}
             tagline={tv?.tagline}
           />
+          {/* component for displaying title action buttons */}
+          <TitleActions />
         </div>
 
-        <div className="movie-details">{/* Movie details */}
-          {/* Render the movie details */}
+        <div className="title-details-section">{/* title details */}
+          {/* Render the title details */}
           <TitleDetails />
         </div>
 

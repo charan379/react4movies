@@ -1,3 +1,4 @@
+import './login.style.css'
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -16,6 +17,8 @@ const Login = () => {
   const [userName, setUsername] = useState(AppConfig.GUEST_USERNAME);  // set the initial value of the username to the guest username from the AppConfig
   const [password, setPassword] = useState(AppConfig.GUEST_PASSWORD);  // set the initial value of the password to the guest password from the AppConfig
   const [errors, setErrors] = useState("");  // set the initial value of the error message to an empty string
+  const [showPassword, setShowPassword] = useState(false);
+
 
 
   // This function sets user auth details and forwards the user to the route from where the user initiated login
@@ -77,7 +80,7 @@ const Login = () => {
       setAuth({ ...auth, token });
     } catch (errors) {
       // Get error message from response, or use a generic message
-      const message = errors?.response?.data?.error?.message ?? errors?.message ?? "Something went wrong";
+      const message = errors?.response?.data?.error?.reason ?? errors?.message ?? "Something went wrong";
 
       // Show error toast with message
       toast.update(toastId, { render: message, type: "error", isLoading: false, autoClose: 5000, delay: 50 });
@@ -108,7 +111,7 @@ const Login = () => {
 
   return (
     <>
-      <div className={`auth-box ${theme}`}>
+      <div className={`login-modal ${theme}`}>
         {/* Login form */}
         <h2> LOGIN </h2>
         <form onSubmit={handleSubmit}>
@@ -126,12 +129,19 @@ const Login = () => {
           {/* Password input */}
           <div className="input-box">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required={true}
               autoComplete="false"
             ></input>
+            {password && (
+              <span
+                className="eye-icon"
+                onClick={() => setShowPassword(!showPassword)}>
+                <i class={`${showPassword ? 'fas fa-eye fa-lg' : 'fas fa-eye-slash fa-lg'}`}></i>
+              </span>
+            )}
             <label>Password</label>
           </div>
           {/* Error message */}
@@ -142,42 +152,23 @@ const Login = () => {
             {/* Login button */}
             {userName !== AppConfig.GUEST_USERNAME && (
               <button
-                className="form-button"
+                className="login-button"
                 style={{ float: "left" }}
                 type="submit"
               >
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                LogIn
+                <span>Login</span>
               </button>
             )}
             {/* Login as Guest button */}
             {userName === AppConfig.GUEST_USERNAME && (
               <button
-                className="form-button"
+                className="login-button"
                 style={{ float: "left" }}
                 onClick={handleSubmit}
               >
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Login as Guest
+                <span>Login as Guest</span>
               </button>
             )}
-            {/* Right button */}
-            <a
-              className="form-button"
-              style={{ float: "right", display: "none" }}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Right Button
-            </a>
           </div>
           <br />
         </form>
@@ -187,20 +178,20 @@ const Login = () => {
           <Link
             to={"#"}
             className="link"
-            style={{ float: "left" }}
+            style={{ float: "left", backgroundColor: "#228B22", color: "#FFFFFF" }}
             onClick={() => alert("Not Implemented")}
           >
-            New User ?
+            <span>New User ?</span>
           </Link>
 
           {/* Link for trouble logingin */}
           <Link
             to={"#"}
             className="link"
-            style={{ float: "right" }}
+            style={{ float: "right", backgroundColor: "crimson", color: '#FFFFFF' }}
             onClick={() => alert("Not Implemented")}
           >
-            Cannot Login ?
+            <span>Cannot Login ?</span>
           </Link>
         </div>
       </div>

@@ -23,7 +23,6 @@ const TitleActions = () => {
   return (
     <div className={`title-actions ${theme}`}>
       <div className="user-related">
-        {console.log(title?.state)}
         {title?.state === "moviebunkers" && (
           <>
             <Star toast={toast} />

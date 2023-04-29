@@ -45,8 +45,7 @@
   text-align: center;
   padding: 4px;
   font-size: 30px;
-  color: #fff;
-  background-color: #dc143c;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,16 +53,9 @@
   cursor: pointer;
   text-decoration: none;
   z-index: 999;
+  background-color: crimson;
+  color: #ffffff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
-}
-
-.title-modal.light .closeBtn {
-    color: var(--font-color-dark);
-    background-color: var(--bg-dark);
-}
-.title-modal.dark .closeBtn {
-    color: var(--font-color-light);
-    background-color: var(--bg-light);
 }
 
 .title-modal .open-newTab {

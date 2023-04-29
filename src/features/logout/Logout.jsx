@@ -1,3 +1,4 @@
+import './logout.style.css';
 import React, { useCallback, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -40,6 +41,9 @@ const Logout = ({ open, close }) => {
         autoClose: 5000,
       });
 
+      // close logout modal 
+      close();
+
       // Navigate to the home page and close the logout dialog box
       setTimeout(() => {
         navigate("/");
@@ -65,11 +69,11 @@ const Logout = ({ open, close }) => {
   // Otherwise, render the logout dialog box and the toast container
   return (
     <>
-      <div ref={logoutRef} className={`auth-box ${theme}`}>
+      <div ref={logoutRef} className={`logout-modal ${theme}`}>
         {/* Close button */}
-        <Link onClick={close} className="closeBtn" tabIndex="1">
+        <div onClick={close} className="closeBtn" tabIndex="1">
           <i className="fas fa-times fa-lg"></i>
-        </Link>
+        </div>
 
         {/* Header */}
         <h2>
@@ -86,27 +90,18 @@ const Logout = ({ open, close }) => {
               style={{ float: "left", marginTop: '35px' }}
               type="submit"
             >
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Logout
+              <span>Logout</span>
             </button>
 
             {/* Cancel button */}
             <button
-              className="form-button"
+              className="cancel-button"
               style={{ float: "right", marginTop: '35px' }}
               onClick={close}
             >
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              Cancel
+              <span>Cancel</span>
             </button>
           </div>
-          <br />
         </form>
       </div>
 
