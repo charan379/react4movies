@@ -58,7 +58,7 @@
   padding: 10px 0;
   font-size: 18px;
   pointer-events: none;
-  transition: 0.5s;
+  transition: 0.3s;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
