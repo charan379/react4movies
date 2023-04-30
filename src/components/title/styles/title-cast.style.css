@@ -83,6 +83,8 @@
 }
 
 .title-cast .profile span {
+  display: block;
+  left: 6px;
   top: -45px;
   border-radius: 10px;
   position: relative;
