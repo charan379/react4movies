@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Config } from "../utils/Config";
-import MovieBunkersException from "../utils/MovieBunkersException";
+import { MovieBunkersException } from "utils";
+import { AppConfig } from "setup/app-config";
 
 
-const API = Config.TMDB_API;
+const API = AppConfig.TMDB_API;
 
 
 export async function searchTmdb({ query, cancelToken }) {

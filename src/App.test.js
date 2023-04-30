@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { TmdbConfig } from './utils/Config';
+import { TmdbConfig } from './setup/app-config';
 
 // test('renders learn react link', () => {
 //   render(<App />);

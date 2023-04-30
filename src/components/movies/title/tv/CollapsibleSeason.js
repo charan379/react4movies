@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import useOnOutSideClick from "../../../../utils/hooks/useOnOutSideClick";
-import useTitle from "../../../../utils/hooks/useTitle";
+import { useTitle, useOnOutSideClick } from "hooks";
 import Season from "./Season";
 import SeasonEpisodes from "./SeasonEpisodes";
 
@@ -29,9 +28,8 @@ const CollapsibleSeason = ({ season, index }) => {
       </div>
       <i
         onClick={handleClick}
-        className={`fas fa-chevron-circle-down toggle ${
-          isExpanded ? "expand" : ""
-        }`}
+        className={`fas fa-chevron-circle-down toggle ${isExpanded ? "expand" : ""
+          }`}
       ></i>
       {isExpanded ? (
         <>

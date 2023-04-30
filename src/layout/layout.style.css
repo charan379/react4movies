@@ -1,0 +1,91 @@
+@import "assets/styles/variables.css";
+
+.layout-container {
+  background-color: var(--bg-light);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.layout-container.light {
+  background-color: var(--bg-light);
+}
+
+.layout-container.dark {
+  background-color: var(--bg-dark);
+}
+.outlet {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0;
+  height: max-content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  padding-top: 5px;
+  /* transition: margin-left var(---trans-container-margin); */
+}
+
+.sidebar.close + .outlet {
+  margin-left: 70px;
+}
+
+.sidebar + .outlet {
+  margin-left: 240px;
+}
+
+.sidebar.none + .outlet {
+  margin-left: 3px;
+}
+
+.content-wrapper {
+  text-align: center; /* center all the contnets */
+  padding: 10px 0px 20px 0px;
+  margin: 55px 0px 5px 0px;
+}
+
+.content-wrapper.light {
+  background-color: var(--bg-light);
+}
+
+.content-wrapper.dark {
+  background-color: var(--bg-dark);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 10px 0px 0px;
+  margin: 0;
+  z-index: 0;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.error-message {
+  text-align: center;
+  color: rgb(176, 42, 69);
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 100px;
+}
+
+/* removeable */
+.container.light {
+  background-color: var(--bg-light);
+}
+.container.dark {
+  background-color: var(--bg-dark);
+}
+
+@media (max-width: 580px) {
+  /* .main-container {
+    margin-left: 70px;
+  } */
+}

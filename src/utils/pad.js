@@ -4,4 +4,4 @@ function pad(n) {
   return ret;
 }
 
-export default pad;
+export { pad };

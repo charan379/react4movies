@@ -1,0 +1,48 @@
+@import "assets/styles/variables.css";
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  padding: 1px 5px 1px 5px;
+  position: fixed;
+  width: 100vw;
+  z-index: 998;
+  bottom: 0;
+  margin: 0px;
+}
+.footer img {
+  width: 40px;
+}
+.footer.light {
+  background-color: var(--bg-light);
+}
+
+.footer.dark {
+  background-color: var(--bg-dark);
+}
+
+.footer a {
+  text-decoration: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+.footer.light a {
+  color: var(--font-color-light);
+}
+
+.footer.dark a {
+  color: var(--font-color-dark);
+}
+
+@media (max-width: 420px) {
+  .footer {
+    font-size: 0.7rem;
+  }
+}

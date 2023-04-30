@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { fetchTmdbTvSeason } from "../../../../helpers/tmdb.requests";
-import useToastify from "../../../../utils/hooks/useToast";
-import Loader from "../../../utils/Loader";
+import { fetchTmdbTvSeason } from "helpers/tmdb.requests";
+import { useToastify } from "hooks";
 import Episode from "./Episode";
+import { Loader } from "components/common";
 
 const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
 
@@ -15,7 +15,7 @@ const SeasonEpisodes = ({ tmdbShowId, seasonNumber }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const fetchData = ({ tmdbShowId, seasonNumber , cancelToken}) => {
+  const fetchData = ({ tmdbShowId, seasonNumber, cancelToken }) => {
     fetchTmdbTvSeason({ tmdbShowId, seasonNumber, cancelToken })
       .then((result) => {
         setEpisodes(result?.episodes);

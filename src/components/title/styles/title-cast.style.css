@@ -1,0 +1,130 @@
+@import "assets/styles/variables.css";
+
+.title-cast {
+  display: flex;
+  flex-direction: column;
+  text-align: initial;
+  width: -webkit-fill-available;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.title-cast .cast-toggle {
+  display: flex;
+  position: relative;
+  top: -10px;
+  left: calc(100% - 40px);
+  font-size: 28px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform var(---trans-sidebar-toggle),
+    background-color var(---trans-theme), color var(---trans-theme),
+    display var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle);
+
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.title-cast .cast-toggle.expand {
+  transform: translateY(-50%);
+}
+
+.title-cast .persons-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  top: -20px;
+  position: relative;
+  overflow: scroll;
+  transition: height 0.5s ease-in-out;
+}
+
+.title-cast .persons-list.hide {
+  height: 20px;
+}
+
+.title-cast .persons-list.show {
+  height: 320px;
+}
+
+.title-cast .person {
+  display: grid;
+  grid-template-columns: 40px 160px;
+  grid-auto-rows: 30px;
+  gap: 8px;
+  grid-template-areas:
+    "profile name"
+    "prifile character";
+  align-content: center;
+  align-items: start;
+  justify-items: start;
+  justify-content: center;
+  margin: 5px;
+}
+
+.title-cast .person .profile {
+  grid-area: profile;
+  cursor: pointer;
+}
+
+.title-cast .profile img {
+  top: 2px;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-cast .profile span {
+  display: block;
+  left: 6px;
+  top: -45px;
+  border-radius: 10px;
+  position: relative;
+  height: 60px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.title-cast .person .name {
+  grid-area: name;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 600;
+}
+.title-cast .name span {
+  top: 2px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.title-cast .person .character {
+  grid-area: character;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  font-style: oblique;
+}
+
+.title-cast .character span {
+  bottom: 3px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}

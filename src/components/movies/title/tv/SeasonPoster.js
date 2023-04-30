@@ -1,8 +1,8 @@
 import React from "react";
-import useTheme from "../../../../utils/hooks/useTheme";
-import empty from "../../../../static/empty.svg";
+import { useTheme } from "hooks";
+import empty from "assets/empty.svg";
 
-const SeasonPoster = ({data}) => {
+const SeasonPoster = ({ data }) => {
   const { theme } = useTheme();
 
   const handleImageError = (img) => {

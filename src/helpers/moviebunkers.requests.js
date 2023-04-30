@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Config } from "../utils/Config";
+import { AppConfig } from "../setup/app-AppConfig";
 import MovieBunkersException from "../utils/MovieBunkersException";
 
 
-const API = Config.MOVIEBUNKERS_API;
+const API = AppConfig.MOVIEBUNKERS_API;
 
 
 export async function search({ query, cancelToken }) {

@@ -2,7 +2,7 @@ import React from "react";
 import Episode from "./Episode";
 import PropTypes from "prop-types";
 import CollapsibleSeason from "./CollapsibleSeason";
-import useTheme from "../../../../utils/hooks/useTheme";
+import { useTheme } from "hooks";
 import { useLocation } from "react-router-dom";
 
 const Seasons = ({ data }) => {
