@@ -60,13 +60,13 @@ Height = ?
 
 /* title poster */
 .title-card .card-poster .card-poster-img,
-.title-box .card-poster .card-poster-backdrop {
+.title-card .card-poster .card-poster-backdrop {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 200px;
-  height: 275px; /* title-box width 40px */
+  height: 275px; /* title-card width 40px */
   overflow: hidden;
   position: absolute;
   border-radius: 6px 8px 0 0;
@@ -215,7 +215,7 @@ Height = ?
 
   /* title poster */
   .title-card .card-poster .card-poster-img,
-  .title-box .card-poster .card-poster-backdrop {
+  .title-card .card-poster .card-poster-backdrop {
     width: 178px;
     height: 245px;
   }
