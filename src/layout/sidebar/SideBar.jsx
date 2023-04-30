@@ -28,7 +28,7 @@ const SideBar = () => {
     /^\/login.{0,}/,
     /^\/test.{0,}/,
     /^\/downloads.{0,}/,
-    /^\/update.{0,}/,
+    /^\/sync-titles.{0,}/,
   ];
 
   // Get the current location using the useLocation hook from react-router-dom
