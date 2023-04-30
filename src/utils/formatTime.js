@@ -7,4 +7,4 @@ function formatTime(milliseconds) {
     return `${minutes} minutes and ${remainingSeconds} seconds`;
 }
 
-export default formatTime;
+export { formatTime };

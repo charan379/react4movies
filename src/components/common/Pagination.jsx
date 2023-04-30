@@ -2,7 +2,7 @@ import './styles/pagination.style.css'
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "hooks";
-import scrollToTop from "utils/scrollToTop";
+import { scrollToTop } from "utils";
 
 const Pagination = ({ total_pages, currentPage, setPageNo }) => {
   const { theme } = useTheme();

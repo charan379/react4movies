@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { LevelOne } from "constants/AuthRoles";
-import convertIsoData from "utils/convertIsoDate";
+import { convertIsoDate, pad } from "utils";
 import { useAuth, useTitle } from "hooks";
-import pad from "utils/pad";
 import SeasonPoster from "./SeasonPoster";
 import { ShowLessText } from "components/common";
 
@@ -31,7 +30,7 @@ const Season = ({ season }) => {
             <b>Number Of Episodes : </b> {season.episode_count}
           </li>
           <li>
-            <b>Release Date : </b> {convertIsoData(season?.air_date)}
+            <b>Release Date : </b> {convertIsoDate(season?.air_date)}
           </li>
           <li>
             <b>Overview : </b>{" "}

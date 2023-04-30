@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TitleCard } from "components/title";
 import { TitleModal } from "components/title";
 import { Link } from "react-router-dom";
-import waitForElementById from "utils/waitForElemnetById";
+import { waitForElementById } from "utils";
 
 const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
 

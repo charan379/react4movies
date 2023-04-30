@@ -11,4 +11,4 @@ function makePrettyUrl(url) {
   return url;
 }
 
-export default makePrettyUrl;
+export { makePrettyUrl };

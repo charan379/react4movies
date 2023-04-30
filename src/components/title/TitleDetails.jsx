@@ -1,10 +1,10 @@
 import './styles/title-details.style.css'
-import React, { useState } from "react";
+import React from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleCast } from "components/title";
 import { WatchProviders } from "features/watch-providers";
 import { ShowLessNames, ShowLessText } from "components/common";
-import convertIsoDate from "utils/convertIsoDate";
+import { convertIsoDate } from "utils";
 
 const TitleDetails = () => {
   const { theme } = useTheme(); // useTheme custom hook to get theme data

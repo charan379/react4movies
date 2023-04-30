@@ -1,4 +1,4 @@
-function convertIsoData(isoDate) {
+function convertIsoDate(isoDate) {
   try {
     const date = new Date(isoDate)
       .toLocaleDateString("en-IN", {
@@ -15,4 +15,4 @@ function convertIsoData(isoDate) {
   }
 }
 
-export default convertIsoData;
+export { convertIsoDate };

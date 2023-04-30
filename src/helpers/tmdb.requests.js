@@ -1,5 +1,5 @@
 import axios from "axios";
-import MovieBunkersException from "../utils/MovieBunkersException";
+import { MovieBunkersException } from "utils";
 import { AppConfig } from "setup/app-config";
 
 

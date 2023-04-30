@@ -1,3 +1,4 @@
+import './react-slider.style.css';
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import ReactSlider from "react-slider";
 import iso369Language from "constants/iso369-1.json"
 import { useTheme, useCollectionSearch, useCtrlPlusKey, useMoviebunkersAPI } from "hooks";
 import { ReactSelector } from "components/common";
-import scrollToTop from "utils/scrollToTop";
+import { scrollToTop } from "utils";
 
 const MoviebunkersListSidebar = ({ searchRef }) => {
   // get the current theme from the ThemeProvider

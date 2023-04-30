@@ -1,3 +1,4 @@
+import './torrents.style.css';
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { TorrentList } from "./TorrentList";
@@ -14,7 +15,6 @@ const Torrents = () => {
       event.target.name,
       event.target.value || event.target.dataset.name || ""
     );
-    console.log(searchParams.get(event.target.name));
     setSearchParams(searchParams);
     setPageNo(1);
   };

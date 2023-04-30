@@ -7,4 +7,4 @@ function scrollToTop() {
   }, 1200);
 }
 
-export default scrollToTop;
+export { scrollToTop };

@@ -1,4 +1,4 @@
-export default class MovieBunkersException extends Error {
+export class MovieBunkersException extends Error {
   success;
   name;
   status;

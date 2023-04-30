@@ -1,7 +1,8 @@
+import './sync-all-titles.style.css';
 import React, { useEffect, useState } from 'react'
-import formatTime from 'utils/formatTime';
+import { formatTime } from 'utils';
 import { Link } from 'react-router-dom';
-import { Logger, ProgressBar } from 'components/common';
+import { Terminal, ProgressBar } from 'components/common';
 import { useMoviebunkersAPI, useSeasonsUpdater, useTheme, useTmdbAPI } from 'hooks';
 
 const SyncTitles = () => {
@@ -189,11 +190,11 @@ const SyncTitles = () => {
             )}
 
             {/* Updated Movies logs */}
-            <Logger logs={updated} title="Updated Movies" key={1} />
+            <Terminal logs={updated} title="Updated Movies" key={1} />
             <br />
 
             {/* Errors logs */}
-            <Logger logs={errors} title="Errors" key={2} />
+            <Terminal logs={errors} title="Errors" key={2} />
         </div>
     );
 

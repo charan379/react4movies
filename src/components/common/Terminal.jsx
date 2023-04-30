@@ -1,21 +1,22 @@
+import './styles/terminal.style.css';
 import React from 'react'
 import { useTheme } from 'hooks';
 
-const Logger = ({ logs, title }) => {
+const Terminal = ({ logs, title }) => {
 
     const { theme } = useTheme();
 
     const reversedLogs = [...logs].reverse(); // create a reversed copy of the logs array
 
     return (
-        <div className={`logger ${theme}`}>
-            <div className={`logger-header ${theme}`}>
-                <span className={`logger-title ${theme}`}>{title}</span>
+        <div className={`terminal ${theme}`}>
+            <div className={`terminal-header ${theme}`}>
+                <span className={`terminal-title ${theme}`}>{title}</span>
             </div>
-            <div className="logger-body">
+            <div className="terminal-body">
                 {reversedLogs?.map((log, index) => {
                     return (
-                        <p key={`${index}`} className={`logger-line ${theme}`}>
+                        <p key={`${index}`} className={`terminal-line ${theme}`}>
                             {log?.name && `${log.name}`}
                             {log?.status && ` - ${log.status}`}
                             {log?.error && ` : ${log.error}`}
@@ -28,4 +29,4 @@ const Logger = ({ logs, title }) => {
     )
 }
 
-export { Logger }
+export { Terminal }

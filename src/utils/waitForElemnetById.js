@@ -36,4 +36,4 @@ async function waitForElementById(
   });
 }
 
-export default waitForElementById;
+export { waitForElementById };

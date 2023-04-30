@@ -2,7 +2,7 @@ import './styles/title-modal.style.css';
 import React, { useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { useTheme, useEscapeKey, useOnOutSideClick } from "hooks";
-import makePrettyUrl from "../../utils/makePrettyUrl";
+import { makePrettyUrl } from "utils";
 import { Title } from "pages/title";
 
 const TitleModal = ({ title, open, close }) => {
