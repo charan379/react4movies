@@ -14,7 +14,7 @@ const Movie = () => {
   // Render the title page
   return (
     <>
-      <div className={`title-page ${theme}`}>{/* title page */}
+      <div id={'title-page'} className={`title-page ${theme}`}>{/* title page */}
         <div className="title-title-section">{/* title name */}
           {/* Render the title title and year */}
           {movie?.title}

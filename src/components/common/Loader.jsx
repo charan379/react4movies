@@ -1,3 +1,4 @@
+import './styles/loader.style.css';
 import React from 'react'
 import { useTheme } from 'hooks'
 
