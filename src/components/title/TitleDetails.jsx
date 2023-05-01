@@ -1,7 +1,7 @@
 import './styles/title-details.style.css'
 import React from "react";
 import { useTheme, useTitle } from "hooks";
-import { TitleCast } from "components/title";
+import { TitleCast, TitleExternalLinks } from "components/title";
 import { WatchProviders } from "features/watch-providers";
 import { ShowLessNames, ShowLessText } from "components/common";
 import { convertIsoDate } from "utils";
@@ -10,6 +10,20 @@ const TitleDetails = () => {
   const { theme } = useTheme(); // useTheme custom hook to get theme data
 
   const { title } = useTitle(); // useTitle custom hook to get movie/TV show details
+
+  const getExternalLinks = (title) => {
+    const externalLinks = [];
+    if (title?.imdb_id) {
+      externalLinks.push({ destination: 'IMDB', path: `https://www.imdb.com/title/${title?.imdb_id}` })
+    }
+
+    if (title?.tmdb_id) {
+      externalLinks.push({ destination: 'TMDB', path: `https://www.themoviedb.org/${title?.title_type}/${title?.tmdb_id}` })
+    }
+
+    return externalLinks;
+  };
+
 
   return (
     // Render title details 
@@ -192,6 +206,16 @@ const TitleDetails = () => {
           <WatchProviders
             tmdb_id={title?.tmdb_id}
             title_type={title?.title_type}
+          />
+        )}
+      </div>
+
+      {/* external links section */}
+      <div className={`external-links-section`}>
+        <h6>External Links</h6>
+        {title?.tmdb_id && (
+          <TitleExternalLinks
+            links={getExternalLinks(title)}
           />
         )}
       </div>

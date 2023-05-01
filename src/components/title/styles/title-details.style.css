@@ -13,6 +13,7 @@
     "languages-section languages-section"
     "info-section info-section"
     "watch-providers-section watch-providers-section"
+    "external-links-section external-links-section"
     "overview-section overview-section"
     "cast-section cast-section";
 }
@@ -112,6 +113,15 @@
   border-radius: 5px;
 }
 
+.title-details .external-links-section {
+  grid-area: external-links-section;
+  text-align: initial;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
 /* overview-section */
 .title-details .overview-section {
   grid-area: overview-section;
@@ -130,12 +140,12 @@
   border-radius: 5px;
 }
 
-
 .title-details.light .genres-section,
 .title-details.light .languages-section,
 .title-details.light .info-section,
 .title-details.light .overview-section,
 .title-details.light .watch-providers-section,
+.title-details.light .external-links-section,
 .title-details.light .cast-section {
   background-color: var(--ui-elemnet-light);
   color: var(--font-color-light);
@@ -147,6 +157,7 @@
 .title-details.dark .info-section,
 .title-details.dark .overview-section,
 .title-details.dark .watch-providers-section,
+.title-details.dark .external-links-section,
 .title-details.dark .cast-section {
   background-color: var(--ui-elemnet-dark);
   color: var(--font-color-dark);
