@@ -14,19 +14,18 @@
   box-sizing: border-box;
   border-radius: 10px;
   z-index: 999;
-  box-shadow: 0px 0px 500px 900px rgba(43, 42, 42, 0.715);
 }
 
 .logout-modal.light {
   color: var(--font-color-light);
   background: var(--ui-elemnet-light);
-  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .logout-modal.dark {
   color: var(--font-color-dark);
   background: var(--ui-elemnet-dark);
-  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167); */
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 .logout-modal .closeBtn {

@@ -69,44 +69,46 @@ const Logout = ({ open, close }) => {
   // Otherwise, render the logout dialog box and the toast container
   return (
     <>
-      <div ref={logoutRef} className={`logout-modal ${theme}`}>
-        {/* Close button */}
-        <div onClick={close} className="closeBtn" tabIndex="1">
-          <i className="fas fa-times fa-lg"></i>
+      <div className={`modal-container`}>
+        <div ref={logoutRef} className={`logout-modal ${theme}`}>
+          {/* Close button */}
+          <div onClick={close} className="closeBtn" tabIndex="1">
+            <i className="fas fa-times fa-lg"></i>
+          </div>
+
+          {/* Header */}
+          <h2>
+            <i className="fas fa-exclamation-triangle"></i> Confirm Logout
+          </h2>
+          <h6 style={{ textAlign: "center" }}>Are you sure you want to log out?</h6>
+
+          {/* Logout form */}
+          <form onSubmit={handleSubmit}>
+            <div className="container">
+              {/* Logout button */}
+              <button
+                className="logout-button"
+                style={{ float: "left", marginTop: '35px' }}
+                type="submit"
+              >
+                <span>Logout</span>
+              </button>
+
+              {/* Cancel button */}
+              <button
+                className="cancel-button"
+                style={{ float: "right", marginTop: '35px' }}
+                onClick={close}
+              >
+                <span>Cancel</span>
+              </button>
+            </div>
+          </form>
         </div>
 
-        {/* Header */}
-        <h2>
-          <i className="fas fa-exclamation-triangle"></i> Confirm Logout
-        </h2>
-        <h6 style={{ textAlign: "center" }}>Are you sure you want to log out?</h6>
-
-        {/* Logout form */}
-        <form onSubmit={handleSubmit}>
-          <div className="container">
-            {/* Logout button */}
-            <button
-              className="logout-button"
-              style={{ float: "left", marginTop: '35px' }}
-              type="submit"
-            >
-              <span>Logout</span>
-            </button>
-
-            {/* Cancel button */}
-            <button
-              className="cancel-button"
-              style={{ float: "right", marginTop: '35px' }}
-              onClick={close}
-            >
-              <span>Cancel</span>
-            </button>
-          </div>
-        </form>
+        {/* Toast container */}
+        <ToastContainer {...toastContainerOptions} />
       </div>
-
-      {/* Toast container */}
-      <ToastContainer {...toastContainerOptions} />
     </>
   );
 };

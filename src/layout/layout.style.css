@@ -27,7 +27,7 @@
   align-items: center;
   margin-bottom: 100px;
   padding-top: 5px;
-  /* transition: margin-left var(---trans-container-margin); */
+  transition: margin-left var(---trans-container-margin);
 }
 
 .sidebar.close + .outlet {

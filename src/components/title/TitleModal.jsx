@@ -41,55 +41,57 @@ const TitleModal = ({ title, open, close }) => {
   return (
     <>
       {/* The modal overlay */}
-      <div ref={titleModalRef} className={`title-modal ${theme}`}>
-        {/* The modal content */}
-        <div className="title">
-          {/* Close button */}
-          <button
-            title="Close"
-            onClick={close}
-            className="closeBtn"
-            tabIndex="0"
-          >
-            <i className="fas fa-times fa-lg"></i>
-          </button>
+      <div className={`modal-container`}>
+        <div ref={titleModalRef} className={`title-modal ${theme}`}>
+          {/* The modal content */}
+          <div className="title">
+            {/* Close button */}
+            <button
+              title="Close"
+              onClick={close}
+              className="closeBtn"
+              tabIndex="0"
+            >
+              <i className="fas fa-times fa-lg"></i>
+            </button>
 
-          {/* The movie title */}
-          <Title
-            // Encode the title ID as Base64 and replace certain characters for use in a URL
-            id={
-              title?.titleState === "moviebunkers"
-                ? btoa(title?.id)
-                  .replace(/=/g, "")
-                  .replace(/\+/g, "-")
-                  .replace(/\//g, "_")
-                : title?.id
-            }
-            titleState={title?.titleState}
-            titleType={title?.title_type}
-          />
-
-          {/* Link to view more details */}
-          <a
-            id={`title-page-link`}
-            className={`more-details`}
-            onClick={() =>
-              openInNewTab(
-                `/view/title/${title?.title_type}` + // title_type
-                `/${encodeURIComponent(makePrettyUrl(title?.title + "-" + title?.year))}` + // title ( name ),  year
-                `/${title?.titleState}` + // title state
-                `/${title?.titleState === "moviebunkers" // title id
+            {/* The movie title */}
+            <Title
+              // Encode the title ID as Base64 and replace certain characters for use in a URL
+              id={
+                title?.titleState === "moviebunkers"
                   ? btoa(title?.id)
                     .replace(/=/g, "")
                     .replace(/\+/g, "-")
                     .replace(/\//g, "_")
                   : title?.id
-                }`
-              )
-            }
-          >
-            Full details
-          </a>
+              }
+              titleState={title?.titleState}
+              titleType={title?.title_type}
+            />
+
+            {/* Link to view more details */}
+            <a
+              id={`title-page-link`}
+              className={`more-details`}
+              onClick={() =>
+                openInNewTab(
+                  `/view/title/${title?.title_type}` + // title_type
+                  `/${encodeURIComponent(makePrettyUrl(title?.title + "-" + title?.year))}` + // title ( name ),  year
+                  `/${title?.titleState}` + // title state
+                  `/${title?.titleState === "moviebunkers" // title id
+                    ? btoa(title?.id)
+                      .replace(/=/g, "")
+                      .replace(/\+/g, "-")
+                      .replace(/\//g, "_")
+                    : title?.id
+                  }`
+                )
+              }
+            >
+              Full details
+            </a>
+          </div>
         </div>
       </div>
     </>

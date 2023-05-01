@@ -15,7 +15,7 @@
   background-color: var(--movie-modal-bg-dark);
 }
 
-.modal-container {
+.modal-.container2 {
     overflow: scroll;
     width: inherit;
     height: inherit;
@@ -26,7 +26,7 @@
     padding: 10px 3px 4px 3px;
 }
 
-.modal-container .close-btn {
+.modal-.container2 .close-btn {
     width: 35px;
     height: 35px;
     border-radius: 25px;
@@ -40,11 +40,11 @@
     background-color: black;
   }
   
-.modal-container.light .closeBtn {
+.modal-.container2.light .closeBtn {
     color: var(--font-color-dark);
     background-color: var(--movie-modal-bg-dark);
 }
-.modal-container.dark .closeBtn {
+.modal-.container2.dark .closeBtn {
     color: var(--font-color-light);
     background-color: var(--movie-modal-bg-light);
 }
