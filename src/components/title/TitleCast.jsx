@@ -20,7 +20,7 @@ const TitleCast = ({ cast }) => {
         ></i>
       </div>
 
-      <div className={`persons-list ${showCast ? ((cast?.length <= 6) ? 'show-unset-h' : "show") : "hide"}`}>
+      <div className={`persons-list ${showCast ? "show" : "hide"}`}>
         {!showCast && (
           <span style={{
             color: " rgb(71, 135, 214)",

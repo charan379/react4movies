@@ -33,14 +33,14 @@
 .title-cast .persons-list {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
+  align-content: flex-start;
+  align-items: flex-start;
   justify-content: space-between;
   top: -20px;
   position: relative;
   overflow: scroll;
   transition: height 0.5s ease-in-out;
+  flex-wrap: wrap;
 }
 
 .title-cast .persons-list.hide {
@@ -48,12 +48,9 @@
 }
 
 .title-cast .persons-list.show {
-  height: 320px;
+  height: 240px;
 }
 
-.title-cast .persons-list.show-unset-h {
-  height: unset;
-}
 
 .title-cast .person {
   display: grid;

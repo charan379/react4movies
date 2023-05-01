@@ -10,7 +10,7 @@ const TitleExternalLinks = ({ links = [] }) => {
         IMDB: imdbLogo,
         TMDB: tmdbLogo
     };
-    console.log(links)
+
     return (
         <>
             <div className={`title-external-links`}>
@@ -21,6 +21,7 @@ const TitleExternalLinks = ({ links = [] }) => {
                         </Link>
                     )
                 })}
+                {links?.length === 0 ? 'No external links found' : null}
             </div>
         </>
     )
