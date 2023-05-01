@@ -58,64 +58,58 @@
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
-.title-modal .open-newTab {
-  width: 45px;
-  height: 45px;
-  border-radius: 10px;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  text-align: center;
-  padding: 7px 5px;
-  z-index: 1;
-}
-
-.title-modal.light .open-newTab,
-.title-modal.light .open-newTab a {
-  color: var(--font-color-dark);
-  background-color: var(--movie-modal-bg-dark);
-  text-decoration: none;
-}
-.title-modal.dark .open-newTab,
-.title-modal.dark .open-newTab a {
-  color: var(--font-color-light);
-  background-color: var(--movie-modal-bg-light);
-  text-decoration: none;
-}
-
 .title-modal .more-details {
   width: max-content;
   height: 45px;
   position: relative;
   border-radius: 10px;
   text-align: center;
-  padding: 10px 20px 25px 20px;
+  padding: 8px 10px 5px 10px;
   font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
   font-weight: bold;
   font-size: 1.3rem;
-  margin-bottom: 100px;
+  border: none;
+  margin-bottom: 20px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  text-decoration: none;
 }
 .title-modal .more-details.show {
   opacity: 1;
 }
 .title-modal.light .more-details {
   color: var(--font-color-dark);
-  background-color: var(--movie-modal-bg-dark);
-  text-decoration: none;
+  background-color: var(--bg-dark);
 }
 .title-modal.dark .more-details {
   color: var(--font-color-light);
-  background-color: var(--movie-modal-bg-light);
-  text-decoration: none;
+  background-color: var(--bg-light);
 }
 
-@media (max-width: 460px) {
-  .title-modal .open-newTab {
-    top: 80px;
-  }
+.title-modal .exit-button {
+  width: max-content;
+  height: 45px;
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  padding: 8px 10px 5px 10px;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border: none;
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: crimson;
+}
+.title-modal .exit-button.show {
+  opacity: 1;
 }

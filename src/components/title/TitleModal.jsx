@@ -18,7 +18,7 @@ const TitleModal = ({ title, open, close }) => {
   };
 
   // Register a callback to close the modal when the user clicks outside it
-  useOnOutSideClick(titleModalRef, useCallback(close, []));
+  useOnOutSideClick(titleModalRef, useCallback(close, [close]));
 
   // Register a callback to close the modal when the user presses the Escape key
   useEscapeKey(close);
@@ -31,6 +31,7 @@ const TitleModal = ({ title, open, close }) => {
     waitForElementById(`title-page`, 30000).then(
       () => {
         document.getElementById(`title-page-link`)?.classList?.add('show');
+        document.getElementById(`title-page-exit`)?.classList?.add('show');
       }
     ).catch(() => {
 
@@ -71,7 +72,8 @@ const TitleModal = ({ title, open, close }) => {
             />
 
             {/* Link to view more details */}
-            <a
+            <button
+              type='button'
               id={`title-page-link`}
               className={`more-details`}
               onClick={() =>
@@ -90,7 +92,17 @@ const TitleModal = ({ title, open, close }) => {
               }
             >
               Full details
-            </a>
+            </button>
+
+            {/* Link to view more details */}
+            <button
+              type='button'
+              id={`title-page-exit`}
+              className={`exit-button`}
+              onClick={close}
+            >
+              Exit
+            </button>
           </div>
         </div>
       </div>
