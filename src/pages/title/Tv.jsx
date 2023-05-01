@@ -15,7 +15,7 @@ const Tv = () => {
   // Render the title page
   return (
     <>
-      <div className={`title-page ${theme}`}>{/* Title page */}
+      <div id={'title-page'} className={`title-page ${theme}`}>{/* Title page */}
         <div className="title-title-section">{/* title  name*/}
           {/* Render  title and year */}
           {tv?.title}

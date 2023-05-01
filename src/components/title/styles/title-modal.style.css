@@ -98,8 +98,12 @@
   font-weight: bold;
   font-size: 1.3rem;
   margin-bottom: 100px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
-
+.title-modal .more-details.show {
+  opacity: 1;
+}
 .title-modal.light .more-details {
   color: var(--font-color-dark);
   background-color: var(--movie-modal-bg-dark);

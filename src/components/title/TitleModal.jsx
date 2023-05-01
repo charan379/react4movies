@@ -2,7 +2,7 @@ import './styles/title-modal.style.css';
 import React, { useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { useTheme, useEscapeKey, useOnOutSideClick } from "hooks";
-import { makePrettyUrl } from "utils";
+import { makePrettyUrl, waitForElementById } from "utils";
 import { Title } from "pages/title";
 
 const TitleModal = ({ title, open, close }) => {
@@ -25,6 +25,18 @@ const TitleModal = ({ title, open, close }) => {
 
   // If the `open` prop is false, don't render anything
   if (!open) return null;
+
+  // show more details link after title page loaded
+  setTimeout(() => {
+    waitForElementById(`title-page`, 30000).then(
+      () => {
+        document.getElementById(`title-page-link`)?.classList?.add('show');
+      }
+    ).catch(() => {
+
+    })
+  }, 1000);
+
 
   return (
     <>
@@ -59,7 +71,8 @@ const TitleModal = ({ title, open, close }) => {
 
           {/* Link to view more details */}
           <a
-            className="more-details"
+            id={`title-page-link`}
+            className={`more-details`}
             onClick={() =>
               openInNewTab(
                 `/view/title/${title?.title_type}` + // title_type
