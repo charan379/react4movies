@@ -51,6 +51,10 @@
   height: 320px;
 }
 
+.title-cast .persons-list.show-unset-h {
+  height: unset;
+}
+
 .title-cast .person {
   display: grid;
   grid-template-columns: 40px 160px;
