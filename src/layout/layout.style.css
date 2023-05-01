@@ -46,6 +46,7 @@
   text-align: center; /* center all the contnets */
   padding: 10px 0px 20px 0px;
   margin: 55px 0px 5px 0px;
+  width: -webkit-fill-available;
 }
 
 .content-wrapper.light {
