@@ -85,6 +85,21 @@ Height = ?
 .title-card .card-poster .card-poster-img img {
   width: inherit;
   height: inherit;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.title-card .card-poster .card-poster-img img[data-loading="true"] {
+  opacity: 0;
+}
+
+.title-card .card-poster .card-poster-img img[data-loading="false"] {
+  opacity: 1;
+}
+
+.title-card .card-poster .card-poster-backdrop i,
+.title-card .card-poster .card-poster-img i {
+  position: absolute;
 }
 
 /* titile */

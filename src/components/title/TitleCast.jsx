@@ -1,13 +1,8 @@
+import { handleImageError } from 'utils';
 import './styles/title-cast.style.css'
 import React, { useState } from "react";
-import empty from "assets/empty.svg";
 
 const TitleCast = ({ cast }) => {
-
-  const handleImageError = (img) => {
-    img.target.onerror = null;
-    img.target.src = empty;
-  };
 
   const [showCast, setShowCast] = useState(false); // state variable to toggle displaying of cast list
 

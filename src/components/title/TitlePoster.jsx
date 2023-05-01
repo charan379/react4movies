@@ -1,21 +1,25 @@
 import './styles/title-poster.style.css'
-import React from "react";
-import empty from "assets/empty.svg"; // default image source
+import React, { useEffect, useState } from "react";
 import { useTheme } from "hooks"; // custom hook for theme
+import { handleImageError } from 'utils';
 
 const TitlePoster = ({ url, alt, tagline }) => {
   const { theme } = useTheme(); // get the current theme using the custom hook
 
-  /**
-   * Handle error when loading an image by setting the source to a default image.
-   * @param {Object} img - The image object that failed to load.
-   */
-  const handleImageError = (img) => {
-    // Remove the onerror event to avoid infinite loops if the default image also fails to load.
-    img.target.onerror = null;
-    // Set the source of the failed image to the default image source.
-    img.target.src = empty;
-  };
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleOnImageLoaded = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }
+
+  useEffect(() => {
+    setIsLoading(true)
+    return () => {
+
+    }
+  }, [url])
 
   return (
     <>
@@ -24,17 +28,22 @@ const TitlePoster = ({ url, alt, tagline }) => {
         {/* Title poster */}
         <div className="title-poster-img">
           <img
+            data-loading={`${isLoading}`}
             loading="lazy"
-            onError={handleImageError} // handle image loading errors
+            onLoad={handleOnImageLoaded}
+            onError={(image) => handleImageError({ image, setIsLoading })} // handle image loading errors
             src={url}
             alt={alt}
           ></img>
+          {isLoading && (
+            <i className={`fas fa-compact-disc fa-pulse fa-4x`} aria-hidden="true"></i>
+          )}
         </div>
         {/* backdrop for title poster */}
         <div className={`title-poster-backdrop ${theme}`}>
-          <i className="far fa-image fa-2x" aria-hidden="true"></i>
-          <br />
-          No Image
+          {!isLoading && (
+            <i className={`far fa-image fa-3x`} aria-hidden="true"></i>
+          )}
         </div>
       </div>
 

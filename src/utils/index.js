@@ -5,5 +5,6 @@ import { pad } from "./pad";
 import { scrollToTop } from "./scrollToTop";
 import { waitForElementById } from "./waitForElemnetById";
 import { MovieBunkersException } from "./MovieBunkersException";
+import { handleImageError } from "./handleImageError";
 
-export { convertIsoDate, formatTime, makePrettyUrl, pad, scrollToTop, waitForElementById, MovieBunkersException };
+export { convertIsoDate, formatTime, makePrettyUrl, pad, scrollToTop, waitForElementById, MovieBunkersException, handleImageError };

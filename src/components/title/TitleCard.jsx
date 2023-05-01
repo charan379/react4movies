@@ -1,8 +1,8 @@
 import './styles/title-card.style.css';
-import React from "react";
-import empty from "assets/empty.svg";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "hooks";
+import { handleImageError } from 'utils';
 
 // Define the props for the TitleBox component
 const TitleCard = ({
@@ -22,32 +22,47 @@ const TitleCard = ({
   // Get the theme from the useTheme hook
   const { theme } = useTheme();
 
-  // Handle the case where the title poster image fails to load
-  const handleImageError = (img) => {
-    img.target.onerror = null; // Prevent an infinite loop by removing the error handler
-    img.target.src = empty; // Replace the image source with a fallback image
-  };
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleOnImageLoaded = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }
+
+  useEffect(() => {
+    setIsLoading(true)
+    return () => {
+
+    }
+  }, [poster_path])
 
   // Return the JSX for the TitleBox component
   return (
-    <div className={`title-card ${theme}`}>
+    <div key={id} className={`title-card ${theme}`}>
       {/* card poster */}
       <div className={`card-poster`}>
         <div className="card-poster-img">
           {/* card poster image */}
           <img
+            data-loading={`${isLoading}`}
             loading="lazy"
-            onError={handleImageError}
+            onLoad={handleOnImageLoaded}
+            onError={(image) => handleImageError({ image, setIsLoading })}
             src={`${poster_path}`}
             alt={`${title}`}
           ></img>
+          {isLoading && (
+            <i className={`fas fa-compact-disc fa-pulse fa-4x`} aria-hidden="true"></i>
+          )}
         </div>
 
         {/* card poster backdrop */}
         <div className={`card-poster-backdrop`}>
-          <i className="far fa-image fa-2x" aria-hidden="true"></i>
+          {!isLoading && (
+            <i className={`far fa-image fa-3x`} aria-hidden="true"></i>
+          )}
           <br />
-          No Image
         </div>
 
         {/* year */}

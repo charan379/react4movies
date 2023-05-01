@@ -56,6 +56,21 @@
 .title-poster .title-poster-img img {
   width: inherit;
   height: inherit;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.title-poster .title-poster-img img[data-loading="true"] {
+  opacity: 0;
+}
+
+.title-poster .title-poster-img img[data-loading="false"] {
+  opacity: 1;
+}
+
+.title-poster .title-poster-backdrop i,
+.title-poster .title-poster-img i {
+  position: absolute;
 }
 
 .title-tagline {
