@@ -44,6 +44,7 @@ Height = ?
   width: 200px;
   height: 315px; /* 275px img width + 40px for title */
   margin: 10px 7px 10px 7px;
+  transition: scale 0.5s ease-in-out;
 }
 
 .title-card.light {
@@ -117,11 +118,10 @@ Height = ?
   z-index: 2;
   font-weight: 300;
   font-size: medium;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; */
 }
 
 .title-card.light .title {
-  /* color: #5107c0; */
   color: var(--title-box-title-light);
   background-color: var(--title-box-title-bg-light);
   border-top: 3px solid var(--title-box-title-light);
@@ -564,18 +564,32 @@ Height = ?
 
 @media (hover: hover) and (pointer: fine) {
   .title-card:hover {
-    scale: 1.1;
+    scale: 1.07;
   }
 
-  /* .title-card.light .info:hover {
-      opacity: 0.9;
-      color: var(--font-color-light);
-      background-color: var(--ui-elemnet-light);
-    }
-  
-    .title-card.dark .info:hover {
-      opacity: 0.9;
-      color: var(--font-color-dark);
-      background-color: var(--ui-elemnet-dark);
-    } */
+  .title-card.light:hover .year,
+  .title-card.light:hover .ratting,
+  .title-card.light:hover .north-east-block,
+  .title-card.light:hover .title,
+  .title-card.light:hover {
+    color: var(--font-color-dark);
+    background-color: var(--ui-elemnet-dark);
+  }
+
+  .title-card.dark:hover .year,
+  .title-card.dark:hover .ratting,
+  .title-card.dark:hover .north-east-block,
+  .title-card.dark:hover .title,
+  .title-card.dark:hover {
+    color: var(--font-color-light);
+    background-color: var(--ui-elemnet-light);
+  }
+
+  .title-card.light:hover .title {
+    border-top: 3px solid var(--title-box-title-dark);
+  }
+
+  .title-card.dark:hover .title {
+    border-top: 3px solid var(--title-box-title-light);
+  }
 }

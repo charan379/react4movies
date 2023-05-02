@@ -1,5 +1,8 @@
 @import "./variables.css";
 
+* {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 .modal-container {
   height: -webkit-fill-available;
   width: -webkit-fill-available;

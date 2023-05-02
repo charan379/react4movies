@@ -1,0 +1,13 @@
+@import "assets/styles/variables.css";
+
+.season-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: -webkit-fill-available;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 20px;
+}

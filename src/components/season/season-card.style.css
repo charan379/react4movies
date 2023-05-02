@@ -1,0 +1,80 @@
+@import "assets/styles/variables.css";
+
+.season-card {
+  display: grid;
+  padding: 5px;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+  grid-template-areas: "poster-section details-section";
+  width: -webkit-fill-available;
+  max-width: 780px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+  transition: scale 0.5s ease-in-out;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.season-card.light {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.season-card.dark {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.season-card .poster-section {
+  grid-area: poster-section;
+  height: max-content;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.season-card .details-section {
+  grid-area: details-section;
+  width: -webkit-fill-available;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.season-card .season-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  align-content: flex-start;
+  width: -webkit-fill-available;
+}
+
+.season-card .season-details h4 span {
+  font-size: small;
+}
+.season-card .season-details .season-overview {
+  margin-top: 6px;
+  width: -webkit-fill-available;
+  text-align: left;
+}
+
+@media (max-width: 380px) {
+  .season-card .season-details .season-overview {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .season-card:hover {
+    scale: 1.07;
+  }
+}

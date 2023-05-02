@@ -18,6 +18,24 @@
     "cast-section cast-section";
 }
 
+.title-details .title-details-section-heading::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f55a18;
+}
+
+.title-details .title-details-section-heading {
+  cursor: pointer;
+}
+
+.title-details .title-details-section-heading:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+
 /* genres-section */
 .title-details .genres-section {
   grid-area: genres-section;
@@ -107,7 +125,6 @@
 .title-details .watch-providers-section {
   grid-area: watch-providers-section;
   text-align: initial;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5px;
   width: -webkit-fill-available;
   border-radius: 5px;
@@ -116,7 +133,6 @@
 .title-details .external-links-section {
   grid-area: external-links-section;
   text-align: initial;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5px;
   width: -webkit-fill-available;
   border-radius: 5px;
@@ -126,7 +142,6 @@
 .title-details .overview-section {
   grid-area: overview-section;
   text-align: initial;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 5px;
   width: -webkit-fill-available;
   border-radius: 5px;

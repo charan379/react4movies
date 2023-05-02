@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 const ShowLessText = ({ text, limit }) => {
   const [showMore, setShowMore] = useState(false);
+  if (!text) {
+    return ""
+  }
   if (text?.length <= limit ?? 150) {
     return text;
   }

@@ -1,8 +1,9 @@
 import React from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
-import Seasons from "components/movies/title/tv/Seasons";
 import { TitleActions } from "features/title-actions";
+import { EpisodeList } from "features/episode";
+import { SeasonList } from "features/seasons";
 
 // Tv component
 const Tv = () => {
@@ -18,7 +19,7 @@ const Tv = () => {
       <div id={'title-page'} className={`title-page ${theme}`}>{/* Title page */}
         <div className="title-title-section">{/* title  name*/}
           {/* Render  title and year */}
-          {tv?.title}
+          <h2>{tv?.title}</h2>
           <small>
             ({tv?.year})
           </small>
@@ -40,14 +41,36 @@ const Tv = () => {
           <TitleDetails />
         </div>
 
-        {/* tv seasons */}
-        <Seasons
-          data={{
-            latest_episode: tv?.last_episode_aired,
-            upcoming_episode: tv?.next_episode_to_air,
-            seasons: tv?.seasons,
-          }}
-        />
+        {/* episodes */}
+        <div id="episodes" className="title-episodes-section">
+          <h2 className="title-page-section-heading">
+            Episodes
+            <span>
+              &nbsp;
+              <small>
+                {tv?.number_of_episodes}&nbsp;
+              </small>
+              <i class="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <EpisodeList getAllEpisodes={false} lastestEpisode={tv?.last_episode_aired} upcomingEpisode={tv?.next_episode_to_air} />
+        </div>
+
+        {/* seasons */}
+
+        <div id="seasons" className="title-seasons-section">
+          <h2 className="title-page-section-heading">
+            Seasons
+            <span>
+              &nbsp;
+              <small>
+                {tv?.number_of_seasons}&nbsp;
+              </small>
+              <i class="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <SeasonList seasons={tv?.seasons} limit={tv?.number_of_seasons <= 4 ? tv?.number_of_season : 4} />
+        </div>
       </div>
     </>
   );
