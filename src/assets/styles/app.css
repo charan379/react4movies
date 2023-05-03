@@ -102,7 +102,7 @@ select:-webkit-autofill:focus {
   flex-wrap: wrap;
 }
 
-.global-last-cardlight .more-button span {
+.global-last-card.light .more-button span {
   background-color: hsla(0, 0%, 3%, 0.7);
   border: 3px solid hsl(0, 0%, 100%);
 }
