@@ -164,14 +164,18 @@ const TitleDetails = () => {
 
             {/* number of seasons */}
             <div className="info-item">
-              <b>Seasons : </b>
-              {title.number_of_seasons}
+              <a href={`#seasons`}>
+                <b>Seasons : </b>
+                {title.number_of_seasons}
+              </a>
             </div>
 
             {/* number of episodes */}
             <div className="info-item">
-              <b>Episodes : </b>
-              {title.number_of_episodes}
+              <a href={`#episodes`}>
+                <b>Episodes : </b>
+                {title.number_of_episodes}
+              </a>
             </div>
 
             {/* avg episode run time */}

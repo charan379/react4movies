@@ -35,7 +35,6 @@
   font-size: larger;
 }
 
-
 /* genres-section */
 .title-details .genres-section {
   grid-area: genres-section;
@@ -115,6 +114,13 @@
 .title-details .info-section .info-item b {
   font-family: inherit;
 }
+
+.title-details .info-section .info-item a {
+  text-decoration: none;
+  font-family: inherit;
+  color: inherit;
+}
+
 .title-details .info-section .info-item {
   margin-left: 1px;
   margin-top: 2px;
