@@ -38,7 +38,7 @@ const TitleCast = ({ cast }) => {
                   <div className="profile">
                     <img
                       loading="lazy"
-                      onError={handleImageError}
+                      onError={(image) => handleImageError({ image })}
                       src={person.profile_path}
                       alt={person.name}
                     ></img>
