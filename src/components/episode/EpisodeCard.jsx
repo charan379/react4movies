@@ -5,8 +5,22 @@ import { ShowLessText } from 'components/common';
 import { convertIsoDate } from 'utils';
 import { EpisodePoster } from './EpisodePoster';
 
-const EpisodeCard = ({ episode, latest = false, upcoming = false }) => {
+const EpisodeCard = ({ episode, latest = false, upcoming = false, moreButton = false }) => {
     const { theme } = useTheme();
+
+    if (!episode && moreButton) {
+        return (
+            <div className={`global-last-card  ${theme}`} title='View more episodes'>
+                <div className='more-button-section'>
+                    <div className='more-button'>
+                        <span>
+                            <i class="fas fa-angle-double-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <>

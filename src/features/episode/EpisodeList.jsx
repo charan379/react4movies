@@ -11,21 +11,23 @@ const EpisodeList = ({ titleId, seasonId, titleState, lastestEpisode = null, upc
                     {lastestEpisode && (
                         <EpisodeCard key={1 * 2} episode={lastestEpisode} latest={true} />
                     )}
-                    {upcomingEpisode && (
+                    {upcomingEpisode?.air_date && (
                         <EpisodeCard key={2 * 2} episode={upcomingEpisode} upcoming={true} />
                     )}
-                </div>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <div className={`episode-list`}>
-
+                    <EpisodeCard key={`ep-more`} moreButton={true} />
                 </div>
             </>
         )
     }
+
+
+    return (
+        <>
+            <div className={`episode-list`}>
+                <div className='error-message'>No Episodes</div>
+            </div>
+        </>
+    )
 }
 
 export { EpisodeList };

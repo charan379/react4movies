@@ -11,3 +11,9 @@
   row-gap: 20px;
   padding: 20px;
 }
+
+@media (max-width: 600px) {
+  .season-list {
+    justify-content: space-around;
+  }
+}

@@ -5,9 +5,23 @@ import { useTheme } from 'hooks';
 import React from 'react'
 import { convertIsoDate } from 'utils';
 
-const SeasonCard = ({ season }) => {
+const SeasonCard = ({ season, moreButton = false }) => {
 
     const { theme } = useTheme();
+
+    if (!season && moreButton) {
+        return (
+            <div className={`global-last-card ${theme}`} title='View more seasons'>
+                <div className='more-button-section'>
+                    <div className='more-button'>
+                        <span>
+                            <i class="fas fa-angle-double-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className={`season-card ${theme}`}>
@@ -22,7 +36,7 @@ const SeasonCard = ({ season }) => {
                         <p>
                             <ShowLessText
                                 text={season?.overview}
-                                limit={150} />
+                                limit={100} />
                         </p>
                     </div>
                 </div>

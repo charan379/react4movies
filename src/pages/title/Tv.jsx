@@ -69,7 +69,7 @@ const Tv = () => {
               <i class="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
-          <SeasonList seasons={tv?.seasons} limit={tv?.number_of_seasons <= 4 ? tv?.number_of_season : 4} />
+          <SeasonList seasons={tv?.seasons} limit={tv?.number_of_seasons <= 4 ? tv?.number_of_season : 4} getAllSeasons={false}  />
         </div>
       </div>
     </>

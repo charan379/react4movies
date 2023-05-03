@@ -4,7 +4,7 @@ import React from 'react'
 
 const SeasonList = ({ titleId, titleState, seasons = null, limit = 3, getAllSeasons = false }) => {
 
-  if (seasons && seasons instanceof Array) {
+  if (!getAllSeasons && seasons && seasons instanceof Array) {
     return (
       <div className='season-list'>
         {seasons?.sort((season1, season2) =>
@@ -12,6 +12,7 @@ const SeasonList = ({ titleId, titleState, seasons = null, limit = 3, getAllSeas
         ).slice(0, limit)?.map((season, index) => {
           return <SeasonCard key={index} season={season} />
         })}
+        <SeasonCard key={`se-more`} moreButton={true} />
       </div>
     )
   }
