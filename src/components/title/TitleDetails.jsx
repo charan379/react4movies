@@ -48,7 +48,7 @@ const TitleDetails = () => {
       {/* Display the list of languages, if available */}
       {(title?.genres instanceof Array && title?.languages?.length > 0) && (
         <div className={`languages-section`}> {/* languages section */}
-          <h6 className='title-details-section-heading'>Languages</h6>
+          <h6 className='sub-heading'>Languages</h6>
           <div className="languages">
             {title.languages.map((language, index) => {
               return (
@@ -164,7 +164,7 @@ const TitleDetails = () => {
 
             {/* number of seasons */}
             <div className="info-item">
-              <a href={`#seasons`}>
+              <a className='link' href={`#seasons`}>
                 <b>Seasons : </b>
                 {title.number_of_seasons}
               </a>
@@ -172,7 +172,7 @@ const TitleDetails = () => {
 
             {/* number of episodes */}
             <div className="info-item">
-              <a href={`#episodes`}>
+              <a className='link' href={`#episodes`}>
                 <b>Episodes : </b>
                 {title.number_of_episodes}
               </a>
@@ -205,7 +205,7 @@ const TitleDetails = () => {
 
       {/* watch providers */}
       <div className={`watch-providers-section`}>
-        <h6 className='title-details-section-heading'>Watch Providers</h6>
+        <h6 className='sub-heading'>Watch Providers</h6>
         {title?.tmdb_id && (
           <WatchProviders
             tmdb_id={title?.tmdb_id}
@@ -216,7 +216,7 @@ const TitleDetails = () => {
 
       {/* external links section */}
       <div className={`external-links-section`}>
-        <h6 className='title-details-section-heading'>External Links</h6>
+        <h6 className='sub-heading'>External Links</h6>
         {title?.tmdb_id && (
           <TitleExternalLinks
             links={getExternalLinks(title)}
@@ -227,14 +227,14 @@ const TitleDetails = () => {
       {/* overview */}
       {title.overview && (
         <div className={`overview-section`}>
-          <h6 className='title-details-section-heading'>Overview</h6>
+          <h6 className='sub-heading'>Overview</h6>
           <ShowLessText text={title.overview} limit={150} />
         </div>
       )}
 
       {/* top cast */}
       <div className={`cast-section`}>
-        <h6 className='title-details-section-heading'>Top Cast</h6>
+        <h6 className='sub-heading'>Top Cast</h6>
         {(title?.cast instanceof Array && title?.cast?.length > 0)
           ? <TitleCast cast={title?.cast} />
           : "Cast details not available"}

@@ -117,6 +117,39 @@ select:-webkit-autofill:focus {
   font-size: 6rem;
 }
 
+.link,
+.link:hover {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+.sub-heading::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f55a18;
+}
+
+body.light .sub-heading::before {
+  color: #f55a18;
+}
+
+body.dark .sub-heading::before {
+  color: #f5c518;
+}
+
+.sub-heading {
+  cursor: pointer;
+}
+
+.sub-heading:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .global-last-card:hover {
     scale: 1.07;

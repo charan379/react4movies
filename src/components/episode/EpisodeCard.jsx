@@ -30,10 +30,10 @@ const EpisodeCard = ({ episode, latest = false, upcoming = false, moreButton = f
                 </div>
                 <div className='details-section'>
                     <div className='episode-details'>
-                        {latest && <h5>Latest</h5>}
-                        {upcoming && <h5>Upcoming</h5>}
-                        <h4>{episode?.name}</h4>
-                        <h5>Season {episode?.season_number} | Episode {episode?.episode_number}</h5>
+                        {latest && <h5 className='sub-heading'>Latest</h5>}
+                        {upcoming && <h5 className='sub-heading'>Upcoming</h5>}
+                        <h4 className='sub-heading'>{episode?.name}</h4>
+                        <h5 className='link'>Season {episode?.season_number} | Episode {episode?.episode_number}</h5>
                         {episode?.runtime && <span><i class="fas fa-clock"></i> {episode?.runtime} mins</span>}
                         {episode?.air_date && (<span><i class="far fa-calendar-alt"></i> {convertIsoDate(episode?.air_date)}</span>)}
 
