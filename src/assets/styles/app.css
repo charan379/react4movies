@@ -123,6 +123,12 @@ select:-webkit-autofill:focus {
   text-decoration: none;
   font-family: inherit;
   color: inherit;
+  text-align: left;
+}
+
+.sub-heading {
+  cursor: pointer;
+  text-align: left;
 }
 
 .sub-heading::before {
@@ -138,10 +144,6 @@ body.light .sub-heading::before {
 
 body.dark .sub-heading::before {
   color: #f5c518;
-}
-
-.sub-heading {
-  cursor: pointer;
 }
 
 .sub-heading:hover::after {

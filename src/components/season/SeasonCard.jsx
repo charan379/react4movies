@@ -30,8 +30,8 @@ const SeasonCard = ({ season, moreButton = false }) => {
             </div>
             <div className='details-section'>
                 <div className='season-details'>
-                    <h4>{season?.name}  <span><small>{`( season - ${season?.season_number}) `}</small></span></h4>
-                    <h5>{season?.air_date ? convertIsoDate(season?.air_date)?.split('-')[2] + " |" : ""} {season?.episode_count} Episodes</h5>
+                    <h4 className='sub-heading link'>{season?.name}  <span><small>{`( season - ${season?.season_number}) `}</small></span></h4>
+                    <h5 className='sub-heading'>{season?.air_date ? convertIsoDate(season?.air_date)?.split('-')[2] + " |" : ""} {season?.episode_count} Episodes</h5>
                     <div className='season-overview'>
                         <p>
                             <ShowLessText
