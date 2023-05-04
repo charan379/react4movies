@@ -1,7 +1,7 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTitle, useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater } from 'hooks';
+import { isGt24Hours } from 'utils';
 
 const UpdateTitle = ({ toast }) => {
 
@@ -17,22 +17,22 @@ const UpdateTitle = ({ toast }) => {
     // Update Tv Show Seasons and episodes hook
     const { updateSeasons } = useSeasonsUpdater();
 
-
-    // State to hold the TMDB title data
-    const [tmdbTitle, setTmdbTitle] = useState(null);
-
     // State to hold the loading state of the button
     const [isLoading, setIsLoading] = useState(false);
 
+    // State to hold the updatable state of title
+    const [isUpdatable, setIsUpdatable] = useState(() => isGt24Hours({ date: title?.updatedAt }));
+
+
     // Function to fetch title data from tmdb
-    const fetchTmdbTitle = async (cancelToken) => {
+    const fetchTmdbTitle = async () => {
         try {
-            const response = await tmdbAPI.get(`${title?.title_type}/${title?.tmdb_id}`, { cancelToken });
-            setTmdbTitle({ ...response?.data });
+            const response = await tmdbAPI.get(`${title?.title_type}/${title?.tmdb_id}`);
+            return { ...response?.data };
         } catch (error) {
             // Handle errors properly
             console.error(`Error fetching tmdb title data: ${error?.response?.data?.error?.message ?? error?.message}`);
-            setTmdbTitle(null);
+            return null;
         }
     }
 
@@ -42,7 +42,8 @@ const UpdateTitle = ({ toast }) => {
         event.preventDefault();
         // set loading state to true
         setIsLoading(true);
-
+        // fetch title from tmdb
+        const tmdbTitle = await fetchTmdbTitle();
         // If TMDB title data is available, update the title on the server
         if (tmdbTitle) {
             try {
@@ -65,6 +66,8 @@ const UpdateTitle = ({ toast }) => {
             } finally {
                 // update loading state to false
                 setIsLoading(false);
+                // change isUpdatable to false, so user can't trigger update button again
+                setIsUpdatable(false);
             }
         } else {
             setIsLoading(false);
@@ -73,23 +76,13 @@ const UpdateTitle = ({ toast }) => {
         }
     }
 
-    // Fetch the TMDB title data on mount
-    useEffect(() => {
-        const source = axios.CancelToken.source();
-        fetchTmdbTitle(source.token);
-        return () => {
-            source.cancel()
-        }
-    }, [])
-
     return (
         <Link
             className="action-button"
-            // Disable the button if TMDB title data is not available
-            style={{ pointerEvents: `${tmdbTitle ? 'all' : 'none'}`, cursor: `${tmdbTitle ? 'pointer' : 'not-allowed'}`, opacity: `${tmdbTitle ? 1 : 0.5}` }}
+            // Disable the button if title is not updatable
+            style={{ pointerEvents: `${(isUpdatable && !isLoading) ? 'all' : 'none'}`, cursor: `${(isUpdatable && !isLoading) ? 'pointer' : 'not-allowed'}`, opacity: `${(isUpdatable && !isLoading) ? 1 : 0.5}` }}
             // Call the updateTitle function when the button is clicked
             onClick={(event) => updateTitle(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
-
             {isLoading
                 ? <span>
                     <i class="fas fa-sync-alt fa-pulse fa-lg"></i>
