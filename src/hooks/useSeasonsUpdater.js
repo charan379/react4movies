@@ -44,7 +44,7 @@ const useSeasonsUpdater = () => {
     const updateSeasons = async ({ tmdbTvId, moviebunkersTitleId, numberOfSeasons }) => {
         try {
             // Get the seasons data for the given moviebunkersTitleId
-            const { data: moviebunersSeasons } = await movieBunkersAPI.get(`/seasons/tv/${moviebunkersTitleId}`);
+            const { data: moviebunkersSeasons } = await movieBunkersAPI.get(`/seasons/tv/${moviebunkersTitleId}`);
 
             // Loop through each season
             for (let i = 1; i <= numberOfSeasons; i++) {
@@ -52,21 +52,21 @@ const useSeasonsUpdater = () => {
                     // Get the season data for the given tmdbTvId and season number
                     const { data: tmdbSeason } = await tmdbAPI.get(`/tv/${tmdbTvId}/season/${i}`);
 
-                    // Find the matching season in moviebunersSeasons data
-                    const moviebunersSeason = moviebunersSeasons?.find(season => season?.season_number === i);
+                    // Find the matching season in moviebunkersSeasons data
+                    const moviebunersSeason = moviebunkersSeasons?.find(season => season?.season_number === i);
 
                     // Extract the required fields from the tmdbSeason data
-                    const { air_date, name, season_number, episode_count, poster_path, overview, episodes } = tmdbSeason;
+                    const { air_date, name, season_number, episode_count, poster_path, overview, episodes, videos, images } = tmdbSeason;
 
-                    // Update the season data if it exists in moviebunersSeasons, otherwise add new season data
+                    // Update the season data if it exists in moviebunkersSeasons, otherwise add new season data
                     const { data: updatedSeason } = moviebunersSeason
                         ? await movieBunkersAPI.put(`/seasons/update/${moviebunersSeason._id}`, {
                             "tv_show_id": moviebunkersTitleId,
-                            air_date, name, season_number, episode_count, poster_path, overview
+                            air_date, name, season_number, episode_count, poster_path, overview, videos, images
                         })
                         : await movieBunkersAPI.post(`/seasons/new`, {
                             "tv_show_id": moviebunkersTitleId,
-                            air_date, name, season_number, episode_count, poster_path, overview
+                            air_date, name, season_number, episode_count, poster_path, overview, videos, images
                         });
 
                     // update episodes of season
@@ -80,7 +80,7 @@ const useSeasonsUpdater = () => {
 
         } catch (error) {
             // Handle errors properly
-            console.error(`Error getting moviebunersSeasons data: ${error?.response?.data?.error?.message ?? error?.message}`);
+            console.error(`Error getting moviebunkersSeasons data: ${error?.response?.data?.error?.message ?? error?.message}`);
         }
     };
 
