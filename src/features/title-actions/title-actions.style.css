@@ -6,6 +6,7 @@
   padding: 5px;
   margin-top: 10px;
   font-weight: 600;
+  align-items: center;
 }
 
 .title-actions .user-related {
@@ -35,8 +36,14 @@
   width: 50px;
   text-align: center;
   height: 50px;
-  line-height: 35px;
+  line-height: 10px;
   border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .moderator-related .action-button {
   width: 190px;

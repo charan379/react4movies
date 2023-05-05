@@ -10,6 +10,7 @@ import UpdateTitle from "./UpdateTitle";
 import Favourite from "./Favourite";
 import Seen from "./Seen";
 import Star from "./Star";
+import { PlayTrailer } from './PlayTrailer';
 
 const TitleActions = () => {
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
@@ -30,6 +31,7 @@ const TitleActions = () => {
             <Favourite toast={toast} />
           </>
         )}
+        <PlayTrailer videos={title?.videos} />
       </div>
 
       {LevelOne.includes(auth?.role) && (

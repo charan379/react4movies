@@ -1,8 +1,6 @@
 @import "assets/styles/variables.css";
 
 .logout-modal {
-  display: flex;
-  flex-direction: column;
   position: fixed;
   border: none;
   top: 50%;

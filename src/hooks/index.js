@@ -13,9 +13,11 @@ import { useCollectionSearch } from "./useCollectionSearch";
 import { useMoviebunkersAPI } from "./useMoviebunkersAPI";
 import { useTmdbAPI } from "./useTmdbAPI";
 import { useSeasonsUpdater } from "./useSeasonsUpdater";
+import { useWindowSize } from "./useWindowSize";
 
 
 export {
-    useTheme, useAuth, useToastify, useProgressBar, useCtrlPlusKey, useEscapeKey, useHomeKey, useOnOutSideClick, useTitle,
-    useTmdbTitle, useTmdbSearch, useCollectionSearch, useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater
+    useTheme, useAuth, useToastify, useProgressBar, useCtrlPlusKey, useEscapeKey,
+    useHomeKey, useOnOutSideClick, useTitle, useTmdbTitle, useTmdbSearch, useCollectionSearch,
+    useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater, useWindowSize,
 };

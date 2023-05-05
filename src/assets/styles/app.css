@@ -4,13 +4,18 @@
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 .modal-container {
-  height: -webkit-fill-available;
-  width: -webkit-fill-available;
+  height: 100%;
+  width: 100%;
   position: fixed;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.75);
   top: 0px;
   left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 div#root {
