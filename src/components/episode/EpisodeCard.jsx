@@ -4,6 +4,7 @@ import React from 'react'
 import { ShowLessText } from 'components/common';
 import { convertIsoDate } from 'utils';
 import { EpisodePoster } from './EpisodePoster';
+import { PlayTrailer } from 'features/title-actions/PlayTrailer';
 
 const EpisodeCard = ({ episode, latest = false, upcoming = false, moreButton = false }) => {
     const { theme } = useTheme();
@@ -29,6 +30,9 @@ const EpisodeCard = ({ episode, latest = false, upcoming = false, moreButton = f
                     <EpisodePoster still_path={episode?.still_path} episode_name={episode?.name} />
                 </div>
                 <div className='details-section'>
+                    <div className='action-buttons'>
+                        <PlayTrailer videos={episode?.videos} className={`action-button`} />
+                    </div>
                     <div className='episode-details'>
                         {latest && <h5 className='sub-heading'>Latest</h5>}
                         {upcoming && <h5 className='sub-heading'>Upcoming</h5>}

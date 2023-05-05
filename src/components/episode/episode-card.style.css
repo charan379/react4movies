@@ -51,6 +51,44 @@
   flex-wrap: wrap;
 }
 
+.episode-card .action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.episode-card .action-buttons .action-button {
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  margin: 0px 10px 0px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+}
+
+.episode-card.light .action-buttons .action-button,
+.episode-card.dark .action-buttons .action-button:hover {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.episode-card.dark .action-buttons .action-button,
+.episode-card.light .action-buttons .action-button:hover {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
 .episode-card .episode-details {
   display: flex;
   flex-direction: column;
