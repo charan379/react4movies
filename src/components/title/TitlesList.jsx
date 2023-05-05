@@ -28,7 +28,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
           list.map((title, index) => { // Map over the list to create TitleCard components
             return (
               <Link
-                data-tooltip={`${title.title}: ${title?.year}`} data-flow={`down`}
+                title={title.title}
                 id={"card-" + index}
                 key={"card-" + index}
                 onClick={() => // Set the title data and open the modal when a TitleBox is clicked
