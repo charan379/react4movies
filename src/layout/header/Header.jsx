@@ -64,8 +64,7 @@ const Header = () => {
               onClick={() => setShwoDropdown(!showDropdown)}
             >
               <Link
-                data-tooltip={`User Controls`}
-                data-flow="left"
+                title='User'
                 tabIndex="0">
                 <img className="nav-img" src={user} alt="User controls"></img>
               </Link>
