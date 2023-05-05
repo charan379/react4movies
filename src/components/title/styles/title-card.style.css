@@ -567,6 +567,8 @@ Height = ?
     scale: 1.07;
   }
 
+  /* change title-card color on hover */
+
   .title-card.light:hover .year,
   .title-card.light:hover .ratting,
   .title-card.light:hover .north-east-block,

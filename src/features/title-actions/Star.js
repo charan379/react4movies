@@ -70,7 +70,8 @@ const Star = ({ toast }) => {
         <>
             {/* If the title is already starred by the user, display a button to remove it from their starred titles */}
             {title?.starredByUser && (
-                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Remove from starred`} data-flow="up">
                     {/* Display a loading spinner if the button is in a loading state */}
                     {isLoading
                         ? <span><i class="fas fa-circle-notch fa-pulse fa-lg"></i></span>
@@ -83,7 +84,8 @@ const Star = ({ toast }) => {
 
             {/* Display a button to add this title to  starred titles */}
             {!title?.starredByUser && (
-                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Mark as starred`} data-flow="up">
                     <span>
                         {/* Display a loading spinner if the button is in a loading state */}
                         {isLoading

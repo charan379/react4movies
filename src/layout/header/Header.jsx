@@ -48,7 +48,7 @@ const Header = () => {
                     </li> */}
           <ToogleTheme className="nav-item">
             <li className="nav-item">
-              <span title="Toggle theme">
+              <span data-tooltip={`Toggle ${theme === 'light' ? 'dark' : 'light'} theme`} data-flow="left">
                 <img
                   className="nav-img"
                   src={theme === "light" ? day : night}
@@ -63,8 +63,11 @@ const Header = () => {
               className="nav-item"
               onClick={() => setShwoDropdown(!showDropdown)}
             >
-              <Link title="User Controls" tabIndex="0">
-                <img className="nav-img" src={user} alt="User Controls"></img>
+              <Link
+                data-tooltip={`User Controls`}
+                data-flow="left"
+                tabIndex="0">
+                <img className="nav-img" src={user} alt="User controls"></img>
               </Link>
               {/* <img className="nav-img" src={require('../static/icons/user.svg').default}></img> */}
             </li>

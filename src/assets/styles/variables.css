@@ -23,6 +23,10 @@
   --movie-modal-bg-dark: rgb(0, 0, 0);
   --seasons-bg-dark: rgba(0, 0, 0, 0);
 
+  /* tooltip colors */
+  --tooltip-background-color: rgb(7, 52, 88);
+  --tooltip-font-color: #ffffff;
+
   /* Transitions */
   ---trans-theme: 0.2s ease-out;
   ---tran-02: all 0.5 ease;

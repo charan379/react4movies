@@ -96,7 +96,6 @@ const SideBar = () => {
 
           {/* Sidebar toggle */}
           <Link
-            title="Toggle Sidebar"
             preload="eager"
             loading="eager"
             className={`fas fa-chevron-right toggle ${theme}`}

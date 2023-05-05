@@ -45,7 +45,8 @@ const Seen = ({ toast }) => {
         <>
             {/* Button to mark title as unseen if already updated as seen*/}
             {title?.seenByUser && (
-                <Link className="action-button" onClick={(event) => addToUnseenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => addToUnseenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Mark as unseen`} data-flow="up">
                     <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
                         {isLoading ? (
                             <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
@@ -58,7 +59,8 @@ const Seen = ({ toast }) => {
 
             {/* Button to mark title as seen if its already marked as unseen */}
             {title?.unseenByUser && (
-                <Link className="action-button" onClick={(event) => addToSeenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => addToSeenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Mark as seen`} data-flow="up">
                     <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
                         {isLoading ? (
                             <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
@@ -69,10 +71,10 @@ const Seen = ({ toast }) => {
                 </Link>
             )}
 
-            {/* Button to mark title as seen */}
+            {/* Button to mark title as unseen by default */}
             {!title?.unseenByUser && !title?.seenByUser && (
-                <Link className="action-button" onClick={(event) => addToSeenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
-
+                <Link className="action-button" onClick={(event) => addToUnseenTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Mark as unseen`} data-flow="up">
                     {isLoading
                         ? (<span>
                             <i class="fas fa-circle-notch fa-pulse fa-lg"></i>

@@ -47,7 +47,8 @@ const Favourite = ({ toast }) => {
     return (
         <>
             {title?.favouriteByUser && (
-                <Link className="action-button" onClick={(event) => removeFromFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => removeFromFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Remove from favourite's`} data-flow="up">
                     {isLoading
                         ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i> </span>
                         : <span style={{ color: "rgba(255, 20, 70, 1)" }}>
@@ -59,7 +60,8 @@ const Favourite = ({ toast }) => {
             )}
 
             {!title?.favouriteByUser && (
-                <Link className="action-button" onClick={(event) => addToFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
+                <Link className="action-button" onClick={(event) => addToFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                    data-tooltip={`Mark as favourite`} data-flow="up">
                     <span>
                         {isLoading
                             ? <i class="fas fa-circle-notch fa-pulse fa-lg"></i>

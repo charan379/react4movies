@@ -53,7 +53,7 @@ const QuickBall = () => {
       <Link
         className="quick-ball"
         onClick={toggleQuickBall}
-        title="Quick links"
+        data-tooltip="Quick Links !" data-flow="left"
       >
         {/* Add an icon to the Quick Ball, showing either bars or a times symbol */}
         <span className={`quick-ball-icon ${theme}`}>

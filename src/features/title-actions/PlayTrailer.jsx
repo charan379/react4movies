@@ -22,7 +22,7 @@ const PlayTrailer = ({ videos, className = 'action-button' }) => {
             // Loop through each video
             for (const video of videos) {
                 // If the video is a Trailer from YouTube and is official
-                if (video?.type === 'Trailer' && video?.site === 'YouTube' && video?.official === true) {
+                if (video?.type === 'Trailer' && video?.site === 'YouTube') {
                     // Add it to the list of trailers
                     trailers.push(video);
                 }
@@ -59,7 +59,8 @@ const PlayTrailer = ({ videos, className = 'action-button' }) => {
             {(isLoading || videoId) && (
                 // Render a button to play the trailer
                 <Link className={`${className}`}
-                    onClick={() => setOpenPlayerModal(!openPlayerModal)} >
+                    onClick={() => setOpenPlayerModal(!openPlayerModal)}
+                    data-tooltip={`Play Trailer `} data-flow="left" >
                     {isLoading
                         // If the component is loading, show a loading icon
                         ? <span> <i style={{ fontSize: '1.5rem' }} class="fas fa-circle-notch fa-pulse fa-lg"></i> </span>
