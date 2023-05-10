@@ -79,9 +79,9 @@ const TitleModal = ({ title, open, close }) => {
 
             <div className="title-info-section">
               {/* title name */}
-              <dvi>
+              <div>
                 <h3 className="sub-heading">{title?.title}</h3>
-              </dvi>
+              </div>
 
               {/* year and ratting */}
               <div>

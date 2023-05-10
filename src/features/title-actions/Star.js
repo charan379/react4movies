@@ -18,7 +18,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
 
         try {
             // Send a request to the API to add the title to the user's starred titles
-            const response = await movieBunkersAPI.post(
+            await movieBunkersAPI.post(
                 `/userdata/add-to-starred/${base64TitleId}`
             );
             // Update the state to reflect that the title is now starred by the user
@@ -44,7 +44,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
 
         try {
             // Send a request to the API to remove the title from the user's starred titles
-            const response = await movieBunkersAPI.post(
+            await movieBunkersAPI.post(
                 `/userdata/remove-from-starred/${base64TitleId}`
             );
             // Update the state to reflect that the title is no longer starred by the user
@@ -67,7 +67,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
         <>
             {/* If the title is already starred by the user, display a button to remove it from their starred titles */}
             {isStarred && (
-                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                <Link className={className} onClick={(event) => removeFromStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Remove from starred`} data-flow="up">
                     {/* Display a loading spinner if the button is in a loading state */}
                     {isLoading
@@ -81,7 +81,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
 
             {/* Display a button to add this title to  starred titles */}
             {!isStarred && (
-                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+                <Link className={className} onClick={(event) => addToStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Mark as starred`} data-flow="up">
                     <span>
                         {/* Display a loading spinner if the button is in a loading state */}
