@@ -17,6 +17,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
   // Function to open a URL in a new tab
   const openInNewTab = (url) => {
     window.open(url);
+    // window.open(url, "_blank", "noreferrer");
   };
 
   // Event handler for when a title card is clicked
@@ -27,16 +28,23 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
     title,
     poster_path,
     ratting,
+    runtime,
     year,
+    tagline,
+    overview,
+    genres,
     title_type,
     titleState,
     index,
+    number_of_seasons,
+    number_of_episodes,
+    videos,
     favouriteByUser,
     seenByUser,
     unseenByUser,
     starredByUser,
   }) => {
-    if (width < 1080 || height < 580) {
+    if (width < 1080 || height < 590) {
       openInNewTab(
         `/view/title/${title_type}` + // title_type
           `/${encodeURIComponent(makePrettyUrl(title + "-" + year))}` + // title ( name ),  year
@@ -61,10 +69,17 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
       title,
       poster_path,
       ratting,
+      runtime,
       year,
+      tagline,
+      overview,
+      genres,
       title_type,
       titleState,
       index,
+      number_of_seasons,
+      number_of_episodes,
+      videos,
       favouriteByUser,
       seenByUser,
       unseenByUser,
@@ -96,9 +111,16 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
                     poster_path: title?.poster_path,
                     ratting: title?.ratting,
                     year: title?.year,
+                    tagline: title?.tagline,
+                    runtime: title?.runtime,
+                    overview: title?.overview,
+                    genres: title?.genres,
                     title_type: title.title_type,
                     titleState: source,
                     index: index,
+                    number_of_seasons: title?.number_of_seasons,
+                    number_of_episodes: title?.number_of_episodes,
+                    videos: title?.videos,
                     favouriteByUser: title?.favouriteByUser,
                     seenByUser: title?.seenByUser,
                     unseenByUser: title?.unseenByUser,

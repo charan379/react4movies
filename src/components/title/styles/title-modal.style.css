@@ -63,6 +63,19 @@
   margin-bottom: 0.4rem;
 }
 
+.title-modal .title .title-info-section .minor-details .ul-1 li {
+  display: inline;
+  list-style: none;
+  float: left;
+  color: rgb(115 115 115);
+  font-weight: bold;
+}
+
+.title-modal .title .title-info-section .ul-1 li:not(:first-child)::before {
+  content: ",";
+  margin-right: 0.3em;
+}
+
 .title-modal .title .title-info-section .links {
   text-align: initial;
   padding: 2px;
@@ -100,27 +113,21 @@
   background-color: var(--bg-light);
 }
 
-.title-modal .title .title-info-section .ul-1 li {
-  display: inline;
-  list-style: none;
-  float: left;
-  color: rgb(115 115 115);
-  font-weight: bold;
-}
-
-.title-modal .title .title-info-section .ul-1 li:not(:first-child)::before {
-  content: ",";
-  margin-right: 0.3em;
-}
-
 .title-modal .title .title-info-section .details-text {
+  padding: 10px 5px 10px 5px;
   overflow: scroll;
   font-size: 0.9rem;
   text-align: left;
 }
 
 .title-modal .title .title-info-section .details-text p {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.title-modal .title .title-info-section .links.hide,
+.title-modal .title .title-info-section .link-actions.hide,
+.title-modal .title .title-info-section .details-text.hide {
+  display: none;
 }
 
 .title-modal .closeBtn {
@@ -142,6 +149,36 @@
   background-color: crimson;
   color: #ffffff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-modal .toggle-details {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  text-align: center;
+  padding: 4px;
+  font-size: 30px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 999;
+  margin-top: 390px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-modal.light .toggle-details {
+  color: var(--font-color-light);
+  background-color: var(--bg-light);
+}
+
+.title-modal.dark .toggle-details {
+  color: var(--font-color-drak);
+  background-color: var(--bg-dark);
 }
 
 .title-modal .title-info-section .bottom-section {
