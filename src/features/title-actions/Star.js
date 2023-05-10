@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useTitle, useMoviebunkersAPI } from 'hooks';
+import { useMoviebunkersAPI } from 'hooks';
 
-const Star = ({ toast }) => {
-    // Use custom hooks to get the title and update it
-    const { title, setTitle } = useTitle();
+const Star = ({ toast, className = 'action-button', titleId = null, starredByUser = false }) => {
+
+    const [isStarred, setStarred] = useState(starredByUser);
+
     const { movieBunkersAPI } = useMoviebunkersAPI();
 
     // State to keep track of whether the button is in a loading state or not
@@ -20,10 +21,8 @@ const Star = ({ toast }) => {
             const response = await movieBunkersAPI.post(
                 `/userdata/add-to-starred/${base64TitleId}`
             );
-            // Update the title state to reflect that the title is now starred by the user
-            setTitle({ ...title, starredByUser: true });
-            // Display a success toast message
-            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 });
+            // Update the state to reflect that the title is now starred by the user
+            setStarred(true);
         } catch (error) {
             // If there was an error, display an error toast message
             const errMsg = error?.response?.data?.error?.message;
@@ -48,10 +47,8 @@ const Star = ({ toast }) => {
             const response = await movieBunkersAPI.post(
                 `/userdata/remove-from-starred/${base64TitleId}`
             );
-            // Update the title state to reflect that the title is no longer starred by the user
-            setTitle({ ...title, starredByUser: false });
-            // Display a success toast message
-            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 });
+            // Update the state to reflect that the title is no longer starred by the user
+            setStarred(false);
         } catch (error) {
             // If there was an error, display an error toast message
             const errMsg = error?.response?.data?.error?.message;
@@ -69,8 +66,8 @@ const Star = ({ toast }) => {
     return (
         <>
             {/* If the title is already starred by the user, display a button to remove it from their starred titles */}
-            {title?.starredByUser && (
-                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+            {isStarred && (
+                <Link className="action-button" onClick={(event) => removeFromStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Remove from starred`} data-flow="up">
                     {/* Display a loading spinner if the button is in a loading state */}
                     {isLoading
@@ -83,8 +80,8 @@ const Star = ({ toast }) => {
             )}
 
             {/* Display a button to add this title to  starred titles */}
-            {!title?.starredByUser && (
-                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+            {!isStarred && (
+                <Link className="action-button" onClick={(event) => addToStarredTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Mark as starred`} data-flow="up">
                     <span>
                         {/* Display a loading spinner if the button is in a loading state */}

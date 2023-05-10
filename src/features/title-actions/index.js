@@ -26,9 +26,22 @@ const TitleActions = () => {
       <div className="user-related">
         {title?.state === "moviebunkers" && (
           <>
-            <Star toast={toast} />
-            <Seen toast={toast} />
-            <Favourite toast={toast} />
+            <Star
+              toast={toast}
+              titleId={title?._id}
+              starredByUser={title?.starredByUser}
+            />
+            <Seen
+              toast={toast}
+              titleId={title?._id}
+              seenByUser={title?.seenByUser}
+              unseenByUser={title?.unseenByUser}
+            />
+            <Favourite
+              toast={toast}
+              titleId={title?._id}
+              favouriteByUser={title?.favouriteByUser}
+            />
           </>
         )}
         <PlayTrailer videos={title?.videos} />

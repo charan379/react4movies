@@ -2,45 +2,132 @@
 
 .title-modal {
   display: flex;
-  position: fixed;
-  align-items: center;
-  width: calc(100vw - 40px);
-  height: calc(100vh - 60px);
+  flex-direction: row-reverse;
+  width: 80%;
+  height: 75%;
+  max-width: 860px;
+  max-height: 445px;
   z-index: 999;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  top: 30px;
-  left: 20px;
-  padding: 1px;
-  border-radius: 10px;
+  padding: 0px;
+  border-radius: 25px;
 }
 
 .title-modal.light {
   background-color: var(--bg-light);
+  color: var(--font-color-light);
 }
 .title-modal.dark {
   background-color: var(--bg-dark);
+  color: var(--font-color-dark);
 }
 
 .title-modal .title {
-  overflow: scroll;
-  width: inherit;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 3fr 7fr;
+  overflow: hidden;
+  grid-template-areas: "title-poster-section title-info-section";
+  justify-items: start;
+  align-content: stretch;
+  justify-content: start;
+  border-radius: 10px;
+}
+
+.title-modal .title .title-poster-section {
+  grid-area: title-poster-section;
+  left: -8px;
+  position: relative;
+  top: -3px;
+  height: 100%;
+}
+
+.title-modal .title .title-info-section {
+  grid-area: title-info-section;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-  border-radius: inherit;
-  padding: 10px 3px 4px 3px;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  max-width: 95%;
+  width: 100%;
+}
+
+.title-modal .title .title-info-section,
+.title-modal .title .title-info-section ul {
+  padding: 0px;
+  padding-left: 0rem;
+  margin-bottom: 0.4rem;
+}
+
+.title-modal .title .title-info-section .links {
+  text-align: initial;
+  padding: 2px;
+}
+
+.title-modal .title .title-info-section .link-actions {
+  display: flex;
+}
+.title-modal .title .title-info-section .link-actions .action-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 10px 5px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+  width: 50px;
+  text-align: center;
+  height: 50px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.title-modal.light .title .title-info-section .link-actions .action-button {
+  color: var(--font-color-dark);
+  background-color: var(--bg-dark);
+}
+
+.title-modal.dark .title .title-info-section .link-actions .action-button {
+  color: var(--font-color-light);
+  background-color: var(--bg-light);
+}
+
+.title-modal .title .title-info-section .ul-1 li {
+  display: inline;
+  list-style: none;
+  float: left;
+  color: rgb(115 115 115);
+  font-weight: bold;
+}
+
+.title-modal .title .title-info-section .ul-1 li:not(:first-child)::before {
+  content: ",";
+  margin-right: 0.3em;
+}
+
+.title-modal .title .title-info-section .details-text {
+  overflow: scroll;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.title-modal .title .title-info-section .details-text p {
+  margin-bottom: 0.1rem;
 }
 
 .title-modal .closeBtn {
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  position: fixed;
-  right: 5px;
-  top: 15px;
+  position: absolute;
   text-align: center;
   padding: 4px;
   font-size: 30px;
@@ -55,6 +142,15 @@
   background-color: crimson;
   color: #ffffff;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-modal .title-info-section .bottom-section {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
 }
 
 .title-modal .more-details {
@@ -75,9 +171,11 @@
   transition: opacity 1s ease-in-out;
   text-decoration: none;
 }
+
 .title-modal .more-details.show {
   opacity: 1;
 }
+
 .title-modal.light .more-details {
   color: var(--font-color-dark);
   background-color: var(--bg-dark);
@@ -85,28 +183,4 @@
 .title-modal.dark .more-details {
   color: var(--font-color-light);
   background-color: var(--bg-light);
-}
-
-.title-modal .exit-button {
-  width: max-content;
-  height: 45px;
-  position: relative;
-  border-radius: 10px;
-  text-align: center;
-  padding: 8px 10px 5px 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  border: none;
-  margin-bottom: 20px;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  text-decoration: none;
-  color: #ffffff;
-  background-color: crimson;
-}
-.title-modal .exit-button.show {
-  opacity: 1;
 }

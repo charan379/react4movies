@@ -1,25 +1,23 @@
-import './styles/title-poster.style.css'
+import "./styles/title-poster.style.css";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "hooks"; // custom hook for theme
-import { handleImageError } from 'utils';
+import { handleImageError } from "utils";
 
 const TitlePoster = ({ url, alt, tagline }) => {
   const { theme } = useTheme(); // get the current theme using the custom hook
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnImageLoaded = () => {
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-  }
+  };
 
   useEffect(() => {
-    setIsLoading(true)
-    return () => {
-
-    }
-  }, [url])
+    setIsLoading(true);
+    return () => {};
+  }, [url]);
 
   return (
     <>
@@ -36,7 +34,10 @@ const TitlePoster = ({ url, alt, tagline }) => {
             alt={alt}
           ></img>
           {isLoading && (
-            <i className={`fas fa-compact-disc fa-pulse fa-4x`} aria-hidden="true"></i>
+            <i
+              className={`fas fa-compact-disc fa-pulse fa-4x`}
+              aria-hidden="true"
+            ></i>
           )}
         </div>
         {/* backdrop for title poster */}
@@ -48,8 +49,11 @@ const TitlePoster = ({ url, alt, tagline }) => {
       </div>
 
       {/* display the tagline for the title */}
-      <div className={`title-tagline ${theme}`}>{tagline}</div>
-
+      {tagline && (
+        <>
+          <div className={`title-tagline ${theme}`}>{tagline}</div>
+        </>
+      )}
     </>
   );
 };

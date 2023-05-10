@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from "react"; // Import the required React components
 import axios from "axios";
-import { useCollectionSearch, useToastify, useMoviebunkersAPI, useProgressBar } from "hooks";
+import {
+  useCollectionSearch,
+  useToastify,
+  useMoviebunkersAPI,
+  useProgressBar,
+} from "hooks";
 import { TitlesList } from "components/title";
 import { Pagination } from "components/common";
 import { debounce } from "lodash";
 
 const Collection = () => {
-
   // Import the custom hooks that will be used in this component
-  const { increaseProgress20, increaseProgressCustom, completeProgressBar } = useProgressBar(); // A hook for displaying a progress bar
+  const { increaseProgress20, increaseProgressCustom, completeProgressBar } =
+    useProgressBar(); // A hook for displaying a progress bar
   const { collectionQuery, setCollectionQuery } = useCollectionSearch();
   const { movieBunkersAPI } = useMoviebunkersAPI();
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
   // Define state variables that will be used in this component
-  const [updateList, setUpdateList] = useState(0); // A State variable to re-render list 
+  const [updateList, setUpdateList] = useState(0); // A State variable to re-render list
   const [isLoading, setIsLoading] = useState(false); // A flag indicating whether data is being loaded
-  const [moviesPage, setMoviesPage] = useState({ // An object that holds information about the search results
+  const [moviesPage, setMoviesPage] = useState({
+    // An object that holds information about the search results
     page: 1, // The current page number
     list: [], // The list of movies returned by the API
     total_pages: 1, // The total number of pages of search results
@@ -26,7 +32,12 @@ const Collection = () => {
 
   // Define a function to set the page number in the  collectionQuery object
   const setPageNo = (pageNo) => {
-    if (typeof parseInt(pageNo) !== "number" || pageNo < 1 || pageNo > moviesPage.total_pages || parseInt(pageNo) === NaN) {
+    if (
+      typeof parseInt(pageNo) !== "number" ||
+      pageNo < 1 ||
+      pageNo > moviesPage.total_pages ||
+      parseInt(pageNo) === NaN
+    ) {
       setError(`Invalid page number: ${pageNo}`);
     } else {
       setCollectionQuery({ ...collectionQuery, pageNo });
@@ -35,18 +46,22 @@ const Collection = () => {
 
   // Define a function to fetch movies data from the MovieBunkers API
   const fetchData = async ({ cancelToken }) => {
-    setError(null) // Clear any previous errors
+    setError(null); // Clear any previous errors
     setIsLoading(true); // Set the loading state to true
     increaseProgressCustom(10); // Increase the progress bar by 10%
 
     try {
-      const response = await movieBunkersAPI.get(`/titles`, { params: { ...collectionQuery }, cancelToken })
+      const response = await movieBunkersAPI.get(`/titles`, {
+        params: { ...collectionQuery },
+        cancelToken,
+      });
       increaseProgress20(); // Increase the progress bar by 20%
       setMoviesPage({ ...response?.data }); // Set the movies page state with the API response data
     } catch (error) {
       const errorResponse = error?.response?.data; // Get the error response data, if any
       if (axios.isCancel(error)) return; // If the error is due to a cancelled request, return without updating any state
-      toast.error(errorResponse?.error?.message ?? error?.message, { // Show an error toast message with the error message
+      toast.error(errorResponse?.error?.message ?? error?.message, {
+        // Show an error toast message with the error message
         autoClose: 3000,
         position: "top-right",
       });
@@ -56,7 +71,7 @@ const Collection = () => {
       setIsLoading(false); // Set the loading state to false
       completeProgressBar(); // Complete the progress bar
     }
-  }
+  };
 
   // Define a debounced version of the fetchData function
   const debouncedFetchData = debounce(fetchData, 500);

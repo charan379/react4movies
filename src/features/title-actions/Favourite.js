@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useTitle, useMoviebunkersAPI } from 'hooks';
+import { useMoviebunkersAPI } from 'hooks';
 
-const Favourite = ({ toast }) => {
+const Favourite = ({ toast, className = 'action-button', titleId = null, favouriteByUser = false }) => {
 
-    // Custom hook to manage the document title
-    const { title, setTitle } = useTitle();
+
+    const [isFavourite, setFavourite] = useState(favouriteByUser);
 
     // Custom hook to manage API requests
     const { movieBunkersAPI } = useMoviebunkersAPI();
@@ -17,9 +17,8 @@ const Favourite = ({ toast }) => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            const response = await movieBunkersAPI.post(`/userdata/add-to-favourite/${base64TitleId}`);
-            setTitle({ ...title, favouriteByUser: true });
-            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true })
+            await movieBunkersAPI.post(`/userdata/add-to-favourite/${base64TitleId}`);
+            setFavourite(true);
         } catch (error) {
             const errMsg = error?.response?.data?.error?.message;
             toast.error(errMsg ?? "Something went wrong", { autoClose: 2000, position: "top-right", closeButton: true, delay: 50 });
@@ -33,9 +32,8 @@ const Favourite = ({ toast }) => {
         event.preventDefault();
         setIsLoading(true);
         try {
-            const response = await movieBunkersAPI.post(`/userdata/remove-from-favourite/${base64TitleId}`);
-            setTitle({ ...title, favouriteByUser: false });
-            // toast.success(response?.data?.message, { autoClose: 1000, position: "top-left", closeButton: true, delay: 50 })
+            await movieBunkersAPI.post(`/userdata/remove-from-favourite/${base64TitleId}`);
+            setFavourite(false);
         } catch (error) {
             const errMsg = error?.response?.data?.error?.message;
             toast.error(errMsg ?? "Something went wrong", { autoClose: 2000, position: "top-right", closeButton: true });
@@ -46,8 +44,8 @@ const Favourite = ({ toast }) => {
 
     return (
         <>
-            {title?.favouriteByUser && (
-                <Link className="action-button" onClick={(event) => removeFromFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+            {isFavourite && (
+                <Link className={className} onClick={(event) => removeFromFavouriteTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Remove from favourite's`} data-flow="up">
                     {isLoading
                         ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i> </span>
@@ -59,8 +57,8 @@ const Favourite = ({ toast }) => {
                 </Link>
             )}
 
-            {!title?.favouriteByUser && (
-                <Link className="action-button" onClick={(event) => addToFavouriteTitles(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
+            {!isFavourite && (
+                <Link className={className} onClick={(event) => addToFavouriteTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Mark as favourite`} data-flow="up">
                     <span>
                         {isLoading

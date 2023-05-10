@@ -7,9 +7,10 @@ import { waitForElementById } from "./waitForElemnetById";
 import { MovieBunkersException } from "./MovieBunkersException";
 import { handleImageError } from "./handleImageError";
 import { isGt24Hours } from "./isGt24Hours";
+import { getExternalLinks } from "./getExternalLinks";
 
 export {
     convertIsoDate, formatTime, makePrettyUrl, pad, scrollToTop,
     waitForElementById, MovieBunkersException, handleImageError,
-    isGt24Hours,
+    isGt24Hours, getExternalLinks
 };

@@ -1,21 +1,75 @@
-import './styles/title-list.style.css'
+import "./styles/title-list.style.css";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { TitleCard } from "components/title";
 import { TitleModal } from "components/title";
 import { Link } from "react-router-dom";
-import { waitForElementById } from "utils";
+import { makePrettyUrl, waitForElementById } from "utils";
+import { useWindowSize } from "hooks";
 
 const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
-
   // currentUpdateCount hooks for the modal
   const [openModal, setOpenModal] = useState(false);
   const [titleData, setTitleData] = useState({});
 
+  const { width, height } = useWindowSize();
+
+  // Function to open a URL in a new tab
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
+
   // Event handler for when a title card is clicked
-  const handleOnClick = ({ id, title, year, title_type, titleState, index, }) => {
+  const handleOnClick = ({
+    id,
+    tmdb_id,
+    imdb_id,
+    title,
+    poster_path,
+    ratting,
+    year,
+    title_type,
+    titleState,
+    index,
+    favouriteByUser,
+    seenByUser,
+    unseenByUser,
+    starredByUser,
+  }) => {
+    if (width < 1080 || height < 580) {
+      openInNewTab(
+        `/view/title/${title_type}` + // title_type
+          `/${encodeURIComponent(makePrettyUrl(title + "-" + year))}` + // title ( name ),  year
+          `/${titleState}` + // title state
+          `/${
+            titleState === "moviebunkers" // title id
+              ? btoa(id)
+                  .replace(/=/g, "")
+                  .replace(/\+/g, "-")
+                  .replace(/\//g, "_")
+              : id
+          }`
+      );
+
+      return 0;
+    }
     // Set the title data and open the modal
-    setTitleData({ id, title, year, title_type, titleState, index });
+    setTitleData({
+      id,
+      tmdb_id,
+      imdb_id,
+      title,
+      poster_path,
+      ratting,
+      year,
+      title_type,
+      titleState,
+      index,
+      favouriteByUser,
+      seenByUser,
+      unseenByUser,
+      starredByUser,
+    });
     setOpenModal(true);
   };
 
@@ -25,20 +79,30 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
       <div className={`titles-list`}>
         {/* If list source is from TMDB search */}
         {list?.length > 0 && // Check that the list is not empty
-          list.map((title, index) => { // Map over the list to create TitleCard components
+          list.map((title, index) => {
+            // Map over the list to create TitleCard components
             return (
               <Link
                 title={title.title}
                 id={"card-" + index}
                 key={"card-" + index}
-                onClick={() => // Set the title data and open the modal when a TitleBox is clicked
+                onClick={() =>
+                  // Set the title data and open the modal when a TitleBox is clicked
                   handleOnClick({
                     id: title?._id ?? title?.tmdb_id, // Use the _id field if it exists, otherwise use the tmdb_id field
+                    tmdb_id: title?.tmdb_id,
+                    imdb_id: title?.imdb_id,
                     title: title.title,
+                    poster_path: title?.poster_path,
+                    ratting: title?.ratting,
                     year: title?.year,
                     title_type: title.title_type,
                     titleState: source,
                     index: index,
+                    favouriteByUser: title?.favouriteByUser,
+                    seenByUser: title?.seenByUser,
+                    unseenByUser: title?.unseenByUser,
+                    starredByUser: title?.starredByUser,
                   })
                 }
               >
@@ -92,7 +156,6 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
   );
 };
 
-
 // Define the prop types for MoviesList
 
 const propTypes = {
@@ -101,6 +164,5 @@ const propTypes = {
   currentUpdateCount: PropTypes.number,
   setUpdateCount: PropTypes.func,
 };
-
 
 export { TitlesList };
