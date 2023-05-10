@@ -16,7 +16,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
 
   // Function to open a URL in a new tab
   const openInNewTab = (url) => {
-    window.open(url, "_blank", "noreferrer");
+    window.open(url);
   };
 
   // Event handler for when a title card is clicked
