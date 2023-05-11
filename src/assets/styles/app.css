@@ -144,11 +144,13 @@ select:-webkit-autofill:focus {
   color: #f55a18;
 }
 
-body.light .sub-heading::before {
+body.light .sub-heading::before,
+body.light .sub-heading::after {
   color: #f55a18;
 }
 
-body.dark .sub-heading::before {
+body.dark .sub-heading::before,
+body.dark .sub-heading::after {
   color: #f5c518;
 }
 
