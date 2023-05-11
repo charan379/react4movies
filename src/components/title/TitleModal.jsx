@@ -1,7 +1,7 @@
 import "./styles/title-modal.style.css";
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { useTheme, useEscapeKey, useToastify } from "hooks";
+import { useTheme, useEscapeKey, useToastify, useAuth } from "hooks";
 import { getExternalLinks, makePrettyUrl } from "utils";
 import { TitlePoster } from "./TitlePoster";
 import { WatchProviders } from "features/watch-providers";
@@ -11,6 +11,9 @@ import Star from "features/title-actions/Star";
 import Favourite from "features/title-actions/Favourite";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import { ShowLessText } from "components/common";
+import AddTitle from "features/title-actions/AddTitle";
+import DeleteTitle from "features/title-actions/DeleteTitle";
+import { LevelThere } from "constants/AuthRoles";
 
 const TitleModal = ({ title, open, close }) => {
   // Get the current theme using the `useTheme` hook
@@ -18,6 +21,9 @@ const TitleModal = ({ title, open, close }) => {
 
   // State to identify user want to show details of title of links
   const [showDetails, setShowDetails] = useState(false);
+
+  // hook to get user authenticaon
+  const { auth } = useAuth();
 
   // Hook that return ReactTostify toast component and toast options
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
@@ -128,9 +134,27 @@ const TitleModal = ({ title, open, close }) => {
                       titleId={title?.id}
                       starredByUser={title?.starredByUser}
                     />
+
+                    {LevelThere.includes(auth?.role) && (
+                      <DeleteTitle
+                        toast={toast}
+                        tooltipText={`Delete`}
+                        titleId={title?.id}
+                      />
+                    )}
                   </>
                 )}
 
+                {title?.titleState === "tmdb" && (
+                  <>
+                    <AddTitle
+                      toast={toast}
+                      tooltipText={`Add to collection`}
+                      titleType={title?.title_type}
+                      tmdbId={title?.tmdb_id}
+                    />
+                  </>
+                )}
                 <PlayTrailer videos={title?.videos} />
               </div>
 

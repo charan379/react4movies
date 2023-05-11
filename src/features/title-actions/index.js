@@ -69,12 +69,23 @@ const TitleActions = () => {
             <>
               <EditTitle toast={toast} />
               <UpdateTitle toast={toast} />
-              {LevelThere.includes(auth?.role) && <DeleteTitle toast={toast} />}
+              {LevelThere.includes(auth?.role) && <DeleteTitle
+                toast={toast}
+                buttonText={`Delete`}
+                loadingText={`Deleting....`}
+                titleId={title?._id}
+              />}
             </>
           )}
           {title?.state === "tmdb" && (
             <>
-              <AddTitle toast={toast} />
+              <AddTitle
+                toast={toast}
+                buttonText={`Add to collection`}
+                loadingText={`Adding....`}
+                titleType={title?.title_type}
+                tmdbId={title?.tmdb_id}
+              />
             </>
           )}
         </div>

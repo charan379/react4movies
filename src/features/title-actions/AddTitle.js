@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useTitle, useMoviebunkersAPI, useSeasonsUpdater } from 'hooks';
+import { useMoviebunkersAPI, useSeasonsUpdater, useTmdbAPI } from 'hooks';
 
-const AddTitle = ({ toast }) => {
-    // Get the title from the custom hook
-    const { title } = useTitle();
+const AddTitle = ({ toast, className = 'action-button', buttonText, loadingText, tooltipText, titleType, tmdbId }) => {
 
     // Get the API instance from the custom hook
     const { movieBunkersAPI } = useMoviebunkersAPI();
+
+    // Get the TMDB API instance from the custom hook
+    const { tmdbAPI } = useTmdbAPI();
 
     // Update Tv Show Seasons and episodes hook
     const { updateSeasons } = useSeasonsUpdater();
@@ -15,8 +16,20 @@ const AddTitle = ({ toast }) => {
     // Set the loading state
     const [isLoading, setIsLoading] = useState(false);
 
+    // Function to fetch title data from tmdb
+    const fetchTmdbTitle = async ({ titleType, tmdbId }) => {
+        try {
+            const response = await tmdbAPI.get(`${titleType}/${tmdbId}`);
+            return { ...response?.data };
+        } catch (error) {
+            // Handle errors properly
+            console.error(`Error fetching tmdb title data: ${error?.response?.data?.error?.message ?? error?.message}`);
+            return null;
+        }
+    }
+
     // Function to add a new title
-    const addTitle = async (event, title) => {
+    const addTitle = async (event, titleType, tmdbId) => {
         // Prevent the default form submission
         event.preventDefault();
 
@@ -24,6 +37,8 @@ const AddTitle = ({ toast }) => {
         setIsLoading(true);
 
         try {
+            const title = await fetchTmdbTitle({ titleType, tmdbId });
+
             // Make the API request to add the new title
             const { data: { message, title: newTitle } } = await movieBunkersAPI.post(`/titles/new`, { ...title });
 
@@ -53,18 +68,20 @@ const AddTitle = ({ toast }) => {
     return (
         // Render a Link component as a button to add the title
         <Link
-            className="action-button"
-            onClick={(event) => addTitle(event, title)}>
+            className={className}
+            onClick={(event) => addTitle(event, titleType, tmdbId)}
+            data-tooltip={tooltipText} data-flow={`up`}
+        >
 
             {/* Show a loading spinner and "Adding..." text while the request is in progress */}
             {isLoading
                 ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
-                    Adding....
+                    {loadingText}
                 </span>
                 // Show the regular "Add to collection" button when the request is not in progress
                 : <span>
                     <i className="fas fa-cloud-download-alt fa-lg"></i>
-                    Add to collection
+                    {buttonText}
                 </span>
             }
         </Link>

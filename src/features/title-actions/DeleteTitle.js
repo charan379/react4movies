@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTitle, useMoviebunkersAPI } from 'hooks';
+import { useMoviebunkersAPI } from 'hooks';
 
-const DeleteTitle = ({ toast }) => {
-    const { title } = useTitle(); // retrieve title from custom hook
+const DeleteTitle = ({ toast, className = 'action-button', buttonText, loadingText, tooltipText, titleId }) => {
     const location = useLocation(); // retrieve current location from React Router
+
     const { movieBunkersAPI } = useMoviebunkersAPI(); // get an instance of the API
 
     const [isLoading, setIsLoading] = useState(false); // state for loading indicator
@@ -22,7 +22,7 @@ const DeleteTitle = ({ toast }) => {
             // wait for 1 second before closing window or modal
             setTimeout(() => {
                 if (/^\/view.{0,}/.test(location.pathname)) {
-                    window.close(); // close the window if we're in a popup
+                    window.close(); // close the window if we're in title page
                 } else {
                     const closeBtn = document.getElementsByClassName('closeBtn')[0];
                     const clickEvent = new MouseEvent('click', { bubbles: true });
@@ -39,20 +39,21 @@ const DeleteTitle = ({ toast }) => {
 
     return (
         <Link
-            className="action-button"
+            className={className}
             onClick={(event) =>
-                deleteTitle(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))
+                deleteTitle(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))
             }
+            data-tooltip={tooltipText} data-flow={`up`}
         >
             {isLoading ? (
                 <span>
                     <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
-                    Deleting....
+                    {loadingText}
                 </span>
             ) : (
                 <span>
                     <i className="fas fa-trash-alt fa-lg"></i>
-                    Delete
+                    {buttonText}
                 </span>
             )}
         </Link>
