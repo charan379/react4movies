@@ -16,8 +16,10 @@ const TitleModal = ({ title, open, close }) => {
   // Get the current theme using the `useTheme` hook
   const { theme } = useTheme();
 
+  // State to identify user want to show details of title of links
   const [showDetails, setShowDetails] = useState(false);
 
+  // Hook that return ReactTostify toast component and toast options
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
   // Create a ref that will be used to detect clicks outside the modal
@@ -49,7 +51,7 @@ const TitleModal = ({ title, open, close }) => {
   // If the `open` prop is false, don't render anything
   if (!open) return null;
 
-  // show more details link after title page loaded
+  // show Open Title link after 500ms from modal popup
   setTimeout(() => {
     document.getElementById(`title-page-link`)?.classList?.add("show");
     document.getElementById(`title-page-exit`)?.classList?.add("show");
@@ -150,7 +152,9 @@ const TitleModal = ({ title, open, close }) => {
                 )}
               </div>
 
+              {/* title details */}
               <div className={`details-text ${!showDetails ? "hide" : "show"}`}>
+                {/* title type [tv,movie] */}
                 {title?.title_type && (
                   <p>
                     <b>Title type:</b>
@@ -168,6 +172,7 @@ const TitleModal = ({ title, open, close }) => {
                   </p>
                 )}
 
+                {/* title genres  */}
                 {title?.genres && (
                   <p>
                     <b>Genres:</b>
@@ -178,6 +183,7 @@ const TitleModal = ({ title, open, close }) => {
                   </p>
                 )}
 
+                {/* title tagline */}
                 {title?.tagline && (
                   <p>
                     <b>Tagline:</b>
@@ -186,6 +192,7 @@ const TitleModal = ({ title, open, close }) => {
                   </p>
                 )}
 
+                {/* title run time */}
                 {title?.runtime && (
                   <p>
                     <b>Runtime:</b>
@@ -194,6 +201,7 @@ const TitleModal = ({ title, open, close }) => {
                   </p>
                 )}
 
+                {/* number of seasons released or anounced */}
                 {title?.number_of_seasons && (
                   <p>
                     <b>Seasons:</b>
@@ -202,6 +210,7 @@ const TitleModal = ({ title, open, close }) => {
                   </p>
                 )}
 
+                {/* number of episodes released or anounced */}
                 {title?.number_of_episodes && (
                   <p>
                     <b>Episodes:</b>
@@ -218,6 +227,7 @@ const TitleModal = ({ title, open, close }) => {
                 )}
               </div>
 
+              {/* button to open title page */}
               <div className="bottom-section ">
                 <button
                   id={`title-page-link`}
@@ -232,7 +242,7 @@ const TitleModal = ({ title, open, close }) => {
             </div>
           </div>
 
-          {/* details toggle button */}
+          {/* title details toggle button */}
           <button
             data-tooltip={` ${showDetails ? "Hide Details" : "Show Details"}`}
             data-flow="left"
@@ -243,6 +253,8 @@ const TitleModal = ({ title, open, close }) => {
             <i class="fas fa-info-circle fa-lg"></i>
           </button>
         </div>
+
+        {/* raectToastify component*/}
         <ToastContainer {...toastContainerOptions} />
       </div>
     </>
