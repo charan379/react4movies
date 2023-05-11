@@ -16,16 +16,17 @@ const Tv = () => {
   // Render the title page
   return (
     <>
-      <div id={'title-page'} className={`title-page ${theme}`}>{/* Title page */}
-        <div className="title-title-section">{/* title  name*/}
+      <div id={"title-page"} className={`title-page ${theme}`}>
+        {/* Title page */}
+        <div className="title-title-section">
+          {/* title  name*/}
           {/* Render  title and year */}
           <h2>{tv?.title}</h2>
-          <small>
-            ({tv?.year})
-          </small>
+          <small>({tv?.year})</small>
         </div>
 
-        <div className="title-poster-section">{/* title poster */}
+        <div className="title-poster-section">
+          {/* title poster */}
           {/* Render the title poster */}
           <TitlePoster
             url={tv?.poster_path}
@@ -36,7 +37,8 @@ const Tv = () => {
           <TitleActions />
         </div>
 
-        <div className="title-details-section">{/* title details */}
+        <div className="title-details-section">
+          {/* title details */}
           {/* Render the title details */}
           <TitleDetails />
         </div>
@@ -47,13 +49,15 @@ const Tv = () => {
             Episodes
             <span>
               &nbsp;
-              <small>
-                {tv?.number_of_episodes}&nbsp;
-              </small>
+              <small>{tv?.number_of_episodes}&nbsp;</small>
               <i class="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
-          <EpisodeList getAllEpisodes={false} lastestEpisode={tv?.last_episode_aired} upcomingEpisode={tv?.next_episode_to_air} />
+          <EpisodeList
+            getAllEpisodes={false}
+            lastestEpisode={tv?.last_episode_aired}
+            upcomingEpisode={tv?.next_episode_to_air}
+          />
         </div>
 
         {/* seasons */}
@@ -63,13 +67,18 @@ const Tv = () => {
             Seasons
             <span>
               &nbsp;
-              <small>
-                {tv?.number_of_seasons}&nbsp;
-              </small>
+              <small>{tv?.number_of_seasons}&nbsp;</small>
               <i class="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
-          <SeasonList seasons={tv?.seasons} limit={tv?.number_of_seasons <= 4 ? tv?.number_of_season : 4} getAllSeasons={false}  />
+          <SeasonList
+            titleId={tv?._id}
+            titleState={tv?.state}
+            seasons={tv?.seasons}
+            totalSeasons={tv?.number_of_seasons}
+            limit={tv?.number_of_seasons <= 3 ? tv?.number_of_season : 3}
+            getAllSeasons={false}
+          />
         </div>
       </div>
     </>
