@@ -114,6 +114,8 @@ const TitleModal = ({ title, open, close }) => {
                 </ul>
               </div>
               <div className={`link-actions ${showDetails ? "hide" : "show"}`}>
+                <PlayTrailer videos={title?.videos} />
+
                 {title?.titleState === "moviebunkers" && (
                   <>
                     <Favourite
@@ -155,7 +157,6 @@ const TitleModal = ({ title, open, close }) => {
                     />
                   </>
                 )}
-                <PlayTrailer videos={title?.videos} />
               </div>
 
               {/* external links */}

@@ -7,6 +7,8 @@
   height: 75%;
   max-width: 860px;
   max-height: 445px;
+  min-width: 860px;
+  min-height: 445px;
   z-index: 999;
   padding: 0px;
   border-radius: 25px;
