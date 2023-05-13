@@ -13,34 +13,6 @@
     "title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section";
 }
 
-.title-page .title-page-section-heading {
-  margin-bottom: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.title-page .title-page-section-heading:hover span i {
-  color: #f5c518;
-}
-
-.title-page .title-page-section-heading span {
-  font-size: 24px;
-}
-
-.title-page .title-page-section-heading::before {
-  content: "| ";
-  font-weight: bolder;
-  font-size: larger;
-  color: #f5c518;
-}
-
-.title-page .title-page-section-heading:hover::after {
-  content: " #";
-  font-weight: bolder;
-  font-size: larger;
-  color: #f5c518;
-}
-
 .title-page .title-title-section {
   grid-area: title-title-section;
   align-items: center;

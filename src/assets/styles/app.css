@@ -8,7 +8,7 @@
   height: 100%;
   width: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 10009;
   background-color: rgba(0, 0, 0, 0.9);
   top: 0px;
   left: 0px;
@@ -130,6 +130,34 @@ select:-webkit-autofill:focus {
   font-family: inherit;
   color: inherit;
   text-align: left;
+}
+
+.page-section-heading {
+  margin-bottom: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.page-section-heading:hover span i {
+  color: #f5c518;
+}
+
+.page-section-heading span {
+  font-size: 24px;
+}
+
+.page-section-heading::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f5c518;
+}
+
+.page-section-heading:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f5c518;
 }
 
 .sub-heading {

@@ -45,7 +45,7 @@ const Tv = () => {
 
         {/* episodes */}
         <div id="episodes" className="title-episodes-section">
-          <h2 className="title-page-section-heading">
+          <h2 className="page-section-heading">
             Episodes
             <span>
               &nbsp;
@@ -63,7 +63,7 @@ const Tv = () => {
         {/* seasons */}
 
         <div id="seasons" className="title-seasons-section">
-          <h2 className="title-page-section-heading">
+          <h2 className="page-section-heading">
             Seasons
             <span>
               &nbsp;
