@@ -2,12 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "layout";
 import RouteProtector from "./hoc/RouteProtector";
 import React from "react";
-import {
-  LevelOne,
-  LevelThere,
-  LevelTwo,
-  LevelZero,
-} from "constants/AuthRoles";
+import { LevelOne, LevelThere, LevelTwo, LevelZero } from "constants/AuthRoles";
 import { Home } from "./pages/home";
 import { Unauthorized } from "pages/unauthorized";
 import { PageNotFound } from "pages/404";
@@ -17,6 +12,7 @@ import { SearchTmdb } from "pages/discover";
 import { Title } from "./pages/title";
 import { Torrents } from "./pages/torrents/Torrents";
 import { SyncTitles } from "pages/sync-all-titles";
+import { Season } from "pages/season";
 
 const App = () => {
   return (
@@ -35,6 +31,10 @@ const App = () => {
               <Route
                 path="/view/title/:_titleType/:_title/:_titleState/:_id"
                 element={<Title />}
+              />
+              <Route
+                path="/view/tv/:_titleState/:_tvShowId/season/:_seasonNumber/:_seasonsCount"
+                element={<Season />}
               />
             </Route>
 
