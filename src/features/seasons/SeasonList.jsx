@@ -86,8 +86,6 @@ const SeasonList = ({
           return <SeasonCard key={index} season={season} />;
         })}
 
-        {console.log(seasonList.length, totalSeasons)}
-
         {seasonList.length < totalSeasons && (
           <>
             <SeasonCard
