@@ -1,6 +1,12 @@
 import { SeasonPoster } from "components/season";
 import "./season-page.style.css";
-import { useMoviebunkersAPI, useTheme, useTmdbAPI, useToastify } from "hooks";
+import {
+  useMoviebunkersAPI,
+  useTheme,
+  useTmdbAPI,
+  useToastify,
+  useWindowSize,
+} from "hooks";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +23,8 @@ const Season = () => {
   } = useParams();
 
   const { theme } = useTheme();
+
+  const { width } = useWindowSize();
 
   const { ToastContainer, toast, toastContainerOptions } = useToastify();
 
@@ -165,7 +173,10 @@ const Season = () => {
                 <li>
                   <span className="info-item">
                     <b>Overview</b> :{" "}
-                    <ShowLessText text={season?.overview} limit={550} />
+                    <ShowLessText
+                      text={season?.overview}
+                      limit={width < 620 ? 100 : 550}
+                    />
                   </span>
                 </li>
               )}
