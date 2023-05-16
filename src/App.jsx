@@ -13,6 +13,7 @@ import { Title } from "./pages/title";
 import { Torrents } from "./pages/torrents/Torrents";
 import { SyncTitles } from "pages/sync-all-titles";
 import { Season } from "pages/season";
+import { Episode } from "pages/episode";
 
 const App = () => {
   return (
@@ -35,6 +36,10 @@ const App = () => {
               <Route
                 path="/view/tv/:_titleState/:_tvShowId/season/:_seasonNumber/:_seasonsCount"
                 element={<Season />}
+              />
+              <Route
+                path="/view/tv/:_titleState/:_tvShowId/season/:_seasonNumberOrId/episode/:_episodeNumber/:_episodeCount"
+                element={<Episode />}
               />
             </Route>
 
