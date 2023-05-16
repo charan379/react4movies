@@ -1,0 +1,157 @@
+@import "assets/styles/variables.css";
+
+.episode-page {
+  display: grid;
+  width: 100%;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "main-info-section"
+    "images-section"
+    "videos-section";
+  padding: 15px;
+}
+
+.episode-page.light {
+  color: var(--font-color-light);
+  background: var(--bg-light);
+}
+
+.episode-page.dark {
+  color: var(--font-color-dark);
+  background: var(--bg-dark);
+}
+
+.episode-page .main-info-section {
+  grid-area: main-info-section;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 0.1fr 0.9fr;
+  grid-template-areas:
+    "poster-section info-section"
+    "action-buttons-section action-buttons-section";
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.episode-page.light .main-info-section {
+  background-color: var(--ui-elemnet-light);
+}
+
+.episode-page.dark .main-info-section {
+  background-color: var(--ui-elemnet-dark);
+}
+
+.episode-page .main-info-section .poster-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.episode-page .main-info-section .info-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.episode-page .main-info-section .info-section ul {
+  list-style: none;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
+}
+
+.episode-page .main-info-section .action-buttons-section {
+  grid-area: action-buttons-section;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.episode-page .main-info-section .action-buttons-section .action-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+}
+
+.episode-page
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 10px 5px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+  width: 50px;
+  text-align: center;
+  height: 50px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.episode-page.light
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button,
+.episode-page.dark
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button:hover {
+  color: var(--font-color-dark);
+  background-color: var(--bg-dark);
+}
+
+.episode-page.dark
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button,
+.episode-page.light
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button:hover {
+  color: var(--font-color-light);
+  background-color: var(--bg-light);
+}
+
+.episode-page .images-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.episode-page .videos-section {
+  display: flex;
+}
+
+@media screen and (max-width: 620px) {
+  .episode-page .main-info-section {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "poster-section"
+      "info-section"
+      "action-buttons-section";
+  }
+}
