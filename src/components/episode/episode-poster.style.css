@@ -14,6 +14,8 @@
   overflow: hidden;
   z-index: 1;
   width: -webkit-fill-available;
+  max-width: 320px;
+  min-width: 260px;
   height: 210px;
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
