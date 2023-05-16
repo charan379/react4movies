@@ -145,6 +145,12 @@ select:-webkit-autofill:focus {
 .page-section-heading span {
   font-size: 24px;
 }
+.page-section-heading span small {
+  color: gray;
+  font-size: 1rem;
+  top: -4px;
+  position: relative;
+}
 
 .page-section-heading::before {
   content: "| ";
