@@ -28,7 +28,9 @@
   display: grid;
   gap: 5px;
   grid-template-columns: 0.1fr 0.9fr;
-  grid-template-areas: "poster-section info-section";
+  grid-template-areas:
+    "poster-section info-section"
+    "action-buttons-section action-buttons-section";
   padding: 10px;
   width: 100%;
   border-radius: 5px;
@@ -45,6 +47,11 @@
 
 .season-page .main-info-section .poster-section {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 
 .season-page .main-info-section .info-section {
@@ -63,6 +70,72 @@
   padding-top: 0.3rem;
 }
 
+.season-page .main-info-section .action-buttons-section {
+  grid-area: action-buttons-section;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.season-page .main-info-section .action-buttons-section .action-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+}
+
+.season-page
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 10px 5px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+  width: 50px;
+  text-align: center;
+  height: 50px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.season-page.light
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button,
+.season-page.dark
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button:hover {
+  color: var(--font-color-dark);
+  background-color: var(--bg-dark);
+}
+
+.season-page.dark
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button,
+.season-page.light
+  .main-info-section
+  .action-buttons-section
+  .action-buttons
+  .action-button:hover {
+  color: var(--font-color-light);
+  background-color: var(--bg-light);
+}
+
 .season-page .episodes-section {
   display: flex;
   flex-direction: column;
@@ -76,4 +149,14 @@
 
 .season-page .videos-section {
   display: flex;
+}
+
+@media screen and (max-width: 620px) {
+  .season-page .main-info-section {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "poster-section"
+      "info-section"
+      "action-buttons-section";
+  }
 }

@@ -10,9 +10,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { ShowLessText } from "components/common";
+import { Loader, ShowLessText } from "components/common";
 import { convertIsoDate } from "utils";
 import { EpisodeList } from "features/episode";
+import { PlayTrailer } from "features/title-actions/PlayTrailer";
 
 const Season = () => {
   const {
@@ -33,6 +34,8 @@ const Season = () => {
   const { tmdbAPI } = useTmdbAPI();
 
   const [season, setSeason] = useState();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchTmdbSeason = async ({ tvShowId, seasonNumber, cancelToken }) => {
     try {
@@ -111,6 +114,10 @@ const Season = () => {
         autoClose: 3000,
         position: "top-right",
       });
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
 
@@ -128,6 +135,10 @@ const Season = () => {
       source.cancel();
     };
   }, [tvShowId, titleState, seasonNumber, seasonsCount]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -181,6 +192,12 @@ const Season = () => {
                 </li>
               )}
             </ul>
+          </div>
+
+          <div className="action-buttons-section">
+            <div className="action-buttons">
+              <PlayTrailer videos={season?.videos} toolTipDir="up" />
+            </div>
           </div>
         </div>
         {/* episodes section */}
