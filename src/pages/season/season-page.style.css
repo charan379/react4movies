@@ -6,6 +6,7 @@
   gap: 20px;
   grid-template-columns: 1fr;
   grid-template-areas:
+    "link-tree-section"
     "main-info-section"
     "episodes-section"
     "images-section"
@@ -21,6 +22,28 @@
 .season-page.dark {
   color: var(--font-color-dark);
   background: var(--bg-dark);
+}
+
+.season-page .link-tree-section {
+  grid-area: link-tree-section;
+  display: flex;
+}
+
+.season-page .link-tree-section ul {
+  list-style: none;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
+}
+
+.season-page .link-tree-section ul li.link-tree-child {
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+  float: left;
+  font-size: 1rem;
 }
 
 .season-page .main-info-section {

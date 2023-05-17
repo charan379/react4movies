@@ -171,6 +171,12 @@ select:-webkit-autofill:focus {
   text-align: left;
 }
 
+.sub-heading a,
+.sub-heading a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .sub-heading::before {
   content: "| ";
   font-weight: bolder;
@@ -192,6 +198,56 @@ body.dark .sub-heading::after {
   content: " #";
   font-weight: bolder;
   font-size: larger;
+}
+
+.link-tree-child {
+  cursor: pointer;
+  text-align: left;
+}
+
+.link-tree-child a,
+.link-tree-child a:hover {
+  text-decoration: none;
+  color: inherit;
+  text-transform: capitalize;
+}
+
+.link-tree-child:is(:first-child)::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.link-tree-child::after {
+  content: " \276F";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.link-tree-child:is(:last-child) {
+  pointer-events: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.link-tree-child:is(:last-child)::after {
+  content: "";
+}
+
+.link-tree-child:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+body.light .link-tree-child::before,
+body.light .link-tree-child::after {
+  color: #f55a18;
+}
+
+body.dark .link-tree-child::before,
+body.dark .link-tree-child::after {
+  color: #f5c518;
 }
 
 @media (hover: hover) and (pointer: fine) {

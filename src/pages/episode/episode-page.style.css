@@ -6,6 +6,7 @@
   gap: 20px;
   grid-template-columns: 1fr;
   grid-template-areas:
+    "link-tree-section"
     "main-info-section"
     "images-section"
     "videos-section";
@@ -20,6 +21,28 @@
 .episode-page.dark {
   color: var(--font-color-dark);
   background: var(--bg-dark);
+}
+
+.episode-page .link-tree-section {
+  grid-area: link-tree-section;
+  display: flex;
+}
+
+.episode-page .link-tree-section ul {
+  list-style: none;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
+}
+
+.episode-page .link-tree-section ul li.link-tree-child {
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+  float: left;
+  font-size: 1rem;
 }
 
 .episode-page .main-info-section {

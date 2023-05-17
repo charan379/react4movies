@@ -14,6 +14,7 @@ import { ShowLessText } from "components/common";
 import AddTitle from "features/title-actions/AddTitle";
 import DeleteTitle from "features/title-actions/DeleteTitle";
 import { LevelThere } from "constants/AuthRoles";
+import ShortForms from "constants/ShortForms";
 
 const TitleModal = ({ title, open, close }) => {
   // Get the current theme using the `useTheme` hook
@@ -40,7 +41,7 @@ const TitleModal = ({ title, open, close }) => {
       )}` + // title ( name ),  year
       `/${title?.titleState}` + // title state
       `/${
-        title?.titleState === "moviebunkers" // title id
+        title?.titleState === ShortForms.Moviebunkers // title id
           ? btoa(title?.id)
               .replace(/=/g, "")
               .replace(/\+/g, "-")
@@ -116,7 +117,7 @@ const TitleModal = ({ title, open, close }) => {
               <div className={`link-actions ${showDetails ? "hide" : "show"}`}>
                 <PlayTrailer videos={title?.videos} />
 
-                {title?.titleState === "moviebunkers" && (
+                {title?.titleState === ShortForms.Moviebunkers && (
                   <>
                     <Favourite
                       toast={toast}
@@ -186,12 +187,12 @@ const TitleModal = ({ title, open, close }) => {
                     &nbsp; &nbsp;
                     {title?.title_type === "tv" && (
                       <span data-tooltip={`Tv`} data-flow="down">
-                        <i class="fas fa-tv fa-lg"></i>
+                        <i className="fas fa-tv fa-lg"></i>
                       </span>
                     )}
                     {title?.title_type === "movie" && (
                       <span data-tooltip={`Movie`} data-flow="down">
-                        <i class="fas fa-film fa-lg"></i>
+                        <i className="fas fa-film fa-lg"></i>
                       </span>
                     )}
                   </p>
@@ -275,7 +276,7 @@ const TitleModal = ({ title, open, close }) => {
             tabIndex="0"
             onClick={() => setShowDetails(!showDetails)}
           >
-            <i class="fas fa-info-circle fa-lg"></i>
+            <i className="fas fa-info-circle fa-lg"></i>
           </button>
         </div>
 

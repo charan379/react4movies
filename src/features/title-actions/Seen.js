@@ -54,7 +54,7 @@ const Seen = ({ toast, className = 'action-button', titleId = null, seenByUser =
                     data-tooltip={`Mark as unseen`} data-flow="up">
                     <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
                         {isLoading ? (
-                            <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                         ) : (
                             <i className="fas fa-eye fa-lg"></i>
                         )}
@@ -68,7 +68,7 @@ const Seen = ({ toast, className = 'action-button', titleId = null, seenByUser =
                     data-tooltip={`Mark as seen`} data-flow="up">
                     <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
                         {isLoading ? (
-                            <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                         ) : (
                             <i className="fas fa-eye-slash fa-lg"></i>
                         )}
@@ -82,7 +82,7 @@ const Seen = ({ toast, className = 'action-button', titleId = null, seenByUser =
                     data-tooltip={`Mark as unseen`} data-flow="up">
                     {isLoading
                         ? (<span>
-                            <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                         </span>)
                         : (<span style={{ opacity: '0.3' }}>
                             <i className="fas fa-eye fa-lg"></i>

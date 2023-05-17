@@ -48,7 +48,7 @@ const Favourite = ({ toast, className = 'action-button', titleId = null, favouri
                 <Link className={className} onClick={(event) => removeFromFavouriteTitles(event, btoa(titleId).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}
                     data-tooltip={`Remove from favourite's`} data-flow="up">
                     {isLoading
-                        ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i> </span>
+                        ? <span> <i className="fas fa-circle-notch fa-pulse fa-lg"></i> </span>
                         : <span style={{ color: "rgba(255, 20, 70, 1)" }}>
                             <i className="fas fa-heart fa-lg"></i>
                         </span>
@@ -62,7 +62,7 @@ const Favourite = ({ toast, className = 'action-button', titleId = null, favouri
                     data-tooltip={`Mark as favourite`} data-flow="up">
                     <span>
                         {isLoading
-                            ? <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            ? <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                             : <i className="far fa-heart fa-lg"></i>
                         }
                     </span>

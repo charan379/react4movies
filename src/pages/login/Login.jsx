@@ -139,7 +139,7 @@ const Login = () => {
               <span
                 className="eye-icon"
                 onClick={() => setShowPassword(!showPassword)}>
-                <i class={`${showPassword ? 'fas fa-eye fa-lg' : 'fas fa-eye-slash fa-lg'}`}></i>
+                <i className={`${showPassword ? 'fas fa-eye fa-lg' : 'fas fa-eye-slash fa-lg'}`}></i>
               </span>
             )}
             <label>Password</label>

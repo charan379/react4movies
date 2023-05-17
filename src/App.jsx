@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "layout";
 import RouteProtector from "./hoc/RouteProtector";
 import React from "react";
-import { LevelOne, LevelThere, LevelTwo, LevelZero } from "constants/AuthRoles";
+import { LevelOne, LevelTwo, LevelZero } from "constants/AuthRoles";
 import { Home } from "./pages/home";
 import { Unauthorized } from "pages/unauthorized";
 import { PageNotFound } from "pages/404";
@@ -30,15 +30,15 @@ const App = () => {
               <Route path="/collection" element={<Collection />} />
               <Route path="/discover/tmdb" element={<SearchTmdb />} />
               <Route
-                path="/view/title/:_titleType/:_title/:_titleState/:_id"
+                path="/view/title/:_titleType/:_title/:_titleState/:_id/:_locId?"
                 element={<Title />}
               />
               <Route
-                path="/view/tv/:_titleState/:_tvShowId/season/:_seasonNumber/:_seasonsCount"
+                path="/view/tv/:_title/:_titleState/:_tvShowId/season/:_seasonNumber/:_locId?"
                 element={<Season />}
               />
               <Route
-                path="/view/tv/:_titleState/:_tvShowId/season/:_seasonNumberOrId/episode/:_episodeNumber/:_episodeCount"
+                path="/view/tv/:_title/:_titleState/:_tvShowId/season/:_seasonNumber/episode/:_episodeNumber/:_locId?"
                 element={<Episode />}
               />
             </Route>

@@ -9,6 +9,7 @@ import {
 import { TitlesList } from "components/title";
 import { Pagination } from "components/common";
 import { debounce } from "lodash";
+import ShortForms from "constants/ShortForms";
 
 const Collection = () => {
   // Import the custom hooks that will be used in this component
@@ -92,7 +93,7 @@ const Collection = () => {
         <>
           <div id="results">
             <TitlesList
-              source={"moviebunkers"}
+              source={ShortForms.Moviebunkers}
               list={moviesPage?.list}
               currentUpdateCount={updateList}
               setUpdateCount={setUpdateList}

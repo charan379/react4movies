@@ -8,20 +8,37 @@ import {
   useWindowSize,
 } from "hooks";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader, ShowLessText } from "components/common";
-import { convertIsoDate } from "utils";
+import { convertIsoDate, scrollToTop, waitForElementById } from "utils";
 import { EpisodeList } from "features/episode";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
+import ShortForms from "constants/ShortForms";
 
 const Season = () => {
   const {
+    _title: titleName,
     _titleState: titleState,
     _tvShowId: tvShowId,
     _seasonNumber: seasonNumber,
-    _seasonsCount: seasonsCount,
+    _locId: locId,
   } = useParams();
+
+  const linkTree = {
+    title:
+      `/view/title/tv` + // title_type
+      `/${titleName}` + // title ( name ),  year
+      `/${titleState}` + // title state
+      `/${
+        titleState === ShortForms.Moviebunkers // title id
+          ? btoa(tvShowId)
+              .replace(/=/g, "")
+              .replace(/\+/g, "-")
+              .replace(/\//g, "_")
+          : tvShowId
+      }/seasons`,
+  };
 
   const { theme } = useTheme();
 
@@ -86,7 +103,7 @@ const Season = () => {
   }) => {
     try {
       switch (titleState) {
-        case "moviebunkers": {
+        case ShortForms.Moviebunkers: {
           const season = await fetchMoviebunkersSeason({
             tvShowId,
             seasonNumber,
@@ -131,10 +148,22 @@ const Season = () => {
       cancelToken: source.token,
     });
 
+    if (locId === "top" || locId === undefined) {
+      scrollToTop();
+    } else {
+      // Scroll to locId if provided
+      setTimeout(() => {
+        waitForElementById(locId, 12000).then((element) => {
+          element.scrollIntoView();
+          element.focus();
+        });
+      }, 500);
+    }
+
     return () => {
       source.cancel();
     };
-  }, [tvShowId, titleState, seasonNumber, seasonsCount]);
+  }, [tvShowId, titleState, seasonNumber, locId]);
 
   if (isLoading) {
     return <Loader />;
@@ -144,8 +173,23 @@ const Season = () => {
     <>
       {/* seaosn page */}
       <div className={`season-page ${theme}`}>
+        {/* link tree */}
+        <div className="link-tree-section">
+          <ul>
+            <li className="link-tree-child" id="link-tree-top">
+              <span>
+                <Link to={linkTree.title}>{titleName.replace(/-/g, " ")}</Link>
+              </span>
+            </li>
+            <li className="link-tree-child">
+              <span>
+                <Link to={`#`}>{`season ${seasonNumber}`}</Link>
+              </span>
+            </li>
+          </ul>
+        </div>
         {/* poster and info of season section */}
-        <div className="main-info-section">
+        <div className="main-info-section" id="main-card">
           {/* season poster section */}
           <div className="poster-section">
             {/* code to display poster */}
@@ -202,31 +246,32 @@ const Season = () => {
         </div>
         {/* episodes section */}
         <div className="episodes-section">
-          <h2 className="page-section-heading">
+          <h2 className="page-section-heading" id="episodes">
             Episodes
             <span>
               &nbsp;
               <small>{season?.episode_count}&nbsp;</small>
-              <i class="fas fa-chevron-right fa-lg"></i>
+              <i className="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
           {/* code to displayepisodes list */}
           <EpisodeList
+            titleName={titleName}
             key={season?.episodes?.length}
             getAllEpisodes={true}
             titleState={titleState}
             titleId={tvShowId}
-            seasonId={season?._id}
+            seasonNumber={seasonNumber}
             limit={3}
             episodes={season?.episodes}
             totalEpisodes={season?.episode_count}
           />
         </div>
-        <div className="images-section">
+        <div className="images-section" id="images">
           {/* code to display images
             related to season */}
         </div>
-        <div className="videos-section">
+        <div className="videos-section" id="videos">
           {/* code to display videos
             related to season */}
         </div>

@@ -71,7 +71,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
                     data-tooltip={`Remove from starred`} data-flow="up">
                     {/* Display a loading spinner if the button is in a loading state */}
                     {isLoading
-                        ? <span><i class="fas fa-circle-notch fa-pulse fa-lg"></i></span>
+                        ? <span><i className="fas fa-circle-notch fa-pulse fa-lg"></i></span>
                         : <span style={{ color: "rgb(255 149 0)" }}>
                             <i className="fas fa-star fa-lg"></i>
                         </span>
@@ -86,7 +86,7 @@ const Star = ({ toast, className = 'action-button', titleId = null, starredByUse
                     <span>
                         {/* Display a loading spinner if the button is in a loading state */}
                         {isLoading
-                            ? <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                            ? <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                             : <i className="far fa-star fa-lg"></i>}
                     </span>
                 </Link>

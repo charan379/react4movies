@@ -76,7 +76,7 @@ const PlayTrailer = ({
               {" "}
               <i
                 style={{ fontSize: "1.5rem" }}
-                class="fas fa-circle-notch fa-pulse fa-lg"
+                className="fas fa-circle-notch fa-pulse fa-lg"
               ></i>{" "}
             </span>
           ) : (

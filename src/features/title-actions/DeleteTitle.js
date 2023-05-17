@@ -47,7 +47,7 @@ const DeleteTitle = ({ toast, className = 'action-button', buttonText, loadingTe
         >
             {isLoading ? (
                 <span>
-                    <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                    <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                     {loadingText}
                 </span>
             ) : (

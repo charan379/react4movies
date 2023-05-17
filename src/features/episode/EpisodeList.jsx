@@ -4,10 +4,12 @@ import { EpisodeCard } from "components/episode";
 import { useMoviebunkersAPI, useToastify } from "hooks";
 import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
+import ShortForms from "constants/ShortForms";
+import { useParams } from "react-router-dom";
 
 const EpisodeList = ({
   titleId,
-  seasonId,
+  seasonNumber,
   titleState,
   limit,
   episodes = null,
@@ -16,6 +18,8 @@ const EpisodeList = ({
   upcomingEpisode = null,
   getAllEpisodes = true,
 }) => {
+  const { _title } = useParams();
+
   const [episdeosList, setEpisodesList] = useState(episodes);
 
   const [cardLimt, setCardLimit] = useState(limit);
@@ -28,7 +32,7 @@ const EpisodeList = ({
 
   const fetchData = async ({
     titleId,
-    seasonId,
+    seasonNumber,
     limit,
     sortBy = "air_date.desc",
     cancelToken,
@@ -37,7 +41,7 @@ const EpisodeList = ({
 
     try {
       const response = await movieBunkersAPI(
-        `episodes/tv/${titleId}/season/${seasonId}`,
+        `episodes/tv/${titleId}/season/${seasonNumber}`,
         {
           params: { limit, sort_by: sortBy },
           cancelToken,
@@ -64,16 +68,19 @@ const EpisodeList = ({
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-    if (titleState === "moviebunkers") {
+    if (
+      titleState === ShortForms.Moviebunkers &&
+      !lastestEpisode & !upcomingEpisode
+    ) {
       debouncedFetchData({
         titleId,
-        seasonId,
+        seasonNumber,
         limit: cardLimt,
         cancelToken: source.token,
       });
     }
 
-    if (titleState === "tmdb") {
+    if (titleState === "tmdb" && !lastestEpisode & !upcomingEpisode) {
       const tmdbEpisodes = episodes
         ?.sort(
           (episode1, episode2) =>
@@ -87,19 +94,27 @@ const EpisodeList = ({
     return () => {
       source.cancel();
     };
-  }, [titleId, titleState, seasonId, cardLimt]);
+  }, [titleId, titleState, seasonNumber, cardLimt]);
 
   if (!getAllEpisodes && (lastestEpisode || upcomingEpisode)) {
     return (
       <>
         <div className={`episode-list`}>
           {lastestEpisode && (
-            <EpisodeCard key={1 * 2} episode={lastestEpisode} latest={true} />
+            <EpisodeCard
+              titleName={_title}
+              key={1 * 2}
+              episode={lastestEpisode}
+              titleState={titleState}
+              latest={true}
+            />
           )}
           {upcomingEpisode?.air_date && (
             <EpisodeCard
+              titleName={_title}
               key={2 * 2}
               episode={upcomingEpisode}
+              titleState={titleState}
               upcoming={true}
             />
           )}
@@ -114,7 +129,14 @@ const EpisodeList = ({
       <>
         <div className="episode-list">
           {episdeosList?.map((episode, index) => {
-            return <EpisodeCard key={index} episode={episode} />;
+            return (
+              <EpisodeCard
+                titleName={_title}
+                titleState={titleState}
+                key={index}
+                episode={episode}
+              />
+            );
           })}
 
           {episdeosList.length < totalEpisodes && (

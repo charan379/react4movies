@@ -7,21 +7,39 @@ import {
   useWindowSize,
 } from "hooks";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader, ShowLessText } from "components/common";
-import { convertIsoDate } from "utils";
+import { convertIsoDate, scrollToTop, waitForElementById } from "utils";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import { EpisodePoster } from "components/episode";
+import ShortForms from "constants/ShortForms";
 
 const Episode = () => {
   const {
+    _title: titleName,
     _titleState: titleState,
     _tvShowId: tvShowId,
-    _seasonNumberOrId: seasonNumberOrId,
+    _seasonNumber: seasonNumber,
     _episodeNumber: episodeNumber,
-    _episodeCount: episodeCount,
+    _locId: locId,
   } = useParams();
+
+  const linkTree = {
+    title:
+      `/view/title/tv` + // title_type
+      `/${titleName}` + // title ( name ),  year
+      `/${titleState}` + // title state
+      `/${
+        titleState === ShortForms.Moviebunkers // title id
+          ? btoa(tvShowId)
+              .replace(/=/g, "")
+              .replace(/\+/g, "-")
+              .replace(/\//g, "_")
+          : tvShowId
+      }/episodes`,
+    season: `/view/tv/${titleName}/${titleState}/${tvShowId}/season/${seasonNumber}/episodes`,
+  };
 
   const { theme } = useTheme();
 
@@ -39,14 +57,13 @@ const Episode = () => {
 
   const fetchTmdbEpisode = async ({
     tvShowId,
-    seasonNumberOrId,
+    seasonNumber,
     episodeNumber,
     cancelToken,
   }) => {
     try {
-      console.log(episodeNumber);
       const response = await tmdbAPI(
-        `/tv/${tvShowId}/season/${seasonNumberOrId}/episode/${episodeNumber}`,
+        `/tv/${tvShowId}/season/${seasonNumber}/episode/${episodeNumber}`,
         {
           cancelToken,
         }
@@ -62,13 +79,13 @@ const Episode = () => {
 
   const fetchMoviebunkersEpisode = async ({
     tvShowId,
-    seasonNumberOrId,
+    seasonNumber,
     episodeNumber,
     cancelToken,
   }) => {
     try {
       const response = await movieBunkersAPI(
-        `episodes/tv/${tvShowId}/season/${seasonNumberOrId}`,
+        `episodes/tv/${tvShowId}/season/${seasonNumber}`,
         {
           params: {
             limit: 1,
@@ -94,16 +111,16 @@ const Episode = () => {
   const fetchData = async ({
     tvShowId,
     titleState,
-    seasonNumberOrId,
+    seasonNumber,
     episodeNumber,
     cancelToken,
   }) => {
     try {
       switch (titleState) {
-        case "moviebunkers": {
+        case ShortForms.Moviebunkers: {
           const episode = await fetchMoviebunkersEpisode({
             tvShowId,
-            seasonNumberOrId,
+            seasonNumber,
             episodeNumber,
             cancelToken,
           });
@@ -113,7 +130,7 @@ const Episode = () => {
         case "tmdb": {
           const episode = await fetchTmdbEpisode({
             tvShowId,
-            seasonNumberOrId,
+            seasonNumber,
             episodeNumber,
             cancelToken,
           });
@@ -143,15 +160,27 @@ const Episode = () => {
     fetchData({
       tvShowId,
       titleState,
-      seasonNumberOrId,
+      seasonNumber,
       episodeNumber,
       cancelToken: source.token,
     });
 
+    if (locId === "top" || locId === undefined) {
+      scrollToTop();
+    } else {
+      // Scroll to locId if provided
+      setTimeout(() => {
+        waitForElementById(locId, 12000).then((element) => {
+          element.scrollIntoView();
+          element.focus();
+        });
+      }, 500);
+    }
+
     return () => {
       source.cancel();
     };
-  }, [tvShowId, titleState, seasonNumberOrId, episodeNumber, episodeCount]);
+  }, [tvShowId, titleState, seasonNumber, episodeNumber, locId]);
 
   if (isLoading) {
     return <Loader />;
@@ -161,8 +190,30 @@ const Episode = () => {
     <>
       {/* episode page */}
       <div className={`episode-page ${theme}`}>
+        {/* link tree */}
+        <div className="link-tree-section" id="link-tree-top">
+          <ul>
+            <li className="link-tree-child">
+              <span>
+                <Link to={linkTree.title}>{titleName.replace(/-/g, " ")}</Link>
+              </span>
+            </li>
+            <li className="link-tree-child">
+              <span>
+                <Link
+                  to={linkTree.season}
+                >{`season ${episode?.season_number}`}</Link>
+              </span>
+            </li>
+            <li className="link-tree-child">
+              <span>
+                <Link to={`#`}>{`Episode ${episode?.episode_number}`}</Link>
+              </span>
+            </li>
+          </ul>
+        </div>
         {/* poster and info of episode section */}
-        <div className="main-info-section">
+        <div className="main-info-section" id={`main-card`}>
           {/* episode poster section */}
           <div className="poster-section">
             {/* code to display poster */}
@@ -225,19 +276,19 @@ const Episode = () => {
           </div>
         </div>
         {/* images section */}
-        <div className="images-section">
+        <div className="images-section" id="images">
           <h2 className="page-section-heading">
             Images
             <span>
               &nbsp;
               <small>{episode?.images?.length}&nbsp;</small>
-              <i class="fas fa-chevron-right fa-lg"></i>
+              <i className="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
           {/* code to display images */}
         </div>
         {/* videos section */}
-        <div className="videos-section">
+        <div className="videos-section" id="videos">
           {/* code to display videos
             related to episode */}
         </div>

@@ -6,6 +6,7 @@ import { TitleModal } from "components/title";
 import { Link } from "react-router-dom";
 import { makePrettyUrl, waitForElementById } from "utils";
 import { useWindowSize } from "hooks";
+import ShortForms from "constants/ShortForms";
 
 const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
   // currentUpdateCount hooks for the modal
@@ -50,7 +51,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
           `/${encodeURIComponent(makePrettyUrl(title + "-" + year))}` + // title ( name ),  year
           `/${titleState}` + // title state
           `/${
-            titleState === "moviebunkers" // title id
+            titleState === ShortForms.Moviebunkers // title id
               ? btoa(id)
                   .replace(/=/g, "")
                   .replace(/\+/g, "-")
@@ -157,7 +158,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
               setOpenModal(false);
 
               // If the source is moviebunkers, update the currentUpdateCount to force a re-render
-              if (source === "moviebunkers") {
+              if (source === ShortForms.Moviebunkers) {
                 setUpdateCount(currentUpdateCount + 1);
               }
 

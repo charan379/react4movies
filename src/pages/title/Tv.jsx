@@ -44,31 +44,46 @@ const Tv = () => {
         </div>
 
         {/* episodes */}
-        <div id="episodes" className="title-episodes-section">
-          <h2 className="page-section-heading">
+        <div className="title-episodes-section">
+          <h2 className="page-section-heading" id="episodes">
             Episodes
             <span>
               &nbsp;
               <small>{tv?.number_of_episodes}&nbsp;</small>
-              <i class="fas fa-chevron-right fa-lg"></i>
+              <i className="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
           <EpisodeList
+            titleState={tv?.state}
             getAllEpisodes={false}
-            lastestEpisode={tv?.last_episode_aired}
-            upcomingEpisode={tv?.next_episode_to_air}
+            lastestEpisode={
+              tv?.last_episode_aired
+                ? {
+                    ...tv.last_episode_aired,
+                    tv_show_id: tv?._id ?? tv?.tmdb_id,
+                  }
+                : null
+            }
+            upcomingEpisode={
+              tv?.next_episode_to_air
+                ? {
+                    ...tv.next_episode_to_air,
+                    tv_show_id: tv?._id ?? tv?.tmdb_id,
+                  }
+                : null
+            }
           />
         </div>
 
         {/* seasons */}
 
         <div id="seasons" className="title-seasons-section">
-          <h2 className="page-section-heading">
+          <h2 className="page-section-heading" id="seasons">
             Seasons
             <span>
               &nbsp;
               <small>{tv?.number_of_seasons}&nbsp;</small>
-              <i class="fas fa-chevron-right fa-lg"></i>
+              <i className="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
           <SeasonList

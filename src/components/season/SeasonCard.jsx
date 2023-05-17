@@ -3,10 +3,22 @@ import { ShowLessText } from "components/common";
 import { SeasonPoster } from "components/season/SeasonPoster";
 import { useTheme } from "hooks";
 import React from "react";
+import { Link } from "react-router-dom";
 import { convertIsoDate } from "utils";
 
-const SeasonCard = ({ season, isLoading, moreButton = false, onClick }) => {
+const SeasonCard = ({
+  titleName,
+  titleState,
+  season,
+  isLoading,
+  moreButton = false,
+  onClick,
+}) => {
   const { theme } = useTheme();
+
+  const seasonLink = `/view/tv/${titleName}/${titleState}/${
+    season?.tv_show_id ?? season?.tmdb_show_id
+  }/season/${season?.season_number}/top`;
 
   if (!season && moreButton) {
     return (
@@ -19,9 +31,9 @@ const SeasonCard = ({ season, isLoading, moreButton = false, onClick }) => {
           <div className="more-button">
             <span>
               {isLoading ? (
-                <i class="fas fa-circle-notch fa-pulse"></i>
+                <i className="fas fa-circle-notch fa-pulse"></i>
               ) : (
-                <i class="fas fa-angle-double-right"></i>
+                <i className="fas fa-angle-double-right"></i>
               )}
             </span>
           </div>
@@ -41,16 +53,18 @@ const SeasonCard = ({ season, isLoading, moreButton = false, onClick }) => {
       <div className="details-section">
         <div className="season-details">
           <h4 className="sub-heading link">
-            {season?.name}{" "}
+            <Link to={seasonLink}>{season?.name} </Link>
             <span>
               <small>{`( season - ${season?.season_number}) `}</small>
             </span>
           </h4>
           <h5 className="sub-heading">
-            {season?.air_date
-              ? convertIsoDate(season?.air_date)?.split("-")[2] + " |"
-              : ""}{" "}
-            {season?.episode_count} Episodes
+            <Link to={seasonLink + "#episodes"}>
+              {season?.air_date
+                ? convertIsoDate(season?.air_date)?.split("-")[2] + " |"
+                : ""}{" "}
+              {season?.episode_count} Episodes
+            </Link>
           </h5>
           <div className="season-overview">
             <p>

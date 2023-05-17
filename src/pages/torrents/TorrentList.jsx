@@ -105,7 +105,7 @@ const TorrentList = ({ query, provider, pageNo }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <i class="fas fa-magnet"></i> Download
+                          <i className="fas fa-magnet"></i> Download
                         </a>
                       </td>
                     </tr>

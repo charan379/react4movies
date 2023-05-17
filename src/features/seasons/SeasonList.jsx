@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useMoviebunkersAPI, useToastify } from "hooks";
 import { debounce } from "lodash";
 import axios from "axios";
+import ShortForms from "constants/ShortForms";
+import { useParams } from "react-router-dom";
 
 const SeasonList = ({
   titleId,
@@ -13,6 +15,8 @@ const SeasonList = ({
   totalSeasons = 0,
   getAllSeasons = false,
 }) => {
+  const { _title } = useParams();
+
   const [seasonList, setSeasonsList] = useState(seasons);
 
   const [cardLimt, setCardLimit] = useState(limit);
@@ -56,7 +60,7 @@ const SeasonList = ({
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-    if (titleState === "moviebunkers") {
+    if (titleState === ShortForms.Moviebunkers) {
       debouncedFetchData({
         titleId,
         limit: cardLimt,
@@ -83,7 +87,14 @@ const SeasonList = ({
     return (
       <div className="season-list">
         {seasonList?.map((season, index) => {
-          return <SeasonCard key={index} season={season} />;
+          return (
+            <SeasonCard
+              titleName={_title}
+              titleState={titleState}
+              key={index}
+              season={season}
+            />
+          );
         })}
 
         {seasonList.length < totalSeasons && (

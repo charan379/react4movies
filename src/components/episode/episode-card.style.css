@@ -100,6 +100,10 @@
   width: -webkit-fill-available;
 }
 
+.episode-card .episode-details a {
+  text-decoration: none;
+  color: inherit;
+}
 .episode-card .episode-details h4 span {
   font-size: small;
 }

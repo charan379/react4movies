@@ -4,9 +4,13 @@ import React from "react";
 import { ShowLessText } from "components/common";
 import { convertIsoDate } from "utils";
 import { EpisodePoster } from "./EpisodePoster";
+import { Link } from "react-router-dom";
+import ShortForms from "constants/ShortForms";
 
 const EpisodeCard = ({
+  titleName,
   episode,
+  titleState,
   latest = false,
   upcoming = false,
   moreButton = false,
@@ -14,6 +18,12 @@ const EpisodeCard = ({
   onClick,
 }) => {
   const { theme } = useTheme();
+
+  const episodeLink = `/view/tv/${titleName}/${titleState}/${
+    titleState === ShortForms.Moviebunkers
+      ? episode?.tv_show_id
+      : episode?.tmdb_show_id ?? episode?.tv_show_id
+  }/season/${episode?.season_number}/episode/${episode?.episode_number}/top`;
 
   if (!episode && moreButton) {
     return (
@@ -26,9 +36,9 @@ const EpisodeCard = ({
           <div className="more-button">
             <span>
               {isLoading ? (
-                <i class="fas fa-circle-notch fa-pulse"></i>
+                <i className="fas fa-circle-notch fa-pulse"></i>
               ) : (
-                <i class="fas fa-angle-double-right"></i>
+                <i className="fas fa-angle-double-right"></i>
               )}
             </span>
           </div>
@@ -47,25 +57,26 @@ const EpisodeCard = ({
           />
         </div>
         <div className="details-section">
-          {/* <div className="action-buttons">
-            <PlayTrailer videos={episode?.videos} className={`action-button`} />
-          </div> */}
           <div className="episode-details">
             {latest && <h5 className="sub-heading">Latest</h5>}
             {upcoming && <h5 className="sub-heading">Upcoming</h5>}
-            <h4 className="sub-heading">{episode?.name}</h4>
+            <h4 className="sub-heading">
+              <Link to={episodeLink}>{episode?.name}</Link>
+            </h4>
             <h5 className="link">
-              Season {episode?.season_number} | Episode{" "}
-              {episode?.episode_number}
+              <Link to={episodeLink}>
+                Season {episode?.season_number} | Episode{" "}
+                {episode?.episode_number}
+              </Link>
             </h5>
             {episode?.runtime && (
               <span>
-                <i class="fas fa-clock"></i> {episode?.runtime} mins
+                <i className="fas fa-clock"></i> {episode?.runtime} mins
               </span>
             )}
             {episode?.air_date && (
               <span>
-                <i class="far fa-calendar-alt"></i>{" "}
+                <i className="far fa-calendar-alt"></i>{" "}
                 {convertIsoDate(episode?.air_date)}
               </span>
             )}

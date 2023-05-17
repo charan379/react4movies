@@ -11,6 +11,7 @@ import Favourite from "./Favourite";
 import Seen from "./Seen";
 import Star from "./Star";
 import { PlayTrailer } from './PlayTrailer';
+import ShortForms from 'constants/ShortForms';
 
 const TitleActions = () => {
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
@@ -24,7 +25,7 @@ const TitleActions = () => {
   return (
     <div className={`title-actions ${theme}`}>
       <div className="user-related">
-        {title?.state === "moviebunkers" && (
+        {title?.state === ShortForms.Moviebunkers && (
           <>
             <Star
               toast={toast}
@@ -56,7 +57,7 @@ const TitleActions = () => {
             )}&provider=${"1337x"}&pageNo=1`}
           >
             <span>
-              <i class="fas fa-download fa-lg"></i>
+              <i className="fas fa-download fa-lg"></i>
               Download
             </span>
           </Link>
@@ -65,7 +66,7 @@ const TitleActions = () => {
 
       {LevelTwo.includes(auth?.role) && (
         <div className="moderator-related">
-          {title?.state === "moviebunkers" && (
+          {title?.state === ShortForms.Moviebunkers && (
             <>
               <EditTitle toast={toast} />
               <UpdateTitle toast={toast} />

@@ -85,7 +85,7 @@ const UpdateTitle = ({ toast }) => {
             onClick={(event) => updateTitle(event, btoa(title?._id).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_'))}>
             {isLoading
                 ? <span>
-                    <i class="fas fa-sync-alt fa-pulse fa-lg"></i>
+                    <i className="fas fa-sync-alt fa-pulse fa-lg"></i>
                     Updating....
                 </span>
                 : <span>

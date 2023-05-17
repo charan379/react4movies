@@ -75,7 +75,7 @@ const AddTitle = ({ toast, className = 'action-button', buttonText, loadingText,
 
             {/* Show a loading spinner and "Adding..." text while the request is in progress */}
             {isLoading
-                ? <span> <i class="fas fa-circle-notch fa-pulse fa-lg"></i>
+                ? <span> <i className="fas fa-circle-notch fa-pulse fa-lg"></i>
                     {loadingText}
                 </span>
                 // Show the regular "Add to collection" button when the request is not in progress
