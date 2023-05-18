@@ -14,8 +14,12 @@ function useEscapeKey(handleClose) {
   );
 
   useEffect(() => {
+
+    // listen to esc_key events
     document.addEventListener(KEY_EVENT_TYPE, handleEscKey, false);
 
+
+    // stop listening when component unmounts
     return () => {
       document.removeEventListener(KEY_EVENT_TYPE, handleEscKey, false);
     };

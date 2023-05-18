@@ -16,8 +16,13 @@ export function useWindowSize(delay = 0) {
             setWindowDimensions(getWindowDimensions());
         }
         const debouncedHandleResize = debounce(handleResize, delay);
+        // listen to resize events
         window.addEventListener("resize", debouncedHandleResize);
-        return () => window.removeEventListener("resize", debouncedHandleResize);
+
+        // stop listening when component unmounts
+        return () => {
+            window.removeEventListener("resize", debouncedHandleResize);
+        }
     }, [delay]);
 
     return windowDimensions;

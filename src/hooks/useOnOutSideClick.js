@@ -9,13 +9,14 @@ function useOnOutSideClick(ref, handlerFunc) {
       }
       handlerFunc();
     };
-
+    // listen to mousedown, touchstart events
     document.addEventListener("mousedown", listner);
     document.addEventListener("touchstart", listner);
 
+    // stop listening when component unmounts
     return () => {
-      document.addEventListener("mousedown", listner);
-      document.addEventListener("touchstart", listner);
+      document.removeEventListener("mousedown", listner);
+      document.removeEventListener("touchstart", listner);
     };
   }, [ref, handlerFunc]);
 }
