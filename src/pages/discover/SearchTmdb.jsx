@@ -4,19 +4,20 @@ import axios from "axios"; // Import the Axios library for making API requests
 import { useTmdbSearch, useToastify, useProgressBar, useTmdbAPI } from "hooks"; // Import custom hooks
 import { debounce } from "lodash";
 import { Pagination } from "components/common";
-
+import { Head } from "layout";
 
 const SearchTmdb = () => {
-
   // Import the custom hooks that will be used in this component
-  const { increaseProgress20, increaseProgressCustom, completeProgressBar } = useProgressBar(); // A hook for displaying a progress bar
+  const { increaseProgress20, increaseProgressCustom, completeProgressBar } =
+    useProgressBar(); // A hook for displaying a progress bar
   const { tmdbSearch, setTmdbSearch } = useTmdbSearch(); // A hook for managing search parameters
   const { ToastContainer, toastContainerOptions, toast } = useToastify(); // A hook for displaying toast messages
   const { tmdbAPI } = useTmdbAPI();
 
   // Define state variables that will be used in this component
   const [isLoading, setIsLoading] = useState(false); // A flag indicating whether data is being loaded
-  const [moviesPage, setMoviesPage] = useState({ // An object that holds information about the search results
+  const [moviesPage, setMoviesPage] = useState({
+    // An object that holds information about the search results
     page: 1, // The current page number
     list: [], // The list of movies returned by the API
     total_pages: 1, // The total number of pages of search results
@@ -26,13 +27,17 @@ const SearchTmdb = () => {
 
   // Define a function to set the page number in the tmdbSearch object
   const setPageNo = (pageNo) => {
-    if (typeof parseInt(pageNo) !== "number" || pageNo < 1 || pageNo > moviesPage.total_pages || parseInt(pageNo) === NaN) {
+    if (
+      typeof parseInt(pageNo) !== "number" ||
+      pageNo < 1 ||
+      pageNo > moviesPage.total_pages ||
+      parseInt(pageNo) === NaN
+    ) {
       setError(`Invalid page number: ${pageNo}`);
     } else {
       setTmdbSearch({ ...tmdbSearch, pageNo });
     }
   };
-
 
   // Define a function to fetch data from the TMDB API
   const fetchData = async ({ cancelToken }) => {
@@ -41,13 +46,17 @@ const SearchTmdb = () => {
     increaseProgressCustom(10); // Increase the progress bar by 10%
 
     try {
-      const response = await tmdbAPI.get(`/search`, { params: { ...tmdbSearch }, cancelToken });
+      const response = await tmdbAPI.get(`/search`, {
+        params: { ...tmdbSearch },
+        cancelToken,
+      });
       increaseProgress20(); // Increase the progress bar by 20%
       setMoviesPage({ ...response?.data }); // Set the movies page state with the API response data
     } catch (error) {
       const errorResponse = error?.response?.data; // Get the error response data, if any
       if (axios.isCancel(error)) return; // If the error is due to a cancelled request, return without updating any state
-      toast.error(errorResponse?.error?.message ?? error?.message, { // Show an error toast message with the error message
+      toast.error(errorResponse?.error?.message ?? error?.message, {
+        // Show an error toast message with the error message
         autoClose: 3000,
         position: "top-right",
       });
@@ -74,6 +83,11 @@ const SearchTmdb = () => {
   // Render the search results and pagination
   return (
     <>
+      <Head
+        title={`Discover | Tmdb | Page ${moviesPage?.page ?? 0}`}
+        url={window.location.href}
+        description={`Explore, discover, and add movies to your collection with ease on our search page. Access comprehensive details, including watch providers, for any title from TMDB API. Find your favorite movies, learn where to watch them, and effortlessly add them to your personal collection. Start searching and building your movie library now.`}
+      />
       {/* If there are movies in the list, show the search results */}
       {moviesPage?.list?.length > 0 && (
         <>
@@ -102,7 +116,6 @@ const SearchTmdb = () => {
       )}
       <ToastContainer {...toastContainerOptions} key={5} />
     </>
-
   );
 };
 

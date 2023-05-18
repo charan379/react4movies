@@ -4,6 +4,7 @@ import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions";
 import { EpisodeList } from "features/episode";
 import { SeasonList } from "features/seasons";
+import { Head } from "layout";
 
 // Tv component
 const Tv = () => {
@@ -16,6 +17,12 @@ const Tv = () => {
   // Render the title page
   return (
     <>
+      <Head
+        title={tv?.title + " " + tv?.year}
+        url={window.location.href}
+        image={tv?.poster_path}
+        description={tv?.overview}
+      />
       <div id={"title-page"} className={`title-page ${theme}`}>
         {/* Title page */}
         <div className="title-title-section">

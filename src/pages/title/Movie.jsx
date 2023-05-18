@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions"; // component for title action buttons
+import { Head } from "layout";
 
 // Movie component
 const Movie = () => {
@@ -14,16 +15,23 @@ const Movie = () => {
   // Render the title page
   return (
     <>
-      <div id={'title-page'} className={`title-page ${theme}`}>{/* title page */}
-        <div className="title-title-section">{/* title name */}
+      <Head
+        title={movie?.title + " " + movie?.year}
+        url={window.location.href}
+        image={movie?.poster_path}
+        description={movie?.overview}
+      />
+      <div id={"title-page"} className={`title-page ${theme}`}>
+        {/* title page */}
+        <div className="title-title-section">
+          {/* title name */}
           {/* Render the title title and year */}
           {movie?.title}
-          <small>
-            ({movie?.year})
-          </small>
+          <small>({movie?.year})</small>
         </div>
 
-        <div className="title-poster-section">{/* title poster */}
+        <div className="title-poster-section">
+          {/* title poster */}
           {/* Render the title poster */}
           <TitlePoster
             url={movie?.poster_path}
@@ -34,7 +42,8 @@ const Movie = () => {
           <TitleActions />
         </div>
 
-        <div className="title-details-section">{/* title details */}
+        <div className="title-details-section">
+          {/* title details */}
           {/* Render the title details */}
           <TitleDetails />
         </div>

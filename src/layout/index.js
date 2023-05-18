@@ -1,3 +1,4 @@
 import { Layout } from "./Layout";
+import { Head } from "./Head";
 
-export { Layout }
+export { Layout, Head }

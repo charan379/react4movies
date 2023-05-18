@@ -10,6 +10,7 @@ import { TitlesList } from "components/title";
 import { Pagination } from "components/common";
 import { debounce } from "lodash";
 import ShortForms from "constants/ShortForms";
+import { Head } from "layout";
 
 const Collection = () => {
   // Import the custom hooks that will be used in this component
@@ -87,6 +88,11 @@ const Collection = () => {
 
   return (
     <>
+      <Head
+        title={`Collection | Mbdb | Page ${moviesPage?.page ?? 0}`}
+        url={window.location.href}
+        description={`Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly.`}
+      />
       {/* If there are movies in the list, show the search results */}
       {moviesPage?.list?.length > 0 && (
         // true
