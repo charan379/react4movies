@@ -10,7 +10,10 @@ const Head = ({ title, description, image, url }) => {
       <title>{title ?? "R4M "} - React4Movies</title>
       <meta
         name="description"
-        content={description ?? "Full Stack MERN Application for movies"}
+        content={
+          description ??
+          "Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly"
+        }
       />
       <meta
         name="theme-color"
@@ -23,11 +26,15 @@ const Head = ({ title, description, image, url }) => {
       <meta property="og:title" content={title ?? "R4M " + "- React4Movies"} />
       <meta
         name="og:description"
-        content={description ?? "Full Stack MERN Application for movies"}
+        content={
+          description ??
+          "Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly"
+        }
       />
       <meta property="og:type" content="website" />
       <meta
         property="og:image"
+        itemprop="image"
         content={
           image ?? "https://moviebunkers01.netlify.app/website-ss-256x256.jpg"
         }
@@ -51,7 +58,10 @@ const Head = ({ title, description, image, url }) => {
       />
       <meta
         property="twitter:description"
-        content={description ?? "Full Stack MERN Application for movies"}
+        content={
+          description ??
+          "Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly"
+        }
       />
       <meta
         property="twitter:title"
