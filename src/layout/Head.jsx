@@ -39,6 +39,9 @@ const Head = ({ title, description, image, url }) => {
           image ?? "https://moviebunkers01.netlify.app/website-ss-256x256.jpg"
         }
       />
+      <meta property="og:image:width" content="526" />
+      <meta property="og:image:height" content="275" />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta
         property="og:url"
         content={url ?? "https://moviebunkers01.netlify.app/"}
