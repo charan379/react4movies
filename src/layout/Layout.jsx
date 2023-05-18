@@ -1,4 +1,4 @@
-import './layout.style.css';
+import "./layout.style.css";
 import React from "react";
 import { Header } from "./header";
 import { Outlet } from "react-router-dom";
@@ -7,13 +7,14 @@ import { useTheme } from "hooks";
 import { QuickBall } from "features/quick-ball";
 import { TopLoadingBar } from "features/top-loading-bar";
 import { Footer } from "./footer";
-
+import { Head } from "./Head";
 
 const Layout = () => {
   // current theme
   const { theme } = useTheme();
   return (
     <>
+      <Head />
       {/*
                               # main component structure #
     ###########################################################################################

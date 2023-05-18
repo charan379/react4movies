@@ -3,13 +3,15 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 const Head = ({ title, description, image, url }) => {
-  console.log(title);
   const { theme } = useTheme();
   return (
     <Helmet>
       {/* meta */}
       <title>{title ?? "R4M "} - React4Movies</title>
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={description ?? "Full Stack MERN Application for movies"}
+      />
       <meta
         name="theme-color"
         content={theme === "light" ? "#e9f1fa" : "#15202b"}
