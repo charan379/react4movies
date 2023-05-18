@@ -1,9 +1,10 @@
-import './torrents.style.css';
+import "./torrents.style.css";
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { TorrentList } from "./TorrentList";
 import { Pagination } from "components/common";
 import { useTheme } from "hooks";
+import { Head } from "layout";
 
 const Torrents = () => {
   const { theme } = useTheme();
@@ -25,6 +26,7 @@ const Torrents = () => {
   };
   return (
     <>
+      <Head title={`Torrents`} />
       <div>
         <input
           type={"text"}
@@ -53,8 +55,9 @@ const Torrents = () => {
               RARBG
             </Link>
             <Link
-              className={`provider ${"piratebay" === searchParams.get("provider")
-                }`}
+              className={`provider ${
+                "piratebay" === searchParams.get("provider")
+              }`}
               name="provider"
               data-name="piratebay"
               onClick={(event) => handleSearch(event)}
@@ -79,6 +82,6 @@ const Torrents = () => {
       </div>
     </>
   );
-}
+};
 
 export { Torrents };

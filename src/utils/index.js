@@ -8,9 +8,10 @@ import { MovieBunkersException } from "./MovieBunkersException";
 import { handleImageError } from "./handleImageError";
 import { isGt24Hours } from "./isGt24Hours";
 import { getExternalLinks } from "./getExternalLinks";
+import { capitalize } from "./capitalize";
 
 export {
     convertIsoDate, formatTime, makePrettyUrl, pad, scrollToTop,
     waitForElementById, MovieBunkersException, handleImageError,
-    isGt24Hours, getExternalLinks
+    isGt24Hours, getExternalLinks, capitalize
 };

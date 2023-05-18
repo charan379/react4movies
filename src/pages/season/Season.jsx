@@ -11,10 +11,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader, ShowLessText } from "components/common";
-import { convertIsoDate, scrollToTop, waitForElementById } from "utils";
+import {
+  capitalize,
+  convertIsoDate,
+  scrollToTop,
+  waitForElementById,
+} from "utils";
 import { EpisodeList } from "features/episode";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import ShortForms from "constants/ShortForms";
+import { Head } from "layout";
 
 const Season = () => {
   const {
@@ -171,6 +177,15 @@ const Season = () => {
 
   return (
     <>
+      <Head
+        title={
+          capitalize(titleName.replace(/-/g, " ")) +
+          ` | Seasons ${seasonNumber} | ${titleState}`
+        }
+        url={window.location.href}
+        image={season?.poster_path}
+        description={season?.overview}
+      />
       {/* seaosn page */}
       <div className={`season-page ${theme}`}>
         {/* link tree */}

@@ -18,7 +18,7 @@ const Tv = () => {
   return (
     <>
       <Head
-        title={tv?.title + " " + tv?.year}
+        title={tv?.title + " " + tv?.year + " | " + tv?.state}
         url={window.location.href}
         image={tv?.poster_path}
         description={tv?.overview}

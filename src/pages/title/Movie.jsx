@@ -16,7 +16,7 @@ const Movie = () => {
   return (
     <>
       <Head
-        title={movie?.title + " " + movie?.year}
+        title={movie?.title + " " + movie?.year + " | " + movie?.state}
         url={window.location.href}
         image={movie?.poster_path}
         description={movie?.overview}
