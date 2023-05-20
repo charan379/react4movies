@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TitleCard } from "components/title";
 import { TitleModal } from "components/title";
 import { Link } from "react-router-dom";
-import { makePrettyUrl, waitForElementById } from "utils";
+import { makePrettyUrl, scrollToElementByid } from "utils";
 import { useWindowSize } from "hooks";
 import ShortForms from "constants/ShortForms";
 
@@ -163,14 +163,7 @@ const TitlesList = ({ source, list, currentUpdateCount, setUpdateCount }) => {
               }
 
               // Scroll to and focus the title box that was clicked
-              setTimeout(() => {
-                waitForElementById(`card-${titleData?.index}`, 3000).then(
-                  (element) => {
-                    element.scrollIntoView();
-                    element.focus();
-                  }
-                );
-              }, 500);
+              scrollToElementByid(`card-${titleData?.index}`);
             }}
           />
         ) : null}
