@@ -83,7 +83,7 @@ const ReactSelector = ({
         isSearchable
         placeholder="Search..."
         isMulti
-        closeMenuOnSelect={false}
+        closeMenuOnSelect={true}
       />
     );
   }
