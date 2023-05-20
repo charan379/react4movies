@@ -14,8 +14,8 @@ import { Loader, ShowLessText } from "components/common";
 import {
   capitalize,
   convertIsoDate,
+  scrollToElementByid,
   scrollToTop,
-  waitForElementById,
 } from "utils";
 import { EpisodeList } from "features/episode";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
@@ -158,12 +158,7 @@ const Season = () => {
       scrollToTop();
     } else {
       // Scroll to locId if provided
-      setTimeout(() => {
-        waitForElementById(locId, 12000).then((element) => {
-          element.scrollIntoView();
-          element.focus();
-        });
-      }, 500);
+      scrollToElementByid(locId);
     }
 
     return () => {

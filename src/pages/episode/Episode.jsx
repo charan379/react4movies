@@ -13,8 +13,8 @@ import { Loader, ShowLessText } from "components/common";
 import {
   capitalize,
   convertIsoDate,
+  scrollToElementByid,
   scrollToTop,
-  waitForElementById,
 } from "utils";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import { EpisodePoster } from "components/episode";
@@ -175,12 +175,7 @@ const Episode = () => {
       scrollToTop();
     } else {
       // Scroll to locId if provided
-      setTimeout(() => {
-        waitForElementById(locId, 12000).then((element) => {
-          element.scrollIntoView();
-          element.focus();
-        });
-      }, 500);
+      scrollToElementByid(locId);
     }
 
     return () => {

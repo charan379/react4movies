@@ -13,7 +13,7 @@ import { Movie } from "./Movie";
 import { Tv } from "./Tv";
 import { Loader } from "components/common";
 import ShortForms from "constants/ShortForms";
-import { scrollToTop, waitForElementById } from "utils";
+import { scrollToElementByid, scrollToTop } from "utils";
 
 const Title = ({ id, titleState, titleType }) => {
   const {
@@ -151,18 +151,11 @@ const Title = ({ id, titleState, titleType }) => {
       fetchData({ _id, _titleType, _titleState, cancelToken: source.token });
     }, 100);
 
-    console.log(locId);
     if (locId === "top" || locId === undefined) {
       scrollToTop();
     } else {
       // Scroll to locId if provided
-      setTimeout(() => {
-        waitForElementById(locId, 12000).then((element) => {
-          console.log(element);
-          element.scrollIntoView();
-          element.focus();
-        });
-      }, 500);
+      scrollToElementByid(locId);
     }
 
     // cancel the request when the component unmounts

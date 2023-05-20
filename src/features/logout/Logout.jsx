@@ -1,9 +1,15 @@
-import './logout.style.css';
-import React, { useCallback, useRef } from "react";
+import "./logout.style.css";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Custom hooks for managing authentication, theme, and displaying toast notifications
-import { useTheme, useAuth, useOnOutSideClick, useToastify } from "hooks";
+import {
+  useTheme,
+  useAuth,
+  useOnOutSideClick,
+  useToastify,
+  useDisableBodyScrollOnModalOpen,
+} from "hooks";
 
 // Component for logging out a user
 const Logout = ({ open, close }) => {
@@ -41,7 +47,7 @@ const Logout = ({ open, close }) => {
         autoClose: 5000,
       });
 
-      // close logout modal 
+      // close logout modal
       close();
 
       // Navigate to the home page and close the logout dialog box
@@ -63,6 +69,8 @@ const Logout = ({ open, close }) => {
   // Register a click outside listener to close the logout dialog box
   useOnOutSideClick(logoutRef, useCallback(close, []));
 
+  useDisableBodyScrollOnModalOpen(open);
+
   // If the dialog is not open, return null
   if (!open) return null;
 
@@ -80,7 +88,9 @@ const Logout = ({ open, close }) => {
           <h2>
             <i className="fas fa-exclamation-triangle"></i> Confirm Logout
           </h2>
-          <h6 style={{ textAlign: "center" }}>Are you sure you want to log out?</h6>
+          <h6 style={{ textAlign: "center" }}>
+            Are you sure you want to log out?
+          </h6>
 
           {/* Logout form */}
           <form onSubmit={handleSubmit}>
@@ -88,7 +98,7 @@ const Logout = ({ open, close }) => {
               {/* Logout button */}
               <button
                 className="logout-button"
-                style={{ float: "left", marginTop: '35px' }}
+                style={{ float: "left", marginTop: "35px" }}
                 type="submit"
               >
                 <span>Logout</span>
@@ -97,7 +107,7 @@ const Logout = ({ open, close }) => {
               {/* Cancel button */}
               <button
                 className="cancel-button"
-                style={{ float: "right", marginTop: '35px' }}
+                style={{ float: "right", marginTop: "35px" }}
                 onClick={close}
               >
                 <span>Cancel</span>
