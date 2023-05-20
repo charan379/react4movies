@@ -1,0 +1,54 @@
+@import "assets/styles/variables.css";
+
+.links {
+  padding: 0px;
+}
+
+.links .buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-right: 55px;
+  font-size: 1rem;
+}
+
+.links .buttons span {
+  margin-left: 10px;
+}
+
+.links .buttons button {
+  border-radius: 5px;
+  border-width: 0px;
+  padding: 10px;
+  min-width: 150px;
+}
+
+.links.light .buttons button {
+  background-color: var(--ui-elemnet-light);
+  color: var(--font-color-light);
+}
+
+.links.dark .buttons button {
+  background-color: var(--ui-elemnet-dark);
+  color: var(--font-color-dark);
+}
+
+.link-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: -webkit-fill-available;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .link-list {
+    justify-content: space-around;
+  }
+}

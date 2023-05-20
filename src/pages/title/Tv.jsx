@@ -5,6 +5,7 @@ import { TitleActions } from "features/title-actions";
 import { EpisodeList } from "features/episode";
 import { SeasonList } from "features/seasons";
 import { Head } from "layout";
+import { LinkList } from "features/link";
 
 // Tv component
 const Tv = () => {
@@ -84,7 +85,7 @@ const Tv = () => {
 
         {/* seasons */}
 
-        <div id="seasons" className="title-seasons-section">
+        <div className="title-seasons-section">
           <h2 className="page-section-heading" id="seasons">
             Seasons
             <span>
@@ -101,6 +102,19 @@ const Tv = () => {
             limit={tv?.number_of_seasons <= 3 ? tv?.number_of_season : 3}
             getAllSeasons={false}
           />
+        </div>
+
+        {/* links */}
+
+        <div className="title-links-section">
+          <h2 className="page-section-heading" id="links">
+            Links
+            <span>
+              &nbsp;
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <LinkList parentId={tv?._id} titleState={tv?.state} />
         </div>
       </div>
     </>

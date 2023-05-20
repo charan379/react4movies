@@ -1,0 +1,112 @@
+@import "assets/styles/variables.css";
+
+.link-modal {
+  display: flex;
+  flex-direction: row-reverse;
+  position: fixed;
+  padding: 0px;
+  border-radius: 25px;
+  width: 90%;
+  height: 90%;
+  max-width: 640px;
+  max-height: 640px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.link-modal.light {
+  background-color: var(--bg-light);
+  color: var(--font-color-light);
+}
+
+.link-modal.dark {
+  background-color: var(--bg-dark);
+  color: var(--font-color-dark);
+}
+
+.link-modal .closeBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  text-align: center;
+  padding: 4px;
+  font-size: 30px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 999;
+  background-color: crimson;
+  color: #ffffff;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.link-form {
+  overflow-y: scroll;
+  padding: 10px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.link-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.link-form form label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  font-family: monospace;
+  margin: 5px 5px 5px 0px;
+}
+
+.link-form form input {
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.link-form form input[data-role="text-input"] {
+  border-width: 0px;
+  height: 33px;
+  padding: 10px;
+}
+
+.link-form form span {
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.link-form form .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.link-form form button {
+  border-radius: 5px;
+  border-width: 0px;
+  margin: 15px;
+  padding: 3px 10px 3px 10px;
+  font-size: 1.1rem;
+}
+
+.link-form form button[data-type="cancel"] {
+  background-color: crimson;
+  color: var(--font-color-dark);
+}
+
+.link-form form button[data-type="submit"] {
+  background-color: #9400d3;
+  color: var(--font-color-dark);
+}

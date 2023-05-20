@@ -1,10 +1,15 @@
-import './react-slider.style.css';
+import "./react-slider.style.css";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSlider from "react-slider";
-import iso369Language from "constants/iso369-1.json"
-import { useTheme, useCollectionSearch, useCtrlPlusKey, useMoviebunkersAPI } from "hooks";
+import iso369Language from "constants/iso369-1--full.json";
+import {
+  useTheme,
+  useCollectionSearch,
+  useCtrlPlusKey,
+  useMoviebunkersAPI,
+} from "hooks";
 import { ReactSelector } from "components/common";
 import { scrollToTop } from "utils";
 
@@ -14,10 +19,13 @@ const MoviebunkersListSidebar = ({ searchRef }) => {
 
   // Import custom hooks
   const { movieBunkersAPI } = useMoviebunkersAPI();
-  const { collectionQuery, setCollectionQuery, resetCollectionSearch } = useCollectionSearch();
+  const { collectionQuery, setCollectionQuery, resetCollectionSearch } =
+    useCollectionSearch();
 
   // Define state variables
-  const [allLanguages, setAllLanguages] = useState([{ value: "", label: "All" }]);
+  const [allLanguages, setAllLanguages] = useState([
+    { value: "", label: "All" },
+  ]);
   const [allGenres, setAllGenres] = useState([{ value: "", label: "All" }]);
 
   // Memoize options for better performance
@@ -72,26 +80,32 @@ const MoviebunkersListSidebar = ({ searchRef }) => {
 
   /**
    * Fetches the available languages from the API and updates the state with them.
-   * 
+   *
    * @param {CancelTokenSource} source - The cancel token source to use for the request.
    * @param {function} setAllLanguages - The state update function for the languages.
    */
   const fetchAvailableLanguages = async (source, setAllLanguages) => {
     try {
       // Make the API request to get the available languages.
-      const res = await movieBunkersAPI.get(`/titles/available-languages`, { cancelToken: source.token });
+      const res = await movieBunkersAPI.get(`/titles/available-languages`, {
+        cancelToken: source.token,
+      });
 
       // Map the response data to the format expected by the select input.
-      const allLanguages = res?.data?.map((element) => ({
-        value: element?.ISO_639_1_code,
-        label: element?.english_name,
-      })) || [];
+      const allLanguages =
+        res?.data?.map((element) => ({
+          value: element?.ISO_639_1_code,
+          label: element?.english_name,
+        })) || [];
 
       // Update the state with the new languages.
-      setAllLanguages((prevLanguages) => [...prevLanguages, ...allLanguages,]);
+      setAllLanguages((prevLanguages) => [...prevLanguages, ...allLanguages]);
     } catch (error) {
       // Get error message from response, or use a generic message.
-      const message = error?.response?.data?.error?.message ?? error?.message ?? "Something went wrong";
+      const message =
+        error?.response?.data?.error?.message ??
+        error?.message ??
+        "Something went wrong";
       // Handle the cancellation error separately from other errors.
       if (axios.isCancel(error)) {
         console.log("Request cancelled:", message);
@@ -102,27 +116,33 @@ const MoviebunkersListSidebar = ({ searchRef }) => {
   };
 
   /**
-    * Fetches the available genres from the API and updates the state with them.
-    * 
-    * @param {CancelTokenSource} source - The cancel token source to use for the request.
-    * @param {function} setAllGenres - The state update function for the genres.
-    */
+   * Fetches the available genres from the API and updates the state with them.
+   *
+   * @param {CancelTokenSource} source - The cancel token source to use for the request.
+   * @param {function} setAllGenres - The state update function for the genres.
+   */
   const fetchAvailableGenres = async (source, setAllGenres) => {
     try {
       // Make the API request to get available genres
-      const res = await movieBunkersAPI.get(`/titles/available-genres`, { cancelToken: source.token });
+      const res = await movieBunkersAPI.get(`/titles/available-genres`, {
+        cancelToken: source.token,
+      });
 
       // Map the response data to an array of objects with value and label properties
-      const allGenres = res?.data?.map((element) => ({
-        value: element,
-        label: element,
-      })) || [];
+      const allGenres =
+        res?.data?.map((element) => ({
+          value: element,
+          label: element,
+        })) || [];
 
       // Append the new genres to the existing list of genres using the setAllGenres updater function
       setAllGenres((prevGenres) => [...prevGenres, ...allGenres]);
     } catch (error) {
       // Get error message from response, or use a generic message.
-      const message = error?.response?.data?.error?.message ?? error?.message ?? "Something went wrong";
+      const message =
+        error?.response?.data?.error?.message ??
+        error?.message ??
+        "Something went wrong";
       // Handle errors by logging the appropriate message
       if (axios.isCancel(error)) {
         console.log("Request cancelled:", message);
@@ -131,8 +151,6 @@ const MoviebunkersListSidebar = ({ searchRef }) => {
       }
     }
   };
-
-
 
   // Fetch available languages and genres on component mount
   useEffect(() => {
@@ -200,10 +218,10 @@ const MoviebunkersListSidebar = ({ searchRef }) => {
               value: collectionQuery.language,
               label: collectionQuery.language
                 ? iso369Language.map((lang) => {
-                  if (lang["639_1_code"] === collectionQuery.language) {
-                    return lang["english_name"];
-                  }
-                })
+                    if (lang["ISO_639_1_code"] === collectionQuery.language) {
+                      return lang["english_name"];
+                    }
+                  })
                 : "All",
             }}
             options={memoizedLanguageOptions}
