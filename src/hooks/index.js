@@ -14,10 +14,11 @@ import { useMoviebunkersAPI } from "./useMoviebunkersAPI";
 import { useTmdbAPI } from "./useTmdbAPI";
 import { useSeasonsUpdater } from "./useSeasonsUpdater";
 import { useWindowSize } from "./useWindowSize";
+import { useDisableBodyScrollOnModalOpen } from "./useDisableBodyScrollOnModalOpen";
 
 
 export {
     useTheme, useAuth, useToastify, useProgressBar, useCtrlPlusKey, useEscapeKey,
     useHomeKey, useOnOutSideClick, useTitle, useTmdbTitle, useTmdbSearch, useCollectionSearch,
-    useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater, useWindowSize,
+    useMoviebunkersAPI, useTmdbAPI, useSeasonsUpdater, useWindowSize, useDisableBodyScrollOnModalOpen
 };
