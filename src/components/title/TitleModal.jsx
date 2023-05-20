@@ -1,7 +1,13 @@
 import "./styles/title-modal.style.css";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { useTheme, useEscapeKey, useToastify, useAuth } from "hooks";
+import {
+  useTheme,
+  useEscapeKey,
+  useToastify,
+  useAuth,
+  useDisableBodyScrollOnModalOpen,
+} from "hooks";
 import { getExternalLinks, makePrettyUrl } from "utils";
 import { TitlePoster } from "./TitlePoster";
 import { WatchProviders } from "features/watch-providers";
@@ -54,6 +60,9 @@ const TitleModal = ({ title, open, close }) => {
 
   // Register a callback to close the modal when the user presses the Escape key
   useEscapeKey(close);
+
+  // disable body scroll when modal is opened
+  useDisableBodyScrollOnModalOpen(open);
 
   // If the `open` prop is false, don't render anything
   if (!open) return null;
