@@ -18,13 +18,13 @@
 
 .login-modal.light {
   color: var(--font-color-light);
-  background: var(--ui-elemnet-light);
+  background: var(--ui-element-light);
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .login-modal.dark {
   color: var(--font-color-dark);
-  background: var(--ui-elemnet-dark);
+  background: var(--ui-element-dark);
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
@@ -103,12 +103,12 @@
 
 .login-modal.light .login-button {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .login-modal.dark .login-button {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .login-modal .links .link {

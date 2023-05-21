@@ -145,9 +145,9 @@
 .title-details.light .watch-providers-section,
 .title-details.light .external-links-section,
 .title-details.light .cast-section {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
-  border-top: 2px solid var(--ui-elemnet-dark);
+  border-top: 2px solid var(--ui-element-dark);
 }
 
 .title-details.dark .genres-section,
@@ -157,7 +157,7 @@
 .title-details.dark .watch-providers-section,
 .title-details.dark .external-links-section,
 .title-details.dark .cast-section {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
-  border-top: 2px solid var(--ui-elemnet-light);
+  border-top: 2px solid var(--ui-element-light);
 }

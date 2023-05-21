@@ -48,13 +48,13 @@ Height = ?
 }
 
 .title-card.light {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
 }
 
 .title-card.dark {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
@@ -154,12 +154,12 @@ Height = ?
 
 .title-card.light .year {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .title-card.dark .year {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 /* title Ratting */
@@ -183,12 +183,12 @@ Height = ?
 
 .title-card.light .ratting {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .title-card.dark .ratting {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .title-card .north-east-block {
@@ -210,12 +210,12 @@ Height = ?
 
 .title-card.light .north-east-block {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .title-card.dark .north-east-block {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 /* for 530px screens and below */
@@ -575,7 +575,7 @@ Height = ?
   .title-card.light:hover .title,
   .title-card.light:hover {
     color: var(--font-color-dark);
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
   }
 
   .title-card.dark:hover .year,
@@ -584,7 +584,7 @@ Height = ?
   .title-card.dark:hover .title,
   .title-card.dark:hover {
     color: var(--font-color-light);
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
   }
 
   .title-card.light:hover .title {

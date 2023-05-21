@@ -39,10 +39,10 @@
 }
 
 .sidebar.light header {
-  border-bottom: 2px solid var(--ui-elemnet-dark);
+  border-bottom: 2px solid var(--ui-element-dark);
 }
 .sidebar.dark header {
-  border-bottom: 2px solid var(--ui-elemnet-light);
+  border-bottom: 2px solid var(--ui-element-light);
 }
 
 .sidebar .sidebar-menu-wrapper {
@@ -136,11 +136,11 @@ header .sidebar-image-text .sidebar-header-text {
 }
 .sidebar header .toggle.light {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 .sidebar header .toggle.dark {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .sidebar ul {
@@ -222,12 +222,12 @@ header .sidebar-image-text .sidebar-header-text {
 
 .sidebar .menu-item.light {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .sidebar .menu-item.dark {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 /* search */
@@ -243,14 +243,14 @@ header .sidebar-image-text .sidebar-header-text {
 
 .menu-item.light input {
   color: var(--font-color-light);
-  border: 1px solid var(--ui-elemnet-light);
-  background-color: var(--ui-elemnet-light);
+  border: 1px solid var(--ui-element-light);
+  background-color: var(--ui-element-light);
 }
 
 .menu-item.dark input {
   color: var(--font-color-dark);
-  border: 1px solid var(--ui-elemnet-dark);
-  background-color: var(--ui-elemnet-dark);
+  border: 1px solid var(--ui-element-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .sidebar.close .menu-item input,
@@ -313,14 +313,14 @@ header .sidebar-image-text .sidebar-header-text {
 
 .sidebar-select.light select {
   color: var(--font-color-light);
-  border: 1px solid var(--ui-elemnet-light);
-  background-color: var(--ui-elemnet-light);
+  border: 1px solid var(--ui-element-light);
+  background-color: var(--ui-element-light);
 }
 
 .sidebar-select.dark select {
   color: var(--font-color-dark);
-  border: 1px solid var(--ui-elemnet-dark);
-  background-color: var(--ui-elemnet-dark);
+  border: 1px solid var(--ui-element-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .sidebar-select.light select:required:invalid {
@@ -362,23 +362,23 @@ header .sidebar-image-text .sidebar-header-text {
 
   .sidebar .menu-item.light:hover {
     color: var(--font-color-dark);
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
   }
 
   .sidebar .menu-item.dark:hover {
     color: var(--font-color-light);
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
   }
 
   .sidebar.light li:hover .icon.menu-item,
   .sidebar.dark li:hover .icon.menu-item:hover {
     color: var(--font-color-dark);
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
   }
   .sidebar.dark li:hover .icon.menu-item,
   .sidebar.light li:hover .icon.menu-item:hover {
     color: var(--font-color-light);
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
   }
 
   .sidebar.dark li:hover .icon.menu-item[data-value="0"] {

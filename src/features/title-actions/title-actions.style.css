@@ -64,12 +64,12 @@
 
 .title-actions.light .action-button,
 .title-actions.dark .action-button:hover {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .title-actions.dark .action-button,
 .title-actions.light .action-button:hover {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }

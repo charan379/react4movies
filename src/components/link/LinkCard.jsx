@@ -74,16 +74,6 @@ function LinkCard({
             Delete
           </button>
         </div>
-
-        {/* {openUpdateForm && (
-          <UpdateLink
-            link={link}
-            open={openUpdateForm}
-            close={() => setOpenUpdateForm(false)}
-            toBeFocusedId={id}
-            setLinkData={setLinkData}
-          />
-        )} */}
       </div>
     </>
   );

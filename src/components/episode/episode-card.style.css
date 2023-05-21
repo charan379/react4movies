@@ -22,12 +22,12 @@
 }
 
 .episode-card.light {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .episode-card.dark {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
@@ -80,13 +80,13 @@
 
 .episode-card.light .action-buttons .action-button,
 .episode-card.dark .action-buttons .action-button:hover {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
 .episode-card.dark .action-buttons .action-button,
 .episode-card.light .action-buttons .action-button:hover {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 

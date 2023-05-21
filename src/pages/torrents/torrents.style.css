@@ -25,13 +25,13 @@
 .providers.light .provider,
 .providers.dark .provider.true {
   color: var(--font-color-light);
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .providers.dark .provider,
 .providers.light .provider.true {
   color: var(--font-color-dark);
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .torrent-container .torrent-list {
@@ -64,12 +64,12 @@
 }
 
 .torrent-list.light .magnet-link {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
 .torrent-list.dark .magnet-link {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
@@ -79,11 +79,11 @@
 
 .torrent-container.light .torrent-box {
   border-collapse: collapse;
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 .torrent-container.dark .torrent-box {
   border-collapse: collapse;
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .torrent-container th {
@@ -101,22 +101,22 @@
 }
 
 .torrent-container.light th {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
 .torrent-container.dark td {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .torrent-container.light td {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .torrent-container.dark td {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 

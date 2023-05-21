@@ -21,12 +21,12 @@
 }
 
 .episode-poster-box.light {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .episode-poster-box.dark {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 

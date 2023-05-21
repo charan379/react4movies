@@ -47,15 +47,15 @@
 }
 
 .pages.light .page {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
-  border-color: var(--ui-elemnet-dark);
+  border-color: var(--ui-element-dark);
 }
 
 .pages.dark .page {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
-  border-color: var(--ui-elemnet-light);
+  border-color: var(--ui-element-light);
 }
 
 .pages .page.active {
@@ -63,39 +63,39 @@
 }
 
 .pages.light .page.active {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
-  border-color: var(--ui-elemnet-light);
+  border-color: var(--ui-element-light);
 }
 
 .pages.dark .page.active {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
-  border-color: var(--ui-elemnet-dark);
+  border-color: var(--ui-element-dark);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .pages.light .page:hover {
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
     color: var(--font-color-dark);
-    border-color: var(--ui-elemnet-light);
+    border-color: var(--ui-element-light);
   }
 
   .pages.dark .page:hover {
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
     color: var(--font-color-light);
-    border-color: var(--ui-elemnet-dark);
+    border-color: var(--ui-element-dark);
   }
 
   .pages.light .page.active:hover {
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
     color: var(--font-color-light);
-    border-color: var(--ui-elemnet-dark);
+    border-color: var(--ui-element-dark);
   }
 
   .pages.dark .page.active:hover {
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
     color: var(--font-color-dark);
-    border-color: var(--ui-elemnet-light);
+    border-color: var(--ui-element-light);
   }
 }

@@ -141,17 +141,17 @@
 }
 
 /* .quick-ball-link.dark.active {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 } */
 
 .quick-ball-link.light {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
 .quick-ball-link.dark {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
@@ -382,12 +382,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .quick-ball-link.light:hover {
-    background-color: var(--ui-elemnet-dark);
+    background-color: var(--ui-element-dark);
     color: var(--font-color-dark);
   }
 
   .quick-ball-link.dark:hover {
-    background-color: var(--ui-elemnet-light);
+    background-color: var(--ui-element-light);
     color: var(--font-color-light);
   }
 }

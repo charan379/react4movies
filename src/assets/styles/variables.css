@@ -2,7 +2,7 @@
   /* light theme */
   --bg-light: #e9f1fa;
   --font-color-light: #020d1a;
-  --ui-elemnet-light: #c8d9ec;
+  --ui-element-light: #c8d9ec;
   --title-box-title-light: #15202b;
   --title-box-title-bg-light: #d5e1ed;
   /* hsf = Header Sidebar Footer */
@@ -14,7 +14,7 @@
   /* dark theme */
   --bg-dark: #15202b;
   --font-color-dark: #ffffff;
-  --ui-elemnet-dark: #22303c;
+  --ui-element-dark: #22303c;
   --title-box-title-dark: #ffffff;
   --title-box-title-bg-dark: #192734;
   /* hsf = Header Sidebar Footer */

@@ -61,11 +61,11 @@
 }
 
 .season-page.light .main-info-section {
-  background-color: var(--ui-elemnet-light);
+  background-color: var(--ui-element-light);
 }
 
 .season-page.dark .main-info-section {
-  background-color: var(--ui-elemnet-dark);
+  background-color: var(--ui-element-dark);
 }
 
 .season-page .main-info-section .poster-section {

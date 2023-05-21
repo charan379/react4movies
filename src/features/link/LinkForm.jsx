@@ -132,7 +132,7 @@ const LinkForm = ({
           >
             <i className="fas fa-times fa-lg"></i>
           </button>
-          <div className="link-form">
+          <div className={`link-form ${theme}`}>
             <form onSubmit={handleFormSubmit}>
               {/* link title */}
               <label htmlFor="title">Link Title : </label>

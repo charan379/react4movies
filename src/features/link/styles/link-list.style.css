@@ -10,7 +10,7 @@
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-right: 55px;
+  padding-right: 30px;
   font-size: 1rem;
 }
 
@@ -23,15 +23,18 @@
   border-width: 0px;
   padding: 10px;
   min-width: 150px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
-.links.light .buttons button {
-  background-color: var(--ui-elemnet-light);
+.links.light .buttons button,
+.links.dark .buttons button:hover {
+  background-color: var(--ui-element-light);
   color: var(--font-color-light);
 }
 
-.links.dark .buttons button {
-  background-color: var(--ui-elemnet-dark);
+.links.dark .buttons button,
+.links.light .buttons button:hover {
+  background-color: var(--ui-element-dark);
   color: var(--font-color-dark);
 }
 
