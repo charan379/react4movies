@@ -30,7 +30,7 @@ const LinkForm = ({
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    if (linkToBeUpdated) {
+    if (linkToBeUpdated?._id) {
       await updateLink({ id: linkToBeUpdated?._id, link: link });
     } else {
       await addLink({ parentId, link });
@@ -71,18 +71,26 @@ const LinkForm = ({
 
   const getLanguageOptions = () => {
     const languageOptions = [];
+    const alreadySelectedLanguages = link?.languages?.map(
+      (lang) => lang?.ISO_639_1_code
+    );
+
     for (const language of languages) {
-      languageOptions.push({
-        value: language,
-        label: language?.english_name,
-      });
+      if (!alreadySelectedLanguages.includes(language?.ISO_639_1_code)) {
+        languageOptions.push({
+          value: language,
+          label: language?.english_name,
+        });
+      } else {
+        continue;
+      }
     }
     return languageOptions;
   };
 
   const memoizedLanguageOptions = useMemo(
     () => getLanguageOptions(),
-    [link?._id]
+    [link?._id, link?.languages]
   );
 
   const linkTypeOptions = [
@@ -114,7 +122,11 @@ const LinkForm = ({
 
   useEffect(() => {
     return () => {
-      scrollToElementByid(linkToFocusedAfterClose);
+      if (linkToBeUpdated?._id) {
+        scrollToElementByid(linkToFocusedAfterClose);
+      } else {
+        scrollToElementByid(`link-card-1`);
+      }
     };
   }, [closeForm]);
 

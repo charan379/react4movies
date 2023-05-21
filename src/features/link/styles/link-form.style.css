@@ -10,7 +10,7 @@
   height: 90%;
   max-width: 640px;
   max-height: 640px;
-  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
 }
 
 .link-modal.light {
@@ -100,18 +100,18 @@
   border-radius: 5px;
   border-width: 0px;
   margin: 15px;
-  padding: 3px 10px 3px 10px;
+  padding: 5px 10px 3px 10px;
   font-size: 1.1rem;
 }
 
 .link-form.light form button {
-  background-color: var(--ui-element-light);
-  color: var(--font-color-light);
+  background-color: var(--button-bg-light);
+  color: var(--button-color-light);
 }
 
 .link-modal.dark form button {
-  background-color: var(--ui-element-dark);
-  color: var(--font-color-dark);
+  background-color: var(--button-bg-dark);
+  color: var(--button-color-dark);
 }
 
 .link-form form button[data-type="cancel"]:hover {
@@ -120,6 +120,6 @@
 }
 
 .link-form form button[data-type="submit"]:hover {
-  background-color: #9400d3;
+  background-color: #228b22;
   color: var(--font-color-dark);
 }
