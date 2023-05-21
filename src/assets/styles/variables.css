@@ -3,6 +3,8 @@
   --bg-light: #e9f1fa;
   --font-color-light: #020d1a;
   --ui-element-light: #c8d9ec;
+  --button-bg-light: #4182cb;
+  --button-color-light: #fafafa;
   --title-box-title-light: #15202b;
   --title-box-title-bg-light: #d5e1ed;
   /* hsf = Header Sidebar Footer */
@@ -15,6 +17,8 @@
   --bg-dark: #15202b;
   --font-color-dark: #ffffff;
   --ui-element-dark: #22303c;
+  --button-bg-dark: #9400d3;
+  --button-color-dark: #fafafa;
   --title-box-title-dark: #ffffff;
   --title-box-title-bg-dark: #192734;
   /* hsf = Header Sidebar Footer */
