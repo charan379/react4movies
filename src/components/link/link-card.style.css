@@ -47,12 +47,24 @@
   font-family: monospace;
   margin-bottom: 5px;
   overflow-wrap: anywhere;
-  background-color: rgba(107, 42, 167, 0.897);
-  color: var(--font-color-dark);
   border-radius: 5px;
   padding: 5px;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
 }
 
+.link-card.light ul li h6 {
+  background-color: var(--bg-light);
+  color: var(--font-color-light);
+}
+
+.link-card.dark ul li h6 {
+  background-color: var(--bg-dark);
+  color: var(--font-color-dark);
+}
+
+.link-card ul li span {
+  overflow-wrap: anywhere;
+}
 .link-card .content-quality {
   display: flex;
   width: 100%;
@@ -94,13 +106,13 @@
 }
 
 .link-card ul li .quality[data-quality="1080P"] {
-  background-color: #00ff00;
-  color: var(--font-color-light);
+  background-color: #228b22;
+  color: var(--font-color-dark);
 }
 
 .link-card ul li .quality[data-quality="720P"] {
-  background-color: #ff6a00;
-  color: var(--font-color-light);
+  background-color: var(--button-bg-light);
+  color: var(--button-color-light);
 }
 
 .link-card ul li .quality[data-quality="480P"] {
@@ -139,17 +151,27 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
-.link-card .action-buttons button[data-type="get"] {
+.link-card.light .action-buttons button {
+  background-color: var(--button-bg-light);
+  color: var(--button-color-light);
+}
+
+.link-card.dark .action-buttons button {
+  background-color: var(--button-bg-dark);
+  color: var(--button-color-dark);
+}
+
+.link-card .action-buttons button[data-type="get"]:hover {
   background-color: rgb(34, 139, 34);
   color: var(--font-color-dark);
 }
 
-.link-card .action-buttons button[data-type="edit"] {
-  background-color: #9400d3;
+.link-card .action-buttons button[data-type="edit"]:hover {
+  background-color: #d37000;
   color: var(--font-color-dark);
 }
 
-.link-card .action-buttons button[data-type="delete"] {
+.link-card .action-buttons button[data-type="delete"]:hover {
   background-color: crimson;
   color: var(--font-color-dark);
 }

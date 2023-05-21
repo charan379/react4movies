@@ -35,7 +35,18 @@ function LinkCard({
             </h6>
           </li>
           <li className="link-item">
-            <b>Type : </b>
+            <span className="content-quality">
+              {link?.quality?.map((quality, index) => {
+                return (
+                  <span className="quality" key={index} data-quality={quality}>
+                    {quality}
+                  </span>
+                );
+              })}
+            </span>
+          </li>
+          <li className="link-item">
+            <b>Link Type : </b>
             <span className="item-box">{link?.linkType}</span>
           </li>
           <li className="link-item">
@@ -43,7 +54,7 @@ function LinkCard({
             <span>{link?.contentType}</span>
           </li>
           <li className="link-item">
-            <b>Language : </b>
+            <b>Languages : </b>
             <span>
               <ShowLessNames
                 commaSepratedText={link?.languages
@@ -54,14 +65,9 @@ function LinkCard({
             </span>
           </li>
           <li className="link-item">
-            <span className="content-quality">
-              {link?.quality?.map((quality, index) => {
-                return (
-                  <span className="quality" key={index} data-quality={quality}>
-                    {quality}
-                  </span>
-                );
-              })}
+            <b>Remarks : </b>
+            <span>
+              <ShowLessText text={link?.remarks} limit={100} />
             </span>
           </li>
         </ul>
