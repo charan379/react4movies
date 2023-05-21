@@ -10,7 +10,8 @@
     "main-info-section"
     "episodes-section"
     "images-section"
-    "videos-section";
+    "videos-section"
+    "links-section";
   padding: 15px;
 }
 
@@ -172,6 +173,13 @@
 
 .season-page .videos-section {
   display: flex;
+}
+
+.season-page .links-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
 
 @media screen and (max-width: 620px) {

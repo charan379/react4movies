@@ -21,6 +21,7 @@ import { EpisodeList } from "features/episode";
 import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
+import { LinkList } from "features/link";
 
 const Season = () => {
   const {
@@ -255,8 +256,8 @@ const Season = () => {
           </div>
         </div>
         {/* episodes section */}
-        <div className="episodes-section">
-          <h2 className="page-section-heading" id="episodes">
+        <div className="episodes-section" id="episodes">
+          <h2 className="page-section-heading">
             Episodes
             <span>
               &nbsp;
@@ -285,6 +286,20 @@ const Season = () => {
           {/* code to display videos
             related to season */}
         </div>
+
+        {/* links section */}
+        {titleState === ShortForms?.Moviebunkers && (
+          <div className="links-section" id="links">
+            <h2 className="page-section-heading">
+              Links
+              <span>
+                &nbsp;
+                <i className="fas fa-chevron-right fa-lg"></i>
+              </span>
+            </h2>
+            <LinkList parentId={season?._id} />
+          </div>
+        )}
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
     </>

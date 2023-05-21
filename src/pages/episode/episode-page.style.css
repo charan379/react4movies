@@ -9,7 +9,8 @@
     "link-tree-section"
     "main-info-section"
     "images-section"
-    "videos-section";
+    "videos-section"
+    "links-section";
   padding: 15px;
 }
 
@@ -159,6 +160,13 @@
 }
 
 .episode-page .images-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.episode-page .links-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

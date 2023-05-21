@@ -3,6 +3,8 @@ import { useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions"; // component for title action buttons
 import { Head } from "layout";
+import { LinkList } from "features/link";
+import ShortForms from "constants/ShortForms";
 
 // Movie component
 const Movie = () => {
@@ -47,6 +49,20 @@ const Movie = () => {
           {/* Render the title details */}
           <TitleDetails />
         </div>
+
+        {/* links */}
+        {movie?.state === ShortForms.Moviebunkers && (
+          <div className="title-links-section">
+            <h2 className="page-section-heading" id="links">
+              Links
+              <span>
+                &nbsp;
+                <i className="fas fa-chevron-right fa-lg"></i>
+              </span>
+            </h2>
+            <LinkList parentId={movie?._id} titleState={movie?.state} />
+          </div>
+        )}
       </div>
     </>
   );

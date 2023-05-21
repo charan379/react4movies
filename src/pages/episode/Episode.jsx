@@ -20,6 +20,7 @@ import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import { EpisodePoster } from "components/episode";
 import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
+import { LinkList } from "features/link";
 
 const Episode = () => {
   const {
@@ -301,6 +302,18 @@ const Episode = () => {
         <div className="videos-section" id="videos">
           {/* code to display videos
             related to episode */}
+        </div>
+
+        {/* links section */}
+        <div className="links-section" id="images">
+          <h2 className="page-section-heading">
+            Links
+            <span>
+              &nbsp;
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <LinkList parentId={episode?._id} />
         </div>
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
