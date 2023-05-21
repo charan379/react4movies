@@ -44,6 +44,27 @@ const ReactSelector = ({
       cursor: "pointer",
     }),
 
+    multiValue: (styles) => {
+      return {
+        ...styles,
+        backgroundColor: theme === "light" ? "#15202b" : "#e9f1fa",
+      };
+    },
+
+    multiValueLabel: (styles) => ({
+      ...styles,
+      color: theme === "light" ? "#ffffff" : "#020d1a",
+    }),
+
+    multiValueRemove: (styles) => ({
+      ...styles,
+      color: theme === "light" ? "#ffffff" : "#020d1a",
+      ":hover": {
+        backgroundColor: "crimson",
+        color: "#ffffff",
+      },
+    }),
+
     // Style for the control (container) of the select dropdown
     control: (defaultStyles) => ({
       ...defaultStyles,
