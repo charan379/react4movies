@@ -13,5 +13,6 @@ const AppConfig = {
   TORRENT_API: process.env.REACT_APP_TORRENT_API,
   GUEST_USERNAME: process.env.REACT_APP_GUEST_USERNAME,
   GUEST_PASSWORD: process.env.REACT_APP_GUEST_PASSWORD,
+  GUEST_TOKEN: process.env.REACT_APP_GUEST_TOKEN,
 };
 export { TmdbConfig, AppConfig };

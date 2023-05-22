@@ -30,10 +30,6 @@ const App = () => {
               <Route path="/collection" element={<Collection />} />
               <Route path="/discover/tmdb" element={<SearchTmdb />} />
               <Route
-                path="/view/title/:_titleType/:_title/:_titleState/:_id/:_locId?"
-                element={<Title />}
-              />
-              <Route
                 path="/view/tv/:_title/:_titleState/:_tvShowId/season/:_seasonNumber/:_locId?"
                 element={<Season />}
               />
@@ -54,6 +50,10 @@ const App = () => {
             </Route>
 
             {/* Public Routes */}
+            <Route
+              path="/view/title/:_titleType/:_title/:_titleState/:_id/:_locId?"
+              element={<Title />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/un-authorized" element={<Unauthorized />} />
             <Route path="*" element={<PageNotFound />} />

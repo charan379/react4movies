@@ -9,7 +9,7 @@ const useMoviebunkersAPI = () => {
         timeout: 60000,
         baseURL: AppConfig.MOVIEBUNKERS_API,
         headers: {
-            Authorization: `Bearer ${auth?.token}`,
+            Authorization: `Bearer ${auth.token || AppConfig.GUEST_TOKEN}`,
         },
     });
 
