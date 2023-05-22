@@ -1,5 +1,6 @@
 import "./episode-page.style.css";
 import {
+  useAuth,
   useMoviebunkersAPI,
   useTheme,
   useTmdbAPI,
@@ -21,6 +22,7 @@ import { EpisodePoster } from "components/episode";
 import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
 import { LinkList } from "features/link";
+import { LevelOne } from "constants/AuthRoles";
 
 const Episode = () => {
   const {
@@ -49,6 +51,8 @@ const Episode = () => {
   };
 
   const { theme } = useTheme();
+
+  const { auth } = useAuth();
 
   const { width } = useWindowSize();
 
@@ -305,16 +309,19 @@ const Episode = () => {
         </div>
 
         {/* links section */}
-        <div className="links-section" id="images">
-          <h2 className="page-section-heading">
-            Links
-            <span>
-              &nbsp;
-              <i className="fas fa-chevron-right fa-lg"></i>
-            </span>
-          </h2>
-          <LinkList parentId={episode?._id} />
-        </div>
+        {titleState === ShortForms.Moviebunkers &&
+          LevelOne.includes(auth?.role) && (
+            <div className="links-section" id="images">
+              <h2 className="page-section-heading">
+                Links
+                <span>
+                  &nbsp;
+                  <i className="fas fa-chevron-right fa-lg"></i>
+                </span>
+              </h2>
+              <LinkList parentId={episode?._id} />
+            </div>
+          )}
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
     </>

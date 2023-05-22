@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme, useTitle } from "hooks";
+import { useAuth, useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions";
 import { EpisodeList } from "features/episode";
@@ -7,11 +7,14 @@ import { SeasonList } from "features/seasons";
 import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
+import { LevelOne } from "constants/AuthRoles";
 
 // Tv component
 const Tv = () => {
   // Get the theme from the useTheme hook
   const { theme } = useTheme();
+
+  const { auth } = useAuth();
 
   // Get the title from the useTitle hook
   const { title: tv } = useTitle();
@@ -107,18 +110,19 @@ const Tv = () => {
 
         {/* links */}
 
-        {tv?.state === ShortForms.Moviebunkers && (
-          <div className="title-links-section">
-            <h2 className="page-section-heading" id="links">
-              Links
-              <span>
-                &nbsp;
-                <i className="fas fa-chevron-right fa-lg"></i>
-              </span>
-            </h2>
-            <LinkList parentId={tv?._id} titleState={tv?.state} />
-          </div>
-        )}
+        {tv?.state === ShortForms.Moviebunkers &&
+          LevelOne.includes(auth?.role) && (
+            <div className="title-links-section">
+              <h2 className="page-section-heading" id="links">
+                Links
+                <span>
+                  &nbsp;
+                  <i className="fas fa-chevron-right fa-lg"></i>
+                </span>
+              </h2>
+              <LinkList parentId={tv?._id} titleState={tv?.state} />
+            </div>
+          )}
       </div>
     </>
   );

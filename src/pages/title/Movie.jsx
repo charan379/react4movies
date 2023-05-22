@@ -1,15 +1,18 @@
 import React from "react";
-import { useTheme, useTitle } from "hooks";
+import { useAuth, useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions"; // component for title action buttons
 import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
+import { LevelOne } from "constants/AuthRoles";
 
 // Movie component
 const Movie = () => {
   // Get the theme from the useTheme hook
   const { theme } = useTheme();
+
+  const { auth } = useAuth();
 
   // Get the title from the useTitle hook
   const { title: movie } = useTitle();
@@ -51,18 +54,19 @@ const Movie = () => {
         </div>
 
         {/* links */}
-        {movie?.state === ShortForms.Moviebunkers && (
-          <div className="title-links-section">
-            <h2 className="page-section-heading" id="links">
-              Links
-              <span>
-                &nbsp;
-                <i className="fas fa-chevron-right fa-lg"></i>
-              </span>
-            </h2>
-            <LinkList parentId={movie?._id} titleState={movie?.state} />
-          </div>
-        )}
+        {movie?.state === ShortForms.Moviebunkers &&
+          LevelOne.includes(auth?.role) && (
+            <div className="title-links-section">
+              <h2 className="page-section-heading" id="links">
+                Links
+                <span>
+                  &nbsp;
+                  <i className="fas fa-chevron-right fa-lg"></i>
+                </span>
+              </h2>
+              <LinkList parentId={movie?._id} titleState={movie?.state} />
+            </div>
+          )}
       </div>
     </>
   );

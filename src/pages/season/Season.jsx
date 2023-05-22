@@ -1,6 +1,7 @@
 import { SeasonPoster } from "components/season";
 import "./season-page.style.css";
 import {
+  useAuth,
   useMoviebunkersAPI,
   useTheme,
   useTmdbAPI,
@@ -22,6 +23,7 @@ import { PlayTrailer } from "features/title-actions/PlayTrailer";
 import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
 import { LinkList } from "features/link";
+import { LevelOne } from "constants/AuthRoles";
 
 const Season = () => {
   const {
@@ -48,6 +50,8 @@ const Season = () => {
   };
 
   const { theme } = useTheme();
+
+  const { auth } = useAuth();
 
   const { width } = useWindowSize();
 
@@ -288,18 +292,19 @@ const Season = () => {
         </div>
 
         {/* links section */}
-        {titleState === ShortForms?.Moviebunkers && (
-          <div className="links-section" id="links">
-            <h2 className="page-section-heading">
-              Links
-              <span>
-                &nbsp;
-                <i className="fas fa-chevron-right fa-lg"></i>
-              </span>
-            </h2>
-            <LinkList parentId={season?._id} />
-          </div>
-        )}
+        {titleState === ShortForms?.Moviebunkers &&
+          LevelOne.includes(auth?.role) && (
+            <div className="links-section" id="links">
+              <h2 className="page-section-heading">
+                Links
+                <span>
+                  &nbsp;
+                  <i className="fas fa-chevron-right fa-lg"></i>
+                </span>
+              </h2>
+              <LinkList parentId={season?._id} />
+            </div>
+          )}
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
     </>
