@@ -6,6 +6,7 @@ import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
 import { LevelOne } from "constants/AuthRoles";
+import { LightboxImages } from "features/lightbox";
 
 // Movie component
 const Movie = () => {
@@ -67,6 +68,19 @@ const Movie = () => {
               <LinkList parentId={movie?._id} titleState={movie?.state} />
             </div>
           )}
+
+        {/* images */}
+        <div className="title-images-section">
+          <h2 className="page-section-heading" id="images">
+            Images
+            <span>
+              &nbsp;
+              <small>{movie?.images?.length}&nbsp;</small>
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <LightboxImages imagesProp={movie?.images ?? []} />
+        </div>
       </div>
     </>
   );
