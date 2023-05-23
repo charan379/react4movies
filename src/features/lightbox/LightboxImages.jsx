@@ -10,7 +10,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 
-const LightboxImages = ({ imagesProp }) => {
+const LightboxImages = ({ imagesProp, layout }) => {
   const [index, setIndex] = React.useState(-1);
 
   const [images, setImages] = useState([]);
@@ -39,7 +39,7 @@ const LightboxImages = ({ imagesProp }) => {
   return (
     <>
       <PhotoAlbum
-        layout="rows"
+        layout={layout === "rows" || layout === "columns" ? layout : "rows"}
         photos={[...images]}
         onClick={({ index }) => setIndex(index)}
       />
