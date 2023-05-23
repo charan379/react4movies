@@ -13,7 +13,7 @@ function scrollToElementByid(id) {
                     element.focus();
                 }
             );
-        }, 10);
+        }, 1200);
     } catch (error) {
         console.log('scroll to view, invalid id : ', id)
     }
