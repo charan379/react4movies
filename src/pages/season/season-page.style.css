@@ -9,9 +9,9 @@
     "link-tree-section"
     "main-info-section"
     "episodes-section"
+    "links-section"
     "images-section"
-    "videos-section"
-    "links-section";
+    "videos-section";
   padding: 15px;
 }
 
@@ -161,6 +161,7 @@
 }
 
 .season-page .episodes-section {
+  grid-area: episodes-section;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -168,11 +169,11 @@
 }
 
 .season-page .images-section {
-  display: flex;
+  grid-area: images-section;
 }
 
 .season-page .videos-section {
-  display: flex;
+  grid-area: videos-section;
 }
 
 .season-page .links-section {

@@ -24,6 +24,7 @@ import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
 import { LinkList } from "features/link";
 import { LevelOne } from "constants/AuthRoles";
+import { LightboxImages } from "features/lightbox";
 
 const Season = () => {
   const {
@@ -260,8 +261,8 @@ const Season = () => {
           </div>
         </div>
         {/* episodes section */}
-        <div className="episodes-section" id="episodes">
-          <h2 className="page-section-heading">
+        <div className="episodes-section">
+          <h2 className="page-section-heading" id="episodes">
             Episodes
             <span>
               &nbsp;
@@ -282,20 +283,12 @@ const Season = () => {
             totalEpisodes={season?.episode_count}
           />
         </div>
-        <div className="images-section" id="images">
-          {/* code to display images
-            related to season */}
-        </div>
-        <div className="videos-section" id="videos">
-          {/* code to display videos
-            related to season */}
-        </div>
 
         {/* links section */}
         {titleState === ShortForms?.Moviebunkers &&
           LevelOne.includes(auth?.role) && (
-            <div className="links-section" id="links">
-              <h2 className="page-section-heading">
+            <div className="links-section">
+              <h2 className="page-section-heading" id="links">
                 Links
                 <span>
                   &nbsp;
@@ -305,6 +298,26 @@ const Season = () => {
               <LinkList parentId={season?._id} />
             </div>
           )}
+
+        <div className="images-section">
+          {/* code to display images
+            related to season */}
+          <h2 className="page-section-heading" id="images">
+            Images
+            <span>
+              &nbsp;
+              <small>{season?.images?.length}&nbsp;</small>
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <LightboxImages imagesProp={season?.images} layout={"columns"} />
+        </div>
+
+        <div className="videos-section" id="videos">
+          {/* code to display videos
+            related to season */}
+        </div>
+
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
     </>

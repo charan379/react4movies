@@ -8,9 +8,9 @@
   grid-template-areas:
     "link-tree-section"
     "main-info-section"
+    "links-section"
     "images-section"
-    "videos-section"
-    "links-section";
+    "videos-section";
   padding: 15px;
 }
 
@@ -160,10 +160,7 @@
 }
 
 .episode-page .images-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: nowrap;
+  grid-area: images-section;
 }
 
 .episode-page .links-section {
@@ -175,6 +172,9 @@
 
 .episode-page .videos-section {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
 
 @media screen and (max-width: 620px) {

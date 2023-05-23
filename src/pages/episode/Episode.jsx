@@ -23,6 +23,7 @@ import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
 import { LinkList } from "features/link";
 import { LevelOne } from "constants/AuthRoles";
+import { LightboxImages } from "features/lightbox";
 
 const Episode = () => {
   const {
@@ -290,29 +291,12 @@ const Episode = () => {
             </div>
           </div>
         </div>
-        {/* images section */}
-        <div className="images-section" id="images">
-          <h2 className="page-section-heading">
-            Images
-            <span>
-              &nbsp;
-              <small>{episode?.images?.length}&nbsp;</small>
-              <i className="fas fa-chevron-right fa-lg"></i>
-            </span>
-          </h2>
-          {/* code to display images */}
-        </div>
-        {/* videos section */}
-        <div className="videos-section" id="videos">
-          {/* code to display videos
-            related to episode */}
-        </div>
 
         {/* links section */}
         {titleState === ShortForms.Moviebunkers &&
           LevelOne.includes(auth?.role) && (
-            <div className="links-section" id="images">
-              <h2 className="page-section-heading">
+            <div className="links-section">
+              <h2 className="page-section-heading" id="links">
                 Links
                 <span>
                   &nbsp;
@@ -322,6 +306,26 @@ const Episode = () => {
               <LinkList parentId={episode?._id} />
             </div>
           )}
+
+        {/* images section */}
+        <div className="images-section">
+          <h2 className="page-section-heading" id="images">
+            Images
+            <span>
+              &nbsp;
+              <small>{episode?.images?.length}&nbsp;</small>
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          {/* code to display images */}
+          <LightboxImages imagesProp={episode?.images} />
+        </div>
+        {/* videos section */}
+        <div className="videos-section" id="videos">
+          {/* code to display videos
+            related to episode */}
+        </div>
+
         <ToastContainer {...toastContainerOptions} key={5} />
       </div>
     </>
