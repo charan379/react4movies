@@ -8,6 +8,7 @@ import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
 import { LevelOne } from "constants/AuthRoles";
+import { LightboxImages } from "features/lightbox";
 
 // Tv component
 const Tv = () => {
@@ -88,7 +89,6 @@ const Tv = () => {
         </div>
 
         {/* seasons */}
-
         <div className="title-seasons-section">
           <h2 className="page-section-heading" id="seasons">
             Seasons
@@ -109,7 +109,6 @@ const Tv = () => {
         </div>
 
         {/* links */}
-
         {tv?.state === ShortForms.Moviebunkers &&
           LevelOne.includes(auth?.role) && (
             <div className="title-links-section">
@@ -123,6 +122,19 @@ const Tv = () => {
               <LinkList parentId={tv?._id} titleState={tv?.state} />
             </div>
           )}
+
+        {/* images */}
+        <div className="title-images-section">
+          <h2 className="page-section-heading" id="images">
+            Images
+            <span>
+              &nbsp;
+              <small>{tv?.images?.length}&nbsp;</small>
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </span>
+          </h2>
+          <LightboxImages imagesProp={tv?.images ?? []} />
+        </div>
       </div>
     </>
   );

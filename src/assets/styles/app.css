@@ -136,6 +136,7 @@ select:-webkit-autofill:focus {
   margin-bottom: 20px;
   font-weight: bold;
   cursor: pointer;
+  text-align: left;
 }
 
 .page-section-heading:hover span i {

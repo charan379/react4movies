@@ -11,7 +11,8 @@
     "title-poster-section title-poster-section  title-poster-section title-details-section title-details-section title-details-section title-details-section title-details-section title-details-section title-details-section"
     "title-episodes-section title-episodes-section title-episodes-section title-episodes-section  title-episodes-section title-episodes-section title-episodes-section title-episodes-section title-episodes-section title-episodes-section"
     "title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section title-seasons-section"
-    "title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section";
+    "title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section title-links-section"
+    "title-images-section title-images-section title-images-section title-images-section title-images-section title-images-section title-images-section title-images-section title-images-section title-images-section";
 }
 
 .title-page .title-title-section {
@@ -86,6 +87,16 @@
   padding: 5px;
 }
 
+.title-page .title-images-section {
+  grid-area: title-images-section;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 20px;
+  padding: 5px;
+}
+
 @media (max-width: 1080px) {
   .title-page {
     display: grid;
@@ -96,6 +107,7 @@
       "title-details-section"
       "title-episodes-section"
       "title-seasons-section"
-      "title-links-section";
+      "title-links-section"
+      "title-images-section";
   }
 }
