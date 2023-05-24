@@ -20,12 +20,6 @@ export async function generateMetadata({ params: { titleId } }) {
           width: 800,
           height: 600,
         },
-        {
-          url: data?.poster_path,
-          width: 1800,
-          height: 1600,
-          alt: "My custom alt",
-        },
       ],
       locale: "en-US",
       type: "website",
@@ -44,6 +38,5 @@ export default async function Title({ params: { titleId } }) {
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
 
-  console.log(data);
   return <div>Title : {titleId}</div>;
 }
