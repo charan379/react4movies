@@ -1,3 +1,3 @@
-import { LightboxImages } from "./LightboxImages";
+import LightboxImages from "./LightboxImages";
 
-export { LightboxImages }
+export { LightboxImages as default }

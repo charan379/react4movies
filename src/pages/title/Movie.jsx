@@ -6,7 +6,7 @@ import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
 import { LevelOne } from "constants/AuthRoles";
-import { LightboxImages } from "features/lightbox";
+import LightboxImages from "features/lightbox";
 
 // Movie component
 const Movie = () => {

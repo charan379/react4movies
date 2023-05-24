@@ -56,4 +56,4 @@ const LightboxImages = ({ imagesProp, layout }) => {
   );
 };
 
-export { LightboxImages };
+export default LightboxImages;

@@ -23,7 +23,7 @@ import ShortForms from "constants/ShortForms";
 import { Head } from "layout";
 import { LinkList } from "features/link";
 import { LevelOne } from "constants/AuthRoles";
-import { LightboxImages } from "features/lightbox";
+import LightboxImages from "features/lightbox";
 
 const Episode = () => {
   const {

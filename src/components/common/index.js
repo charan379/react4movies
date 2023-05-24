@@ -5,6 +5,6 @@ import { ProgressBar } from "./ProgresBar";
 import { ReactSelector } from "./ReactSelector";
 import { ShowLessNames } from "./ShowLessNames";
 import { ShowLessText } from "./ShowLessText";
+import VerticalBarLoaders from "./VerticalBarLoaders";
 
-
-export { Loader, Terminal, Pagination, ProgressBar, ReactSelector, ShowLessNames, ShowLessText }
+export { Loader, Terminal, Pagination, ProgressBar, ReactSelector, VerticalBarLoaders, ShowLessNames, ShowLessText }

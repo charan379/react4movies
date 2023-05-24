@@ -53,6 +53,6 @@
 
 @media (max-width: 600px) {
   .link-list {
-    justify-content: space-around;
+    align-items: center;
   }
 }

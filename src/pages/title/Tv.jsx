@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, useState } from "react";
 import { useAuth, useTheme, useTitle } from "hooks";
 import { TitleDetails, TitlePoster } from "components/title";
 import { TitleActions } from "features/title-actions";
@@ -8,7 +8,9 @@ import { Head } from "layout";
 import { LinkList } from "features/link";
 import ShortForms from "constants/ShortForms";
 import { LevelOne } from "constants/AuthRoles";
-import { LightboxImages } from "features/lightbox";
+import { VerticalBarLoaders } from "components/common";
+
+const LightboxImages = React.lazy(() => import("features/lightbox"));
 
 // Tv component
 const Tv = () => {
@@ -20,6 +22,9 @@ const Tv = () => {
   // Get the title from the useTitle hook
   const { title: tv } = useTitle();
 
+  const [sections, setSections] = useState({
+    images: false,
+  });
   // Render the title page
   return (
     <>
@@ -125,7 +130,13 @@ const Tv = () => {
 
         {/* images */}
         <div className="title-images-section">
-          <h2 className="page-section-heading" id="images">
+          <h2
+            className="page-section-heading"
+            id="images"
+            onClick={() =>
+              setSections({ ...sections, images: !sections.images })
+            }
+          >
             Images
             <span>
               &nbsp;
@@ -133,7 +144,14 @@ const Tv = () => {
               <i className="fas fa-chevron-right fa-lg"></i>
             </span>
           </h2>
-          <LightboxImages imagesProp={tv?.images ?? []} />
+          {console.log(sections)}
+          {sections.images && (
+            <>
+              <Suspense fallback={<VerticalBarLoaders />}>
+                <LightboxImages imagesProp={tv?.images ?? []} />
+              </Suspense>
+            </>
+          )}
         </div>
       </div>
     </>
