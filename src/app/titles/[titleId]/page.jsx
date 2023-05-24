@@ -16,9 +16,15 @@ export async function generateMetadata({ params: { titleId } }) {
       siteName: "React4Movies",
       images: [
         {
-          url: data?.poster_path,
+          url: 'https://nextjs.org/og.png',
           width: 800,
           height: 600,
+        },
+        {
+          url: 'https://nextjs.org/og-alt.png',
+          width: 1800,
+          height: 1600,
+          alt: 'My custom alt',
         },
       ],
       locale: "en-US",
@@ -28,7 +34,7 @@ export async function generateMetadata({ params: { titleId } }) {
       card: "summary_large_image",
       title: data?.title,
       description: data?.overview,
-      images: [data?.poster_path],
+      images: ['https://nextjs.org/og.png'],
     },
   };
 }
