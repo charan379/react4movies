@@ -11,20 +11,14 @@ export async function generateMetadata({ params: { titleId } }) {
     description: data?.overview,
     openGraph: {
       title: data?.title,
-      description: data?.tagline,
+      description: data?.overview,
       url: "https://nextjs.org",
       siteName: "React4Movies",
       images: [
         {
-          url: 'https://nextjs.org/og.png',
-          width: 800,
-          height: 600,
-        },
-        {
-          url: 'https://nextjs.org/og-alt.png',
-          width: 1800,
-          height: 1600,
-          alt: 'My custom alt',
+          url: data?.poster_path,
+          width: 750,
+          height: 500,
         },
       ],
       locale: "en-US",
@@ -34,7 +28,7 @@ export async function generateMetadata({ params: { titleId } }) {
       card: "summary_large_image",
       title: data?.title,
       description: data?.overview,
-      images: ['https://nextjs.org/og.png'],
+      images: [data?.poster_path],
     },
   };
 }
@@ -44,5 +38,10 @@ export default async function Title({ params: { titleId } }) {
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
 
-  return <div>Title : {titleId}</div>;
+  return (
+    <div>
+      Title : {titleId}
+      <img src={data?.poster_path} />
+    </div>
+  );
 }
