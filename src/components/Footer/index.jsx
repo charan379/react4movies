@@ -7,7 +7,7 @@ import tmdbLogo from "@/assets/icons/tmdbLogo.svg";
 import Image from "next/image";
 import { useTheme } from "@/redux/hooks/useTheme";
 
-export const Footer = () => {
+export default function Footer() {
   const { theme } = useTheme();
   return (
     <>
@@ -41,4 +41,4 @@ export const Footer = () => {
       </div>
     </>
   );
-};
+}

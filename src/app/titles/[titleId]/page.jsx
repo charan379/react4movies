@@ -1,4 +1,4 @@
-import ReduxTest from "@/components/layout/Test/ReduxTest";
+import ReduxTest from "@/components/Test/ReduxTest";
 import { store } from "@/redux/store";
 import axios from "axios";
 import React from "react";
@@ -76,7 +76,7 @@ export default async function Title({ params: { titleId } }) {
   );
 
   return (
-    <div style={{ margin: "100px" }}>
+    <div>
       <button>SSR: {test.getState().theme?.mode}</button>
       <ReduxTest />
       Title : {titleId}
