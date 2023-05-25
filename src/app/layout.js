@@ -1,4 +1,5 @@
 import './globals.css'
+import './app.css'
 import './tooltip.css'
 import { Inter } from 'next/font/google'
 import ReduxProvider from '@/redux/ReduxProvider'

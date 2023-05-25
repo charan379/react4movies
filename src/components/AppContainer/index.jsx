@@ -5,6 +5,7 @@ import React from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import { useTheme } from "@/redux/hooks/useTheme";
+import TopLoadingBar from "../TopLoadingBar";
 
 export default function AppContainer({ children }) {
   const { theme } = useTheme();
@@ -12,7 +13,7 @@ export default function AppContainer({ children }) {
   return (
     <div className={`${styles.appContainer} ${styles?.[theme]}`}>
       {/* Top Loading progress bar */}
-      {/* <TopLoadingBar /> */}
+      <TopLoadingBar />
       {/* header at top */}
       <Header />
 

@@ -13,6 +13,7 @@ import {
 
 import cartReducer from './features/cart/cartSlice';
 import themeReducer from './features/theme/themeSlice';
+import progressBarReducer from './features/progressbar/progressBarSlice';
 
 const createNoopStorage = () => {
     return {
@@ -41,6 +42,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     cart: cartReducer,
     theme: themeReducer,
+    progressbar: progressBarReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
