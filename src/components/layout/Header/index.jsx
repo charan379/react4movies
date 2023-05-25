@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./Header.module.css";
 import React from "react";
 import Link from "next/link";
@@ -6,9 +8,10 @@ import user from "@/assets/icons/user.svg";
 import day from "@/assets/icons/day.svg";
 import night from "@/assets/icons/night.svg";
 import Image from "next/image";
+import { useTheme } from "@/redux/hooks/useTheme";
 
 export default function Header() {
-  const theme = "dark";
+  const { theme, toogleTheme } = useTheme();
   const auth = {
     userName: "admin",
   };
@@ -27,7 +30,6 @@ export default function Header() {
         </div>
 
         <ul className={styles.navItems}>
-          {/* <ToogleTheme className={styles.navItem}> */}
           <li className={styles.navItem}>
             <span
               style={{ display: "inline-block", height: "auto" }}
@@ -37,16 +39,17 @@ export default function Header() {
               data-flow="left"
             >
               <Image
+                style={{ cursor: "pointer" }}
                 className={styles.navImg}
                 src={theme === "light" ? day : night}
                 alt={`toggle ${theme} theme`}
                 priority={true}
                 height={40}
                 width={40}
+                onClick={() => toogleTheme()}
               ></Image>
             </span>
           </li>
-          {/* </ToogleTheme> */}
           <div className={styles.navbarDropdown}>
             <li className={styles.navItem}>
               <Link href={"#"} title="User" tabIndex="0">

@@ -1,3 +1,5 @@
+import ReduxTest from "@/components/layout/Test/ReduxTest";
+import { store } from "@/redux/store";
 import axios from "axios";
 import React from "react";
 
@@ -66,12 +68,17 @@ export async function generateMetadata({ params: { titleId } }) {
 }
 
 export default async function Title({ params: { titleId } }) {
+  const test = store;
+  console.log(test.getState().theme);
+
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
 
   return (
-    <div>
+    <div style={{ margin: "100px" }}>
+      <button>SSR: {test.getState().theme?.mode}</button>
+      <ReduxTest />
       Title : {titleId}
       <img src={data?.poster_path} />
     </div>

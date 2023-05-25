@@ -1,13 +1,17 @@
+"use client";
+
 import styles from "./Footer.module.css";
 import React from "react";
 import Link from "next/link";
 import tmdbLogo from "@/assets/icons/tmdbLogo.svg";
 import Image from "next/image";
+import { useTheme } from "@/redux/hooks/useTheme";
 
 export const Footer = () => {
+  const { theme } = useTheme();
   return (
     <>
-      <div className={`${styles.footer} ${styles.dark}`}>
+      <div className={`${styles.footer} ${styles?.[theme]}`}>
         <Link href="#" tabIndex="-1">
           <span>
             {" "}
