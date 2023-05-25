@@ -16,9 +16,39 @@ export async function generateMetadata({ params: { titleId } }) {
       siteName: "React4Movies",
       images: [
         {
-          url: data?.poster_path,
-          width: 750,
-          height: 500,
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w92"),
+          width: 92,
+          height: 138,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w154"),
+          width: 154,
+          height: 231,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w185"),
+          width: 185,
+          height: 278,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w342"),
+          width: 342,
+          height: 513,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w500"),
+          width: 500,
+          height: 750,
         },
       ],
       locale: "en-US",
@@ -28,7 +58,9 @@ export async function generateMetadata({ params: { titleId } }) {
       card: "summary_large_image",
       title: data?.title,
       description: data?.overview,
-      images: [data?.poster_path],
+      images: [
+        data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
+      ],
     },
   };
 }
