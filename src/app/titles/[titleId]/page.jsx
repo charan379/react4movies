@@ -67,7 +67,7 @@ export async function generateMetadata({ params: { titleId } }) {
   };
 }
 
-export default async function Title({ params: { titleId } }) {
+export default async function TitlePage({ params: { titleId } }) {
   const test = store;
   console.log(test.getState().theme);
 
