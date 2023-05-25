@@ -1,0 +1,8 @@
+
+export const AppConfig = {
+    MOVIEBUNKERS_API: process.env.MOVIEBUNKERS_API,
+    MOVIEBUNKERS_IMAGES: process.env.MOVIEBUNKERS_IMAGES,
+    TMDB_API: process.env.TMDB_API_WRAPPER,
+    GUEST_USERNAME: process.env.GUEST_USERNAME,
+    GUEST_PASSWORD: process.env.GUEST_PASSWORD,
+}
