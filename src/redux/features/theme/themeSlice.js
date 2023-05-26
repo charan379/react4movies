@@ -9,11 +9,16 @@ export const themeSlice = createSlice({
     initialState,
     reducers: {
         switchTheme: (state) => {
-            const currentTheme = state.mode;
-            if (currentTheme === 'light') {
-                state.mode = 'dark';
-            } else {
-                state.mode = 'light'
+            switch (state.mode) {
+                case 'light':
+                    state.mode = 'dark';
+                    break;
+                case 'dark':
+                    state.mode = 'light';
+                    break;
+                default:
+                    state.mode = 'light';
+                    break;
             }
         },
 

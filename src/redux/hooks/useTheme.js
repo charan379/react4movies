@@ -12,16 +12,22 @@ export function useTheme() {
 
     const [isDarkSystem, setIsDarkSystem] = useState(getSysPreference());
 
-    const sysPreferenceListner = ((event) => {
+    function initTheme() {
+        if (isDarkSystem && theme?.mode === "") {
+            dispatch(setTheme('dark'))
+        } else if (!isDarkSystem && theme?.mode === "") {
+            dispatch(setTheme('light'))
+        }
+    }
 
-        setIsDarkSystem(event?.matches && theme?.mode === 'dark');
-
+    function sysPreferenceListner(event) {
+        setIsDarkSystem(event?.matches);
         if (event?.matches) {
             dispatch(setTheme('dark'))
         } else {
             dispatch(setTheme('light'))
         }
-    })
+    }
 
     function changeCssRootVariables(theme) {
         const cssRoot = document.querySelector(':root');
@@ -76,6 +82,8 @@ export function useTheme() {
     const memoizedCssRootChangeHandler = useMemo(() => changeCssRootVariables(theme?.mode), [theme?.mode])
 
     useEffect(() => {
+        initTheme();
+
         memoizedCssRootChangeHandler;
 
         document.body.setAttribute('data-theme', theme?.mode)
@@ -87,7 +95,7 @@ export function useTheme() {
         return () => {
             darkThemeMq.removeEventListener('change', sysPreferenceListner)
         }
-    }, [theme?.mode, isDarkSystem])
+    }, [theme?.mode])
 
     return {
         theme: theme?.mode,
