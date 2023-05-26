@@ -12,18 +12,11 @@
   bottom: 0;
   margin: 0px;
   max-height: 25px;
+  background-color: var(--bg-color);
 }
 
 .footer img {
   width: 40px;
-}
-
-.footer.light {
-  background-color: var(--bg-light);
-}
-
-.footer.dark {
-  background-color: var(--bg-dark);
 }
 
 .footer a {
@@ -32,14 +25,7 @@
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
-}
-
-.footer.light a {
-  color: var(--font-color-light);
-}
-
-.footer.dark a {
-  color: var(--font-color-dark);
+  color: var(--font-color);
 }
 
 @media (max-width: 420px) {

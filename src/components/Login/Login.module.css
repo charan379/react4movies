@@ -12,18 +12,9 @@
   border-radius: 10px;
   z-index: 999;
   overflow-y: scroll;
-}
-
-.loginModal.light {
-  color: var(--font-color-light);
-  background: var(--ui-element-light);
+  color: var(--font-color);
+  background: var(--ui-element-color);
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
-}
-
-.loginModal.dark {
-  color: var(--font-color-dark);
-  background: var(--ui-element-dark);
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 .loginModal h2 {
@@ -80,12 +71,13 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+
 .loginModal .loginButton {
   position: relative;
   display: inline-block;
   color: inherit;
-  padding: 5px;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
@@ -95,25 +87,17 @@
   outline: none;
   background: transparent;
   cursor: pointer;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
-}
-
-.loginModal.light .loginButton {
-  color: var(--font-color-dark);
-  background-color: var(--ui-element-dark);
-}
-
-.loginModal.dark .loginButton {
-  color: var(--font-color-light);
-  background-color: var(--ui-element-light);
+  border-radius: 3px;
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
 .loginModal .links .link {
   position: relative;
   display: inline-block;
   color: inherit;
-  padding: 5px;
+  padding: 8px;
   font-size: 10px;
   text-decoration: none;
   text-transform: uppercase;
@@ -125,7 +109,7 @@
   background: transparent;
   width: max-content;
   cursor: pointer;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
 }
 
@@ -133,7 +117,7 @@
   background: #604add;
   color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #604add, 0 0 25px #604add, 0 0 10px #604add,
+  box-shadow: 0 0 0px #604add, 0 0 0px #604add, 0 0 0px #604add,
     0 0 10px #604add;
 }
 
@@ -152,5 +136,17 @@
 @media (max-height: 420px) {
   .loginModal {
     height: 280px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .loginModal {
+    color: var(--font-color);
+    background: var(--ui-element-color);
+  }
+
+  .loginModal .loginButton {
+    background-color: var(--ui-element-hover-color);
+    color: var(--ui-element-hover-font-color);
   }
 }

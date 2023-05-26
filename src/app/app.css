@@ -9,14 +9,7 @@
 body {
   overflow-y: scroll;
   font-family: Roboto, Helvetica, Arial, sans-serif;
-}
-
-body.light {
-  background-color: var(--bg-light);
-}
-
-body.dark {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-color);
 }
 
 * {
@@ -89,19 +82,12 @@ select:-webkit-autofill:focus {
   justify-content: space-around;
   flex-wrap: wrap;
   align-content: space-around;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
 }
 
 .global-last-card .more-button-section {
   width: 100%;
-}
-.global-last-card.light {
-  background-color: var(--ui-element-light);
-  color: var(--font-color-light);
-}
-
-.global-last-card.dark {
-  background-color: var(--ui-element-dark);
-  color: var(--font-color-dark);
 }
 
 .global-last-card .more-button {
@@ -125,14 +111,6 @@ select:-webkit-autofill:focus {
   align-content: space-around;
   flex-direction: column;
   flex-wrap: wrap;
-}
-
-.global-last-card.light .more-button span {
-  background-color: hsla(0, 0%, 3%, 0.7);
-  border: 3px solid hsl(0, 0%, 100%);
-}
-
-.global-last-card.dark .more-button span {
   background-color: hsla(0, 0%, 3%, 0.7);
   border: 3px solid hsl(0, 0%, 100%);
 }
@@ -204,13 +182,13 @@ select:-webkit-autofill:focus {
   color: #f55a18;
 }
 
-body.light .sub-heading::before,
-body.light .sub-heading::after {
+body[data-theme="light"] .sub-heading::before,
+body[data-theme="light"] .sub-heading::after {
   color: #f55a18;
 }
 
-body.dark .sub-heading::before,
-body.dark .sub-heading::after {
+body[data-theme="dark"] .sub-heading::before,
+body[data-theme="dark"] .sub-heading::after {
   color: #f5c518;
 }
 
@@ -260,13 +238,13 @@ body.dark .sub-heading::after {
   font-size: larger;
 }
 
-body.light .link-tree-child::before,
-body.light .link-tree-child::after {
+body[data-theme="light"] .link-tree-child::before,
+body[data-theme="light"] .link-tree-child::after {
   color: #f55a18;
 }
 
-body.dark .link-tree-child::before,
-body.dark .link-tree-child::after {
+body[data-theme="dark"] .link-tree-child::before,
+body[data-theme="dark"] .link-tree-child::after {
   color: #f5c518;
 }
 

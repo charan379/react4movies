@@ -5,13 +5,11 @@ import React from "react";
 import Link from "next/link";
 import tmdbLogo from "@/assets/icons/tmdbLogo.svg";
 import Image from "next/image";
-import { useTheme } from "@/redux/hooks/useTheme";
 
 export default function Footer() {
-  const { theme } = useTheme();
   return (
     <>
-      <div className={`${styles.footer} ${styles?.[theme]}`}>
+      <div className={styles.footer}>
         <Link href="#" tabIndex="-1">
           <span>
             {" "}

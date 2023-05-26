@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./Header.module.css";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import appLogo from "@/assets/icons/appLogo.svg";
 import user from "@/assets/icons/user.svg";
@@ -15,9 +15,12 @@ export default function Header() {
   const auth = {
     userName: "admin",
   };
+
+  const [showDrop, setShowDrop] = useState(false);
+
   return (
     <>
-      <nav className={`${styles.navbar} ${styles?.[theme]}`}>
+      <nav className={styles.navbar}>
         <div className={styles.navTitle}>
           <Image
             className={styles.navImg}
@@ -52,18 +55,21 @@ export default function Header() {
           </li>
           <div className={styles.navbarDropdown}>
             <li className={styles.navItem}>
-              <Link href={"#"} title="User" tabIndex="0">
-                <Image
-                  className={styles.navImg}
-                  src={user}
-                  alt="User controls"
-                  priority={true}
-                  height={40}
-                  width={40}
-                ></Image>
-              </Link>
+              <Image
+                className={styles.navImg}
+                src={user}
+                alt="User controls"
+                priority={true}
+                height={40}
+                width={40}
+                onClick={() => setShowDrop(!showDrop)}
+              ></Image>
             </li>
-            <div className={`${styles.navbarDropdownContent}`}>
+            <div
+              className={`${styles.navbarDropdownContent} ${
+                showDrop ? styles.show : ""
+              }`}
+            >
               {auth?.userName ? (
                 <Link href={"#"}>{auth.userName}</Link>
               ) : (

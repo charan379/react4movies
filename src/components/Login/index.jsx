@@ -9,7 +9,6 @@ import Link from "next/link";
 
 export default function Login() {
   // Import hooks and components
-  const { theme } = useTheme();
   const [userName, setUsername] = useState(AppConfig.GUEST_USERNAME); // set the initial value of the username to the guest username from the AppConfig
   const [password, setPassword] = useState(AppConfig.GUEST_PASSWORD); // set the initial value of the password to the guest password from the AppConfig
   const [errors, setErrors] = useState(""); // set the initial value of the error message to an empty string
@@ -21,7 +20,7 @@ export default function Login() {
   };
   return (
     <>
-      <div className={`${styles.loginModal} ${styles?.[theme]}`}>
+      <div className={styles.loginModal}>
         {/* Login form */}
         <h2> LOGIN </h2>
         <form onSubmit={handleSubmit}>
