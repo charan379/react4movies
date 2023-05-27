@@ -73,13 +73,32 @@
 }
 
 .navbarDropdownContent a {
+  display: flex;
+  justify-content: space-between;
   color: inherit;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
+  text-align: left;
   border-radius: 10px;
   letter-spacing: 1px;
   cursor: pointer;
+  font-size: 1rem;
+}
+.navbarDropdownContent button {
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: left;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  border-width: 0px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
 }
 
 .navbarDropdown .navbarDropdownContent.show {
@@ -93,7 +112,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .navbarDropdownContent a:hover {
+  .navbarDropdownContent a:hover,
+  .navbarDropdownContent button:hover {
     background-color: var(--ui-element-hover-color);
     color: var(--ui-element-hover-font-color);
   }

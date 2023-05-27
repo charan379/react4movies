@@ -2,6 +2,8 @@
 
 import { useProgressBar } from "@/redux/hooks/useProgressBar";
 import { useTheme } from "@/redux/hooks/useTheme";
+import { useSession, signIn } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 export default function ReduxTest() {
@@ -17,6 +19,8 @@ export default function ReduxTest() {
   };
   return (
     <div>
+      <Link href={"/admin"}>AdminPage</Link>
+      <button onClick={() => signIn()}>Sign In</button>
       <button onClick={(event) => handleClick(event)}>{theme}</button>
 
       <button onClick={() => incProgress20()}>Inc Pro 20</button>

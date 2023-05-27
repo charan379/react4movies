@@ -1,23 +1,65 @@
 "use client";
 
-import { AppConfig } from "@/app.config";
 import styles from "./Login.module.css";
-
-import { useTheme } from "@/redux/hooks/useTheme";
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useToastify } from "@/lib/hooks/useToastify";
+import BarsLoadingAnimation from "../BarsLoadingAnimation";
 
 export default function Login() {
   // Import hooks and components
-  const [userName, setUsername] = useState(AppConfig.GUEST_USERNAME); // set the initial value of the username to the guest username from the AppConfig
-  const [password, setPassword] = useState(AppConfig.GUEST_PASSWORD); // set the initial value of the password to the guest password from the AppConfig
+  const [isLoading, setIsLoading] = useState(false);
+  const [userName, setUsername] = useState(""); // set the initial value of the username to the guest username from the AppConfig
+  const [password, setPassword] = useState(""); // set the initial value of the password to the guest password from the AppConfig
   const [errors, setErrors] = useState(""); // set the initial value of the error message to an empty string
   const [showPassword, setShowPassword] = useState(false);
+  //
+  const { ToastContainer, toastContainerOptions, toast } = useToastify(); // get the ToastContainer, options and toast function from the ToastifyProvider
+  //
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleSubmit = async () => {
     // Prevent default form submission
     event.preventDefault();
+    setErrors("");
+    setIsLoading(true);
+
+    try {
+      const response = await signIn("credentials", {
+        username: userName,
+        password: password,
+        redirect: false,
+      });
+
+      if (response?.status !== 200 || response?.error) {
+        setErrors(response?.error);
+        toast.error(response?.error ?? "Somthing went wrong", {
+          autoClose: 3500,
+          position: "top-right",
+          closeButton: true,
+          closeOnClick: true,
+        });
+        return;
+      }
+
+      if (response?.status === 200) {
+        if (!!searchParams.get("callbackUrl")) {
+          router.push(searchParams.get("callbackUrl"));
+          return;
+        } else {
+          if (response?.status === 200) router.back();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
     <>
       <div className={styles.loginModal}>
@@ -59,12 +101,17 @@ export default function Login() {
             <label>Password</label>
           </div>
           {/* Error message */}
-          <div className="error-message" style={{ margin: "0px" }}>
+          <div
+            className="error-message"
+            data-error={!!errors}
+            style={{ margin: "0px" }}
+          >
             {errors ? errors : null}
           </div>
+
           <div className={styles.container}>
             {/* Login button */}
-            {userName !== AppConfig.GUEST_USERNAME && (
+            {!isLoading && (
               <button
                 className={styles.loginButton}
                 style={{ float: "left" }}
@@ -73,16 +120,8 @@ export default function Login() {
                 <span>Login</span>
               </button>
             )}
-            {/* Login as Guest button */}
-            {userName === AppConfig.GUEST_USERNAME && (
-              <button
-                className={styles.loginButton}
-                style={{ float: "left" }}
-                onClick={handleSubmit}
-              >
-                <span>Login as Guest</span>
-              </button>
-            )}
+
+            {isLoading && <BarsLoadingAnimation />}
           </div>
           <br />
         </form>
@@ -117,6 +156,8 @@ export default function Login() {
           </Link>
         </div>
       </div>
+      {/* Toast container */}
+      <ToastContainer {...toastContainerOptions} />
     </>
   );
 }

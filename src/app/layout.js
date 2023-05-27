@@ -1,9 +1,18 @@
 import './globals.css'
 import './app.css'
 import './tooltip.css'
+import 'react-toastify/dist/ReactToastify.css'
+// import Font Awesome CSS
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import { Inter } from 'next/font/google'
 import ReduxProvider from '@/redux/ReduxProvider'
 import AppContainer from '@/components/AppContainer'
+import NextAuthContext from './NextAuthContext'
+
+// Tell Font Awesome to skip adding the CSS automatically 
+// since it's already imported above
+config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +27,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <AppContainer >
-            {children}
-          </AppContainer>
+          <NextAuthContext >
+            <AppContainer >
+              {children}
+            </AppContainer>
+          </NextAuthContext>
         </ReduxProvider>
       </body>
     </html>

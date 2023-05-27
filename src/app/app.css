@@ -248,11 +248,13 @@ body[data-theme="dark"] .link-tree-child::after {
   color: #f5c518;
 }
 
-.errorMessage {
+.error-message {
   text-align: center;
-  color: rgb(176, 42, 69);
+  color: crimson;
   font-weight: bold;
-  /* margin-top: 100px; */
+}
+.error-message[data-error="true"]::after {
+  content: " !";
 }
 
 @media (hover: hover) and (pointer: fine) {

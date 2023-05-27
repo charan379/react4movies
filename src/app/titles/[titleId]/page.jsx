@@ -1,5 +1,7 @@
 import ReduxTest from "@/components/Test/ReduxTest";
+import { authOptions } from "@/lib/auth";
 import axios from "axios";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 export async function generateMetadata({ params: { titleId } }) {
@@ -70,6 +72,8 @@ export default async function TitlePage({ params: { titleId } }) {
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
+
+  const session = await getServerSession(authOptions);
 
   return (
     <div>
