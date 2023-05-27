@@ -1,6 +1,7 @@
 import './globals.css'
 import './app.css'
 import './tooltip.css'
+import './reactSlider.css'
 import 'react-toastify/dist/ReactToastify.css'
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css";

@@ -4,7 +4,7 @@ import axios from "axios";
 import { getServerSession } from "next-auth";
 import React from "react";
 
-export async function generateMetadata({ params: { titleId } }) {
+export async function generateMetadata({ params: { database, titleId } }) {
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
@@ -68,7 +68,7 @@ export async function generateMetadata({ params: { titleId } }) {
   };
 }
 
-export default async function TitlePage({ params: { titleId } }) {
+export default async function TitlePage({ params: { database, titleId } }) {
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );

@@ -21,7 +21,7 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     // Prevent default form submission
     event.preventDefault();
     setErrors("");
@@ -46,8 +46,13 @@ export default function Login() {
       }
 
       if (response?.status === 200) {
-        if (!!searchParams.get("callbackUrl")) {
-          router.push(searchParams.get("callbackUrl"));
+        if (!!searchParams.has("callbackUrl")) {
+          const callbackUrl = new URL(searchParams.get("callbackUrl"));
+          router.push(`${callbackUrl.pathname}`, {
+            query: {
+              ...Object.fromEntries(callbackUrl.searchParams.entries()),
+            },
+          });
           return;
         } else {
           if (response?.status === 200) router.back();

@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className={styles.navbar}>
+      <nav className={styles.navbar} data-role="header">
         <div className={styles.navTitle}>
           <Image
             className={styles.navImg}
@@ -84,7 +84,7 @@ export default function Header() {
               {user?.userName ? (
                 <button onClick={() => signOut()}>
                   Logout{" "}
-                  <span >
+                  <span>
                     <FontAwesomeIcon icon={faPowerOff} size="lg" />
                   </span>
                 </button>

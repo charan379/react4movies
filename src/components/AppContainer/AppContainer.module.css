@@ -18,20 +18,16 @@
   align-content: center;
   align-items: center;
   margin-bottom: 100px;
-  padding-top: 5px;
+  padding: 5px;
   transition: margin-left var(---trans-container-margin);
 }
 
-.sidebar.close + .outlet {
+nav[data-role="sidebar"][data-open="false"] + .outlet {
   margin-left: 70px;
 }
 
-.sidebar + .outlet {
+nav[data-role="sidebar"][data-open="true"] + .outlet {
   margin-left: 240px;
-}
-
-.sidebar.none + .outlet {
-  margin-left: 3px;
 }
 
 .contentWrapper {

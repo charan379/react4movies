@@ -3,28 +3,52 @@ import React from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import TopLoadingBar from "../TopLoadingBar";
+import SideBar from "../Sidebar";
 
 export default function AppContainer({ children }) {
   return (
-    <div className={styles.appContainer}>
-      {/* Top Loading progress bar */}
-      <TopLoadingBar />
-      {/* header at top */}
-      <Header />
+    <>
+      {/*
+                              # App container structure #
+    ###########################################################################################
+    #                           Top Loading/Progress Bar                                      # 
+    ###########################################################################################
+    #             #                                                                           #
+    #             #                        Header                                             #       
+    #             #                                                                           #
+    #             # ###########################################################################                                                                          
+    #  Side Bar   #                                                                           #      
+    #             #                                                                           #
+    #             #                    Content (OutLet)                                       #
+    #             #                                                                           #
+    #             #                                                             # # # # # # # #
+    #             #                                                             #  Quick Ball #
+    #             #############################################################################  
+    #             #                      Footer                                               #    
+    ############################################################################################
+    
+    */}
 
-      {/* sidebar */}
-      {/* <SideBar /> */}
+      <div className={styles.appContainer} data-role="app">
+        {/* Top Loading progress bar */}
+        <TopLoadingBar />
+        {/* header at top */}
+        <Header />
 
-      {/* main content */}
-      <div className={styles.outlet}>
-        <div className={styles.contentWrapper}>
-          {/* <Outlet /> */}
-          {children}
+        {/* sidebar */}
+        <SideBar />
+
+        {/* main content */}
+        <div className={styles.outlet} data-role="outlet">
+          <div className={styles.contentWrapper}>
+            {/* <Outlet /> */}
+            {children}
+          </div>
+          {/* <QuickBall /> */}
         </div>
-        {/* <QuickBall /> */}
-      </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }

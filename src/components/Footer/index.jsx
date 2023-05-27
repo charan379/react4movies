@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <>
-      <div className={styles.footer}>
+      <div className={styles.footer} data-role="footer">
         <Link href="#" tabIndex="-1">
           <span>
             {" "}

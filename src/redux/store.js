@@ -11,9 +11,10 @@ import {
     REGISTER,
 } from 'redux-persist';
 
-import cartReducer from './features/cart/cartSlice';
 import themeReducer from './features/theme/themeSlice';
 import progressBarReducer from './features/progressbar/progressBarSlice';
+import tmdbqueryReducer from './features/query/tmdbQuerySlice';
+import mbdbqueryReducer from './features/query/mbdbQuerySlice';
 
 const createNoopStorage = () => {
     return {
@@ -40,9 +41,10 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    cart: cartReducer,
     theme: themeReducer,
     progressbar: progressBarReducer,
+    tmdbquery: tmdbqueryReducer,
+    mbdbquery: mbdbqueryReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
