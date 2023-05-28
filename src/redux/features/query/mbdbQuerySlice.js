@@ -26,12 +26,22 @@ export const mbdbQuerySlice = createSlice({
         updateQuery: (state, action) => {
             const newQuery = action.payload
             for (let [key, value] of Object.entries(newQuery)) {
-                state[key] = value
+                if (key === 'minimal' || key === 'restTime') {
+                    continue;
+                } else {
+                    state[key] = value;
+                }
             }
         },
 
         resetQuery: (state) => {
-            state = { ...initialState, restTime: new Date() }
+            for (let [key, value] of Object.entries(initialState)) {
+                if (key === 'restTime') {
+                    state[key] = new Date();
+                } else {
+                    state[key] = value;
+                }
+            }
         }
 
     }
