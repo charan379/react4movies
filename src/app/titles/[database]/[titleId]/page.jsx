@@ -1,5 +1,5 @@
 import ReduxTest from "@/components/Test/ReduxTest";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/lib/nextauth/auth";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import React from "react";
