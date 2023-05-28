@@ -5,7 +5,6 @@ import { updateQuery, resetQuery } from "../features/query/mbdbQuerySlice";
 export function useMbdbQuery() {
     const mbdbQuery = useSelector((state) => state.mbdbquery);
 
-    console.log('mbdb quwersd : ', mbdbQuery)
     const dispatch = useDispatch();
 
     return {
