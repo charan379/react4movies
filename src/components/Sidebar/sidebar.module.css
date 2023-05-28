@@ -164,24 +164,20 @@ header .sidebarImageText .sidebarHeaderText {
   font-style: normal;
   font-weight: bold;
 }
-.sidebar li .icon.menu-item {
+.sidebar li .icon.menuItem {
   margin: 2px;
   cursor: pointer;
+  border-width: 0px;
+  padding: 5px 0px 4px 0px;
+  color: var(--font-color);
 }
 
-.sidebar.light li .icon.menu-item {
-  color: var(--font-color-light);
-}
-.sidebar.dark li .icon.menu-item {
-  color: var(--font-color-dark);
-}
-
-.sidebar.dark li .icon.menu-item[data-value="0"] {
-  color: #ffffff4f;
-}
-
-.sidebar.light li .icon.menu-item[data-value="0"] {
+body[data-theme="light"] .sidebar li .icon.menuItem[data-value="0"] {
   color: #0000004f;
+}
+
+body[data-theme="dark"] .sidebar li .icon.menuItem[data-value="0"] {
+  color: #ffffff4f;
 }
 
 .sidebar li .icon.closed {
@@ -308,30 +304,35 @@ header .sidebarImageText .sidebarHeaderText {
     background-color: var(--ui-element-hover-color);
   }
 
-  .sidebar.light li:hover .icon.menu-item,
-  .sidebar.dark li:hover .icon.menu-item:hover {
-    color: var(--font-color-dark);
-    background-color: var(--ui-element-dark);
-  }
-  .sidebar.dark li:hover .icon.menu-item,
-  .sidebar.light li:hover .icon.menu-item:hover {
-    color: var(--font-color-light);
-    background-color: var(--ui-element-light);
+  .sidebar li:hover .icon.menuItem {
+    color: var(--ui-element-hover-font-color);
+    background-color: var(--ui-element-hover-color);
   }
 
-  .sidebar.dark li:hover .icon.menu-item[data-value="0"] {
+  .sidebar li:hover .icon.menuItem:hover {
+    color: var(--font-color);
+    background-color: var(--ui-element-color);
+  }
+
+  body[data-theme="dark"] .sidebar li:hover .icon.menuItem[data-value="0"] {
     color: #0000004f;
   }
 
-  .sidebar.light li:hover .icon.menu-item[data-value="0"] {
+  body[data-theme="light"] .sidebar li:hover .icon.menuItem[data-value="0"] {
     color: #ffffff4f;
   }
 
-  .sidebar.dark li:hover .icon.menu-item[data-value="0"]:hover {
+  body[data-theme="dark"]
+    .sidebar
+    li:hover
+    .icon.menuItem[data-value="0"]:hover {
     color: #ffffff4f;
   }
 
-  .sidebar.light li:hover .icon.menu-item[data-value="0"]:hover {
+  body[data-theme="light"]
+    .sidebar
+    li:hover
+    .icon.menuItem[data-value="0"]:hover {
     color: #0000004f;
   }
 }

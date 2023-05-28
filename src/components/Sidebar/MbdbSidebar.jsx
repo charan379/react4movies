@@ -7,16 +7,20 @@ import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 import iso369Language from "@/constants/iso369-1--full.json";
 import { fetchAvailableLanguages } from "@/lib/api/moviebunkers/methods/fetchAvailableLanguages";
 import { fetchAvailableGenres } from "@/lib/api/moviebunkers/methods/fetchAvailableGenres";
+import findClosestAncestorOfType from "@/lib/utils/findClosestAncestorOfType";
 import ReactSelector from "../ReactSelector";
+import ReactSlider from "react-slider";
+// font awesome library
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+library.add(fas, far, fab);
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLanguage,
-  faSearch,
-  faSortAlphaAsc,
-  faTh,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
-import ReactSlider from "react-slider";
+  mbdbQueryPageResultsOptions,
+  mbdbQuerySortOptions,
+} from "@/constants/mbdbquery";
 
 // Moviebunkers sidebar
 export default function MbdbSidebar({ searchRef }) {
@@ -60,9 +64,21 @@ export default function MbdbSidebar({ searchRef }) {
 
   // Updates the query parameters when filter toggle switches
   const handleFilterToggle = (event) => {
+    event.preventDefault();
+
+    const toggler = findClosestAncestorOfType(event?.target, "BUTTON", 10);
+    if (
+      toggler === null ||
+      !toggler?.dataset?.id ||
+      !toggler?.dataset?.toggle
+    ) {
+      console.log("invalid toggler at mbdb filters");
+      return;
+    }
+
     updateMbdbQuery({
       ...mbdbQuery,
-      [event.target.dataset.id]: event.target.dataset.toggle, // Update the query parameter with the filter toggle value
+      [toggler.dataset.id]: toggler.dataset.toggle, // Update the query parameter with the filter toggle value
       pageNo: 1, // Reset the page number to 1
     });
     // scrollToTop(); // Scroll to top of page
@@ -128,7 +144,7 @@ export default function MbdbSidebar({ searchRef }) {
           {/* title */}
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={faSearch} />
+              <FontAwesomeIcon icon={["fas", "search"]} />
             </span>
             <input
               ref={searchRef}
@@ -151,7 +167,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={faTh} />
+              <FontAwesomeIcon icon={["fas", "th"]} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="genre">
               <ReactSelector
@@ -172,7 +188,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={faLanguage} />
+              <FontAwesomeIcon icon={["fas", "language"]} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="language">
               <ReactSelector
@@ -199,22 +215,23 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={faSortAlphaAsc} />
+              <FontAwesomeIcon icon={["fas", "sort-alpha-asc"]} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="sort_by">
               <ReactSelector
                 name={"sort_by"}
                 handleSelectChange={handleSelectChange}
                 selectedOption={{
-                  value: mbdbQuery.sort_by,
-                  label: mbdbQuery.sort_by,
+                  value: mbdbQuery.sort_by || "",
+                  label: mbdbQuery.sort_by
+                    ? mbdbQuerySortOptions.map((option) => {
+                        if (option.value === mbdbQuery.sort_by) {
+                          return option.label;
+                        }
+                      })
+                    : "",
                 }}
-                options={[
-                  { label: "Year Desc", value: "year.desc" },
-                  { label: "Year Asc", value: "year.asc" },
-                  { label: "Added Desc", value: "createdAt.desc" },
-                  { label: "Added Asc", value: "createdAt.asc" },
-                ]}
+                options={mbdbQuerySortOptions}
               />
             </label>
           </li>
@@ -233,16 +250,16 @@ export default function MbdbSidebar({ searchRef }) {
                 name={"limit"}
                 handleSelectChange={handleSelectChange}
                 selectedOption={{
-                  value: mbdbQuery.limit,
-                  label: mbdbQuery.limit,
+                  value: mbdbQuery.limit || "",
+                  label: mbdbQuery.limit
+                    ? mbdbQueryPageResultsOptions.map((option) => {
+                        if (option.value === mbdbQuery.limit) {
+                          return option.label;
+                        }
+                      })
+                    : "",
                 }}
-                options={[
-                  { label: "Ten", value: 10 },
-                  { label: "Twenty", value: 20 },
-                  { label: "Thirty", value: 30 },
-                  { label: "Forty", value: 40 },
-                  { label: "Fifty", value: 50 },
-                ]}
+                options={mbdbQueryPageResultsOptions}
               />
             </label>
           </li>
@@ -253,10 +270,10 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={faUsers} />
+              <FontAwesomeIcon icon={["fas", "users-gear"]} />
             </span>
             <ReactSlider
-              key={"age-slider-" + mbdbQuery?.restTime}
+              key={`age-slider-${mbdbQuery?.restTime}`}
               data-form="mbdbQueryForm"
               data-id="age"
               className={`horizontalSlider`}
@@ -269,9 +286,15 @@ export default function MbdbSidebar({ searchRef }) {
               max={26}
               min={0}
               minDistance={6}
-              renderThumb={(props, state) => (
-                <div {...props}>{state.valueNow}</div>
-              )}
+              renderThumb={(props, state) => {
+                const key = props.key;
+                delete props.key;
+                return (
+                  <div key={key} {...props}>
+                    {state.valueNow}
+                  </div>
+                );
+              }}
               onChange={handleAgeChange}
             />
           </li>
@@ -281,37 +304,46 @@ export default function MbdbSidebar({ searchRef }) {
             <span>Filter By</span>
           </li>
           <li className={styles.menuItem}>
-            <i className={`fas fa-filter icon closed`} />
-
+            <span className={`${styles.icon} ${styles.closed}`}>
+              <FontAwesomeIcon icon={["fas", "filter"]} />
+            </span>
             {mbdbQuery?.movie == 1 && (
               <button
-                className={`fas fa-film icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="movie"
                 data-name="movie"
                 data-value={1}
                 data-toggle={0}
-                title="filters with movies"
+                title="movie"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "film"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.movie == 0 && (
               <button
-                className={`fas fa-film icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="movie"
                 data-name="movie"
                 data-value={0}
                 data-toggle={1}
-                title="filters without movies"
+                title="movies"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "film"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.tv == 1 && (
               <button
-                className={`fas fa-tv icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="tv"
                 data-name="tv"
                 data-value={1}
@@ -319,12 +351,16 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters with tv shows"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "tv"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.tv == 0 && (
               <button
-                className={`fas fa-tv icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="tv"
                 data-name="tv"
                 data-value={0}
@@ -332,12 +368,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters without tv shows"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "tv"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.seen == 1 && (
               <button
-                className={`fas fa-eye icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
+                // className={`fas fa-eye icon menu-item`}
                 data-id="seen"
                 data-name="seen"
                 data-value={1}
@@ -345,12 +386,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters seen titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "eye"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.seen == -1 && (
               <button
-                className={`fas fa-eye-slash icon menu-item`}
+                // className={`fas fa-eye-slash icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="seen"
                 data-name="seen"
                 data-value={-1}
@@ -358,12 +404,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters unseen titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "eye-slash"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.seen == 0 && (
               <button
-                className={`far fa-eye icon menu-item`}
+                // className={`far fa-eye icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="seen"
                 data-name="seen"
                 data-value={0}
@@ -371,12 +422,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["far", "eye"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.favourite == 1 && (
               <button
-                className={`fas fa-heart icon menu-item`}
+                // className={`fas fa-heart icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="favourite"
                 data-name="favourite"
                 data-value={1}
@@ -384,12 +440,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters favourite titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "heart"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.favourite == 0 && (
               <button
-                className={`far fa-heart icon menu-item`}
+                // className={`far fa-heart icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="favourite"
                 data-name="favourite"
                 data-value={0}
@@ -397,12 +458,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["far", "heart"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.starred == 1 && (
               <button
-                className={`fas fa-star icon menu-item`}
+                // className={`fas fa-star icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="starred"
                 data-name="starred"
                 data-value={1}
@@ -410,12 +476,17 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters starred titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["fas", "star"]} />
+                </span>
+              </button>
             )}
 
             {mbdbQuery?.starred == 0 && (
               <button
-                className={`far fa-star icon menu-item`}
+                // className={`far fa-star icon menu-item`}
+                className={`${styles.icon} ${styles.menuItem}`}
                 data-id="starred"
                 data-name="starred"
                 data-value={0}
@@ -423,7 +494,11 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
-              ></button>
+              >
+                <span>
+                  <FontAwesomeIcon icon={["far", "star"]} />
+                </span>
+              </button>
             )}
           </li>
         </ul>
