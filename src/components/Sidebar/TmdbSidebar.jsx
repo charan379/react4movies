@@ -11,6 +11,8 @@ import {
   faTvAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import ReactSelector from "../ReactSelector";
+import { tmdbTitleTypeOptions } from "@/constants/tmdbquery";
+import { scrollToTop } from "@/lib/utils/scrollToTop";
 
 export default function TmdbSidebar({ searchRef }) {
   // Get the current search query and related functions using the `useTmdbSearch` hook
@@ -24,6 +26,7 @@ export default function TmdbSidebar({ searchRef }) {
       [event.target.dataset.id]: event.target.value,
       pageNo: 1,
     });
+    scrollToTop(); // Scroll to top of page
   };
 
   // Updates the query parameters when a select option is chosen
@@ -33,7 +36,7 @@ export default function TmdbSidebar({ searchRef }) {
       [event.name]: selectedOption.value, // Update the query parameter with the selected option value
       pageNo: 1, // Reset the page number to 1
     });
-    // scrollToTop(); // Scroll to top of page
+    scrollToTop(); // Scroll to top of page
   };
 
   return (
@@ -75,15 +78,14 @@ export default function TmdbSidebar({ searchRef }) {
                 selectedOption={{
                   value: tmdbQuery.type ? tmdbQuery.type : "movie",
                   label: tmdbQuery.type
-                    ? tmdbQuery.type === "tv"
-                      ? "TV Series"
-                      : "MOVIE"
+                    ? tmdbTitleTypeOptions.map((option) => {
+                        if (option.value === tmdbQuery.type) {
+                          return option.label;
+                        }
+                      })
                     : "MOVIE",
                 }}
-                options={[
-                  { label: "MOVIE", value: "movie" },
-                  { label: "TV Series", value: "tv" },
-                ]}
+                options={tmdbTitleTypeOptions}
               />
             </label>
           </li>

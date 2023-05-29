@@ -21,10 +21,15 @@ import {
   mbdbQueryPageResultsOptions,
   mbdbQuerySortOptions,
 } from "@/constants/mbdbquery";
+import { useCtrlPlusKey } from "@/lib/hooks/useCtrlPlusKey";
+import { scrollToTop } from "@/lib/utils/scrollToTop";
 
 // Moviebunkers sidebar
 export default function MbdbSidebar({ searchRef }) {
   const { mbdbQuery, updateMbdbQuery, resetMbdbQuery } = useMbdbQuery();
+
+  // Add keyboard shortcut for resetting search
+  useCtrlPlusKey("d", resetMbdbQuery, null, false);
 
   // Define state variables
   const [allLanguages, setAllLanguages] = useState([
@@ -48,7 +53,7 @@ export default function MbdbSidebar({ searchRef }) {
       [event.target.dataset.id]: event.target.value, // Update the query parameter with the input field value
       pageNo: 1, // Reset the page number to 1
     });
-    // scrollToTop(); // Scroll to top of page
+    scrollToTop(); // Scroll to top of page
   };
 
   // Updates the query parameters when age filter changes
@@ -59,7 +64,7 @@ export default function MbdbSidebar({ searchRef }) {
       "age.lte": ageLimit[1], // Update maximum age limit
       pageNo: 1, // Reset the page number to 1
     });
-    // scrollToTop(); // Scroll to top of page
+    scrollToTop(); // Scroll to top of page
   };
 
   // Updates the query parameters when filter toggle switches
@@ -81,7 +86,7 @@ export default function MbdbSidebar({ searchRef }) {
       [toggler.dataset.id]: toggler.dataset.toggle, // Update the query parameter with the filter toggle value
       pageNo: 1, // Reset the page number to 1
     });
-    // scrollToTop(); // Scroll to top of page
+    scrollToTop(); // Scroll to top of page
   };
 
   // Updates the query parameters when a select option is chosen
@@ -91,7 +96,7 @@ export default function MbdbSidebar({ searchRef }) {
       [event.name]: selectedOption.value, // Update the query parameter with the selected option value
       pageNo: 1, // Reset the page number to 1
     });
-    // scrollToTop(); // Scroll to top of page
+    scrollToTop(); // Scroll to top of page
   };
 
   // Fetch available languages and genres on component mount
