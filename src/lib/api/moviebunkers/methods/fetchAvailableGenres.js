@@ -1,6 +1,7 @@
+import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function fetchAvailableGenres({ source }) {
+export async function fetchAvailableGenres({ source = { token: null } }) {
     try {
         // Make the API request to get available genres
         const res = await moviebunkersAPI().get(`/titles/available-genres`, {

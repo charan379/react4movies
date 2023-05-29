@@ -1,17 +1,15 @@
-import axios from "axios";
-import { moviebunkersAPI } from "..";
 
-export async function fetchAvailableLanguages({ source = { token: null } }) {
+export async function fetchTmdbTitle({ titleType = 'movie', id, source = { token: null } }) {
     try {
-        // Make the API request to get available languages
-        const res = await moviebunkersAPI().get(`/titles/available-languages`, {
+        // Make the API request to get requested title
+        const res = await themoviedbAPI().get(`/${titleType}/${id}`, {
             cancelToken: source?.token
         })
 
         if (res?.data) {
             return res.data;
         } else {
-            throw new Error('Error fetching languages')
+            throw new Error('Error fetching tmdb title')
         }
 
     } catch (error) {

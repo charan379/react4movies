@@ -7,6 +7,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 import { moviebunkersAPI } from "@/lib/api/moviebunkers";
+import { Pagination } from "../Pagination";
 
 export default function ReduxTest() {
   const { incProgress20, incProgress, completeProgress, resetProgress } =
@@ -42,6 +43,8 @@ export default function ReduxTest() {
       <button onClick={() => incProgress(10)}>Inc Pro Cust</button>
       <button onClick={() => completeProgress()}>Inc Pro Comp</button>
       <button onClick={() => resetProgress()}>Pro Reset</button>
+
+      <Pagination currentPage={2} setPageNo={() => alert("pending")} total_pages={10} />
     </div>
   );
 }

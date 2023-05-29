@@ -37,7 +37,7 @@ export const mbdbQuerySlice = createSlice({
         resetQuery: (state) => {
             for (let [key, value] of Object.entries(initialState)) {
                 if (key === 'restTime') {
-                    state[key] = new Date();
+                    state[key] = new Date().toISOString();
                 } else {
                     state[key] = value;
                 }

@@ -58,7 +58,7 @@ export default function TmdbSidebar({ searchRef }) {
               type="text"
               value={tmdbQuery.query}
               placeholder="Search..."
-              autocomplete="off"
+              autoComplete="off"
               onChange={handleChange}
             />
           </li>

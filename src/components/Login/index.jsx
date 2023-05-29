@@ -78,7 +78,7 @@ export default function Login() {
               value={userName}
               onChange={(e) => setUsername(e.target.value)}
               required={true}
-              autocomplete="off"
+              autoComplete="off"
             ></input>
             <label>Username</label>
           </div>
@@ -89,7 +89,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required={true}
-              autocomplete="off"
+              autoComplete="off"
             ></input>
             {password && (
               <span

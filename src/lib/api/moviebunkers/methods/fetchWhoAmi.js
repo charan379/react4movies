@@ -3,7 +3,7 @@ import { moviebunkersAPI } from "..";
 
 export async function fetchWhoAmi({ source = { token: null } }) {
     try {
-        // Make the API request to get available genres
+        // Make the API request to get who am i ?
         const res = await moviebunkersAPI().get(`/auth/who-am-i`, {
             cancelToken: source.token
         })

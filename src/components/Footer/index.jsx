@@ -34,7 +34,13 @@ export default function Footer() {
           </span>
         </Link>
         <Link href="#" tabIndex="-1">
-          <Image src={tmdbLogo} alt="tmdb logo" />
+          <Image
+            className={styles.tmdbLogo}
+            src={tmdbLogo}
+            alt="tmdb logo"
+            width={40}
+            height={`auto`}
+          />
         </Link>
       </div>
     </>

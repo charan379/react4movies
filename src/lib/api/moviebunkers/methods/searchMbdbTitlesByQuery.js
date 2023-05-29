@@ -1,17 +1,18 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function fetchAvailableLanguages({ source = { token: null } }) {
+export async function searchMbdbTitlesByQuery({ params = {}, source = { token: null } }) {
     try {
-        // Make the API request to get available languages
-        const res = await moviebunkersAPI().get(`/titles/available-languages`, {
-            cancelToken: source?.token
+        // Make the API request to get search results
+        const res = await moviebunkersAPI().get(`/titles`, {
+            params: params,
+            cancelToken: source.token
         })
 
         if (res?.data) {
             return res.data;
         } else {
-            throw new Error('Error fetching languages')
+            throw new Error('Error fetching mbdb titles search')
         }
 
     } catch (error) {
