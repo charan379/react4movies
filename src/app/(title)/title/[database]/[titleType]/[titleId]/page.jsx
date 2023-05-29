@@ -4,7 +4,9 @@ import axios from "axios";
 import { getServerSession } from "next-auth";
 import React from "react";
 
-export async function generateMetadata({ params: { database, titleId } }) {
+export async function generateMetadata({
+  params: { database, titleType, titleId },
+}) {
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
@@ -68,7 +70,9 @@ export async function generateMetadata({ params: { database, titleId } }) {
   };
 }
 
-export default async function TitlePage({ params: { database, titleId } }) {
+export default async function TitlePage({
+  params: { database, titleType, titleId },
+}) {
   const { data } = await axios.get(
     `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
   );
@@ -78,7 +82,7 @@ export default async function TitlePage({ params: { database, titleId } }) {
   return (
     <div>
       <ReduxTest />
-      Title : {titleId}
+      Title : {database} / {titleType} / {titleId}
       <img src={data?.poster_path} />
     </div>
   );

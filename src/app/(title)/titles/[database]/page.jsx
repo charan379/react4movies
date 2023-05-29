@@ -4,11 +4,11 @@ import { getServerSession } from "next-auth";
 
 export const revalidate = 3600; // revalidate every hour
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params: { database } }) {
   let data;
   try {
     data = await fetchWhoAmi({});
-    console.log(data, " : at MetaData");
+    // console.log(data, " : at MetaData");
   } catch (error) {
     console.log(error);
   }
@@ -23,7 +23,7 @@ export default async function TitlesPage({ params: { database } }) {
 
   try {
     const data = await fetchWhoAmi({});
-    console.log(data, " : at Page");
+    // console.log(data, " : at Page");
   } catch (error) {
     console.log(error);
   }

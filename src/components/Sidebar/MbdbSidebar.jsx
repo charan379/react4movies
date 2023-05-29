@@ -161,6 +161,7 @@ export default function MbdbSidebar({ searchRef }) {
               type="text"
               value={mbdbQuery.search}
               placeholder="Search..."
+              autocomplete="off"
               onChange={handleChange}
               tabIndex="0"
             />

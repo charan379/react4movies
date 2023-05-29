@@ -75,7 +75,7 @@ export default function Header() {
               {user?.userName ? (
                 <Link href={"#"}>{user?.userName}</Link>
               ) : (
-                <Link href={"/auth/login"}>Login</Link>
+                <Link href={"/login"}>Login</Link>
               )}
 
               <Link href="/">Link 1</Link>
