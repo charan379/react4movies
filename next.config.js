@@ -20,7 +20,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Content-Security-Policy',
-                        value: "connect-src 'self' vitals.vercel-insights.com http://localhost:3001 https://react4movies.vercel.app"
+                        value: "connect-src 'self' vitals.vercel-insights.com localhost:3001 moviebunkers-api.onrender.com oxoziko43a.execute-api.ap-southeast-1.amazonaws.com"
                     }
                 ]
             }
