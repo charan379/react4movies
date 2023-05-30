@@ -13,10 +13,14 @@ import {
 import ReactSelector from "../ReactSelector";
 import { tmdbTitleTypeOptions } from "@/constants/tmdbquery";
 import { scrollToTop } from "@/lib/utils/scrollToTop";
+import { useCtrlPlusKey } from "@/lib/hooks/useCtrlPlusKey";
 
 export default function TmdbSidebar({ searchRef }) {
   // Get the current search query and related functions using the `useTmdbSearch` hook
   const { tmdbQuery, updateTmdbQuery, resetTmdbQuery } = useTmdbQuery();
+
+  // Add keyboard shortcut for resetting search
+  useCtrlPlusKey("d", resetTmdbQuery, null, false);
 
   // Define a function to handle changes in the search input fields
   const handleChange = (event) => {
