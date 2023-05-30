@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./TitlesList.module.css";
 import { searchMbdbTitlesByQuery } from "@/lib/api/moviebunkers/methods/searchMbdbTitlesByQuery";
 import { searchTmdbTitlesByQuery } from "@/lib/api/themoviedb/searchTmdbTitlesByQuery";
 import { useToastify } from "@/lib/hooks/useToastify";
@@ -9,6 +10,7 @@ import { useTmdbQuery } from "@/redux/hooks/useTmdbQuery";
 import axios from "axios";
 import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
+import { TitleCard } from "../TitleCard";
 
 export default function TitlesList({ database, session }) {
   // Import the custom hooks that will be used in this component
@@ -109,10 +111,37 @@ export default function TitlesList({ database, session }) {
     // eslint-disable-next-line
   }, [mbdbQuery, tmdbQuery]);
 
-  console.log(moviesPage);
   return (
     <>
-      <ToastContainer {...toastContainerOptions} key={5} />
+      <div className={styles.titlesList}>
+        {moviesPage.list?.length > 0 && (
+          <>
+            {moviesPage?.list?.map((title, index) => {
+              return (
+                <TitleCard
+                  id={title?._id || title?.tmdb_id}
+                  index={index}
+                  key={title?._id || title?.tmdb_id}
+                  database={title?.source}
+                  favouriteByUser={title?.favouriteByUser}
+                  seenByUser={title?.seenByUser}
+                  starredByUser={title?.starredByUser}
+                  unseenByUser={title?.unseenByUser}
+                  posterPath={title?.poster_path ?? ""}
+                  ratting={title?.ratting}
+                  titleType={title?.title_type}
+                  year={title?.year ?? 0}
+                  title={title?.title}
+                />
+              );
+            })}
+          </>
+        )}
+      </div>
+      <ToastContainer
+        {...toastContainerOptions}
+        key={`toaser-in-titles-list`}
+      />
     </>
   );
 }
