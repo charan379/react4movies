@@ -19,7 +19,9 @@ export const tmdbQuerySlice = createSlice({
         },
 
         resetQuery: (state) => {
-            state = { ...initialState }
+            for (let [key, value] of Object.entries(initialState)) {
+                state[key] = value;
+            }
         }
 
     }
