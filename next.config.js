@@ -13,6 +13,19 @@ const nextConfig = {
             },
         ],
     },
+    async headers() {
+        return [
+            {
+                source: '/(.*)',
+                headers: [
+                    {
+                        key: 'Content-Security-Policy',
+                        value: "connect-src 'self' vitals.vercel-insights.com http://localhost:3001 https://react4movies.vercel.app"
+                    }
+                ]
+            }
+        ];
+    },
 }
 
 module.exports = nextConfig
