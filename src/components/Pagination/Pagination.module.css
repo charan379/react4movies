@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .pagination .pages {
@@ -13,6 +13,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding: 5px 0px 0px 0px;
 }
 
 .pages .page {
@@ -22,7 +23,7 @@
   border-radius: 100px;
   width: 35px;
   height: 35px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   align-items: center;
   justify-content: center;

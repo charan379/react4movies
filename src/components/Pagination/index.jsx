@@ -10,6 +10,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, far, fab);
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { scrollToTop } from "@/lib/utils/scrollToTop";
+import findClosestAncestorOfType from "@/lib/utils/findClosestAncestorOfType";
 
 export function Pagination({ total_pages, currentPage, setPageNo }) {
   const pageNumberLimit = 4;
@@ -29,14 +30,21 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
 
   const handlePageClick = (event) => {
     event.preventDefault();
+
+    const button = findClosestAncestorOfType(event?.target, "BUTTON", 10);
+    if (button === null) {
+      console.log("invalid page button");
+      return;
+    }
+
     scrollToTop();
-    switch (event.target.dataset.pageType) {
+    switch (button.dataset.pageType) {
       case "normal":
-        return setPageNo(event.target.dataset.page);
+        return setPageNo(button.dataset.page);
       case "first":
         return (
           <>
-            {setPageNo(event.target.dataset.page)}
+            {setPageNo(button.dataset.page)}
             {setMaxPageLimit(pageNumberLimit)}
             {setMinPageLimit(0)}
           </>
@@ -44,9 +52,9 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
       case "last":
         return (
           <>
-            {setPageNo(event.target.dataset.page)}
-            {setMaxPageLimit(event.target.dataset.page)}
-            {setMinPageLimit(event.target.dataset.page - pageNumberLimit)}
+            {setPageNo(button.dataset.page)}
+            {setMaxPageLimit(button.dataset.page)}
+            {setMinPageLimit(button.dataset.page - pageNumberLimit)}
           </>
         );
       default:
@@ -144,29 +152,6 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
             </button>
           )}
 
-          {/* navigate to previous page */}
-          {currentPage > 1 ? (
-            <button
-              className={`${styles.page} ${styles.navigate}`}
-              onClick={handlePrevPage}
-              data-tooltip={`Previous page`}
-              data-flow="up"
-              tabIndex="0"
-            >
-              <FontAwesomeIcon icon={["fas", "angle-left"]} />
-            </button>
-          ) : (
-            <button
-              className={`${styles.page} ${styles.navigate} ${styles.disabled}`}
-              disabled={true}
-              data-tooltip={`Previous page`}
-              data-flow="up"
-              tabIndex="0"
-            >
-              <FontAwesomeIcon icon={["fas", "angle-left"]} />
-            </button>
-          )}
-
           {/* prev pages group */}
           {minPageLimit > 1 ? (
             <button
@@ -187,6 +172,29 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               tabIndex="0"
             >
               <FontAwesomeIcon icon={["fas", "angle-double-left"]} />
+            </button>
+          )}
+
+          {/* navigate to previous page */}
+          {currentPage > 1 ? (
+            <button
+              className={`${styles.page} ${styles.navigate}`}
+              onClick={handlePrevPage}
+              data-tooltip={`Previous page`}
+              data-flow="up"
+              tabIndex="0"
+            >
+              <FontAwesomeIcon icon={["fas", "angle-left"]} />
+            </button>
+          ) : (
+            <button
+              className={`${styles.page} ${styles.navigate} ${styles.disabled}`}
+              disabled={true}
+              data-tooltip={`Previous page`}
+              data-flow="up"
+              tabIndex="0"
+            >
+              <FontAwesomeIcon icon={["fas", "angle-left"]} />
             </button>
           )}
 
@@ -217,29 +225,6 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
             }
           })}
 
-          {/* next pages group */}
-          {pages.length > maxPageLimit ? (
-            <button
-              className={styles.page}
-              onClick={handleNextPageGroupClick}
-              data-tooltip={`Next pages group`}
-              data-flow="up"
-              tabIndex="0"
-            >
-              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
-            </button>
-          ) : (
-            <button
-              className={`${styles.page} ${styles.navigate} ${styles.disabled}`}
-              disabled={true}
-              data-tooltip={`Next pages group`}
-              data-flow="up"
-              tabIndex="0"
-            >
-              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
-            </button>
-          )}
-
           {/* Next Page */}
           {currentPage < total_pages ? (
             <button
@@ -260,6 +245,29 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               tabIndex="0"
             >
               <FontAwesomeIcon icon={["fas", "angle-right"]} />
+            </button>
+          )}
+
+          {/* next pages group */}
+          {pages.length > maxPageLimit ? (
+            <button
+              className={styles.page}
+              onClick={handleNextPageGroupClick}
+              data-tooltip={`Next pages group`}
+              data-flow="up"
+              tabIndex="0"
+            >
+              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
+            </button>
+          ) : (
+            <button
+              className={`${styles.page} ${styles.navigate} ${styles.disabled}`}
+              disabled={true}
+              data-tooltip={`Next pages group`}
+              data-flow="up"
+              tabIndex="0"
+            >
+              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
             </button>
           )}
 

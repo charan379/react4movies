@@ -11,6 +11,7 @@ import axios from "axios";
 import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
 import { TitleCard } from "../TitleCard";
+import { Pagination } from "../Pagination";
 
 export default function TitlesList({ database, session }) {
   // Import the custom hooks that will be used in this component
@@ -113,31 +114,40 @@ export default function TitlesList({ database, session }) {
 
   return (
     <>
-      <div className={styles.titlesList}>
-        {moviesPage.list?.length > 0 && (
-          <>
-            {moviesPage?.list?.map((title, index) => {
-              return (
-                <TitleCard
-                  id={title?._id || title?.tmdb_id}
-                  index={index}
-                  key={title?._id || title?.tmdb_id}
-                  database={title?.source}
-                  favouriteByUser={title?.favouriteByUser}
-                  seenByUser={title?.seenByUser}
-                  starredByUser={title?.starredByUser}
-                  unseenByUser={title?.unseenByUser}
-                  posterPath={title?.poster_path ?? ""}
-                  ratting={title?.ratting}
-                  titleType={title?.title_type}
-                  year={title?.year ?? 0}
-                  title={title?.title}
-                />
-              );
-            })}
-          </>
-        )}
-      </div>
+      {moviesPage.list?.length > 0 && (
+        <>
+          <div className={styles.titlesList}>
+            <>
+              {moviesPage?.list?.map((title, index) => {
+                return (
+                  <TitleCard
+                    id={title?._id || title?.tmdb_id}
+                    index={index}
+                    key={title?._id || title?.tmdb_id}
+                    database={title?.source}
+                    favouriteByUser={title?.favouriteByUser}
+                    seenByUser={title?.seenByUser}
+                    starredByUser={title?.starredByUser}
+                    unseenByUser={title?.unseenByUser}
+                    posterPath={title?.poster_path ?? ""}
+                    ratting={title?.ratting}
+                    titleType={title?.title_type}
+                    year={title?.year ?? 0}
+                    title={title?.title}
+                  />
+                );
+              })}
+            </>
+          </div>
+
+          <Pagination
+            currentPage={moviesPage.page}
+            total_pages={moviesPage.total_pages}
+            setPageNo={setPageNo}
+            key={`pagination-${moviesPage.page}`} // key to the Pagination component for update on change
+          />
+        </>
+      )}
       <ToastContainer
         {...toastContainerOptions}
         key={`toaser-in-titles-list`}
