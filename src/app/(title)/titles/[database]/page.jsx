@@ -25,7 +25,7 @@ export default async function TitlesPage({ params: { database } }) {
   return (
     <>
       <main>
-        <TitlesList database={database} session={session} />
+        <TitlesList database={database} />
       </main>
     </>
   );

@@ -12,8 +12,10 @@ import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
 import { TitleCard } from "../TitleCard";
 import { Pagination } from "../Pagination";
+import { useSession } from "next-auth/react";
 
-export default function TitlesList({ database, session }) {
+export default function TitlesList({ database }) {
+  const { data, status } = useSession();
   // Import the custom hooks that will be used in this component
   const { incProgress20, incProgress, completeProgress } = useProgressBar(); // A hook for displaying a progress bar
   // An object that holds information about the search results

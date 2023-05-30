@@ -9,7 +9,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { Inter } from 'next/font/google'
 import ReduxProvider from '@/redux/ReduxProvider'
 import AppContainer from '@/components/AppContainer'
-import NextAuthContext from './NextAuthContext'
+import NextAuthContext from '../lib/nextauth/NextAuthContext'
 
 // Tell Font Awesome to skip adding the CSS automatically 
 // since it's already imported above
@@ -24,43 +24,23 @@ export const metadata = {
 
   // og meta tags
   openGraph: {
-    title: React4Movies,
+    title: 'React4Movies',
     description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
     url: process.env.NEXTAUTH_URL,
     siteName: "React4Movies",
     images: [
       {
-        url: data?.poster_path
-          ?.toString()
-          ?.replace(/(w\d+|original)/g, "w92"),
-        width: 92,
-        height: 138,
-      },
-      {
-        url: data?.poster_path
-          ?.toString()
-          ?.replace(/(w\d+|original)/g, "w154"),
-        width: 154,
-        height: 231,
-      },
-      {
-        url: data?.poster_path
-          ?.toString()
-          ?.replace(/(w\d+|original)/g, "w185"),
+        url: '/images/website-ss-256x256.jpg',
         width: 185,
         height: 278,
       },
       {
-        url: data?.poster_path
-          ?.toString()
-          ?.replace(/(w\d+|original)/g, "w342"),
+        url: '/images/website-ss-256x256.jpg',
         width: 342,
         height: 513,
       },
       {
-        url: data?.poster_path
-          ?.toString()
-          ?.replace(/(w\d+|original)/g, "w500"),
+        url: '/images/website-ss.jpg',
         width: 500,
         height: 750,
       },
@@ -71,10 +51,10 @@ export const metadata = {
   // twitter og meta tags
   twitter: {
     card: "summary_large_image",
-    title: data?.title,
-    description: data?.overview,
+    title: 'React4Movies',
+    description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
     images: [
-      data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
+      '/images/website-ss-256x256.jpg',
     ],
   },
 }
