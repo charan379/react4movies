@@ -15,6 +15,7 @@ import { TitleCard } from "../TitleCard";
 import { Pagination } from "../Pagination";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import TitleModal from "../TitleModal";
 
 export default function TitlesList({ database }) {
   const { data, status } = useSession();
@@ -165,13 +166,14 @@ export default function TitlesList({ database }) {
                   return (
                     <div
                       key={index}
-                      onClick={({ title }) =>
+                      onClick={() =>
                         handleTitleModal({
                           id: title?._id || title?.tmdb_id,
                           tmdbId: title?.tmdb_id,
                           imdbId: title?.imdb_id,
                           title: title?.title,
                           posterPath: title?.poster_path ?? "",
+                          runtime: title?.runtime,
                           ratting: title?.ratting,
                           titleType: title?.title_type,
                           year: title?.year ?? 0,
@@ -232,7 +234,7 @@ export default function TitlesList({ database }) {
       )}
 
       {/* If the modal is open, display it */}
-      {/* {openModal ? (
+      {openModal ? (
         <TitleModal
           title={titleModalData}
           open={openModal}
@@ -241,7 +243,7 @@ export default function TitlesList({ database }) {
             setOpenModal(false)
           }
         />
-      ) : null} */}
+      ) : null}
 
       <ToastContainer
         {...toastContainerOptions}
