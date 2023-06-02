@@ -53,6 +53,7 @@ const TitleCard = (
           {/* card poster image */}
           <Image
             data-loading={`${isLoading}`}
+            loading="lazy"
             alt={`${props.title}`}
             src={`${!!props.posterPath ? imageSrc : "/images/empty.svg"}`}
             onError={(image) =>
