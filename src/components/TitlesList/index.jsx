@@ -154,7 +154,7 @@ export default function TitlesList({ database }) {
                         ratting={title?.ratting}
                         titleType={title?.title_type}
                         year={title?.year ?? 0}
-                        database={title?.source}
+                        database={title?.source ?? database}
                         favouriteByUser={title?.favouriteByUser}
                         seenByUser={title?.seenByUser}
                         starredByUser={title?.starredByUser}
@@ -177,7 +177,7 @@ export default function TitlesList({ database }) {
                           ratting: title?.ratting,
                           titleType: title?.title_type,
                           year: title?.year ?? 0,
-                          database: title?.source,
+                          database: title?.source ?? database,
                           tagline: title?.tagline,
                           overview: title?.overview,
                           genres: title?.genres,
@@ -199,7 +199,7 @@ export default function TitlesList({ database }) {
                         ratting={title?.ratting}
                         titleType={title?.title_type}
                         year={title?.year ?? 0}
-                        database={title?.source}
+                        database={title?.source ?? database}
                         favouriteByUser={title?.favouriteByUser}
                         seenByUser={title?.seenByUser}
                         starredByUser={title?.starredByUser}
