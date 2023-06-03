@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import styles from "./TitleModal.module.css";
 // font awesome library
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,6 +11,12 @@ import { useToastify } from "@/lib/hooks/useToastify";
 import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TitlePoster } from "../TitlePoster";
+import ShowLessText from "../ShowLessText";
+import { getExternalLinks } from "@/lib/utils/getExternalLinks";
+import { TitleExternalLinks } from "../TitleExternalLinks";
+import BarsLoadingAnimation from "../BarsLoadingAnimation";
+
+const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
 const TitleModal = ({ title, open, close }) => {
   // State to identify user want to show details of title of links
@@ -138,30 +144,32 @@ const TitleModal = ({ title, open, close }) => {
               </div> */}
 
               {/* external links */}
-              {/* <div
+              <div
                 className={`${styles.links} ${
                   showDetails ? styles.hide : styles.show
                 }`}
               >
                 <h6 className="sub-heading">External Links</h6>
-                {title?.tmdb_id && (
+                {title?.tmdbId && (
                   <TitleExternalLinks links={getExternalLinks(title)} />
                 )}
-              </div> */}
+              </div>
               {/* watch providers */}
-              {/* <div
+              <div
                 className={`${styles.links} ${
                   showDetails ? styles.hide : styles.show
                 }`}
               >
                 <h6 className="sub-heading">Watch Providers</h6>
-                {title?.tmdb_id && (
-                  <WatchProviders
-                    tmdb_id={title?.tmdb_id}
-                    title_type={title?.title_type}
-                  />
+                {title?.tmdbId && (
+                  <Suspense fallback={<BarsLoadingAnimation />}>
+                    <WatchProviders
+                      tmdbId={title?.tmdbId}
+                      titleType={title?.titleType}
+                    />
+                  </Suspense>
                 )}
-              </div> */}
+              </div>
 
               {/* title details */}
               <div
@@ -238,7 +246,7 @@ const TitleModal = ({ title, open, close }) => {
                   <p>
                     <b>Overview:</b>
                     &nbsp;
-                    {/* <ShowLessText text={title?.overview} limit={260} /> */}
+                    <ShowLessText text={title?.overview} limit={260} />
                   </p>
                 )}
               </div>

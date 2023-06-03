@@ -172,8 +172,8 @@
   position: relative;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .titleModal .moreDetails {
