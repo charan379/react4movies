@@ -26,7 +26,7 @@ const ShowLessNames = ({ commaSepratedText, limit }) => {
           borderWidth: "0px",
         }}
       >
-        <Link
+        <button
           style={{
             display: "inline",
             textDecoration: "none",
@@ -40,7 +40,7 @@ const ShowLessNames = ({ commaSepratedText, limit }) => {
           onClick={() => setShowMore(!showMore)}
         >
           {showMore ? " ...less" : " ...more"}
-        </Link>
+        </button>
       </span>
     </>
   );
