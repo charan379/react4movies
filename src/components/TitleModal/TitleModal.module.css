@@ -78,12 +78,11 @@
   display: flex;
 }
 
-.titleModal .title .titleInfoSection .linkActions .action-button {
+.titleModal .title .titleInfoSection .linkActions .actionButton {
   padding: 8px;
   border-radius: 8px;
   margin: 5px 10px 5px 10px;
   text-decoration: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
   width: 50px;
   text-align: center;
   height: 50px;
@@ -95,16 +94,15 @@
   align-content: space-around;
   flex-direction: column;
   flex-wrap: wrap;
+  cursor: pointer;
+  border-width: 0px;
+  font-size: 1.3rem;
+  color: var(--ui-element-hover-font-color);
+  background-color: var(--ui-element-hover-color);
 }
 
-.titleModal.light .title .titleInfoSection .linkActions .action-button {
-  color: var(--font-color-dark);
-  background-color: var(--bg-dark);
-}
-
-.titleModal.dark .title .titleInfoSection .linkActions .action-button {
-  color: var(--font-color-light);
-  background-color: var(--bg-light);
+.titleModal .title .titleInfoSection .linkActions .actionButton:hover {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
 }
 
 .titleModal .title .titleInfoSection .detailsText {

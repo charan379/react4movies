@@ -1,4 +1,6 @@
-import React, { Suspense, useRef, useState } from "react";
+"use client";
+
+import React, { Suspense, use, useRef, useState } from "react";
 import styles from "./TitleModal.module.css";
 // font awesome library
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -6,6 +8,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, far, fab);
+import { useSession } from "next-auth/react";
 import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrollOnModalOpen";
 import { useToastify } from "@/lib/hooks/useToastify";
 import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
@@ -15,10 +18,17 @@ import ShowLessText from "../ShowLessText";
 import { getExternalLinks } from "@/lib/utils/getExternalLinks";
 import { TitleExternalLinks } from "../TitleExternalLinks";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
+import Favourite from "../TitleActions/Favourite";
+import Seen from "../TitleActions/Seen";
+import Star from "../TitleActions/Star";
+import { LevelThere } from "@/constants/AuthRoles";
+import Delete from "../TitleActions/Delete";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
 const TitleModal = ({ title, open, close }) => {
+  // get user session details
+  const { data: session } = useSession();
   // State to identify user want to show details of title of links
   const [showDetails, setShowDetails] = useState(false);
 
@@ -53,6 +63,7 @@ const TitleModal = ({ title, open, close }) => {
             data-tooltip={`Close`}
             data-flow="left"
             onClick={close}
+            id="title-modal-close-btn"
             className={styles.closeBtn}
             tabIndex="0"
           >
@@ -93,19 +104,22 @@ const TitleModal = ({ title, open, close }) => {
                   </li>
                 </ul>
               </div>
-              {/* <div
+
+              <div
                 className={`${styles.linkActions} ${
                   showDetails ? styles.hide : styles.show
                 }`}
               >
-                <PlayTrailer videos={title?.videos} />
+                {/* <PlayTrailer videos={title?.videos} /> */}
 
-                {title?.titleState === ShortForms.Moviebunkers && (
+                {title?.database === "mbdb" && (
                   <>
                     <Favourite
                       toast={toast}
                       titleId={title?.id}
                       favouriteByUser={title?.favouriteByUser}
+                      className={styles.actionButton}
+                      auth={session?.auth}
                     />
 
                     <Seen
@@ -113,35 +127,42 @@ const TitleModal = ({ title, open, close }) => {
                       titleId={title?.id}
                       seenByUser={title?.seenByUser}
                       unseenByUser={title?.unseenByUser}
+                      className={styles.actionButton}
+                      auth={session?.auth}
                     />
 
                     <Star
                       toast={toast}
                       titleId={title?.id}
                       starredByUser={title?.starredByUser}
+                      className={styles.actionButton}
+                      auth={session?.auth}
                     />
 
-                    {LevelThere.includes(auth?.role) && (
-                      <DeleteTitle
+                    {LevelThere.includes(session?.user?.role) && (
+                      <Delete
                         toast={toast}
                         tooltipText={`Delete`}
                         titleId={title?.id}
+                        className={styles.actionButton}
+                        auth={session?.auth}
                       />
                     )}
                   </>
                 )}
 
-                {title?.titleState === "tmdb" && (
+                {/* {title?.database === "tmdb" && (
                   <>
                     <AddTitle
                       toast={toast}
                       tooltipText={`Add to collection`}
-                      titleType={title?.title_type}
-                      tmdbId={title?.tmdb_id}
+                      titleType={title?.titleType}
+                      tmdbId={title?.tmdbId}
+                      auth={session?.auth}
                     />
                   </>
-                )}
-              </div> */}
+                )} */}
+              </div>
 
               {/* external links */}
               <div
