@@ -28,7 +28,8 @@ body {
   width: 100%;
   position: fixed;
   z-index: 10009;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(17, 17, 17, 0.2);
+  backdrop-filter: blur(12px);
   top: 0px;
   left: 0px;
   display: flex;
