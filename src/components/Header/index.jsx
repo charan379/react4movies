@@ -1,25 +1,39 @@
 "use client";
 
 import styles from "./Header.module.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import appLogo from "@/assets/icons/appLogo.svg";
 import userSvg from "@/assets/icons/user.svg";
 import daySvg from "@/assets/icons/day.svg";
 import nightSvg from "@/assets/icons/night.svg";
 import Image from "next/image";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useTheme } from "@/redux/hooks/useTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { useOnOutSideClick } from "@/lib/hooks/useOnOutSideClick";
+import Logout from "../Logout";
 
 export default function Header() {
   const { theme, toogleTheme } = useTheme();
   const { data: session } = useSession();
-  const { user, auth } = session || { user: {}, auth: {} };
+  const { user } = session || { user: {}, auth: {} };
+
+  const dropdownRef = useRef();
 
   const [showDrop, setShowDrop] = useState(false);
 
+  const [openLogout, setOpenLogout] = useState(false);
+
+  // close dropdown on outside click
+  useOnOutSideClick(
+    dropdownRef,
+    () => setShowDrop(false)
+    // useCallback(() => {
+    //   setShwoDropdown(false);
+    // }, [])
+  );
   return (
     <>
       <nav className={styles.navbar} data-role="header">
@@ -68,6 +82,7 @@ export default function Header() {
               ></Image>
             </li>
             <div
+              ref={dropdownRef}
               className={`${styles.navbarDropdownContent} ${
                 showDrop ? styles.show : ""
               }`}
@@ -82,7 +97,7 @@ export default function Header() {
               <Link href="/">Link 2</Link>
 
               {user?.userName ? (
-                <button onClick={() => signOut()}>
+                <button onClick={() => setOpenLogout(true)}>
                   Logout{" "}
                   <span>
                     <FontAwesomeIcon icon={faPowerOff} size="lg" />
@@ -93,6 +108,10 @@ export default function Header() {
           </div>
         </ul>
       </nav>
+
+      {openLogout ? (
+        <Logout open={openLogout} close={() => setOpenLogout(false)} />
+      ) : null}
     </>
   );
 }
