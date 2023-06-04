@@ -33,9 +33,6 @@ const YoutubePlayer = ({ videoId, open, close }) => {
     },
   };
 
-  // Register a callback to close the modal when the user presses the Escape key
-  useEscapeKey(close);
-
   // If the `open` prop is false, don't render anything
   if (!open) return null;
 
