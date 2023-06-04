@@ -15,7 +15,6 @@ export async function deleteTitle({ mbdbTitleId, auth, source = { token: null } 
         }
 
     } catch (error) {
-        console.log(error)
         // Get error message from response, or use a generic message.
         let message = '';
 

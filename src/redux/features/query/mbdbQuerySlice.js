@@ -17,6 +17,7 @@ const initialState = {
     pageNo: 1,
     minimal: true,
     restTime: null,
+    lastCachedRefresh: null,
 }
 
 export const mbdbQuerySlice = createSlice({
@@ -26,10 +27,18 @@ export const mbdbQuerySlice = createSlice({
         updateQuery: (state, action) => {
             const newQuery = action.payload
             for (let [key, value] of Object.entries(newQuery)) {
-                if (key === 'minimal' || key === 'restTime') {
+                if (key === 'minimal' || key === 'restTime' || key === 'lastCachedRefresh') {
                     continue;
                 } else {
                     state[key] = value;
+                }
+            }
+        },
+
+        refreshCachedResults: (state) => {
+            for (let [key] of Object.entries(initialState)) {
+                if (key === 'lastCachedRefresh') {
+                    state[key] = new Date().toISOString();
                 }
             }
         },
@@ -49,7 +58,7 @@ export const mbdbQuerySlice = createSlice({
 
 
 export const {
-    resetQuery, updateQuery
+    resetQuery, updateQuery, refreshCachedResults
 } = mbdbQuerySlice.actions;
 
 export default mbdbQuerySlice.reducer;

@@ -30,7 +30,7 @@ const Seen = ({
     setIsLoading(true);
 
     try {
-      await addToSeenTitles({ mbdbTitleId: base64TitleId, auth });
+      await addToSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setSeen(true);
       setUnseen(false);
     } catch (error) {
@@ -52,7 +52,7 @@ const Seen = ({
     setIsLoading(true);
 
     try {
-      await addToUnSeenTitles({ mbdbTitleId: base64TitleId, auth });
+      await addToUnSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setUnseen(true);
       setSeen(false);
     } catch (error) {

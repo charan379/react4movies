@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function searchMbdbTitlesByQuery({ params = {}, source = { token: null } }) {
+export async function searchMbdbTitlesByQuery({ params = {}, auth, source = { token: null } }) {
     try {
         // Make the API request to get search results
-        const res = await moviebunkersAPI().get(`/titles`, {
+        const res = await moviebunkersAPI(auth).get(`/titles`, {
             params: params,
             cancelToken: source.token
         })

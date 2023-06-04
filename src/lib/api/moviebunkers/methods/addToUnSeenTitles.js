@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function addToUnSeenTitles({ mbdbTitleId, source = { token: null } }) {
+export async function addToUnSeenTitles({ mbdbTitleId, auth, source = { token: null } }) {
     try {
         // Make the API request to add title user unseen list
-        const res = await moviebunkersAPI().post(`/userdata/add-to-unseen/${mbdbTitleId}`, {
+        const res = await moviebunkersAPI(auth).post(`/userdata/add-to-unseen/${mbdbTitleId}`, {
             cancelToken: source.token
         })
 

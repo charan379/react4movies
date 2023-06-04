@@ -18,7 +18,7 @@ import Link from "next/link";
 import TitleModal from "../TitleModal";
 
 export default function TitlesList({ database }) {
-  const { data, status } = useSession();
+  const { data: session } = useSession();
   // Import the custom hooks that will be used in this component
   const { incProgress20, incProgress, completeProgress } = useProgressBar(); // A hook for displaying a progress bar
   // An object that holds information about the search results
@@ -88,6 +88,7 @@ export default function TitlesList({ database }) {
         case "mbdb":
           searchResult = await searchMbdbTitlesByQuery({
             params: { ...mbdbQuery },
+            auth: session?.auth,
             source,
           });
           break;

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function removeFromStarredTitles({ mbdbTitleId, source = { token: null } }) {
+export async function removeFromStarredTitles({ mbdbTitleId, auth, source = { token: null } }) {
     try {
         // Make the API request to remove title from users fav list ?
-        const res = await moviebunkersAPI().post(`/userdata/remove-from-starred/${mbdbTitleId}`, {
+        const res = await moviebunkersAPI(auth).post(`/userdata/remove-from-starred/${mbdbTitleId}`, {
             cancelToken: source.token
         })
 

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { updateQuery, resetQuery } from "../features/query/mbdbQuerySlice";
+import { updateQuery, resetQuery, refreshCachedResults } from "../features/query/mbdbQuerySlice";
 
 
 export function useMbdbQuery() {
@@ -11,5 +11,6 @@ export function useMbdbQuery() {
         mbdbQuery: mbdbQuery,
         updateMbdbQuery: (query) => dispatch(updateQuery(query)),
         resetMbdbQuery: () => dispatch(resetQuery()),
+        refreshMbdbCachedResults: () => dispatch(refreshCachedResults()),
     }
 }

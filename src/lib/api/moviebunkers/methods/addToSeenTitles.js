@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function addToSeenTitles({ mbdbTitleId, source = { token: null } }) {
+export async function addToSeenTitles({ mbdbTitleId, auth, source = { token: null } }) {
     try {
         // Make the API request to add title user seen list
-        const res = await moviebunkersAPI().post(`/userdata/add-to-seen/${mbdbTitleId}`, {
+        const res = await moviebunkersAPI(auth).post(`/userdata/add-to-seen/${mbdbTitleId}`, {
             cancelToken: source.token
         })
 

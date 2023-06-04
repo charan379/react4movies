@@ -23,6 +23,7 @@ import Seen from "../TitleActions/Seen";
 import Star from "../TitleActions/Star";
 import { LevelThere } from "@/constants/AuthRoles";
 import Delete from "../TitleActions/Delete";
+import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
@@ -31,7 +32,8 @@ const TitleModal = ({ title, open, close }) => {
   const { data: session } = useSession();
   // State to identify user want to show details of title of links
   const [showDetails, setShowDetails] = useState(false);
-
+  // mbdb query hook
+  const { refreshMbdbCachedResults } = useMbdbQuery();
   // Hook that return ReactTostify toast component and toast options
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
@@ -44,14 +46,21 @@ const TitleModal = ({ title, open, close }) => {
   // disable body scroll when modal is opened
   useDisableBodyScrollOnModalOpen(open);
 
-  // If the `open` prop is false, don't render anything
-  if (!open) return null;
-
   // show Open Title link after 500ms from modal popup
   setTimeout(() => {
     const titleLink = document.getElementById(`title-page-link`);
     titleLink.dataset.show = "true";
   }, 500);
+
+  const handleClose = (event) => {
+    event.preventDefault();
+
+    refreshMbdbCachedResults();
+    close();
+  };
+
+  // If the `open` prop is false, don't render anything
+  if (!open) return null;
 
   return (
     <>
@@ -62,7 +71,7 @@ const TitleModal = ({ title, open, close }) => {
           <button
             data-tooltip={`Close`}
             data-flow="left"
-            onClick={close}
+            onClick={handleClose}
             id="title-modal-close-btn"
             className={styles.closeBtn}
             tabIndex="0"

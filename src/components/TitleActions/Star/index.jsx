@@ -29,7 +29,7 @@ const Star = ({
 
     try {
       // Send a request to the API to add the title to the user's starred titles
-      await addToStarredTitles({ mbdbTitleId: base64TitleId, auth });
+      await addToStarredTitles({ mbdbTitleId: base64TitleId, auth: auth });
       // Update the state to reflect that the title is now starred by the user
       setStarred(true);
     } catch (error) {
@@ -53,7 +53,7 @@ const Star = ({
 
     try {
       // Send a request to the API to remove the title from the user's starred titles
-      await removeFromStarredTitles({ mbdbTitleId: base64TitleId, auth });
+      await removeFromStarredTitles({ mbdbTitleId: base64TitleId, auth: auth });
       // Update the state to reflect that the title is no longer starred by the user
       setStarred(false);
     } catch (error) {

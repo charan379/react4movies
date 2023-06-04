@@ -26,7 +26,7 @@ const Favourite = ({
     event.preventDefault();
     setIsLoading(true);
     try {
-      await addToFavouriteTitles({ mbdbTitleId: base64TitleId, auth });
+      await addToFavouriteTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setFavourite(true);
     } catch (error) {
       const errMsg = error?.message;
@@ -45,7 +45,10 @@ const Favourite = ({
   const handleRemoveFromFavourites = async (event, base64TitleId) => {
     event.preventDefault();
     try {
-      await removeFromFavouriteTitles({ mbdbTitleId: base64TitleId, auth });
+      await removeFromFavouriteTitles({
+        mbdbTitleId: base64TitleId,
+        auth: auth,
+      });
       setFavourite(false);
     } catch (error) {
       const errMsg = error?.message;

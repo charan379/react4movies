@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function fetchWhoAmi({ source = { token: null } }) {
+export async function fetchWhoAmi({ auth, source = { token: null } }) {
     try {
         // Make the API request to get who am i ?
-        const res = await moviebunkersAPI().get(`/auth/who-am-i`, {
+        const res = await moviebunkersAPI(auth).get(`/auth/who-am-i`, {
             cancelToken: source.token
         })
 
