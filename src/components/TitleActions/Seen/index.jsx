@@ -17,6 +17,7 @@ const Seen = ({
   seenByUser = false,
   unseenByUser = false,
   auth,
+  setAsUpdated,
 }) => {
   const [isSeen, setSeen] = useState(seenByUser);
 
@@ -33,6 +34,7 @@ const Seen = ({
       await addToSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setSeen(true);
       setUnseen(false);
+      setAsUpdated();
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {
@@ -55,6 +57,7 @@ const Seen = ({
       await addToUnSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setUnseen(true);
       setSeen(false);
+      setAsUpdated();
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {

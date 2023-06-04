@@ -16,6 +16,7 @@ const Favourite = ({
   titleId = null,
   favouriteByUser = false,
   auth,
+  setAsUpdated,
 }) => {
   const [isFavourite, setFavourite] = useState(favouriteByUser);
 
@@ -28,6 +29,7 @@ const Favourite = ({
     try {
       await addToFavouriteTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setFavourite(true);
+      setAsUpdated();
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {
@@ -50,6 +52,7 @@ const Favourite = ({
         auth: auth,
       });
       setFavourite(false);
+      setAsUpdated();
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {

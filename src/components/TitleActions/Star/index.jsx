@@ -16,6 +16,7 @@ const Star = ({
   titleId = null,
   starredByUser = false,
   auth,
+  setAsUpdated,
 }) => {
   const [isStarred, setStarred] = useState(starredByUser);
 
@@ -32,6 +33,7 @@ const Star = ({
       await addToStarredTitles({ mbdbTitleId: base64TitleId, auth: auth });
       // Update the state to reflect that the title is now starred by the user
       setStarred(true);
+      setAsUpdated();
     } catch (error) {
       // If there was an error, display an error toast message
       const errMsg = error?.message;
@@ -56,6 +58,7 @@ const Star = ({
       await removeFromStarredTitles({ mbdbTitleId: base64TitleId, auth: auth });
       // Update the state to reflect that the title is no longer starred by the user
       setStarred(false);
+      setAsUpdated();
     } catch (error) {
       // If there was an error, display an error toast message
       const errMsg = error?.response?.data?.error?.message;
