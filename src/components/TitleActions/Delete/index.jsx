@@ -19,6 +19,7 @@ const Delete = ({
   tooltipText,
   titleId,
   auth,
+  setAsUpdated,
 }) => {
   const pathname = usePathname(); // retrieve current location from next Router
   // next router
@@ -39,6 +40,8 @@ const Delete = ({
         position: "top-left",
         closeButton: true,
       });
+
+      setAsUpdated();
 
       // wait for 1 second before closing window or modal
       setTimeout(() => {
