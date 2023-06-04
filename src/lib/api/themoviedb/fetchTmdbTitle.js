@@ -1,3 +1,5 @@
+import axios from "axios";
+import { themoviedbAPI } from ".";
 
 export async function fetchTmdbTitle({ titleType = 'movie', id, source = { token: null } }) {
     try {
