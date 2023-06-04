@@ -24,6 +24,7 @@ import Star from "../TitleActions/Star";
 import { LevelThere } from "@/constants/AuthRoles";
 import Delete from "../TitleActions/Delete";
 import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
+import AddTitle from "../TitleActions/Add";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
@@ -32,30 +33,42 @@ const TitleModal = ({ title, open, close }) => {
   const { data: session } = useSession();
   // State to identify user want to show details of title of links
   const [showDetails, setShowDetails] = useState(false);
+  // State to get tack of amy updates
+  const [isSomthingUpdated, setIsSomthingUpdated] = useState(false);
   // mbdb query hook
   const { refreshMbdbCachedResults } = useMbdbQuery();
   // Hook that return ReactTostify toast component and toast options
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
-
   // Create a ref that will be used to detect clicks outside the modal
   const titleModalRef = useRef();
 
   // Register a callback to close the modal when the user presses the Escape key
-  useEscapeKey(close);
+  useEscapeKey(() => {
+    if (isSomthingUpdated) {
+      refreshMbdbCachedResults();
+    }
+    close();
+  });
 
   // disable body scroll when modal is opened
   useDisableBodyScrollOnModalOpen(open);
 
   // show Open Title link after 500ms from modal popup
   setTimeout(() => {
-    const titleLink = document.getElementById(`title-page-link`);
-    titleLink.dataset.show = "true";
+    try {
+      const titleLink = document.getElementById(`title-page-link`);
+      titleLink.dataset.show = "true";
+    } catch (error) {
+      console.log(error?.message);
+    }
   }, 500);
 
   const handleClose = (event) => {
     event.preventDefault();
+    if (isSomthingUpdated) {
+      refreshMbdbCachedResults();
+    }
 
-    refreshMbdbCachedResults();
     close();
   };
 
@@ -129,6 +142,7 @@ const TitleModal = ({ title, open, close }) => {
                       favouriteByUser={title?.favouriteByUser}
                       className={styles.actionButton}
                       auth={session?.auth}
+                      setAsUpdated={() => setIsSomthingUpdated(true)}
                     />
 
                     <Seen
@@ -138,6 +152,7 @@ const TitleModal = ({ title, open, close }) => {
                       unseenByUser={title?.unseenByUser}
                       className={styles.actionButton}
                       auth={session?.auth}
+                      setAsUpdated={() => setIsSomthingUpdated(true)}
                     />
 
                     <Star
@@ -146,6 +161,7 @@ const TitleModal = ({ title, open, close }) => {
                       starredByUser={title?.starredByUser}
                       className={styles.actionButton}
                       auth={session?.auth}
+                      setAsUpdated={() => setIsSomthingUpdated(true)}
                     />
 
                     {LevelThere.includes(session?.user?.role) && (
@@ -160,17 +176,18 @@ const TitleModal = ({ title, open, close }) => {
                   </>
                 )}
 
-                {/* {title?.database === "tmdb" && (
+                {title?.database === "tmdb" && (
                   <>
                     <AddTitle
                       toast={toast}
                       tooltipText={`Add to collection`}
                       titleType={title?.titleType}
+                      className={styles.actionButton}
                       tmdbId={title?.tmdbId}
                       auth={session?.auth}
                     />
                   </>
-                )} */}
+                )}
               </div>
 
               {/* external links */}

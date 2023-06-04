@@ -1,10 +1,10 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function fetchTvSeasonEpisodes({ titleId, seasonId, auth, source = { token: null } }) {
+export async function fetchTvSeasonEpisodes({ titleId, seasonNumber, auth, source = { token: null } }) {
     try {
         // Make the API request to fetch tv sesason episodes
-        const res = await moviebunkersAPI(auth).get(`/episodes/tv/${titleId}/season/${seasonId}`, {
+        const res = await moviebunkersAPI(auth).get(`/episodes/tv/${titleId}/season/${seasonNumber}`, {
             cancelToken: source.token
         })
 

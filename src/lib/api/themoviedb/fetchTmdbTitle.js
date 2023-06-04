@@ -1,10 +1,10 @@
 import axios from "axios";
 import { themoviedbAPI } from ".";
 
-export async function fetchTmdbTitle({ titleType = 'movie', id, source = { token: null } }) {
+export async function fetchTmdbTitle({ titleType = 'movie', tmdbId, source = { token: null } }) {
     try {
         // Make the API request to get requested title
-        const res = await themoviedbAPI().get(`/${titleType}/${id}`, {
+        const res = await themoviedbAPI().get(`/${titleType}/${tmdbId}`, {
             cancelToken: source?.token
         })
 
