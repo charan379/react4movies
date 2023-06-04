@@ -323,6 +323,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="movie"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "film"]} />
@@ -340,6 +341,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="movies"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "film"]} />
@@ -357,6 +359,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters with tv shows"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "tv"]} />
@@ -374,6 +377,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters without tv shows"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "tv"]} />
@@ -392,6 +396,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters seen titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "eye"]} />
@@ -410,6 +415,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters unseen titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "eye-slash"]} />
@@ -428,6 +434,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["far", "eye"]} />
@@ -446,6 +453,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters favourite titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "heart"]} />
@@ -464,6 +472,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["far", "heart"]} />
@@ -482,6 +491,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filters starred titles"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["fas", "star"]} />
@@ -500,6 +510,7 @@ export default function MbdbSidebar({ searchRef }) {
                 title="filter disabled"
                 aria-hidden="false"
                 onClick={handleFilterToggle}
+                tabIndex={"-1"}
               >
                 <span>
                   <FontAwesomeIcon icon={["far", "star"]} />
