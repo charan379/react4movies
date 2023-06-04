@@ -188,6 +188,7 @@ export default function TitlesList({ database }) {
                           seenByUser: title?.seenByUser,
                           starredByUser: title?.starredByUser,
                           unseenByUser: title?.unseenByUser,
+                          videos: title?.videos,
                         })
                       }
                     >

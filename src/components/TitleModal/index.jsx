@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, use, useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import styles from "./TitleModal.module.css";
 // font awesome library
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -25,6 +25,7 @@ import { LevelThere } from "@/constants/AuthRoles";
 import Delete from "../TitleActions/Delete";
 import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 import AddTitle from "../TitleActions/Add";
+import PlayTrailer from "../TitleActions/PlayTrailer";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
@@ -132,7 +133,10 @@ const TitleModal = ({ title, open, close }) => {
                   showDetails ? styles.hide : styles.show
                 }`}
               >
-                {/* <PlayTrailer videos={title?.videos} /> */}
+                <PlayTrailer
+                  videos={title?.videos}
+                  className={styles.actionButton}
+                />
 
                 {title?.database === "mbdb" && (
                   <>
@@ -171,6 +175,7 @@ const TitleModal = ({ title, open, close }) => {
                         titleId={title?.id}
                         className={styles.actionButton}
                         auth={session?.auth}
+                        setAsUpdated={() => setIsSomthingUpdated(true)}
                       />
                     )}
                   </>
