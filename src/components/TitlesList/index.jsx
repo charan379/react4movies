@@ -18,7 +18,7 @@ import Link from "next/link";
 import TitleModal from "../TitleModal";
 
 export default function TitlesList({ database }) {
-  const { data: session } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
   // Import the custom hooks that will be used in this component
   const { incProgress20, incProgress, completeProgress } = useProgressBar(); // A hook for displaying a progress bar
   // An object that holds information about the search results
@@ -129,7 +129,7 @@ export default function TitlesList({ database }) {
     debouncedFetchData({ source }); // Use the debounced version of fetchData
     return () => source.cancel();
     // eslint-disable-next-line
-  }, [mbdbQuery, tmdbQuery]);
+  }, [mbdbQuery, tmdbQuery, sessionStatus]);
 
   return (
     <>
