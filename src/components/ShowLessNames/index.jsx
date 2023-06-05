@@ -35,6 +35,8 @@ const ShowLessNames = ({ commaSepratedText, limit }) => {
             fontWeight: "bold",
             cursor: "pointer",
             color: "#4787d6",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            borderWidth: "0px",
           }}
           title={showMore ? "Show less names" : "Show more names"}
           onClick={() => setShowMore(!showMore)}
