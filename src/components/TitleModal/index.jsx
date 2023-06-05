@@ -26,6 +26,7 @@ import Delete from "../TitleActions/Delete";
 import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 import AddTitle from "../TitleActions/Add";
 import PlayTrailer from "../TitleActions/PlayTrailer";
+import Link from "next/link";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
@@ -305,16 +306,16 @@ const TitleModal = ({ title, open, close }) => {
 
               {/* button to open title page */}
               <div className={styles.bottomSection}>
-                <button
+                <Link
                   id={`title-page-link`}
                   data-show="false"
                   className={styles.moreDetails}
-                  // onClick={() => {
-                  //   handleOnClick(title);
-                  // }}
+                  href={`/title/${title?.database}/${title?.titleType}/${
+                    title?.id || title?.tmdbId
+                  }`}
                 >
                   Open Title
-                </button>
+                </Link>
               </div>
             </div>
           </div>
