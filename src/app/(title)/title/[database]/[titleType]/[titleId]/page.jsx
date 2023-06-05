@@ -1,15 +1,32 @@
-import ReduxTest from "@/components/Test/ReduxTest";
+import { fetchTitle } from "@/lib/api/moviebunkers/methods/fetchTitle";
+import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
 import { authOptions } from "@/lib/nextauth/auth";
-import axios from "axios";
 import { getServerSession } from "next-auth";
 import React from "react";
 
 export async function generateMetadata({
   params: { database, titleType, titleId },
 }) {
-  const { data } = await axios.get(
-    `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
-  );
+  const session = await getServerSession(authOptions);
+
+  let data;
+
+  try {
+    switch (database) {
+      case "tmdb":
+        data = await fetchTmdbTitle({ tmdbId: titleId, titleType: titleType });
+        break;
+      case "mbdb":
+        data = await fetchTitle({
+          titleId: Buffer.from(titleId).toString("base64"),
+          auth: session?.auth,
+        });
+        break;
+
+      default:
+        break;
+    }
+  } catch (error) {}
 
   return {
     title: data?.title,
@@ -73,15 +90,30 @@ export async function generateMetadata({
 export default async function TitlePage({
   params: { database, titleType, titleId },
 }) {
-  const { data } = await axios.get(
-    `https://oxoziko43a.execute-api.ap-southeast-1.amazonaws.com/dev/tmdb/movie/${titleId}`
-  );
-
   const session = await getServerSession(authOptions);
+
+  let data;
+
+  try {
+    switch (database) {
+      case "tmdb":
+        data = await fetchTmdbTitle({ tmdbId: titleId, titleType: titleType });
+        break;
+
+      case "mbdb":
+        data = await fetchTitle({
+          titleId: Buffer.from(titleId).toString("base64"),
+          auth: session?.auth,
+        });
+        break;
+
+      default:
+        break;
+    }
+  } catch (error) {}
 
   return (
     <div>
-      <ReduxTest />
       Title : {database} / {titleType} / {titleId}
       <img src={data?.poster_path} />
     </div>
