@@ -36,7 +36,7 @@
   ---tran-02: all 0.5 ease;
   ---tran-03: all 0.5 ease;
   ---tran-04: all 0.5 ease;
-  ---trans-sidebar-toggle: 0.8s ease-out;
+  ---trans-sidebar-toggle: 0.2s ease-in-out;
   ---trans-container-margin: 0.2s ease-in-out;
   ---hover-movies: 1s ease;
 
