@@ -27,6 +27,7 @@ import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 import AddTitle from "../TitleActions/Add";
 import PlayTrailer from "../TitleActions/PlayTrailer";
 import Link from "next/link";
+import makeURLComponent from "@/lib/utils/makeURLComponent";
 
 const WatchProviders = React.lazy(() => import("../WatchProviders"));
 
@@ -312,7 +313,7 @@ const TitleModal = ({ title, open, close }) => {
                   className={styles.moreDetails}
                   href={`/title/${title?.database}/${title?.titleType}/${
                     title?.id || title?.tmdbId
-                  }`}
+                  }-${makeURLComponent(title?.title + "-" + title?.year)}`}
                 >
                   Open Title
                 </Link>

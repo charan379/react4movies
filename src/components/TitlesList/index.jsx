@@ -16,6 +16,7 @@ import { Pagination } from "../Pagination";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TitleModal from "../TitleModal";
+import makeURLComponent from "@/lib/utils/makeURLComponent";
 
 export default function TitlesList({ database }) {
   const { data: session, status: sessionStatus } = useSession();
@@ -144,7 +145,7 @@ export default function TitlesList({ database }) {
                       key={index}
                       href={`/title/${database}/${title?.title_type}/${
                         title?._id || title?.tmdb_id
-                      }`}
+                      }-${makeURLComponent(title?.title + "-" + title?.year)}`}
                     >
                       <TitleCard
                         id={title?._id || title?.tmdb_id}
