@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./TitlePoster.module.css";
 // font awesome library
 import { library } from "@fortawesome/fontawesome-svg-core";
