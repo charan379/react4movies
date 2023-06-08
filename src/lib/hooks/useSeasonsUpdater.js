@@ -93,4 +93,4 @@ const useSeasonsUpdater = (auth) => {
     return { updateSeasons }
 }
 
-export { useSeasonsUpdater };
+export default useSeasonsUpdater;
