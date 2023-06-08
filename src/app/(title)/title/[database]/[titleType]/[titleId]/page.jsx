@@ -8,6 +8,15 @@ import React from "react";
 import TitleActions from "@/components/TitleActions";
 import { TitleDetails } from "@/components/TitleDetails";
 import { TitlePoster } from "@/components/TitlePoster";
+import { LevelOne } from "@/constants/AuthRoles";
+//
+import dynamic from "next/dynamic";
+import BarsLoadingAnimation from "@/components/BarsLoadingAnimation";
+
+const Links = dynamic(() => import("@/components/Links"), {
+  loading: () => <BarsLoadingAnimation />,
+  ssr: false, // Disable server-side rendering for this component
+});
 
 export async function generateMetadata({
   params: { database, titleType, titleId },
@@ -165,6 +174,20 @@ export default async function TitlePage({
             {/* Render the title details */}
             <TitleDetails title={data} />
           </div>
+
+          {/* links */}
+          {database === "mbdb" && LevelOne.includes(session?.user?.role) && (
+            <div className={styles.titleLinksSection}>
+              <h2 className="page-section-heading" id="links">
+                Links
+                <span>
+                  &nbsp;
+                  {/* <i className="fas fa-chevron-right fa-lg"></i> */}
+                </span>
+              </h2>
+              <Links auth={session?.auth} parentId={data?._id} limit={0} />
+            </div>
+          )}
         </div>
       </main>
     </>

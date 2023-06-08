@@ -41,11 +41,13 @@
   align-content: center;
   justify-content: flex-start;
   padding: 0px 10px 10px 10px;
+  color: var(--font-color);
 }
 
 .titlePage .titleDetailsSection {
   grid-area: titleDetailsSection;
   margin-right: 0px;
+  color: var(--font-color);
 }
 
 .titlePage .titleEpisodesSection {
@@ -56,6 +58,7 @@
   align-items: flex-start;
   margin-top: 20px;
   padding: 5px;
+  color: var(--font-color);
 }
 
 .titlePage .titleSeasonsSection {
@@ -66,6 +69,7 @@
   align-items: flex-start;
   margin-top: 20px;
   padding: 5px;
+  color: var(--font-color);
 }
 
 .titlePage .titleLinksSection {
@@ -76,6 +80,7 @@
   align-items: flex-start;
   margin-top: 20px;
   padding: 5px;
+  color: var(--font-color);
 }
 
 .titlePage .titleImagesSection {
@@ -86,6 +91,7 @@
   align-items: stretch;
   margin-top: 20px;
   padding: 5px;
+  color: var(--font-color);
 }
 
 @media (max-width: 1080px) {
