@@ -9,7 +9,7 @@ library.add(fas, far, fab);
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createTitle } from "@/lib/api/moviebunkers/methods/createTitle";
 import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
-import { useSeasonsUpdater } from "@/lib/hooks/useSeasonsUpdater";
+import useSeasonsUpdater from "@/lib/hooks/useSeasonsUpdater";
 
 const AddTitle = ({
   toast,

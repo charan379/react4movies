@@ -29,7 +29,9 @@ const Favourite = ({
     try {
       await addToFavouriteTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setFavourite(true);
-      setAsUpdated();
+      if (typeof setAsUpdated === "function") {
+        setAsUpdated();
+      }
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {
@@ -52,7 +54,9 @@ const Favourite = ({
         auth: auth,
       });
       setFavourite(false);
-      setAsUpdated();
+      if (typeof setAsUpdated === "function") {
+        setAsUpdated();
+      }
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {

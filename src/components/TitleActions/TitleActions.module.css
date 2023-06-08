@@ -29,6 +29,9 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
   background-color: var(--ui-element-color);
   color: var(--font-color);
+  border-width: 0px;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .titleActions .actionButton:hover {
@@ -48,12 +51,18 @@
   align-content: space-around;
   flex-direction: column;
   flex-wrap: wrap;
+  border-width: 0px;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 .moderatorRelated .actionButton {
   width: 190px;
   text-align: center;
   height: 50px;
   line-height: 33px;
+  border-width: 0px;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .moderatorRelated .actionButton span {
@@ -65,4 +74,5 @@
   overflow: hidden;
   width: 165px;
   text-overflow: ellipsis;
+  font-weight: bold;
 }

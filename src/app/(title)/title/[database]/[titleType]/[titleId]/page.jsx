@@ -6,6 +6,7 @@ import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
 import { authOptions } from "@/lib/nextauth/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
+import TitleActions from "@/components/TitleActions";
 
 export async function generateMetadata({
   params: { database, titleType, titleId },
@@ -150,7 +151,12 @@ export default async function TitlePage({
               tagline={data?.tagline}
             />
             {/* component for displaying title action buttons */}
-            {/* <TitleActions /> */}
+            <TitleActions
+              database={database}
+              title={data}
+              user={session?.user}
+              auth={session?.auth}
+            />
           </div>
         </div>
       </main>

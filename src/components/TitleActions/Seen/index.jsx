@@ -34,7 +34,9 @@ const Seen = ({
       await addToSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setSeen(true);
       setUnseen(false);
-      setAsUpdated();
+      if (typeof setAsUpdated === "function") {
+        setAsUpdated();
+      }
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {
@@ -57,7 +59,9 @@ const Seen = ({
       await addToUnSeenTitles({ mbdbTitleId: base64TitleId, auth: auth });
       setUnseen(true);
       setSeen(false);
-      setAsUpdated();
+      if (typeof setAsUpdated === "function") {
+        setAsUpdated();
+      }
     } catch (error) {
       const errMsg = error?.message;
       toast.error(errMsg ?? "Something went wrong", {

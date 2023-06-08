@@ -41,7 +41,9 @@ const Delete = ({
         closeButton: true,
       });
 
-      setAsUpdated();
+      if (typeof setAsUpdated === "function") {
+        setAsUpdated();
+      }
 
       // wait for 1 second before closing window or modal
       setTimeout(() => {
