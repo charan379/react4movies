@@ -1,4 +1,3 @@
-import { TitlePoster } from "@/components/TitlePoster";
 import styles from "./TitlePage.module.css";
 //
 import { fetchTitle } from "@/lib/api/moviebunkers/methods/fetchTitle";
@@ -7,6 +6,8 @@ import { authOptions } from "@/lib/nextauth/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
 import TitleActions from "@/components/TitleActions";
+import { TitleDetails } from "@/components/TitleDetails";
+import { TitlePoster } from "@/components/TitlePoster";
 
 export async function generateMetadata({
   params: { database, titleType, titleId },
@@ -157,6 +158,12 @@ export default async function TitlePage({
               user={session?.user}
               auth={session?.auth}
             />
+          </div>
+
+          <div className={styles.titleDetailsSection}>
+            {/* title details */}
+            {/* Render the title details */}
+            <TitleDetails title={data} />
           </div>
         </div>
       </main>
