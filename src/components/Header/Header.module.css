@@ -25,11 +25,17 @@
   font-style: italic;
   font-variant: small-caps;
   text-transform: capitalize;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .navbar .navTitle img {
   width: 40px;
   border-radius: 6px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .navbar .navItems .navItem {
@@ -38,6 +44,9 @@
   padding: 0 2px 0 2px;
   text-align: right;
   cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .navbar .navItems {

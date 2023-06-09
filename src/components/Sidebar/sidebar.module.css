@@ -11,6 +11,9 @@
   transition: background-color var(---trans-theme), color var(---trans-theme),
     width var(---trans-sidebar-toggle);
   z-index: 998;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 /* sidebar close */
@@ -96,6 +99,9 @@ header .sidebarImageText .sidebarHeaderText {
   cursor: pointer;
   color: var(--font-color);
   background-color: var(--ui-element-color);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
   transition: transform var(---trans-sidebar-toggle),
     background-color var(---trans-theme), color var(---trans-theme),
     display var(---trans-sidebar-toggle), opacity var(---trans-sidebar-toggle);
