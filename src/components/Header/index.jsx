@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./Header.module.css";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import appLogo from "@/assets/icons/appLogo.svg";
 import userSvg from "@/assets/icons/user.svg";
@@ -29,10 +29,9 @@ export default function Header() {
   // close dropdown on outside click
   useOnOutSideClick(
     dropdownRef,
-    () => setShowDrop(false)
-    // useCallback(() => {
-    //   setShwoDropdown(false);
-    // }, [])
+    useCallback(() => {
+      setShowDrop(false);
+    }, [])
   );
   return (
     <>
@@ -69,7 +68,7 @@ export default function Header() {
               ></Image>
             </span>
           </li>
-          <div className={styles.navbarDropdown}>
+          <div ref={dropdownRef} className={styles.navbarDropdown}>
             <li className={styles.navItem}>
               <Image
                 className={styles.navImg}
@@ -82,7 +81,6 @@ export default function Header() {
               ></Image>
             </li>
             <div
-              ref={dropdownRef}
               className={`${styles.navbarDropdownContent} ${
                 showDrop ? styles.show : ""
               }`}
