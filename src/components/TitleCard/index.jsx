@@ -61,6 +61,7 @@ const TitleCard = (
             }
             fill={true}
             onLoadingComplete={handleOnImageLoaded}
+            unoptimized={true}
           />
           {isLoading && (
             <FontAwesomeIcon

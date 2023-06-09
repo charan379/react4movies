@@ -44,6 +44,8 @@ const TitlePoster = ({ url, alt, tagline }) => {
             }
             fill={true}
             onLoadingComplete={handleOnImageLoaded}
+            unoptimized={true}
+            property="true"
           />
           {isLoading && (
             <FontAwesomeIcon
