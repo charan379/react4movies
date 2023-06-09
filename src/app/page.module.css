@@ -3,8 +3,34 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.link {
+  position: relative;
+  border-radius: 10px;
+  text-align: center;
+  padding: 13px 10px 10px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  margin: 20px;
+  transition: opacity 1s ease-in-out;
+  text-decoration: none;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
 }
 
 .description {
@@ -97,7 +123,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
