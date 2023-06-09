@@ -53,7 +53,7 @@ export async function generateMetadata({
     openGraph: {
       title: data?.title,
       description: data?.overview,
-      url: "https://nextjs.org",
+      url: process.env.NEXTAUTH_URL,
       siteName: "React4Movies",
       images: [
         {
