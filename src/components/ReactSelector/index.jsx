@@ -9,6 +9,7 @@ export default function ReactSelector({
   selectedOption,
   name,
   isMultiSelect = false,
+  inputWhite = false,
 }) {
   const { theme } = useTheme(); // Get current theme from custom hook useTheme
 
@@ -47,18 +48,22 @@ export default function ReactSelector({
     multiValue: (styles) => {
       return {
         ...styles,
-        backgroundColor: theme === "light" ? "#15202b" : "#e9f1fa",
+        backgroundColor: inputWhite
+          ? "black"
+          : theme === "light"
+          ? "#15202b"
+          : "#e9f1fa",
       };
     },
 
     multiValueLabel: (styles) => ({
       ...styles,
-      color: theme === "light" ? "#ffffff" : "#020d1a",
+      color: inputWhite ? "white" : theme === "light" ? "#ffffff" : "#020d1a",
     }),
 
     multiValueRemove: (styles) => ({
       ...styles,
-      color: theme === "light" ? "#ffffff" : "#020d1a",
+      color: inputWhite ? "white" : theme === "light" ? "#ffffff" : "#020d1a",
       ":hover": {
         backgroundColor: "crimson",
         color: "#ffffff",
@@ -69,7 +74,11 @@ export default function ReactSelector({
     control: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different background color depending on the theme
-      backgroundColor: theme === "light" ? "#c8d9ec" : "#22303c",
+      backgroundColor: inputWhite
+        ? "white"
+        : theme === "light"
+        ? "#c8d9ec"
+        : "#22303c",
       cursor: "pointer",
       border: "none",
       boxShadow: "none",
@@ -79,7 +88,7 @@ export default function ReactSelector({
     singleValue: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different color depending on the theme
-      color: theme === "light" ? "#020d1a" : "#c8d9ec",
+      color: inputWhite ? "black" : theme === "light" ? "#020d1a" : "#c8d9ec",
       cursor: "pointer",
     }),
 
@@ -87,7 +96,7 @@ export default function ReactSelector({
     input: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different color depending on the theme
-      color: theme === "light" ? "#020d1a" : "#c8d9ec",
+      color: inputWhite ? "black" : theme === "light" ? "#020d1a" : "#c8d9ec",
       cursor: "pointer",
     }),
   };
@@ -111,11 +120,28 @@ export default function ReactSelector({
   }
 
   //   if not multi
+
+  // if selected option present
+
+  if (selectedOption?.label) {
+    return (
+      <Select
+        name={name}
+        value={selectedOption}
+        styles={styles}
+        onChange={handleSelectChange}
+        options={options}
+        isSearchable
+        placeholder="Search..."
+      />
+    );
+  }
+
+  // if no selected option
   return (
     <Select
       name={name}
       styles={styles}
-      value={selectedOption}
       onChange={handleSelectChange}
       options={options}
       isSearchable
