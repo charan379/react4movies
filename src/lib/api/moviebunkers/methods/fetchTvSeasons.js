@@ -1,10 +1,11 @@
 import axios from "axios";
 import { moviebunkersAPI } from "..";
 
-export async function fetchTvSeasons({ titleId, auth, source = { token: null } }) {
+export async function fetchTvSeasons({ titleId, auth, queryParams = { limit: 0, sort_by: 'air_date.desc' }, source = { token: null } }) {
     try {
         // Make the API request to fetch tv sesasons
         const res = await moviebunkersAPI(auth).get(`/seasons/tv/${titleId}`, {
+            params: queryParams,
             cancelToken: source.token
         })
 
