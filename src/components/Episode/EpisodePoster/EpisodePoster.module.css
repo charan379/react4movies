@@ -1,0 +1,65 @@
+.episodePosterBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 0px solid;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: -webkit-fill-available;
+  max-width: 320px;
+  min-width: 260px;
+  height: 210px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+}
+
+.episodePosterBox .episodePosterBackdrop,
+.episodePosterBox .episodePosterImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+}
+
+.episodePosterBox .episodePosterBackdrop {
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.episodePosterBox .episodePosterImg {
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.episodePosterBox .episodePosterImg img {
+  width: inherit;
+  height: inherit;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  border-radius: 5px;
+}
+
+.episodePosterBox .episodePosterImg img[data-loading="true"] {
+  opacity: 0;
+}
+
+.episodePosterBox .episodePosterImg img[data-loading="false"] {
+  opacity: 1;
+}
+
+.episodePosterBox .episodePosterBackdrop i,
+.episodePosterBox .episodePosterImg i {
+  position: absolute;
+}
