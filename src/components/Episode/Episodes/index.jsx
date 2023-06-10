@@ -6,6 +6,7 @@ import axios from "axios";
 import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
 import EpisodeCard from "../EpisodeCard";
+import { fetchTvSeasonEpisodes } from "@/lib/api/moviebunkers/methods/fetchTvSeasonEpisodes";
 
 const EpisodeList = ({
   titleId,
@@ -17,6 +18,7 @@ const EpisodeList = ({
   lastestEpisode = null,
   upcomingEpisode = null,
   getAllEpisodes = true,
+  auth,
 }) => {
   const { _title } = "";
 
@@ -33,20 +35,19 @@ const EpisodeList = ({
     seasonNumber,
     limit,
     sortBy = "air_date.desc",
-    cancelToken,
+    source,
   }) => {
     setIsLoading(true); // Set the loading state to true
 
     try {
-      const response = await movieBunkersAPI(
-        `episodes/tv/${titleId}/season/${seasonNumber}`,
-        {
-          params: { limit, sort_by: sortBy },
-          cancelToken,
-        }
-      );
+      const data = await fetchTvSeasonEpisodes({
+        auth,
+        titleId,
+        seasonNumber,
+        queryParams: { limit, sort_by: sortBy },
+      });
 
-      setEpisodesList([...response?.data]);
+      setEpisodesList([...data]);
     } catch (error) {
       const errorResponse = error?.response?.data; // Get the error response data, if any
       if (axios.isCancel(error)) return; // If the error is due to a cancelled request, return without updating any state
