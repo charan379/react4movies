@@ -1,0 +1,71 @@
+.seasonCard {
+  display: grid;
+  padding: 5px;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+  grid-template-areas: "posterSection detailsSection";
+  width: -webkit-fill-available;
+  max-width: 780px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+  transition: scale 0.5s ease-in-out;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.seasonCard .posterSection {
+  grid-area: posterSection;
+  height: max-content;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.seasonCard .detailsSection {
+  grid-area: detailsSection;
+  width: -webkit-fill-available;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.seasonCard .seasonDetails {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  align-content: flex-start;
+  width: -webkit-fill-available;
+}
+
+.seasonCard .seasonDetails h4 span {
+  font-size: small;
+}
+.seasonCard .seasonDetails .seasonOverview {
+  margin-top: 6px;
+  width: -webkit-fill-available;
+  text-align: left;
+}
+
+@media (max-width: 380px) {
+  .seasonCard .seasonDetails .seasonOverview {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .seasonCard:hover {
+    scale: 1.05;
+  }
+}
