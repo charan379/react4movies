@@ -1,5 +1,13 @@
 import styles from "./TitlePage.module.css";
 //
+// font awesome library
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+library.add(fas, far, fab);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//
 import { fetchTitle } from "@/lib/api/moviebunkers/methods/fetchTitle";
 import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
 import { authOptions } from "@/lib/nextauth/auth";
@@ -12,6 +20,8 @@ import { LevelOne } from "@/constants/AuthRoles";
 //
 import dynamic from "next/dynamic";
 import BarsLoadingAnimation from "@/components/BarsLoadingAnimation";
+import EpisodeList from "@/components/Episode/Episodes";
+import SeasonList from "@/components/Season/Seasons";
 
 const Links = dynamic(() => import("@/components/Links"), {
   loading: () => <BarsLoadingAnimation />,
@@ -138,10 +148,6 @@ export default async function TitlePage({
 
   return (
     <>
-      {/* <div>
-        Title : {database} / {titleType} / {titleId}
-        <img src={data?.poster_path} />
-      </div> */}
       <main>
         <div id={"title-page"} className={styles.titlePage}>
           {/* title page */}
@@ -182,13 +188,71 @@ export default async function TitlePage({
                 Links
                 <span>
                   &nbsp;
-                  {/* <i className="fas fa-chevron-right fa-lg"></i> */}
+                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
                 </span>
               </h2>
               <Links auth={session?.auth} parentId={data?._id} limit={0} />
             </div>
           )}
         </div>
+
+        {data?.title_type === "tv" && (
+          <>
+            {/* episodes */}
+            <div className={styles.titleEpisodesSection}>
+              <h2 className="page-section-heading" id="episodes">
+                Episodes
+                <span>
+                  &nbsp;
+                  <small>{data?.number_of_episodes}&nbsp;</small>
+                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                </span>
+              </h2>
+              <EpisodeList
+                database={database}
+                getAllEpisodes={false}
+                lastestEpisode={
+                  data?.last_episode_aired
+                    ? {
+                        ...data.last_episode_aired,
+                        data_show_id: data?._id ?? data?.tmdb_id,
+                      }
+                    : null
+                }
+                upcomingEpisode={
+                  data?.next_episode_to_air
+                    ? {
+                        ...data.next_episode_to_air,
+                        data_show_id: data?._id ?? data?.tmdb_id,
+                      }
+                    : null
+                }
+              />
+            </div>
+
+            {/* seasons */}
+            <div className={styles.titleSeasonsSection}>
+              <h2 className="page-section-heading" id="seasons">
+                Seasons
+                <span>
+                  &nbsp;
+                  <small>{data?.number_of_seasons}&nbsp;</small>
+                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                </span>
+              </h2>
+              <SeasonList
+                titleId={data?._id}
+                database={database}
+                seasons={data?.seasons}
+                totalSeasons={data?.number_of_seasons}
+                limit={
+                  data?.number_of_seasons <= 3 ? data?.number_of_season : 3
+                }
+                getAllSeasons={false}
+              />
+            </div>
+          </>
+        )}
       </main>
     </>
   );
