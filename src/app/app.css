@@ -116,6 +116,7 @@ select:-webkit-autofill:focus {
   border: 3px solid hsl(0, 0%, 100%);
 }
 
+.global-last-card .more-button span,
 .global-last-card .more-button i {
   color: #f5c518;
   font-size: 6rem;
@@ -128,6 +129,8 @@ select:-webkit-autofill:focus {
   font-family: inherit;
   color: inherit;
   text-align: left;
+  margin: 5px 0px 5px 0px;
+  font-size: 1.3rem;
 }
 
 .page-section-heading {
@@ -135,6 +138,7 @@ select:-webkit-autofill:focus {
   font-weight: bold;
   cursor: pointer;
   text-align: left;
+  color: var(--font-color);
 }
 
 .page-section-heading:hover span i {
@@ -175,6 +179,16 @@ select:-webkit-autofill:focus {
 .sub-heading a:hover {
   text-decoration: none;
   color: inherit;
+}
+
+.sub-heading button,
+.sub-heading button:hover{
+  text-decoration: none;
+  color: inherit;
+  border-width: 0px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  font-size: 1rem;
 }
 
 .sub-heading::before {
