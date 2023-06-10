@@ -1,7 +1,5 @@
 import TitlesList from "@/components/TitlesList";
-import { fetchWhoAmi } from "@/lib/api/moviebunkers/methods/fetchWhoAmi";
-import { authOptions } from "@/lib/nextauth/auth";
-import { getServerSession } from "next-auth";
+
 
 export const revalidate = 3600; // revalidate every hour
 
@@ -20,7 +18,6 @@ export const revalidate = 3600; // revalidate every hour
 // }
 
 export default async function TitlesPage({ params: { database } }) {
-  const session = await getServerSession(authOptions);
 
   return (
     <>
