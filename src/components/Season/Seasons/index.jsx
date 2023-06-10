@@ -6,6 +6,7 @@ import { debounce } from "lodash";
 import axios from "axios";
 import { useToastify } from "@/lib/hooks/useToastify";
 import SeasonCard from "../SeasonCard";
+import { fetchTvSeasons } from "@/lib/api/moviebunkers/methods/fetchTvSeasons";
 
 const SeasonList = ({
   titleId,
@@ -14,6 +15,7 @@ const SeasonList = ({
   limit = 3,
   totalSeasons = 0,
   getAllSeasons = false,
+  auth,
 }) => {
   const { _title } = "";
 
@@ -29,21 +31,22 @@ const SeasonList = ({
     titleId,
     limit,
     sortBy = "air_date.desc",
-    cancelToken,
+    source,
   }) => {
     setIsLoading(true); // Set the loading state to true
 
     try {
-      const response = await movieBunkersAPI(`seasons/tv/${titleId}`, {
-        params: { limit, sort_by: sortBy },
-        cancelToken,
+      const data = await fetchTvSeasons({
+        auth,
+        titleId,
+        queryParams: { limit, sort_by: sortBy },
+        source,
       });
 
-      setSeasonsList([...response?.data]);
+      setSeasonsList([...data]);
     } catch (error) {
-      const errorResponse = error?.response?.data; // Get the error response data, if any
-      if (axios.isCancel(error)) return; // If the error is due to a cancelled request, return without updating any state
-      toast.error(errorResponse?.error?.message ?? error?.message, {
+      if (error?.message === "cancelled") return; // If the error is due to a cancelled request, return without updating any state
+      toast.error(error?.message ?? " Somthing went wrong", {
         // Show an error toast message with the error message
         autoClose: 3000,
         position: "top-right",
@@ -59,11 +62,11 @@ const SeasonList = ({
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-    if (database === "mbdb0") {
+    if (database === "mbdb") {
       debouncedFetchData({
         titleId,
         limit: cardLimt,
-        ancelToken: source.token,
+        source: source,
       });
     }
 
