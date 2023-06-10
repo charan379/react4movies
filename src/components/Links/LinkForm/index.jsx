@@ -104,6 +104,7 @@ export default function LinkForm({
     { value: "Torrent Magnet", label: "Torrent Magnet" },
     { value: "Youtube", label: "Youtube" },
     { value: "Online Stream", label: "Online Stream" },
+    { value: "External Site Link", label: "External Site Link" },
   ];
 
   const contentTypeOptions = [
