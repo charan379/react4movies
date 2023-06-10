@@ -249,6 +249,7 @@ export default async function TitlePage({
                   data?.number_of_seasons <= 3 ? data?.number_of_season : 3
                 }
                 getAllSeasons={false}
+                auth={session?.auth}
               />
             </div>
           </>
