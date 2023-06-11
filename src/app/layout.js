@@ -21,6 +21,25 @@ export const metadata = {
   // meta tags
   title: 'React4Movies',
   description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
+  // pwa
+  applicationName: 'React4Movies',
+  appleWebApp: {
+    capable: true,
+    title: "React4Movies",
+    statusBarStyle: "default",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  themeColor: "#FFFFFF",
+  viewport:
+    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
+  manifest: "/manifest.json",
+  icons: [
+    { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" },
+    { rel: "shortcut icon", url: "/favicon.ico" },
+  ],
+  keywords: ["nextjs", "pwa", "next-pwa"],
 
   // og meta tags
   openGraph: {
