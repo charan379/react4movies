@@ -133,31 +133,49 @@ export default async function SeasonsPage({
   // tv show initial release year
   const year = titleId?.split("-")?.slice(-1)[0];
 
-  let seasons;
+  let season;
 
   try {
     switch (database) {
       case "tmdb":
-        seasons = await fetchTmdbTvSeason({
+        const tmdbData = await fetchTmdbTvSeason({
           seasonNumber: seasonNumber,
           tmdbTitleId: tvShowId,
         });
+
+        if (tmdbData?.season_number) {
+          season = tmdbData;
+        } else {
+          throw Error("can't find requested season data for this title");
+        }
+
         break;
 
       case "mbdb":
-        seasons = await fetchTvSeasons({
+        const mbdbData = await fetchTvSeasons({
           titleId: tvShowId,
-          queryParams: { limit: 1, skip: seasonNumber - 1 },
+          queryParams: {
+            limit: 1,
+            skip: seasonNumber - 1,
+            sort_by: "season_number.asc",
+          },
           auth: session?.auth,
         });
+
+        if (mbdbData?.length > 0 && mbdbData[0]?.season_number) {
+          season = mbdbData[0];
+        } else {
+          throw Error("can't find requested season data for this title");
+        }
+
         break;
 
       default:
         break;
     }
-  } catch (error) {}
-
-  const data = seasons[0];
+  } catch (error) {
+    console.log(error);
+  }
 
   return (
     <>
@@ -187,8 +205,8 @@ export default async function SeasonsPage({
             <div className={styles.posterSection}>
               {/* code to display poster */}
               <SeasonPoster
-                posterPath={data?.poster_path}
-                seasonName={data?.name}
+                posterPath={season?.poster_path}
+                seasonName={season?.name}
               />
             </div>
             {/* season info section */}
@@ -197,31 +215,31 @@ export default async function SeasonsPage({
               <ul>
                 <li>
                   <span className={styles.infoItem}>
-                    <b>Name</b> : {data?.name ?? ""}
+                    <b>Name</b> : {season?.name ?? ""}
                   </span>
                 </li>
                 <li>
                   <span className={styles.infoItem}>
-                    <b>Season Number</b> : {data?.season_number ?? ""}
+                    <b>Season Number</b> : {season?.season_number ?? ""}
                   </span>
                 </li>
                 <li>
                   <span className={styles.infoItem}>
-                    <b>Episodes Count</b> : {data?.episode_count ?? ""}
+                    <b>Episodes Count</b> : {season?.episode_count ?? ""}
                   </span>
                 </li>
-                {data?.air_date && (
+                {season?.air_date && (
                   <li>
                     <span className={styles.infoItem}>
-                      <b>Aired Date</b> : {convertIsoDate(data?.air_date)}
+                      <b>Aired Date</b> : {convertIsoDate(season?.air_date)}
                     </span>
                   </li>
                 )}
-                {data?.overview && (
+                {season?.overview && (
                   <li>
                     <span className={styles.infoItem}>
                       <b>Overview</b> :{" "}
-                      <ShowLessText text={data?.overview} limit={180} />
+                      <ShowLessText text={season?.overview} limit={180} />
                     </span>
                   </li>
                 )}
@@ -231,7 +249,7 @@ export default async function SeasonsPage({
             <div className={styles.actionButtonsSection}>
               <div className={styles.actionButtons}>
                 <PlayTrailer
-                  videos={data?.videos}
+                  videos={season?.videos}
                   toolTipDir="up"
                   className={styles.actionButton}
                 />
@@ -244,21 +262,21 @@ export default async function SeasonsPage({
               Episodes
               <span>
                 &nbsp;
-                <small>{data?.episode_count}&nbsp;</small>
+                <small>{season?.episode_count}&nbsp;</small>
                 <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
               </span>
             </h2>
             {/* code to displayepisodes list */}
             <EpisodeList
               titleName={titleName}
-              key={data?.episodes?.length}
+              key={season?.episodes?.length}
               getAllEpisodes={true}
               database={database}
               titleId={tvShowId}
               seasonNumber={seasonNumber}
               limit={3}
-              episodes={data?.episodes}
-              totalEpisodes={data?.episode_count}
+              episodes={season?.episodes}
+              totalEpisodes={season?.episode_count}
               auth={session?.auth}
             />
           </div>
@@ -273,7 +291,7 @@ export default async function SeasonsPage({
                   <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
                 </span>
               </h2>
-              <LinkList parentId={data?._id} auth={session?.auth} />
+              <LinkList parentId={season?._id} auth={session?.auth} />
             </div>
           )}
 
@@ -284,7 +302,7 @@ export default async function SeasonsPage({
               Images
               <span>
                 &nbsp;
-                <small>{data?.images?.length}&nbsp;</small>
+                <small>{season?.images?.length}&nbsp;</small>
                 <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
               </span>
             </h2>
