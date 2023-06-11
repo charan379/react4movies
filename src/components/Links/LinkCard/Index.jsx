@@ -74,7 +74,12 @@ export default function LinkCard({
           </li>
         </ul>
         <div className={styles.actionButtons}>
-          <button data-type="get">Get</button>
+          <button
+            data-type="get"
+            onClick={() => window.open(link?.link, "_blank")}
+          >
+            Get
+          </button>
           <button data-type="edit" onClick={handleUpdateLink}>
             Edit
           </button>
