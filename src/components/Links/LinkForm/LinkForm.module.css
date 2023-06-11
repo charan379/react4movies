@@ -99,6 +99,12 @@
   cursor: pointer;
 }
 
+.linkForm form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: fill;
+}
+
 .linkForm form button[data-type="cancel"]:hover {
   background-color: crimson;
   color: var(--font-color-dark);
@@ -107,4 +113,9 @@
 .linkForm form button[data-type="submit"]:hover {
   background-color: #228b22;
   color: var(--font-color-dark);
+}
+
+.linkForm form button:disabled:hover {
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
 }
