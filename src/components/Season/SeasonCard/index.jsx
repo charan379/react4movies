@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SeasonPoster from "../SeasonPoster";
 //
 import Link from "next/link";
+import { useParams } from "next/navigation";
+//
 import convertIsoDate from "@/lib/utils/convertIsoDate";
 import ShowLessText from "@/components/ShowLessText";
 
@@ -21,9 +23,9 @@ const SeasonCard = ({
   moreButton = false,
   onClick,
 }) => {
-  const seasonLink = `/view/tv/${titleName}/${database}/${
-    season?.tv_show_id ?? season?.tmdb_show_id
-  }/season/${season?.season_number}/top`;
+  const pathParams = useParams();
+
+  const seasonLink = `/title/${pathParams?.database}/${pathParams?.titleType}/${pathParams?.titleId}/season/${season?.season_number}`;
 
   if (!season && moreButton) {
     return (
