@@ -12,6 +12,12 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, far, fab);
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  contentQualityOptions,
+  contentTypeOptions,
+  linkTypeOptions,
+} from "@/constants/linkOptions";
+import linkValidations from "@/lib/utils/validations/link";
 
 export default function LinkForm({
   linkToBeUpdated,
@@ -34,8 +40,46 @@ export default function LinkForm({
     remarks: linkToBeUpdated?.remarks ?? "",
   });
 
+  const [validForm, setValidForm] = useState(true);
+  const [requiredOk, setRequiredOk] = useState(true);
+
+  const [formErrors, setFormErrors] = useState({
+    contentType: false,
+    languages: false,
+    linkType: false,
+    quality: false,
+    link: false,
+    title: false,
+    remarks: false,
+  });
+
+  const messages = {
+    inValidContentType: "Please select a valid content type",
+    inValidLanguage: "Please select atleast one language",
+    inValidQuality: "Please select atleast one quality type",
+    inValidLinkType: "Please select a valid link type",
+    inValidLink: "Please enter valid url",
+    inValidTitle: "Please enter valid title",
+    inValidRemarks: "Please enter valid remarks",
+    inValidForm: "Please provide all required/valid details",
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    if (
+      !link.contentType ||
+      link.languages?.length <= 0 ||
+      link.quality?.length <= 0 ||
+      !link.linkType ||
+      !link.link ||
+      !link.title ||
+      !link.remarks
+    ) {
+      setRequiredOk(false);
+      return;
+    }
+
     if (linkToBeUpdated?._id) {
       await updateLink({ id: linkToBeUpdated?._id, link: link });
     } else {
@@ -46,6 +90,9 @@ export default function LinkForm({
   // handle onChange event
   const handleOnChange = (event) => {
     event.preventDefault();
+
+    validateForm(event.target.name, event.target.value);
+
     setLink({
       ...link,
       [event.target.name]: event.target.value,
@@ -75,6 +122,54 @@ export default function LinkForm({
     });
   };
 
+  const validateForm = (name, value) => {
+    setRequiredOk(true);
+    let errors;
+
+    switch (name) {
+      case "link":
+        if (!linkValidations.validateUrl(value)) {
+          errors = { ...errors, link: true, validForm: false };
+          setValidForm(false);
+        } else {
+          errors = { ...errors, link: false };
+        }
+        break;
+
+      case "title":
+        if (!linkValidations.validStringInput(value, 150)) {
+          errors = { ...errors, title: true };
+          setValidForm(false);
+        } else {
+          errors = { ...errors, title: false };
+        }
+        break;
+
+      case "remarks":
+        if (!linkValidations.validStringInput(value, 150)) {
+          errors = { ...errors, remarks: true };
+          setValidForm(false);
+        } else {
+          errors = { ...errors, remarks: false };
+        }
+        break;
+      default:
+        break;
+    }
+
+    setFormErrors({ ...formErrors, ...errors });
+
+    if (
+      Object.values({ ...formErrors, ...errors }).every(
+        (error) => error === false
+      )
+    ) {
+      setValidForm(true);
+    } else {
+      setValidForm(false);
+    }
+  };
+
   const getLanguageOptions = () => {
     const languageOptions = [];
     const alreadySelectedLanguages = link?.languages?.map(
@@ -98,32 +193,6 @@ export default function LinkForm({
     () => getLanguageOptions(),
     [link?._id, link?.languages]
   );
-
-  const linkTypeOptions = [
-    { value: "Direct File", label: "Direct File" },
-    { value: "Torrent Magnet", label: "Torrent Magnet" },
-    { value: "Youtube", label: "Youtube" },
-    { value: "Online Stream", label: "Online Stream" },
-    { value: "External Site Link", label: "External Site Link" },
-  ];
-
-  const contentTypeOptions = [
-    { value: "Video", label: "Video" },
-    { value: "Image", label: "Image" },
-    { value: "Zip", label: "Zip" },
-    { value: "Folder", label: "Folder" },
-  ];
-
-  const contentQualityOptions = [
-    { value: "320P", label: "320P" },
-    { value: "480P", label: "480P" },
-    { value: "720P", label: "720P" },
-    { value: "1080P", label: "1080P" },
-    { value: "HD", label: "HD" },
-    { value: "Ultra HD", label: "Ultra HD" },
-    { value: "2K", label: "2K" },
-    { value: "4K", label: "4K" },
-  ];
 
   useDisableBodyScrollOnModalOpen(openForm);
 
@@ -155,6 +224,11 @@ export default function LinkForm({
             <form onSubmit={handleFormSubmit}>
               {/* link title */}
               <label htmlFor="title">Link Title : </label>
+              {formErrors.title && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidTitle}
+                </span>
+              )}
               <input
                 onChange={handleOnChange}
                 name="title"
@@ -166,6 +240,11 @@ export default function LinkForm({
 
               {/* content type */}
               <label htmlFor="contentType"> Content Type : </label>
+              {formErrors.contentType && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidContentType}
+                </span>
+              )}
               <span>
                 <ReactSelector
                   name={`contentType`}
@@ -181,6 +260,11 @@ export default function LinkForm({
 
               {/* link type */}
               <label htmlFor="linkType"> Type : </label>
+              {formErrors.linkType && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidLinkType}
+                </span>
+              )}
               <span>
                 <ReactSelector
                   name={`linkType`}
@@ -196,6 +280,11 @@ export default function LinkForm({
 
               {/* languages */}
               <label htmlFor="languages"> Languages : </label>
+              {formErrors.languages && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidLanguage}
+                </span>
+              )}
               <span>
                 <ReactSelector
                   name={`languages`}
@@ -214,6 +303,11 @@ export default function LinkForm({
 
               {/* quality */}
               <label htmlFor="quality"> Quality : </label>
+              {formErrors.quality && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidQuality}
+                </span>
+              )}
               <span>
                 <ReactSelector
                   inputWhite={true}
@@ -232,6 +326,11 @@ export default function LinkForm({
 
               {/* link url */}
               <label htmlFor="link">URL : </label>
+              {formErrors.link && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidLink}
+                </span>
+              )}
               <input
                 onChange={handleOnChange}
                 name="link"
@@ -242,7 +341,12 @@ export default function LinkForm({
               />
 
               {/* link remarks */}
-              <label htmlFor="remarks"> Remarks : </label>
+              <label htmlFor="remarks">Remarks :</label>
+              {formErrors.remarks && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidRemarks}
+                </span>
+              )}
               <input
                 onChange={handleOnChange}
                 data-role="text-input"
@@ -251,13 +355,18 @@ export default function LinkForm({
                 value={link.remarks}
                 placeholder="Remarks"
               />
-
+              {!requiredOk && (
+                <span className="error-message" data-error={true}>
+                  {messages.inValidForm}
+                </span>
+              )}
               <div className={styles.formButtons}>
                 <button onClick={closeForm} data-type="cancel">
                   Cancel
                 </button>
-                <button type="submit" data-type="submit">
-                  Submit
+
+                <button type="submit" data-type="submit" disabled={!validForm}>
+                  Submit {validForm ? "ok" : "no"}
                 </button>
               </div>
             </form>
