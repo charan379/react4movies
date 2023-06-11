@@ -15,6 +15,7 @@ import ShowLessText from "@/components/ShowLessText";
 import EpisodePoster from "../EpisodePoster";
 //
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const EpisodeCard = ({
   titleName,
@@ -26,11 +27,12 @@ const EpisodeCard = ({
   isLoading,
   onClick,
 }) => {
-  const episodebutton = `/view/tv/${titleName}/${database}/${
-    database === "mbdb"
-      ? episode?.tv_show_id
-      : episode?.tmdb_show_id ?? episode?.tv_show_id
-  }/season/${episode?.season_number}/episode/${episode?.episode_number}/top`;
+  const pathParams = useParams();
+  const episodeLink = `/title/${pathParams?.database}/${
+    pathParams?.titleType
+  }/${pathParams?.titleId}/season/${
+    pathParams?.seasonNumber ?? episode?.season_number
+  }/episode/${episode?.episode_number}`;
 
   if (!episode && moreButton) {
     return (
@@ -68,10 +70,10 @@ const EpisodeCard = ({
             {latest && <h5 className="sub-heading">Latest</h5>}
             {upcoming && <h5 className="sub-heading">Upcoming</h5>}
             <h4 className="sub-heading">
-              <Link href={episodebutton}>{episode?.name}</Link>
+              <Link href={episodeLink}>{episode?.name}</Link>
             </h4>
             <h5 className="sub-heading link">
-              <Link href={episodebutton}>
+              <Link href={episodeLink}>
                 Season {episode?.season_number} | Episode{" "}
                 {episode?.episode_number}
               </Link>
