@@ -366,7 +366,7 @@ export default function LinkForm({
                 </button>
 
                 <button type="submit" data-type="submit" disabled={!validForm}>
-                  Submit {validForm ? "ok" : "no"}
+                  Submit
                 </button>
               </div>
             </form>
