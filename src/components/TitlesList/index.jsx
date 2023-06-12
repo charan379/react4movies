@@ -143,6 +143,7 @@ export default function TitlesList({ database }) {
                   return (
                     <Link
                       key={index}
+                      prefetch={database !== "tmdb"}
                       href={`/title/${database}/${title?.title_type}/${
                         title?._id || title?.tmdb_id
                       }-${makeURLComponent(title?.title + "-" + title?.year)}`}

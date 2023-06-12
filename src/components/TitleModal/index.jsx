@@ -309,6 +309,7 @@ const TitleModal = ({ title, open, close }) => {
               <div className={styles.bottomSection}>
                 <Link
                   id={`title-page-link`}
+                  prefetch={title?.database !== "tmdb"}
                   data-show="false"
                   className={styles.moreDetails}
                   href={`/title/${title?.database}/${title?.titleType}/${

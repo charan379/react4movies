@@ -1,14 +1,14 @@
 function makeURLComponent(url) {
     try {
-        let newUrl;
+        let newUrl = url;
         // Replace any non-alphanumeric characters with a hyphen
-        newUrl = url.replace(/[^a-zA-Z0-9]/g, "-");
+        newUrl = newUrl?.replace(/[^a-zA-Z0-9]/g, "-");
 
         // Convert all characters to lowercase
-        newUrl = url.toLowerCase();
+        newUrl = newUrl?.toLowerCase();
 
         // Add slashes to separate the different parts of the URL
-        newUrl = url.replace(/^-+/, "").replace(/-+$/, "").replace(/-+/g, "-");
+        newUrl = newUrl?.replace(/^-+/, "").replace(/-+$/, "").replace(/-+/g, "-");
 
         return newUrl;
     } catch (error) {
