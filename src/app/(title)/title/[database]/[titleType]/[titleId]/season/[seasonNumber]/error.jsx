@@ -12,7 +12,7 @@ export default function Error({ error, reset }) {
     <div>
       <h2>Something went wrong! </h2>
       <h5>{error?.message}</h5>
-      <h5>You are in Home Page</h5>
+      <h5>You are in Season Page</h5>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
