@@ -139,7 +139,7 @@ export default function TitlesList({ database }) {
           <div className={styles.titlesList}>
             <>
               {moviesPage?.list?.map((title, index) => {
-                if (width < 1080 || height < 590) {
+                if (width < 950 || height < 520) {
                   return (
                     <Link
                       key={index}
