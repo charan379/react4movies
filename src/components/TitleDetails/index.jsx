@@ -173,7 +173,7 @@ const TitleDetails = ({ title }) => {
             <div className={styles.infoItem}>
               <a className="link" href={`#seasons`}>
                 <b>Seasons : </b>
-                {title.number_of_seasons}
+                {title?.number_of_seasons}
               </a>
             </div>
 
@@ -181,14 +181,14 @@ const TitleDetails = ({ title }) => {
             <div className={styles.infoItem}>
               <a className="link" href={`#episodes`}>
                 <b>Episodes : </b>
-                {title.number_of_episodes}
+                {title?.number_of_episodes}
               </a>
             </div>
 
             {/* avg episode run time */}
             <div className={styles.infoItem}>
               <b>Episode avg rumtime : </b>
-              {title.runtime}
+              {title?.runtime}
             </div>
           </>
         )}
@@ -229,7 +229,7 @@ const TitleDetails = ({ title }) => {
       {title.overview && (
         <div className={styles.overviewSection}>
           <h6 className="sub-heading">Overview</h6>
-          <ShowLessText text={title.overview} limit={150} />
+          <ShowLessText text={title?.overview} limit={150} />
         </div>
       )}
       {/* top cast */}
