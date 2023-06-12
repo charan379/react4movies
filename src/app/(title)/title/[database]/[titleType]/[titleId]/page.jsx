@@ -14,8 +14,8 @@ import { authOptions } from "@/lib/nextauth/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
 import TitleActions from "@/components/TitleActions";
-import { TitleDetails } from "@/components/TitleDetails";
-import { TitlePoster } from "@/components/TitlePoster";
+import TitleDetails from "@/components/TitleDetails";
+import TitlePoster from "@/components/TitlePoster";
 import { LevelOne } from "@/constants/AuthRoles";
 //
 import dynamic from "next/dynamic";

@@ -13,7 +13,7 @@ import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrol
 import { useToastify } from "@/lib/hooks/useToastify";
 import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { TitlePoster } from "../TitlePoster";
+import TitlePoster from "../TitlePoster";
 import ShowLessText from "../ShowLessText";
 import { getExternalLinks } from "@/lib/utils/getExternalLinks";
 import { TitleExternalLinks } from "../TitleExternalLinks";

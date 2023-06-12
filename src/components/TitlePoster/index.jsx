@@ -79,4 +79,4 @@ const TitlePoster = ({ url, alt, tagline }) => {
   );
 };
 
-export { TitlePoster };
+export default TitlePoster;

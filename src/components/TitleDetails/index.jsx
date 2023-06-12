@@ -70,7 +70,7 @@ const TitleDetails = ({ title }) => {
         <div className={styles.infoItem}>
           {" "}
           {/* title type */}
-          <b>Title Type : </b> {(title?.title_type).toUpperCase()}
+          <b>Title Type : </b> {title?.title_type?.toUpperCase() || ""}
         </div>
         <div className={styles.infoItem}>
           {" "}
@@ -93,7 +93,7 @@ const TitleDetails = ({ title }) => {
           {" "}
           {/* censor certification */}
           <b>Censor Certificate : </b>
-          {title?.age_rattings.find(
+          {title?.age_rattings?.find(
             (certificate) => certificate.country === "IN"
           )?.ratting ?? "MB-26"}
         </div>
@@ -245,4 +245,4 @@ const TitleDetails = ({ title }) => {
   );
 };
 
-export { TitleDetails };
+export default TitleDetails;
