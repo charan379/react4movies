@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import React, { Suspense, useRef } from "react";
 import { useWindowSize } from "@/lib/hooks/useWindowSize";
-import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
+import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrollOnModalOpen";
 
 const YouTube = React.lazy(() => import("react-youtube"));
 
@@ -32,6 +32,9 @@ const YoutubePlayer = ({ videoId, open, close }) => {
       autoplay: 1,
     },
   };
+
+  // disable body scroll when modal is opened
+  useDisableBodyScrollOnModalOpen(open);
 
   // If the `open` prop is false, don't render anything
   if (!open) return null;
