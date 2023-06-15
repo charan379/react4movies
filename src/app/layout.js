@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   // meta tags
   title: 'React4Movies',
-  description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
+  description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly.',
   // pwa
   applicationName: 'React4Movies',
   appleWebApp: {
@@ -44,7 +44,7 @@ export const metadata = {
   // og meta tags
   openGraph: {
     title: 'React4Movies',
-    description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
+    description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly.',
     url: process.env.NEXTAUTH_URL,
     siteName: "React4Movies",
     images: [
@@ -71,7 +71,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: 'React4Movies',
-    description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly',
+    description: 'Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly.',
     images: [
       '/images/website-ss-256x256.jpg',
     ],
