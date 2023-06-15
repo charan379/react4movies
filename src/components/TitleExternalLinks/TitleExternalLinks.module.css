@@ -17,13 +17,25 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: space-between;
+  color: var(--font-color);
+  background-color: var(--bg-color);
 }
 
-.titleExternalLinks .titleExternalLinkImg {
+.titleExternalLinks a .titleExternalLinkImg {
   text-decoration: none;
-  margin: 5px 10px 5px 10px;
   width: 55px;
   height: 55px;
   border-radius: 10px;
+  z-index: 1;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.titleExternalLinks a span {
+  font-size: 1.4rem;
+  text-decoration: none;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
+  color: unset;
+  line-height: 2px;
 }
