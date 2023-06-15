@@ -1,34 +1,115 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# react4movies :clapper:
 
-## Getting Started
+[![VERSION](https://img.shields.io/badge/VERSION-v2.5.0-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-21--May--2023-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/286d2ee8-b609-4db1-886a-99b2f3a4bab2/deploy-status)](https://app.netlify.com/sites/moviebunkers01/deploys)
 
-First, run the development server:
+React/NextJs based web client for [MovieBunkers](https://github.com/charan379/moviebunkers)
+
+## `Features`
+
+- Add movies to collection from tmdb
+- Search movies
+- Know where movie is available for streaming
+- Filters
+  - filter by language
+  - filter by genre
+  - filter by movie/tv
+  - filter by Age/Film Board Certification
+  - filter by seen/unseen
+  - filter by favourite
+  - filter by starred
+- Sort
+  - year asc
+  - year desc
+  - added asc
+  - added desc
+- Set movie as seee, unseen, star, favourite
+- Toggle between light/dark themes
+- Multi user view
+  - Guest
+  - User
+  - Moderator
+  - Admin
+
+## Keyboard Shortcuts
+
+- CTRL+Q => Opens Sidebar, If sidebar already opened focus search field
+- CTRL+D => Clears all filters and search query
+- Esc => closes sidebar, movie modal
+
+## Screenshots
+
+![site-preview](documentation/screenshots/site.gif)
+![login-preview](documentation/screenshots/login.jpg)
+![sidebar-preview](documentation/screenshots/sidebar.jpg)
+![collection-preview](documentation/screenshots/collection.jpg)
+![title-light-preview](documentation/screenshots/title_modal_light.jpg)
+![title-dark-preview](documentation/screenshots/title_modal_dark.jpg)
+![cast-dark-preview](documentation/screenshots/cast2.jpg)
+![cast-light-preview](documentation/screenshots/cast.jpg)
+
+## Installation
+
+##### Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`GENERATE_SOURCEMAP`  
+`NEXT_PUBLIC_MOVIEBUNKERS_API`  
+`NEXT_PUBLIC_MOVIEBUNKERS_IMAGES`  
+`NEXT_PUBLIC_TMDB_API_WRAPPER`
+`NEXT_PUBLIC_MOVIEBUNKERS_GUEST_TOKEN`  
+`NEXT_PUBLIC_GUEST_USERNAME`  
+`NEXT_PUBLIC_GUEST_PASSWORD`
+`NODE_ENV`
+`NEXTAUTH_SECRET`
+`NEXTAUTH_URL`
+
+##### Clone this repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+    git clone https://github.com/charan379/react4movies.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+    cd react4movies
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+##### To run dev env
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+    npm run dev
+```
 
-## Learn More
+##### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+    npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##### Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+    npm start
+```
 
-## Deploy on Vercel
+## Todo
+- Admin page to manage users
+- Password reset page
+- User Registration page
+- Code cleaning
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Requirements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Backend APIs
+
+- [MovieBunkers API](https://github.com/charan379/moviebunkers) it is main backend server for which react4movies acts as frontend
+- [tmdb-api-wrapper](https://github.com/charan379/tmdb-api-wrapper) for retriving movies data from Tmdb ( AWS Serverless function )
+
+## License
+
+[![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-brightgreen)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+
+react4movies is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY, without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with react4movies. If not, see https://www.gnu.org/licenses/agpl-3.0.en.html.
