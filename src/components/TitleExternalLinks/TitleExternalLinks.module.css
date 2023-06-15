@@ -1,0 +1,41 @@
+.titleExternalLinks {
+  transition: 0.1s;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.titleExternalLinks a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin: 5px 10px 5px 10px;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  color: var(--font-color);
+  background-color: var(--bg-color);
+}
+
+.titleExternalLinks a .titleExternalLinkImg {
+  text-decoration: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.titleExternalLinks a span {
+  font-size: 1.4rem;
+  text-decoration: none;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
+  color: unset;
+  line-height: 2px;
+}

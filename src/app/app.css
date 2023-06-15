@@ -1,0 +1,281 @@
+@import "./globals.css";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  overflow-y: scroll;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+}
+
+* {
+  transition: color var(---trans-theme), background-color var(---trans-theme);
+}
+
+/* app global styles */
+* {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* modal */
+
+.modal-container {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 10009;
+  background-color: rgba(17, 17, 17, 0.2);
+  backdrop-filter: blur(12px);
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+::-webkit-scrollbar {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: inherit;
+  -webkit-text-fill-color: gray;
+  background-color: rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: inherit;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* style scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+  width: 10px;
+}
+
+.global-last-card {
+  display: flex;
+  padding: 25px;
+  width: 100%;
+  max-width: 180px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+  transition: scale 0.5s ease-in-out;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
+}
+
+.global-last-card .more-button-section {
+  width: 100%;
+}
+
+.global-last-card .more-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  height: 100%;
+  align-content: stretch;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.global-last-card .more-button span {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: hsla(0, 0%, 3%, 0.7);
+  border: 3px solid hsl(0, 0%, 100%);
+}
+
+.global-last-card .more-button span,
+.global-last-card .more-button i {
+  color: #f5c518;
+  font-size: 6rem;
+}
+
+.link,
+.link:hover {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  margin: 5px 0px 5px 0px;
+  font-size: 1.3rem;
+}
+
+.page-section-heading {
+  margin-bottom: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  color: var(--font-color);
+}
+
+.page-section-heading:hover span i {
+  color: #f5c518;
+}
+
+.page-section-heading span {
+  font-size: 24px;
+}
+.page-section-heading span small {
+  color: gray;
+  font-size: 1rem;
+  top: -4px;
+  position: relative;
+}
+
+.page-section-heading::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f5c518;
+}
+
+.page-section-heading:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f5c518;
+}
+
+.sub-heading {
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.sub-heading a,
+.sub-heading a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sub-heading button,
+.sub-heading button:hover{
+  text-decoration: none;
+  color: inherit;
+  border-width: 0px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  font-size: 1rem;
+}
+
+.sub-heading::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+  color: #f55a18;
+}
+
+body[data-theme="light"] .sub-heading::before,
+body[data-theme="light"] .sub-heading::after {
+  color: #f55a18;
+}
+
+body[data-theme="dark"] .sub-heading::before,
+body[data-theme="dark"] .sub-heading::after {
+  color: #f5c518;
+}
+
+.sub-heading:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.link-tree-child {
+  cursor: pointer;
+  text-align: left;
+}
+
+.link-tree-child a,
+.link-tree-child a:hover {
+  text-decoration: none;
+  color: inherit;
+  text-transform: capitalize;
+}
+
+.link-tree-child:is(:first-child)::before {
+  content: "| ";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.link-tree-child::after {
+  content: " \276F";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.link-tree-child:is(:last-child) {
+  pointer-events: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.link-tree-child:is(:last-child)::after {
+  content: "";
+}
+
+.link-tree-child:hover::after {
+  content: " #";
+  font-weight: bolder;
+  font-size: larger;
+}
+
+body[data-theme="light"] .link-tree-child::before,
+body[data-theme="light"] .link-tree-child::after {
+  color: #f55a18;
+}
+
+body[data-theme="dark"] .link-tree-child::before,
+body[data-theme="dark"] .link-tree-child::after {
+  color: #f5c518;
+}
+
+.error-message {
+  text-align: center;
+  color: rgb(228, 49, 85);
+  font-weight: bold;
+  padding: 3px 0px 2px 1px;
+}
+.error-message[data-error="true"]::after {
+  content: " !";
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .global-last-card:hover {
+    scale: 1.07;
+  }
+}

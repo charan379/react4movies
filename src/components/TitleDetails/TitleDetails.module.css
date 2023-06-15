@@ -1,0 +1,135 @@
+/* titleDetails */
+.titleDetails {
+  display: grid;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-size: 14px;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 0.2fr 0.8fr 0.1fr 0.1fr 0.1fr; */
+  gap: 10px;
+  grid-template-areas:
+    "genresSection genresSection"
+    "languagesSection languagesSection"
+    "infoSection infoSection"
+    "watchProvidersSection watchProvidersSection"
+    "externalLinksSection externalLinksSection"
+    "overviewSection overviewSection"
+    "castSection castSection";
+}
+
+/* genresSection */
+.titleDetails .genresSection {
+  grid-area: genresSection;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.titleDetails .genresSection .genre {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 0px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+/* languagesSection */
+.titleDetails .languagesSection {
+  grid-area: languagesSection;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.titleDetails .languagesSection .languages {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.titleDetails .languagesSection .language {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 0px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+/* infoSection */
+.titleDetails .infoSection {
+  grid-area: infoSection;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.titleDetails .infoSection .infoItem b {
+  font-family: inherit;
+}
+
+.titleDetails .infoSection .infoItem {
+  margin-left: 1px;
+  margin-top: 2px;
+  padding: 1px;
+  text-align: initial;
+}
+
+.titleDetails .watchProvidersSection {
+  grid-area: watchProvidersSection;
+  text-align: initial;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+.titleDetails .externalLinksSection {
+  grid-area: externalLinksSection;
+  text-align: initial;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+/* overviewSection */
+.titleDetails .overviewSection {
+  grid-area: overviewSection;
+  text-align: initial;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+.titleDetails .castSection {
+  grid-area: castSection;
+  padding: 8px;
+  text-align: initial;
+  width: -webkit-fill-available;
+  border-radius: 5px;
+}
+
+.titleDetails .genresSection,
+.titleDetails .languagesSection,
+.titleDetails .infoSection,
+.titleDetails .overviewSection,
+.titleDetails .watchProvidersSection,
+.titleDetails .externalLinksSection,
+.titleDetails .castSection {
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  border-top: 2px solid var(--ui-element-hover-color);
+}

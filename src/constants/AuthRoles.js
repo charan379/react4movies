@@ -1,8 +1,8 @@
 const Roles = Object.freeze({
-  ADMIN: "Admin",
-  MODERATOR: "Moderator",
-  USER: "User",
-  GUEST: "Guest",
+    ADMIN: "Admin",
+    MODERATOR: "Moderator",
+    USER: "User",
+    GUEST: "Guest",
 });
 
 export const LevelZero = [...Object.values(Roles)];

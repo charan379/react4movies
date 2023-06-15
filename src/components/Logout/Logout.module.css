@@ -1,0 +1,103 @@
+.logoutModal {
+  position: fixed;
+  border: none;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 260px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 999;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  color: var(--font-color);
+  background: var(--ui-element-color);
+}
+
+.logoutModal .closeBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  z-index: 999;
+  text-align: center;
+  padding: 4px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: crimson;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 8px 0 rgba(0, 0, 0, 0.167);
+}
+
+.logoutModal h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.logoutModal h6 {
+  margin: 0 0 5px;
+  padding: 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.logoutModal .cancelButton,
+.logoutModal .logoutButton {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  min-height: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin-top: 15px;
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  color: var(--ui-element-hover-font-color);
+  background-color: var(--ui-element-hover-color);
+}
+
+.logoutModal .cancelButton:hover {
+  background: #7a66ed;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #7a66ed, 0 0 25px #7a66ed, 0 0 10px #7a66ed,
+    0 0 10px #7a66ed;
+}
+
+.logoutModal .logoutButton:hover {
+  background: crimson;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px crimson, 0 0 25px crimson, 0 0 10px crimson,
+    0 0 10px crimson;
+}
+
+@media (max-width: 480px) {
+  .logoutModal {
+    width: 360px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logoutModal {
+    width: 320px;
+  }
+}

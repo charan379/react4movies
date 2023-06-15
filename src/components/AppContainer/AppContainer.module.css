@@ -1,0 +1,45 @@
+.appContainer {
+  background-color: var(--bg-color);
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.outlet {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0;
+  height: max-content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  padding: 5px;
+  transition: margin-left var(---trans-container-margin);
+}
+
+nav[data-role="sidebar"][data-open="false"] + .outlet {
+  margin-left: 70px;
+}
+
+nav[data-role="sidebar"][data-open="true"] + .outlet {
+  margin-left: 240px;
+}
+
+.contentWrapper {
+  text-align: center; /* center all the contnets */
+  padding: 10px 0px 20px 0px;
+  margin: 55px 0px 5px 0px;
+  width: -webkit-fill-available;
+  background-color: inherit;
+}
+
+@media (max-width: 580px) {
+  /* .main-container {
+    margin-left: 70px;
+  } */
+}

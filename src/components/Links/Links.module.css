@@ -1,0 +1,56 @@
+.links {
+  padding: 0px;
+  width: 100%;
+}
+
+.links .buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-right: 30px;
+  font-size: 1rem;
+}
+
+.links .buttons span {
+  margin-left: 10px;
+}
+
+.links .buttons button {
+  border-radius: 5px;
+  border-width: 0px;
+  padding: 10px;
+  min-width: 150px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: -webkit-fill-available;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .linkList {
+    align-items: center;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .links .buttons button:hover {
+    background-color: var(--ui-element-hover-color);
+    color: var(--ui-element-hover-font-color);
+  }
+}

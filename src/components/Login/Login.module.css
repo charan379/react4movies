@@ -1,0 +1,152 @@
+.loginModal {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 999;
+  overflow-y: scroll;
+  color: var(--font-color);
+  background: var(--ui-element-color);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginModal h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+}
+
+.loginModal .inputBox {
+  position: relative;
+}
+
+.loginModal .inputBox input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  color: inherit;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #7a66ed;
+  outline: none;
+  background: transparent;
+}
+
+.loginModal .inputBox label {
+  position: absolute;
+  color: #7a66ed;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  pointer-events: none;
+  transition: 0.3s;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.loginModal .inputBox input:focus ~ label,
+.loginModal .inputBox input:valid ~ label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+}
+
+.loginModal .inputBox input[type="password"],
+.loginModal .inputBox input[type="text"] {
+  padding-right: 30px;
+}
+
+.loginModal .inputBox .eye-icon {
+  position: absolute;
+  top: 30%;
+  right: 0px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.loginModal .loginButton {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin-top: 10px;
+  letter-spacing: 4px;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loginModal .links .link {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding: 8px;
+  font-size: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin-top: 40px;
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: max-content;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+.loginModal .loginButton:hover {
+  background: #604add;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 0px #604add, 0 0 0px #604add, 0 0 0px #604add,
+    0 0 10px #604add;
+}
+
+@media (max-width: 480px) {
+  .loginModal {
+    width: 380px;
+  }
+}
+
+@media (max-width: 400px) {
+  .loginModal {
+    width: 340px;
+  }
+}
+
+@media (max-height: 420px) {
+  .loginModal {
+    height: 280px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .loginModal {
+    color: var(--font-color);
+    background: var(--ui-element-color);
+  }
+
+  .loginModal .loginButton {
+    background-color: var(--ui-element-hover-color);
+    color: var(--ui-element-hover-font-color);
+  }
+}
