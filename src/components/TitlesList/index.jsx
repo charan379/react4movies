@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import TitleModal from "../TitleModal";
 import makeURLComponent from "@/lib/utils/makeURLComponent";
+import BarsLoadingAnimation from "../BarsLoadingAnimation";
 
 export default function TitlesList({ database }) {
   const { data: session, status: sessionStatus } = useSession();
@@ -131,6 +132,10 @@ export default function TitlesList({ database }) {
     return () => source.cancel();
     // eslint-disable-next-line
   }, [mbdbQuery, tmdbQuery, sessionStatus]);
+
+  if (error === null && moviesPage?.list?.length <= 0) {
+    return <BarsLoadingAnimation />;
+  }
 
   return (
     <>
