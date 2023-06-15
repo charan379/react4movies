@@ -48,16 +48,27 @@
 .titlePoster .titlePosterImg img {
   width: inherit;
   height: inherit;
-  opacity: 0;
+  filter: blur(12px);
   transition: opacity 0.8s ease-in-out;
+  z-index: 3;
 }
 
 .titlePoster .titlePosterImg img[data-loading="true"] {
-  opacity: 0;
+  filter: blur(12px);
 }
 
 .titlePoster .titlePosterImg img[data-loading="false"] {
-  opacity: 1;
+  animation: blurAnimation 2s linear;
+  filter: blur(0px);
+}
+
+@keyframes imgBlurAnimation {
+  from {
+    filter: blur(12px);
+  }
+  to {
+    filter: blur(0px);
+  }
 }
 
 .titlePoster .titlePosterBackdrop i,

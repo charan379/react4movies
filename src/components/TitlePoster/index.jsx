@@ -11,8 +11,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import handleNextJSImageError from "@/lib/utils/handleNextJSImageError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useWindowSize } from "@/lib/hooks/useWindowSize";
+import getTmdbPosterSrc from "@/lib/utils/getTmdbPosterSrc";
 
 const TitlePoster = ({ url, alt, tagline }) => {
+  const { width } = useWindowSize();
+  //
   const [isLoading, setIsLoading] = useState(false);
 
   const [imageSrc, setImageSrc] = useState(url);
@@ -20,7 +24,7 @@ const TitlePoster = ({ url, alt, tagline }) => {
   const handleOnImageLoaded = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 100);
   };
 
   useEffect(() => {
@@ -38,7 +42,11 @@ const TitlePoster = ({ url, alt, tagline }) => {
             data-loading={`${isLoading}`}
             loading="lazy"
             alt={`${alt}`}
-            src={`${!!url ? imageSrc : "/images/empty.svg"}`}
+            // src={`${!!url ? imageSrc : "/images/empty.svg"}`}
+            src={getTmdbPosterSrc(
+              `${!!url ? imageSrc : "/images/empty.svg"}`,
+              width
+            )}
             onError={(image) =>
               handleNextJSImageError({ image, setImageSrc, setIsLoading })
             }
@@ -49,6 +57,7 @@ const TitlePoster = ({ url, alt, tagline }) => {
           />
           {isLoading && (
             <FontAwesomeIcon
+              style={{ filter: "blur(2px)" }}
               icon={["fas", "compact-disc"]}
               size="4x"
               aria-hidden={true}

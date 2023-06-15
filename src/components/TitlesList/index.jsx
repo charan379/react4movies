@@ -11,7 +11,7 @@ import { useTmdbQuery } from "@/redux/hooks/useTmdbQuery";
 import axios from "axios";
 import { debounce } from "lodash";
 import React, { useEffect, useState } from "react";
-import { TitleCard } from "../TitleCard";
+import TitleCard from "../TitleCard";
 import { Pagination } from "../Pagination";
 import { useSession } from "next-auth/react";
 import Link from "next/link";

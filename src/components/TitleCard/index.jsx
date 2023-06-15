@@ -11,6 +11,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, far, fab);
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import handleNextJSImageError from "@/lib/utils/handleNextJSImageError";
+import { useWindowSize } from "@/lib/hooks/useWindowSize";
+import getTmdbPosterSrc from "@/lib/utils/getTmdbPosterSrc";
 
 // Define the props for the TitleBox component
 const TitleCard = (
@@ -29,6 +31,8 @@ const TitleCard = (
     favouriteByUser,
   }
 ) => {
+  const { width } = useWindowSize();
+  // 
   const [isLoading, setIsLoading] = useState(false);
 
   const [imageSrc, setImageSrc] = useState(props.posterPath);
@@ -36,7 +40,7 @@ const TitleCard = (
   const handleOnImageLoaded = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 100);
   };
 
   useEffect(() => {
@@ -55,16 +59,24 @@ const TitleCard = (
             data-loading={`${isLoading}`}
             loading="lazy"
             alt={`${props.title}`}
-            src={`${!!props.posterPath ? imageSrc : "/images/empty.svg"}`}
+            // src={`${!!props.posterPath ? imageSrc : "/images/empty.svg"}`}
+            src={getTmdbPosterSrc(
+              `${!!props.posterPath ? imageSrc : "/images/empty.svg"}`,
+              width
+            )}
             onError={(image) =>
               handleNextJSImageError({ image, setImageSrc, setIsLoading })
             }
             fill={true}
             onLoadingComplete={handleOnImageLoaded}
             unoptimized={true}
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
+            "
           />
           {isLoading && (
             <FontAwesomeIcon
+              style={{ filter: "blur(2px)" }}
               icon={["fas", "compact-disc"]}
               size="4x"
               aria-hidden={true}
@@ -167,4 +179,4 @@ const TitleCard = (
   );
 };
 
-export { TitleCard };
+export default TitleCard;

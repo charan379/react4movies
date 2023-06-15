@@ -79,17 +79,27 @@ Height = ?
 .titleCard .cardPoster .cardPosterImg img {
   width: inherit;
   height: inherit;
-  opacity: 0;
   transition: opacity 0.8s ease-in-out;
+  filter: blur(12px);
   z-index: 3;
 }
 
 .titleCard .cardPoster .cardPosterImg img[data-loading="true"] {
-  opacity: 0;
+  filter: blur(12px);
 }
 
 .titleCard .cardPoster .cardPosterImg img[data-loading="false"] {
-  opacity: 1;
+  animation: blurAnimation 1s linear;
+  filter: blur(0px);
+}
+
+@keyframes imgBlurAnimation {
+    from {
+    filter: blur(12px);
+  }
+  to {
+    filter: blur(0px);
+  }
 }
 
 .titleCard .cardPoster .cardPosterBackdrop i,
