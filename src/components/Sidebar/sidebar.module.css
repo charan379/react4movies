@@ -23,7 +23,7 @@
 
 .sidebar header {
   position: relative;
-  padding-bottom: 4.5px;
+  padding-bottom: 0.4px;
   border-bottom: 1.5px solid var(--font-color);
 }
 
