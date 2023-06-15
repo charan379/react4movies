@@ -1,7 +1,7 @@
 {
     "name": "React4Movies",
     "short_name": "React4Movies",
-    "description": "React4Movies web application",
+    "description": "Discover a world of movies at your fingertips on React4Movies. Easily filter by genre, language, and release year, and explore where each movie can be streamed. Watch trailers, curate your favorites,and personalize your movie experience with favorites and preferences. Begin your cinematic exploration now and keep track of your movie journey effortlessly.",
     "version": "2.5.0",
     "icons": [
         {
