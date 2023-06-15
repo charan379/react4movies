@@ -1,6 +1,6 @@
 {
     "name": "React4Movies",
-    "short_name": "R4M",
+    "short_name": "React4Movies",
     "description": "React4Movies web application",
     "version": "2.5.0",
     "icons": [
@@ -28,6 +28,6 @@
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "theme_color": "#ffffff",
+    "background_color": "#15202b"
 }
