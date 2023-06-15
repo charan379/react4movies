@@ -37,14 +37,16 @@ export default function Header() {
     <>
       <nav className={styles.navbar} data-role="header">
         <div className={styles.navTitle}>
-          <Image
-            className={styles.navImg}
-            src={appLogo}
-            alt="app logo"
-            priority={true}
-            height={40}
-            width={40}
-          />
+          <Link href={"/"}>
+            <Image
+              className={styles.navImg}
+              src={appLogo}
+              alt="app logo"
+              priority={true}
+              height={40}
+              width={40}
+            />
+          </Link>
         </div>
 
         <ul className={styles.navItems}>

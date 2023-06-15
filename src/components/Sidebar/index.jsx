@@ -11,6 +11,8 @@ import MbdbSidebar from "./MbdbSidebar";
 import { useOnOutSideClick } from "@/lib/hooks/useOnOutSideClick";
 import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
 import { useCtrlPlusKey } from "@/lib/hooks/useCtrlPlusKey";
+//
+import Link from "next/link";
 
 export default function SideBar() {
   // Initialize state to control whether the sidebar is open or not
@@ -67,17 +69,16 @@ export default function SideBar() {
           {/* App Logo and App Name */}
           <div className={styles.sidebarImageText}>
             {/* AppLogo */}
-            <span
-              className={styles.sidebarLogo}
-              onClick={() => setIsSidebarOpen(true)}
-            >
-              <Image
-                src={appLogo}
-                alt="app logo"
-                priority={true}
-                height={40}
-                width={40}
-              />
+            <span className={styles.sidebarLogo}>
+              <Link href={"/"}>
+                <Image
+                  src={appLogo}
+                  alt="app logo"
+                  priority={true}
+                  height={40}
+                  width={40}
+                />
+              </Link>
             </span>
 
             {/* AppName */}
@@ -86,8 +87,18 @@ export default function SideBar() {
                 React
                 <u>4</u>
                 Movies
+                <sup
+                  style={{
+                    fontSize: ".675em",
+                    fontFamily:
+                      'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
+                    fontWeight: "bold",
+                  }}
+                >
+                  v<code style={{ color: "#d63384" }}>2.5</code>
+                </sup>
               </span>
-              <span className={styles.appVersion}>version-2.2.4</span>
+              {/* <span className={styles.appVersion}>version-2.5</span> */}
             </div>
           </div>
 
