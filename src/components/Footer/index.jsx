@@ -29,7 +29,7 @@ export default function Footer() {
                 fontWeight: "bold",
               }}
             >
-              v<code style={{ color: "#d63384" }}>2.0</code>
+              v<code style={{ color: "#d63384" }}>2.2</code>
             </sup>
           </span>
         </Link>
