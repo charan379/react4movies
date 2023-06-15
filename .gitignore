@@ -7,7 +7,7 @@
 
 # secrets
 
-.env
+.env*
 
 # testing
 /coverage
