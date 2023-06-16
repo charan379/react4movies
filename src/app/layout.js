@@ -36,7 +36,7 @@ export const metadata = {
     { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" },
     { rel: "shortcut icon", url: "/favicon.ico" },
   ],
-  keywords: ["nextjs", "pwa", "next-pwa"],
+  keywords: ["react4movies", "movies", "mbdb", "tmbd"],
 
   // og meta tags
   openGraph: {
