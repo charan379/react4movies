@@ -7,7 +7,6 @@ React/NextJs based web client for [MovieBunkers](https://github.com/charan379/mo
 
 ## `Features`
 
-- [PWA](https://en.wikipedia.org/wiki/Progressive_web_app) Enjoy PWA support in our app!
 - Add movies to collection from tmdb
 - Search movies
 - Know where movie is available for streaming
@@ -110,6 +109,7 @@ To run this project, you will need to add the following environment variables to
 - Password reset page
 - User Registration page
 - Code cleaning
+- [PWA](https://en.wikipedia.org/wiki/Progressive_web_app)
 
 ## Requirements
 
