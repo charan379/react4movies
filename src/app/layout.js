@@ -31,7 +31,7 @@ export const metadata = {
   formatDetection: {
     telephone: false,
   },
-  themeColor: "#15202b",
+  themeColor: "#e9f1fa",
   viewport:
     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   manifest: "/manifest.json",
