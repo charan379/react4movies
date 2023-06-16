@@ -57,6 +57,7 @@ React/NextJs based web client for [MovieBunkers](https://github.com/charan379/mo
 ![logout-2.jpg](documentation/screenshots/logout-2.jpg)
 ![login](documentation/screenshots/login.jpg)
 ![logout](documentation/screenshots/logout.jpg)
+![update](documentation/screenshots/update-dark.jpg)
 
 ## Installation
 
