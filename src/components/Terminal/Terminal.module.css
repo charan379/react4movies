@@ -1,0 +1,44 @@
+.terminal {
+  font-family: monospace;
+  font-size: 14px;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  height: 300px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--font-color);
+}
+
+.terminalTitle {
+  font-weight: bold;
+  color: var(--font-color);
+}
+
+.terminalBody {
+  margin-top: 10px;
+}
+
+.terminalLine {
+  margin: 0;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.terminalLine::before {
+  content: "$ ";
+  color: #50fa7b;
+}
+
+body[data-theme="light"] .terminalLine::before {
+  color: #7a50ee;
+}
