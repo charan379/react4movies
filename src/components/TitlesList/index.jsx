@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./TitlesList.module.css";
 import { searchMbdbTitlesByQuery } from "@/lib/api/moviebunkers/methods/searchMbdbTitlesByQuery";
 import { searchTmdbTitlesByQuery } from "@/lib/api/themoviedb/searchTmdbTitlesByQuery";
 import { useToastify } from "@/lib/hooks/useToastify";
@@ -18,7 +19,7 @@ import TitleModal from "../TitleModal";
 import makeURLComponent from "@/lib/utils/makeURLComponent";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 
-export default function TitlesList({ database, styles }) {
+export default function TitlesList({ database }) {
   const { data: session, status: sessionStatus } = useSession();
   // Import the custom hooks that will be used in this component
   const { incProgress20, incProgress, completeProgress } = useProgressBar(); // A hook for displaying a progress bar

@@ -1,4 +1,3 @@
-import styles from "@/components/TitlesList/TitlesList.module.css";
 import TitlesList from "@/components/TitlesList";
 
 export const revalidate = 3600; // revalidate every hour
@@ -21,7 +20,7 @@ export default async function TitlesPage({ params: { database } }) {
   return (
     <>
       <main>
-        <TitlesList database={database || "tmdb"} styles={styles} />
+        <TitlesList database={database || "tmdb"} />
       </main>
     </>
   );
