@@ -7,6 +7,7 @@ React/NextJs based web client for [MovieBunkers](https://github.com/charan379/mo
 
 ## `Features`
 
+- Responsive layout
 - Add movies to collection from tmdb
 - Search movies
 - Know where movie is available for streaming
