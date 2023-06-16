@@ -133,10 +133,6 @@ export default function TitlesList({ database }) {
     // eslint-disable-next-line
   }, [mbdbQuery, tmdbQuery, sessionStatus]);
 
-  if (error === null && moviesPage?.list?.length <= 0) {
-    return <BarsLoadingAnimation />;
-  }
-
   return (
     <>
       {moviesPage.list?.length > 0 && (
@@ -235,8 +231,10 @@ export default function TitlesList({ database }) {
           {error}
         </div>
       )}
+      {/* show loader if no list and fetching */}
+      {isLoading && moviesPage?.list?.length <= 0 && <BarsLoadingAnimation />}
       {/* If there are no movies and the search is complete, show a "No Results Found" message */}
-      {!isLoading && !error && !moviesPage?.list?.length && (
+      {isLoading === false && !error && !moviesPage?.list?.length && (
         <div className="error-message" key={4}>
           No Results Found
         </div>
