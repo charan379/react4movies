@@ -1,0 +1,100 @@
+.userAccountStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchLabel {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.searchOption {
+  font-size: 1rem;
+  padding: 0.3rem;
+  border: none;
+  background-color: transparent;
+  color: #555;
+}
+
+.searchInput {
+  width: 250px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.searchButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.searchButton:hover {
+  background-color: #45a049;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.userCard[data-status="active"] {
+  background-color: #d3f5e6;
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.userCard[data-status="inactive"] {
+  background-color: #fde8e8;
+  box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+}
+
+.userCard:hover {
+  transform: translateY(-5px);
+}
+
+.status {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.username {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.noAccountMessage {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #888;
+}
