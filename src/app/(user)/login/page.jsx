@@ -1,14 +1,14 @@
 import Login from "@/components/Login";
 import React from "react";
 
-export async function generateMetadata({ params: { titleId } }) {
+export async function generateMetadata({ params }) {
   return {
-    title: "Login",
+    title: "Login | React4Movies",
     description: "Login into react4movies",
     openGraph: {
       title: "Login",
       description: "Login into react4movies",
-      url: "https://nextjs.org",
+      url: process.env.NEXTAUTH_URL,
       siteName: "React4Movies",
       locale: "en-US",
       type: "website",
