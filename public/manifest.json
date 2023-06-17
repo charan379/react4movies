@@ -59,7 +59,7 @@
             "name": "Update/Sync",
             "short_name": "Update/Sync",
             "description": "Update/Sync all title in mbdb collection",
-            "url": "/update",
+            "url": "/update-titles",
             "icons": [
                 {
                     "src": "/images/icons/database-management.png",
