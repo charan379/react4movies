@@ -64,12 +64,13 @@
   padding-right: 30px;
 }
 
-.loginModal .inputBox .eye-icon {
+.loginModal .inputBox .eyeIcon {
   position: absolute;
   top: 30%;
   right: 0px;
   transform: translateY(-50%);
   cursor: pointer;
+  opacity: 0.4;
 }
 
 .loginModal .loginButton {

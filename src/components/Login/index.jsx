@@ -7,6 +7,15 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useToastify } from "@/lib/hooks/useToastify";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
+//
+// font awesome library
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+library.add(fas, far, fab);
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//
 
 export default function Login() {
   // Import hooks and components
@@ -96,11 +105,11 @@ export default function Login() {
                 className={styles.eyeIcon}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <i
-                  className={`${
-                    showPassword ? "fas fa-eye fa-lg" : "fas fa-eye-slash fa-lg"
-                  }`}
-                ></i>
+                {showPassword ? (
+                  <FontAwesomeIcon icon={["fas", "eye"]} size="lg" />
+                ) : (
+                  <FontAwesomeIcon icon={["fas", "eye-slash"]} size="lg" />
+                )}
               </span>
             )}
             <label>Password</label>
@@ -134,14 +143,13 @@ export default function Login() {
         <div className={styles.links}>
           {/* Link For new user registration */}
           <Link
-            href={"#"}
+            href={"/signup"}
             className={styles.link}
             style={{
               float: "left",
               backgroundColor: "#228B22",
               color: "#FFFFFF",
             }}
-            onClick={() => alert("Not Implemented")}
           >
             <span>New User ?</span>
           </Link>
