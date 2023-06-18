@@ -4,11 +4,11 @@ import React from "react";
 export async function generateMetadata({ searchParams }) {
   return {
     title: "Account Status | React4Movies",
-    description: "Check your account or verification status here.",
+    description: "Check your account or verification/activation status here.",
     url: `${process.env.NEXTAUTH_URL}`,
     openGraph: {
       title: "Account Status | React4Movies",
-      description: "Check your account or verification status here.",
+      description: "Check your account verification/activation status here.",
       url: `${process.env.NEXTAUTH_URL}`,
       siteName: "React4Movies",
       locale: "en-US",
@@ -34,7 +34,7 @@ export async function generateMetadata({ searchParams }) {
     twitter: {
       card: "summary_large_image",
       title: "Account Status | React4Movies",
-      description: "Check your account or verification status here.",
+      description: "Check your account or verification/activation status here.",
       images: ["/images/website-ss-256x256.jpg"],
     },
   };
