@@ -1,7 +1,7 @@
 import UserAccountStatus from "@/components/UserAccountStatus";
 import React from "react";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ searchParams }) {
   return {
     title: "Account Status | React4Movies",
     description: "Check your account or verification status here.",
@@ -40,11 +40,17 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function UserVerificationStatusPage() {
+export default function UserVerificationStatusPage({ searchParams }) {
+  const idType = searchParams?.userName
+    ? "userName"
+    : searchParams?.email
+    ? "email"
+    : "";
+  const id = searchParams?.userName || searchParams?.email || "";
   return (
     <div>
       <>
-        <UserAccountStatus />
+        <UserAccountStatus idType={idType} id={id} />
       </>
     </div>
   );

@@ -3,17 +3,20 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
+  color: var(--font-color);
 }
 
 .searchForm {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .searchLabel {
   font-size: 1.2rem;
-  color: #555;
+  color: var(--font-color);
 }
 
 .searchOption {
@@ -21,7 +24,8 @@
   padding: 0.3rem;
   border: none;
   background-color: transparent;
-  color: #555;
+  color: #8a8080;
+  font-weight: bold;
 }
 
 .searchInput {
@@ -39,8 +43,9 @@
 }
 
 .searchButton {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--button-bg-color);
+  color: var(--button-font-color);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: none;
@@ -50,7 +55,8 @@
 }
 
 .searchButton:hover {
-  background-color: #45a049;
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
 }
 
 .userCard {
@@ -97,4 +103,30 @@
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #888;
+  text-align: justify;
+}
+
+.welcomeMessageSection {
+  margin: 1rem;
+}
+
+.inactiveMessage {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  color: #888;
+  text-align: justify;
+}
+
+@media (max-width: 720px) {
+  .searchForm {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
 }
