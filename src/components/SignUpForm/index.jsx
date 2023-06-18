@@ -3,10 +3,13 @@
 import signupValidations from "@/lib/utils/validations/signUp";
 import styles from "./SignUpForm.module.css"; // Import the CSS file for styling
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/api/moviebunkers/methods/createUser";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 
 const SignUpForm = () => {
+  //
+  const router = useRouter();
   //
   const [isLoading, setIsLoading] = useState(false);
   //
@@ -44,7 +47,7 @@ const SignUpForm = () => {
     try {
       setIsLoading(true);
       const data = await createUser({ user });
-      console.log(data);
+      return data;
     } catch (error) {
       setErrorMessage(error?.message ?? "Somthing went wrong");
     } finally {
@@ -52,7 +55,7 @@ const SignUpForm = () => {
     }
   };
   //
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Perform form validation
     if (
@@ -66,7 +69,12 @@ const SignUpForm = () => {
     }
     //
     // submit form to api
-    signup(formData);
+    const userStatus = await signup(formData);
+    //  Navigate to account status page after sign up
+    router.push(
+      `/user-account-status?userName=${userStatus?.userName}`,
+      undefined
+    );
   };
   //
   const handleChange = (e) => {
