@@ -72,7 +72,6 @@ const UserAccountStatus = (props) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    console.log(props);
     //
     fetchUserAccount(props?.idType, props?.id, source);
     //
