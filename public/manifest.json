@@ -28,6 +28,178 @@
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
-    "theme_color": "#ffffff",
-    "background_color": "#15202b"
+    "theme_color": "#15202b",
+    "background_color": "#ffffff",
+    "shortcuts": [
+        {
+            "name": "Search...",
+            "short_name": "Search",
+            "description": "Search Movies in mbdb collection",
+            "url": "/titles/mbdb",
+            "icons": [
+                {
+                    "src": "/images/icons/clapperboard.png",
+                    "sizes": "128x128"
+                }
+            ]
+        },
+        {
+            "name": "Add",
+            "short_name": "Add",
+            "description": "Add new movie/tv from TMDB",
+            "url": "/titles/tmdb",
+            "icons": [
+                {
+                    "src": "/images/icons/add-video.png",
+                    "sizes": "128x128"
+                }
+            ]
+        },
+        {
+            "name": "Update/Sync",
+            "short_name": "Update/Sync",
+            "description": "Update/Sync all title in mbdb collection",
+            "url": "/update-titles",
+            "icons": [
+                {
+                    "src": "/images/icons/database-management.png",
+                    "sizes": "128x128"
+                }
+            ]
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/images/screenshots/wide/website-ss.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/login.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/logout.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/logout-2.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/mbdb-light.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/mbdb-movie-light.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/mbdb-sb-dark.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/title-modal-1.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/title-modal-2.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/title-modal-3.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/title-modal-4.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/tmdb-movie.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/wide/update-dark.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/yt-1.jpg",
+            "type": "image/jpg",
+            "sizes": "720x540",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/images/screenshots/narrow/list-dark-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/list-light-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/login-light-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/logout-light-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/movie-dark-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/movie-details-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/movie-light-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/images/screenshots/narrow/sd-dark-mb.jpg",
+            "type": "image/jpg",
+            "sizes": "540x720",
+            "form_factor": "narrow"
+        }
+    ]
 }

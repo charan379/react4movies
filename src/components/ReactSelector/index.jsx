@@ -10,6 +10,7 @@ export default function ReactSelector({
   name,
   isMultiSelect = false,
   inputWhite = false,
+  isLoading = false,
 }) {
   const { theme } = useTheme(); // Get current theme from custom hook useTheme
 
@@ -133,6 +134,7 @@ export default function ReactSelector({
         options={options}
         isSearchable
         placeholder="Search..."
+        isLoading={isLoading}
       />
     );
   }
@@ -146,6 +148,7 @@ export default function ReactSelector({
       options={options}
       isSearchable
       placeholder="Search..."
+      isLoading={isLoading}
     />
   );
 }

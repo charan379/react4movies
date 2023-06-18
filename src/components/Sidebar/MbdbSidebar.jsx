@@ -35,14 +35,15 @@ export default function MbdbSidebar({ searchRef }) {
   const [allLanguages, setAllLanguages] = useState([
     { value: "", label: "All" },
   ]);
+  //
+  const [isLoading, setIsLoading] = useState({
+    genres: false,
+    languages: false,
+  });
   const [allGenres, setAllGenres] = useState([{ value: "", label: "All" }]);
-
   // Memoize options for better performance
   const memoizedLanguageOptions = useMemo(() => allLanguages, [allLanguages]);
   const memoizedGenreOptions = useMemo(() => allGenres, [allGenres]);
-
-  // Add keyboard shortcut for resetting search
-  // useCtrlPlusKey("d", resetCollectionSearch, null, false);
 
   // Event handlers for updating query parameters
 
@@ -102,6 +103,7 @@ export default function MbdbSidebar({ searchRef }) {
   // Fetch available languages and genres on component mount
   const fetchData = async ({ source }) => {
     try {
+      setIsLoading({ genres: true, languages: true });
       // languages
       const languages = await fetchAvailableLanguages({ source });
       // Map the response data to the format expected by the select input.
@@ -116,7 +118,7 @@ export default function MbdbSidebar({ searchRef }) {
         ...prevLanguages,
         ...languageOptions,
       ]);
-
+      setIsLoading({ languages: false });
       // genres
       const genres = await fetchAvailableGenres({ source });
       // Map the genres to an array of objects with value and label properties
@@ -127,8 +129,11 @@ export default function MbdbSidebar({ searchRef }) {
         })) || [];
       // Append the new genres to the existing list of genres using the setAllGenres updater function
       setAllGenres((prevGenres) => [...prevGenres, ...genreOptions]);
+      setIsLoading({ genres: false });
     } catch (error) {
       console.log(error?.message);
+    } finally {
+      setIsLoading({ languages: false, genres: false });
     }
   };
 
@@ -179,6 +184,7 @@ export default function MbdbSidebar({ searchRef }) {
               <ReactSelector
                 name={"genre"}
                 handleSelectChange={handleSelectChange}
+                isLoading={isLoading.genres}
                 selectedOption={{
                   value: mbdbQuery.genre,
                   label: mbdbQuery.genre ? mbdbQuery.genre : "All",
@@ -200,6 +206,7 @@ export default function MbdbSidebar({ searchRef }) {
               <ReactSelector
                 name={"language"}
                 handleSelectChange={handleSelectChange}
+                isLoading={isLoading.languages}
                 selectedOption={{
                   value: mbdbQuery.language,
                   label: mbdbQuery.language

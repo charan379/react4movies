@@ -1,13 +1,13 @@
 # react4movies :clapper:
 
-[![VERSION](https://img.shields.io/badge/VERSION-v2.5.0-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-15--June--2023-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![VERSION](https://img.shields.io/badge/VERSION-v2.5.1-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-18--June--2023-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/286d2ee8-b609-4db1-886a-99b2f3a4bab2/deploy-status)](https://app.netlify.com/sites/moviebunkers01/deploys)
 
 React/NextJs based web client for [MovieBunkers](https://github.com/charan379/moviebunkers)
 
 ## `Features`
 
-- [PWA](https://en.wikipedia.org/wiki/Progressive_web_app) Enjoy PWA support in our app!
+- Responsive layout
 - Add movies to collection from tmdb
 - Search movies
 - Know where movie is available for streaming
@@ -58,6 +58,7 @@ React/NextJs based web client for [MovieBunkers](https://github.com/charan379/mo
 ![logout-2.jpg](documentation/screenshots/logout-2.jpg)
 ![login](documentation/screenshots/login.jpg)
 ![logout](documentation/screenshots/logout.jpg)
+![update](documentation/screenshots/update-dark.jpg)
 
 ## Installation
 
@@ -110,6 +111,7 @@ To run this project, you will need to add the following environment variables to
 - Password reset page
 - User Registration page
 - Code cleaning
+- [PWA](https://en.wikipedia.org/wiki/Progressive_web_app)
 
 ## Requirements
 

@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css'
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { Inter } from 'next/font/google'
 import ReduxProvider from '@/redux/ReduxProvider'
 import AppContainer from '@/components/AppContainer'
 import NextAuthContext from '../lib/nextauth/NextAuthContext'
@@ -14,8 +13,6 @@ import NextAuthContext from '../lib/nextauth/NextAuthContext'
 // Tell Font Awesome to skip adding the CSS automatically 
 // since it's already imported above
 config.autoAddCss = false;
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   // meta tags
@@ -31,7 +28,7 @@ export const metadata = {
   formatDetection: {
     telephone: false,
   },
-  themeColor: "#15202b",
+  themeColor: "#e9f1fa",
   viewport:
     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   manifest: "/manifest.json",
@@ -39,7 +36,7 @@ export const metadata = {
     { rel: "apple-touch-icon", url: "/images/apple-touch-icon.png" },
     { rel: "shortcut icon", url: "/favicon.ico" },
   ],
-  keywords: ["nextjs", "pwa", "next-pwa"],
+  keywords: ["react4movies", "movies", "mbdb", "tmbd"],
 
   // og meta tags
   openGraph: {
@@ -82,7 +79,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <ReduxProvider>
           <NextAuthContext >
             <AppContainer >

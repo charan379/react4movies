@@ -42,7 +42,7 @@ Height = ?
   width: 200px;
   height: 315px; /* 275px img width + 40px for title */
   margin: 10px 7px 10px 7px;
-  transition: scale 0.5s ease-in-out;
+  transition: scale 0.5s ease-in-out, transform 0.3s ease-in-out;
   background-color: var(--ui-element-color);
   color: var(--font-color);
   cursor: pointer;
@@ -94,7 +94,7 @@ Height = ?
 }
 
 @keyframes imgBlurAnimation {
-    from {
+  from {
     filter: blur(12px);
   }
   to {
@@ -536,7 +536,8 @@ Height = ?
 @media (hover: hover) and (pointer: fine) {
   .titleCard:hover {
     border-radius: 8px 8px 3px 3px;
-    scale: 1.07;
+    scale: 1.05;
+    transform: translateY(-7px);
   }
 
   /* change titleCard color on hover */

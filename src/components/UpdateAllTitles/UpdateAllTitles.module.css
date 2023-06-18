@@ -1,0 +1,36 @@
+.collectionSync {
+  width: 90vw;
+  color: var(--font-color);
+  padding: 10px;
+  display: inline-grid;
+  align-items: center;
+}
+
+.progressBarContainer {
+  margin: 30px;
+}
+
+.progressInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.collectionSync .button {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  margin: 5px 10px 5px 10px;
+  text-decoration: none;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+.collectionSync .button:hover {
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
+}
