@@ -102,9 +102,9 @@ const SignUpForm = () => {
     }
     //
     // submit form to api
-    const userStatus = await signup(formData);
+    const signUpResult = await signup(formData);
 
-    if (userStatus?.userName) {
+    if (signUpResult?.user?.userName) {
       // display toast about Redirecting
       toast.info("Redirecting to verification page...", {
         autoClose: 3500,
@@ -116,7 +116,7 @@ const SignUpForm = () => {
       setTimeout(() => {
         //  Navigate to account status page after sign up
         router.push(
-          `/user-account-status?userName=${userStatus?.userName}`,
+          `/user-account-status?userName=${signUpResult?.user?.userName}`,
           undefined
         );
       }, 500);
