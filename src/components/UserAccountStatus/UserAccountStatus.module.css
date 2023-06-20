@@ -103,7 +103,7 @@
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: #888;
-  text-align: justify;
+  text-align: left;
 }
 
 .welcomeMessageSection {
@@ -114,7 +114,7 @@
   font-size: 1.5rem;
   margin: 0.5rem;
   color: #888;
-  text-align: justify;
+  text-align: left;
 }
 
 @media (max-width: 720px) {
