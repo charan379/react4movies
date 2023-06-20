@@ -3,14 +3,14 @@
 import signupValidations from "@/lib/utils/validations/signUp";
 import styles from "./SignUpForm.module.css"; // Import the CSS file for styling
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/api/moviebunkers/methods/createUser";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 import { useToastify } from "@/lib/hooks/useToastify";
+import InfoCard from "../InfoCard";
 
 const SignUpForm = () => {
   //
-  const router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
   //
   const [isLoading, setIsLoading] = useState(false);
   //
@@ -105,21 +105,11 @@ const SignUpForm = () => {
     const signUpResult = await signup(formData);
 
     if (signUpResult?.user?.userName) {
-      // display toast about Redirecting
-      toast.info("Redirecting to verification page...", {
-        autoClose: 3500,
-        position: "top-right",
-        closeButton: true,
-        closeOnClick: true,
-      });
       //
       setTimeout(() => {
-        //  Navigate to account status page after sign up
-        router.push(
-          `/user-account-status?userName=${signUpResult?.user?.userName}`,
-          undefined
-        );
-      }, 500);
+        //  Open Modal
+        setOpenModal(true);
+      }, 100);
       //
     } else {
       //
@@ -320,7 +310,17 @@ const SignUpForm = () => {
         )}
         {/*  */}
       </form>
+      <button onClick={() => setOpenModal(true)}>Open Modal</button>
       {/*  */}
+      <InfoCard
+        message={
+          "Congratulations!💐Your account has been successfully created. Please verify your account to get started."
+        }
+        link={`/user-account-status?userName=${formData?.userName}`}
+        open={openModal}
+        linkText={"Verify Your Account"}
+        close={() => setOpenModal(false)}
+      />
       {/* Toast container */}
       <ToastContainer {...toastContainerOptions} />
     </>
