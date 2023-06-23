@@ -13,7 +13,7 @@ import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrol
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
-const InfoCard = ({ message, link, linkText, open, close }) => {
+const InfoCard = ({ type, message, link, linkText, open, close }) => {
   // disable body scroll when modal is opened
   useDisableBodyScrollOnModalOpen(open);
 
@@ -45,7 +45,9 @@ const InfoCard = ({ message, link, linkText, open, close }) => {
           </div>
         )}
         {/*  */}
-        <div className={styles.tickMark}></div>
+        {type === "success" && <div className={styles.tickMark}></div>}
+        {type === "error" && <div className={styles.xMark}></div>}
+        {type === "info" && <div className={styles.infoMark}></div>}
         {/*  */}
         {message && <div className={styles.message}>{message}</div>}
         {/*  */}

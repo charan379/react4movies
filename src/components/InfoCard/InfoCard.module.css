@@ -66,10 +66,50 @@
   color: #fff;
 }
 
+.xMark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #d73555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+.xMark::before {
+  content: "\2716";
+  font-size: 48px;
+  color: #fff;
+}
+
+.infoMark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #355ed7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+.infoMark::before {
+  content: "\2139";
+  font-size: 48px;
+  color: #fff;
+}
+
 .message {
   font-size: 18px;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -81,7 +121,7 @@
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  text-decoration: none ;
+  text-decoration: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
