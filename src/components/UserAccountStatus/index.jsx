@@ -113,7 +113,9 @@ const UserAccountStatus = (props) => {
         </form>
       </div>
       {/*  */}
-      {isLoading && <BarsLoadingAnimation />}
+      <div className={styles.loaderSection}>
+        {isLoading && <BarsLoadingAnimation />}
+      </div>
       {/*  */}
       {userAccount?.userName && !isLoading ? (
         <>
