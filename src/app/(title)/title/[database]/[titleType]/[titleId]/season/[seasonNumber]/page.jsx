@@ -51,7 +51,9 @@ export async function generateMetadata({
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error?.message);
+  }
 
   // return {
   //   title: data?.title,
@@ -174,7 +176,7 @@ export default async function SeasonsPage({
         break;
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(error?.message);
   }
 
   return (

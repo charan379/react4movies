@@ -84,7 +84,7 @@ export default async function EpisodePage({
         break;
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(error?.message);
   }
 
   return (

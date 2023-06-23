@@ -55,7 +55,9 @@ export async function generateMetadata({
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error?.message);
+  }
 
   return {
     title: data?.title,
@@ -144,7 +146,9 @@ export default async function TitlePage({
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error?.message);
+  }
 
   return (
     <>
