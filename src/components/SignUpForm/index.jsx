@@ -310,7 +310,6 @@ const SignUpForm = () => {
         )}
         {/*  */}
       </form>
-      <button onClick={() => setOpenModal(true)}>Open Modal</button>
       {/*  */}
       <InfoCard
         message={
