@@ -90,11 +90,14 @@ export default function Header() {
               {user?.userName ? (
                 <Link href={"#"}>{user?.userName}</Link>
               ) : (
-                <Link href={"/login"}>Login</Link>
+                <>
+                  <Link href={"/login"}>Login</Link>
+                  <Link href={"/signup"}>Register</Link>
+                </>
               )}
 
-              <Link href="/">Link 1</Link>
-              <Link href="/">Link 2</Link>
+              {/* <Link href="/">Link 1</Link>
+              <Link href="/">Link 2</Link> */}
 
               {user?.userName ? (
                 <button onClick={() => setOpenLogout(true)}>
