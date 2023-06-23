@@ -1,11 +1,41 @@
 .userAccountStatus {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-areas:
+    "topSection topSection"
+    "leftSection rightSection"
+    "errorSection errorSection";
+  grid-template-columns: 3fr 2fr;
+  row-gap: 20px;
+  align-items: start;
+  margin-top: 1rem;
   color: var(--font-color);
+  justify-content: start;
+  justify-items: stretch;
 }
 
+.userAccountStatus .topSection {
+  grid-area: topSection;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.userAccountStatus .leftSection {
+  grid-area: leftSection;
+  display: flex;
+  border-right: 1px solid var(--font-color);
+  padding: 5px;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(98%);
+}
+
+.userAccountStatus .rightSection {
+  grid-area: rightSection;
+  padding: 50px 4px 10px 4px;
+}
 .searchForm {
   display: flex;
   align-items: center;
@@ -71,6 +101,7 @@
   margin-top: 2rem;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
+  max-width: 300px;
 }
 
 .userCard[data-status="active"] {
@@ -99,6 +130,13 @@
   color: #666;
 }
 
+.userAccountStatus .errorSection {
+  grid-area: errorSection;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .noAccountMessage {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
@@ -118,6 +156,26 @@
 }
 
 @media (max-width: 720px) {
+  .userAccountStatus {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "topSection"
+      "leftSection"
+      "rightSection"
+      "errorSection";
+  }
+
+  .userAccountStatus .leftSection {
+    grid-area: leftSection;
+    border-right: 0px solid black;
+  }
+
+  .userAccountStatus .rightSection {
+    grid-area: rightSection;
+    padding: 10px 4px 10px 4px;
+  }
+
   .searchForm {
     display: flex;
     align-items: center;
@@ -128,5 +186,16 @@
 
   .searchButton {
     width: 100%;
+  }
+}
+
+@media (min-width: 1080px) {
+  .userAccountStatus {
+    display: grid;
+    grid-template-areas:
+      "topSection topSection"
+      "leftSection rightSection"
+      "errorSection errorSection";
+    grid-template-columns: 3.4fr 1.6fr;
   }
 }
