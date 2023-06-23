@@ -48,10 +48,8 @@ export default function UserVerificationStatusPage({ searchParams }) {
     : "";
   const id = searchParams?.userName || searchParams?.email || "";
   return (
-    <div>
-      <>
-        <UserAccountStatus idType={idType} id={id} />
-      </>
-    </div>
+    <>
+      <UserAccountStatus idType={idType} id={id} />
+    </>
   );
 }
