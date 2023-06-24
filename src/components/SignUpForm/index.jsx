@@ -38,8 +38,15 @@ const SignUpForm = () => {
   //
   const messages = {
     userName: "Please enter a valid username",
+    userNameLen: "Username must contain Min 5 , Max 26 characters",
+    userNameSpl:
+      "No special characters are allowed other then underscores and periods",
+    userNameStarting: "Username can only start with alphabets or underscore",
     email: "Please enter a valid email",
     password: "Please enter a valid/strong password",
+    passwordLen: "Password must contain Min 8 , Max 26 characters",
+    passwordStrong:
+      "Password must be a combination of atleast 1 speacial character, 1 Uppercase, 1 Lowercase and a number",
     confirmPassword: "Passwords doesn't match",
     invalidForm: "Please enter all required details",
   };
@@ -145,8 +152,30 @@ const SignUpForm = () => {
     //
     switch (name) {
       case "userName":
-        if (!signupValidations.validUsername(value, 20, 5)) {
-          errors = { ...errors, userName: true };
+        if (!signupValidations.validUsername(value)) {
+          // genric message
+          errors = { ...errors, userName: messages.userName };
+          // length
+          if (value?.length < 5 || value?.length > 26) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameLen}`,
+            };
+          }
+          // starting char
+          if (!/^[a-zA-Z_]/.test(value)) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameStarting}`,
+            };
+          }
+          // other special chars
+          if (!/^[a-zA-Z0-9._]+$/.test(value)) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameSpl}`,
+            };
+          }
           setValidForm(false);
         } else {
           errors = { ...errors, userName: false };
@@ -155,7 +184,7 @@ const SignUpForm = () => {
       //
       case "email":
         if (!signupValidations.validEmail(value)) {
-          errors = { ...errors, email: true };
+          errors = { ...errors, email: messages.email };
           setValidForm(false);
         } else {
           errors = { ...errors, email: false };
@@ -164,7 +193,14 @@ const SignUpForm = () => {
       //
       case "password":
         if (!signupValidations.validPassword(value)) {
-          errors = { ...errors, password: true };
+          errors = { ...errors, password: messages.passwordStrong };
+          // length
+          if (value?.length < 8 || value?.length > 26) {
+            errors = {
+              ...errors,
+              password: `${messages.passwordLen}`,
+            };
+          }
           setValidForm(false);
         } else {
           errors = { ...errors, password: false };
@@ -173,7 +209,7 @@ const SignUpForm = () => {
       //
       case "confirmPassword":
         if (value !== formData.password) {
-          errors = { ...errors, confirmPassword: true };
+          errors = { ...errors, confirmPassword: messages.confirmPassword };
           setValidForm(false);
         } else {
           errors = { ...errors, confirmPassword: false };
@@ -207,9 +243,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.userName}
+            data-error={formErrors.userName ? true : false}
           >
-            {messages.userName}
+            {formErrors.userName}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -228,9 +264,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.email}
+            data-error={formErrors.email ? true : false}
           >
-            {messages.email}
+            {formErrors.email}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -249,9 +285,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.password}
+            data-error={formErrors.password ? true : false}
           >
-            {messages.password}
+            {formErrors.password}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -282,9 +318,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.confirmPassword}
+            data-error={formErrors.confirmPassword ? true : false}
           >
-            {messages.confirmPassword}
+            {formErrors.confirmPassword}
           </span>
         )}
         <div className={styles.inputBox}>
