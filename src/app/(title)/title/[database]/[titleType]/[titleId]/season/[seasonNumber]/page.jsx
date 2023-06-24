@@ -52,7 +52,10 @@ export async function generateMetadata({
         break;
     }
   } catch (error) {
-    throw new Error(error?.message);
+    return {
+      title: "Error",
+      description: `${error?.message}`,
+    };
   }
 
   // return {
