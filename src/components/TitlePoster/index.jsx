@@ -2,11 +2,7 @@
 
 import styles from "./TitlePoster.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faCompactDisc, faImage } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import handleNextJSImageError from "@/lib/utils/handleNextJSImageError";
@@ -58,7 +54,7 @@ const TitlePoster = ({ url, alt, tagline }) => {
           {isLoading && (
             <FontAwesomeIcon
               style={{ filter: "blur(2px)" }}
-              icon={["fas", "compact-disc"]}
+              icon={faCompactDisc}
               size="4x"
               aria-hidden={true}
               pulse
@@ -69,11 +65,7 @@ const TitlePoster = ({ url, alt, tagline }) => {
         <div className={styles.titlePosterBackdrop}>
           {!isLoading &&
             (imageSrc === "/images/empty.svg" || imageSrc === "") && (
-              <FontAwesomeIcon
-                icon={["fas", "image"]}
-                size="4x"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faImage} size="4x" aria-hidden={true} />
             )}
         </div>
       </div>

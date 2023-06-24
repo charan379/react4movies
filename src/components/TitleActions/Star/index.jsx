@@ -1,14 +1,11 @@
 import styles from "../TitleActions.module.css";
 import React, { useState } from "react";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faCircleNotch, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { addToStarredTitles } from "@/lib/api/moviebunkers/methods/addToStarredTitles";
 import { removeFromStarredTitles } from "@/lib/api/moviebunkers/methods/removeFromStarredTitles";
-library.add(fas, far, fab);
 
 const Star = ({
   toast,
@@ -98,11 +95,11 @@ const Star = ({
           {/* Display a loading spinner if the button is in a loading state */}
           {isLoading ? (
             <span>
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             </span>
           ) : (
             <span style={{ color: "rgb(255 149 0)" }}>
-              <FontAwesomeIcon icon={["fas", "star"]} size="lg" />
+              <FontAwesomeIcon icon={faStar} size="lg" />
             </span>
           )}
         </button>
@@ -127,9 +124,9 @@ const Star = ({
           <span>
             {/* Display a loading spinner if the button is in a loading state */}
             {isLoading ? (
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             ) : (
-              <FontAwesomeIcon icon={["far", "star"]} size="lg" />
+              <FontAwesomeIcon icon={farStar} size="lg" />
             )}
           </span>
         </button>

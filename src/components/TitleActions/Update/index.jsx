@@ -6,13 +6,9 @@ import { isGt24Hours } from "@/lib/utils/isGt24Hours";
 import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
 import { updateMbdbTitle } from "@/lib/api/moviebunkers/methods/updateMbdbTitle";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSeasonsUpdater from "@/lib/hooks/useSeasonsUpdater";
-library.add(fas, far, fab);
 
 const UpdateTitle = ({
   toast,
@@ -111,12 +107,12 @@ const UpdateTitle = ({
     >
       {isLoading ? (
         <span>
-          <FontAwesomeIcon icon={["fas", "sync-alt"]} size="lg" pulse />
+          <FontAwesomeIcon icon={faSyncAlt} size="lg" pulse />
           Updating....
         </span>
       ) : (
         <span>
-          <FontAwesomeIcon icon={["fas", "sync-alt"]} size="lg" />
+          <FontAwesomeIcon icon={faSyncAlt} size="lg" />
           Update/Sync
         </span>
       )}

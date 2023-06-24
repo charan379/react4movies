@@ -3,14 +3,11 @@
 import React from "react";
 import styles from "./InfoCard.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 //
 import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrollOnModalOpen";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 const InfoCard = ({ type, message, link, linkText, open, close }) => {
@@ -40,7 +37,7 @@ const InfoCard = ({ type, message, link, linkText, open, close }) => {
               className={styles.closeBtn}
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "times"]} size="lg" />
+              <FontAwesomeIcon icon={faTimes} size="lg" />
             </button>
           </div>
         )}

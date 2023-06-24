@@ -3,16 +3,18 @@
 import React, { Suspense, useRef, useState } from "react";
 import styles from "./TitleModal.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faTimes,
+  faFilm,
+  faTv,
+  faInfoCircle,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
 import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrollOnModalOpen";
 import { useToastify } from "@/lib/hooks/useToastify";
 import { useEscapeKey } from "@/lib/hooks/useEscapeKey";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TitlePoster from "../TitlePoster";
 import ShowLessText from "../ShowLessText";
 import { getExternalLinks } from "@/lib/utils/getExternalLinks";
@@ -92,7 +94,7 @@ const TitleModal = ({ title, open, close }) => {
             className={styles.closeBtn}
             tabIndex="0"
           >
-            <FontAwesomeIcon icon={["fas", "times"]} size="lg" />
+            <FontAwesomeIcon icon={faTimes} size="lg" />
           </button>
 
           {/* The modal content */}
@@ -114,7 +116,7 @@ const TitleModal = ({ title, open, close }) => {
                     {title?.ratting && (
                       <>
                         <span style={{ color: "rgb(255 149 0)" }}>
-                          <FontAwesomeIcon icon={["fas", "star"]} size="sm" />
+                          <FontAwesomeIcon icon={faStar} size="sm" />
                         </span>
                         {" " + title?.ratting}
                       </>
@@ -238,12 +240,12 @@ const TitleModal = ({ title, open, close }) => {
                     &nbsp; &nbsp;
                     {title?.titleType === "tv" && (
                       <span data-tooltip={`Tv`} data-flow="down">
-                        <FontAwesomeIcon icon={["fas", "tv"]} size="lg" />
+                        <FontAwesomeIcon icon={faTv} size="lg" />
                       </span>
                     )}
                     {title?.titleType === "movie" && (
                       <span data-tooltip={`Movie`} data-flow="down">
-                        <FontAwesomeIcon icon={["fas", "film"]} size="lg" />
+                        <FontAwesomeIcon icon={faFilm} size="lg" />
                       </span>
                     )}
                   </p>
@@ -330,7 +332,7 @@ const TitleModal = ({ title, open, close }) => {
             tabIndex="0"
             onClick={() => setShowDetails(!showDetails)}
           >
-            <FontAwesomeIcon icon={["fas", "info-circle"]} size="lg" />
+            <FontAwesomeIcon icon={faInfoCircle} size="lg" />
           </button>
         </div>
 

@@ -2,11 +2,7 @@ import EpisodePoster from "@/components/Episode/EpisodePoster";
 import styles from "./EpisodePage.module.css";
 //
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import { authOptions } from "@/lib/nextauth/auth";
@@ -188,7 +184,7 @@ export default async function EpisodePage({
                 Links
                 <span>
                   &nbsp;
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <LinkList auth={session?.auth} parentId={episode?._id} />
@@ -202,7 +198,7 @@ export default async function EpisodePage({
               <span>
                 &nbsp;
                 <small>{episode?.images?.length}&nbsp;</small>
-                <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                <FontAwesomeIcon icon={faChevronRight} size="lg" />
               </span>
             </h2>
             {/* code to display images */}

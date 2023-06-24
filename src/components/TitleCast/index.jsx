@@ -3,13 +3,12 @@
 import styles from "./TitleCast.module.css";
 import React, { useState } from "react";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCircleChevronDown,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import handleImageError from "@/lib/utils/handleImageError";
-library.add(fas, far, fab);
 
 const TitleCast = ({ cast }) => {
   const [showCast, setShowCast] = useState(false); // state variable to toggle displaying of cast list
@@ -18,7 +17,7 @@ const TitleCast = ({ cast }) => {
     <div className={styles.titleCast}>
       <div className={`${styles.castToggle} ${showCast ? styles.expand : ""}`}>
         <span onClick={() => setShowCast(!showCast)}>
-          <FontAwesomeIcon icon={["fas", "chevron-circle-down"]} />
+          <FontAwesomeIcon icon={faCircleChevronDown} />
         </span>
       </div>
 
@@ -60,7 +59,7 @@ const TitleCast = ({ cast }) => {
                         className="fas fa-user-alt fa-2x"
                         aria-hidden="true"
                       ></i>
-                      <FontAwesomeIcon icon={["fas", "user-alt"]} size="2x" />
+                      <FontAwesomeIcon icon={faUserAlt} size="2x" />
                     </span>
                   </div>
                   <div className={styles.name} title={person.name}>

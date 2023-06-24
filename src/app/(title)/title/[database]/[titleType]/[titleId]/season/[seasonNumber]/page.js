@@ -1,11 +1,7 @@
 import styles from "./SeasonPage.module.css";
 //
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import SeasonPoster from "@/components/Season/SeasonPoster";
@@ -268,7 +264,7 @@ export default async function SeasonsPage({
               <span>
                 &nbsp;
                 <small>{season?.episode_count}&nbsp;</small>
-                <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                <FontAwesomeIcon icon={faChevronRight} size="lg" />
               </span>
             </h2>
             {/* code to displayepisodes list */}
@@ -293,7 +289,7 @@ export default async function SeasonsPage({
                 Links
                 <span>
                   &nbsp;
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <LinkList parentId={season?._id} auth={session?.auth} />
@@ -308,7 +304,7 @@ export default async function SeasonsPage({
               <span>
                 &nbsp;
                 <small>{season?.images?.length}&nbsp;</small>
-                <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                <FontAwesomeIcon icon={faChevronRight} size="lg" />
               </span>
             </h2>
             {/* <LightboxImages imagesProp={season?.images} layout={"columns"} /> */}

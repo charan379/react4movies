@@ -4,12 +4,8 @@ import { usePathname } from "next/navigation";
 import { deleteTitle } from "@/lib/api/moviebunkers/methods/deleteTitle";
 import { useRouter } from "next/navigation";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faCircleNotch, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(fas, far, fab);
 
 const Delete = ({
   toast,
@@ -84,12 +80,12 @@ const Delete = ({
     >
       {isLoading ? (
         <span>
-          <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+          <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
           {loadingText}
         </span>
       ) : (
         <span>
-          <FontAwesomeIcon icon={["fas", "trash-alt"]} size="lg" />
+          <FontAwesomeIcon icon={faTrashAlt} size="lg" />
           {buttonText}
         </span>
       )}

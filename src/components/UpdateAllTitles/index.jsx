@@ -2,11 +2,13 @@
 //
 import styles from "./UpdateAllTitles.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faCompactDisc,
+  faCheckCircle,
+  faHourglass,
+  faSyncAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import useSeasonsUpdater from "@/lib/hooks/useSeasonsUpdater";
 import { searchMbdbTitlesByQuery } from "@/lib/api/moviebunkers/methods/searchMbdbTitlesByQuery";
@@ -14,7 +16,6 @@ import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
 import { updateMbdbTitle } from "@/lib/api/moviebunkers/methods/updateMbdbTitle";
 //
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Terminal from "../Terminal";
 import ProgressBar from "../ProgressBar";
 
@@ -182,11 +183,7 @@ const UpdateAllTitles = ({ auth }) => {
             <>
               <div className={styles.progressInfo}>
                 <span style={{ color: "#7A50EE" }}>
-                  <FontAwesomeIcon
-                    icon={["fas", "compact-disc"]}
-                    size="lg"
-                    pulse
-                  />
+                  <FontAwesomeIcon icon={faCompactDisc} size="lg" pulse />
                   &nbsp;
                   {title?.title} : {title?.title_type} : {title?.tmdb_id}
                 </span>
@@ -209,12 +206,12 @@ const UpdateAllTitles = ({ auth }) => {
         {state === 100 && (
           <>
             <p style={{ color: "#32C104" }}>
-              <FontAwesomeIcon icon={["fas", "check-circle"]} size="lg" />
+              <FontAwesomeIcon icon={faCheckCircle} size="lg" />
               &nbsp; All Movies Updated
             </p>
             {/* Elapsed time */}
             <p style={{ color: "#7A50EE" }}>
-              <FontAwesomeIcon icon={["fas", "hourglass-end"]} />
+              <FontAwesomeIcon icon={faHourglass} />
               &nbsp; Elapsed time: {formatTime(elapsedTime)}
             </p>
             {/* Home button */}
@@ -230,8 +227,8 @@ const UpdateAllTitles = ({ auth }) => {
         {state < 100 && currentIndex > 0 && (
           <p>
             {" "}
-            <FontAwesomeIcon icon={["fas", "sync-alt"]} size="lg" pulse />{" "}
-            &nbsp; Updating sit back and relax...
+            <FontAwesomeIcon icon={faSyncAlt} size="lg" pulse /> &nbsp; Updating
+            sit back and relax...
           </p>
         )}
 

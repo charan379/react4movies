@@ -6,11 +6,7 @@ import scrollToElementByid from "@/lib/utils/scrollToElementByid";
 import ReactSelector from "@/components/ReactSelector";
 
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   contentQualityOptions,
@@ -218,7 +214,7 @@ export default function LinkForm({
             className={styles.closeBtn}
             tabIndex="0"
           >
-            <FontAwesomeIcon icon={["fas", "times"]} size="lg" />
+            <FontAwesomeIcon icon={faTimes} size="lg" />
           </button>
           <div className={styles.linkForm}>
             <form onSubmit={handleFormSubmit}>

@@ -1,11 +1,10 @@
 import styles from "../TitleActions.module.css";
 import React, { useState } from "react";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faCloudDownloadAlt,
+  faCircleNotch,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createTitle } from "@/lib/api/moviebunkers/methods/createTitle";
 import { fetchTmdbTitle } from "@/lib/api/themoviedb/fetchTmdbTitle";
@@ -80,13 +79,13 @@ const AddTitle = ({
       {isLoading ? (
         <span>
           {" "}
-          <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+          <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
           {loadingText}
         </span>
       ) : (
         // Show the regular "Add to collection" button when the request is not in progress
         <span>
-          <FontAwesomeIcon icon={["fas", "cloud-download-alt"]} size="lg" />
+          <FontAwesomeIcon icon={faCloudDownloadAlt} size="lg" />
           {buttonText}
         </span>
       )}

@@ -3,11 +3,14 @@
 import styles from "./Pagination.module.css";
 import React, { useMemo, useState } from "react";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faFastBackward,
+  faFastForward,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+  faAngleLeft,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { scrollToTop } from "@/lib/utils/scrollToTop";
 import findClosestAncestorOfType from "@/lib/utils/findClosestAncestorOfType";
@@ -138,7 +141,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-tooltip={`First page`}
               data-flow="up"
             >
-              <FontAwesomeIcon icon={["fas", "fast-backward"]} />
+              <FontAwesomeIcon icon={faFastBackward} />
             </button>
           ) : (
             <button
@@ -148,7 +151,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "fast-backward"]} />
+              <FontAwesomeIcon icon={faFastBackward} />
             </button>
           )}
 
@@ -161,7 +164,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-double-left"]} />
+              <FontAwesomeIcon icon={faAngleDoubleLeft} />
             </button>
           ) : (
             <button
@@ -171,7 +174,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-double-left"]} />
+              <FontAwesomeIcon icon={faAngleDoubleLeft} />
             </button>
           )}
 
@@ -184,7 +187,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-left"]} />
+              <FontAwesomeIcon icon={faAngleLeft} />
             </button>
           ) : (
             <button
@@ -194,7 +197,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-left"]} />
+              <FontAwesomeIcon icon={faAngleLeft} />
             </button>
           )}
 
@@ -234,7 +237,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-right"]} />
+              <FontAwesomeIcon icon={faAngleRight} />
             </button>
           ) : (
             <button
@@ -244,7 +247,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-right"]} />
+              <FontAwesomeIcon icon={faAngleRight} />
             </button>
           )}
 
@@ -257,7 +260,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
+              <FontAwesomeIcon icon={faAngleDoubleRight} />
             </button>
           ) : (
             <button
@@ -267,7 +270,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
+              <FontAwesomeIcon icon={faAngleDoubleRight} />
             </button>
           )}
 
@@ -284,7 +287,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "fast-forward"]} />
+              <FontAwesomeIcon icon={faFastForward} />
             </button>
           ) : (
             <button
@@ -294,7 +297,7 @@ export function Pagination({ total_pages, currentPage, setPageNo }) {
               data-flow="up"
               tabIndex="0"
             >
-              <FontAwesomeIcon icon={["fas", "fast-forward"]} />
+              <FontAwesomeIcon icon={faFastForward} />
             </button>
           )}
         </div>

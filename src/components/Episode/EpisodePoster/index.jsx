@@ -5,11 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faCompactDisc, faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import handleNextJSImageError from "@/lib/utils/handleNextJSImageError";
 
@@ -49,7 +45,7 @@ const EpisodePoster = ({ stillPath, episodeName }) => {
           />
           {isLoading && (
             <FontAwesomeIcon
-              icon={["fas", "compact-disc"]}
+              icon={faCompactDisc}
               size="4x"
               aria-hidden={true}
               pulse
@@ -61,11 +57,7 @@ const EpisodePoster = ({ stillPath, episodeName }) => {
         <div className={styles.episodePosterBackdrop}>
           {!isLoading &&
             (imageSrc === "/images/empty.svg" || imageSrc === "") && (
-              <FontAwesomeIcon
-                icon={["fas", "image"]}
-                size="3x"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faImage} size="3x" aria-hidden={true} />
             )}
           <br />
         </div>

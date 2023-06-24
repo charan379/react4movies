@@ -3,12 +3,9 @@ import React, { useState } from "react";
 import { addToFavouriteTitles } from "@/lib/api/moviebunkers/methods/addToFavouriteTitles";
 import { removeFromFavouriteTitles } from "@/lib/api/moviebunkers/methods/removeFromFavouriteTitles";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faCircleNotch, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(fas, far, fab);
 
 const Favourite = ({
   toast,
@@ -88,11 +85,11 @@ const Favourite = ({
         >
           {isLoading ? (
             <span>
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             </span>
           ) : (
             <span style={{ color: "rgba(255, 20, 70, 1)" }}>
-              <FontAwesomeIcon icon={["fas", "heart"]} size="lg" />
+              <FontAwesomeIcon icon={faHeart} size="lg" />
             </span>
           )}
         </button>
@@ -115,9 +112,9 @@ const Favourite = ({
         >
           <span>
             {isLoading ? (
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             ) : (
-              <FontAwesomeIcon icon={["far", "heart"]} size="lg" />
+              <FontAwesomeIcon icon={farHeart} size="lg" />
             )}
           </span>
         </button>
