@@ -383,7 +383,7 @@ const SignUpForm = () => {
       <InfoCard
         type={infoBoxProps?.type}
         message={infoBoxProps?.message}
-        link={infoBoxProps?.linkText}
+        link={infoBoxProps?.link}
         open={infoBoxProps?.show}
         linkText={infoBoxProps?.linkText}
         close={() => setInfoBoxProps({ show: false })}
