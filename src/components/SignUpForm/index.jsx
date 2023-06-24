@@ -1,12 +1,16 @@
 "use client";
 
-import signupValidations from "@/lib/utils/validations/signUp";
 import styles from "./SignUpForm.module.css"; // Import the CSS file for styling
+import signupValidations from "@/lib/utils/validations/signUp";
 import React, { useState } from "react";
 import { createUser } from "@/lib/api/moviebunkers/methods/createUser";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 import { useToastify } from "@/lib/hooks/useToastify";
 import InfoCard from "../InfoCard";
+//
+// font awesome library
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = () => {
   //
@@ -21,6 +25,8 @@ const SignUpForm = () => {
     confirmPassword: "",
   });
   //
+  const [showPassword, setShowPassword] = useState(false);
+  //
   const [errorMessage, setErrorMessage] = useState("");
   //
   const [formErrors, setFormErrors] = useState({
@@ -31,10 +37,10 @@ const SignUpForm = () => {
   });
   //
   const messages = {
-    userName: "Please enter a valid username !",
-    email: "Please enter a valid email !",
-    password: "Please enter a valid/strong password !",
-    confirmPassword: "Passwords doesn't match !",
+    userName: "Please enter a valid username",
+    email: "Please enter a valid email",
+    password: "Please enter a valid/strong password",
+    confirmPassword: "Passwords doesn't match",
     invalidForm: "Please enter all required details",
   };
   //
@@ -250,13 +256,25 @@ const SignUpForm = () => {
         )}
         <div className={styles.inputBox}>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={password}
             onChange={handleChange}
             autoComplete="off"
           />
+          {formData?.password && (
+            <span
+              className={styles.eyeIcon}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEye} size="lg" />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} size="lg" />
+              )}
+            </span>
+          )}
           <label htmlFor="password">Password</label>
         </div>
         {/*  */}
