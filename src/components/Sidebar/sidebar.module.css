@@ -10,7 +10,7 @@
   color: var(--font-color);
   transition: background-color var(---trans-theme), color var(---trans-theme),
     width var(---trans-sidebar-toggle);
-  z-index: 998;
+  z-index: 1010;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */

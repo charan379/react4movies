@@ -5,6 +5,7 @@
   top: 50%;
   left: 50%;
   width: 420px;
+  margin-top: 30px;
   max-height: calc(95%);
   padding: 20px;
   transform: translate(-50%, -50%);
