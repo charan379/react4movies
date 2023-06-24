@@ -14,9 +14,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = () => {
   //
-  const [openModal, setOpenModal] = useState(false);
-  //
   const [isLoading, setIsLoading] = useState(false);
+  //
+  const [infoBoxProps, setInfoBoxProps] = useState({});
   //
   const [formData, setFormData] = useState({
     userName: "",
@@ -89,6 +89,13 @@ const SignUpForm = () => {
       });
       //
       setErrorMessage(error?.message ?? "Somthing went wrong");
+      //  Open Modal
+      setInfoBoxProps({
+        show: true,
+        type: "error",
+        message: `${error?.message ?? "Somthing went wrong"}`,
+        show: true,
+      });
       //
     } finally {
       //
@@ -121,7 +128,15 @@ const SignUpForm = () => {
       //
       setTimeout(() => {
         //  Open Modal
-        setOpenModal(true);
+        setInfoBoxProps({
+          show: true,
+          type: "success",
+          message:
+            "Congratulations!💐Your account has been successfully created. Please verify your account to get started.",
+          link: `/user-account-status?userName=${signUpResult?.user?.userName}`,
+          linkText: "Verify Your Account",
+          show: true,
+        });
       }, 100);
       //
     } else {
@@ -366,13 +381,12 @@ const SignUpForm = () => {
       </form>
       {/*  */}
       <InfoCard
-        message={
-          "Congratulations!💐Your account has been successfully created. Please verify your account to get started."
-        }
-        link={`/user-account-status?userName=${formData?.userName}`}
-        open={openModal}
-        linkText={"Verify Your Account"}
-        close={() => setOpenModal(false)}
+        type={infoBoxProps?.type}
+        message={infoBoxProps?.message}
+        link={infoBoxProps?.linkText}
+        open={infoBoxProps?.show}
+        linkText={infoBoxProps?.linkText}
+        close={() => setInfoBoxProps({ show: false })}
       />
       {/* Toast container */}
       <ToastContainer {...toastContainerOptions} />
