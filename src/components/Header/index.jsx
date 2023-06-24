@@ -96,8 +96,16 @@ export default function Header() {
                 </>
               )}
 
-              {/* <Link href="/">Link 1</Link>
-              <Link href="/">Link 2</Link> */}
+              <Link
+                href={
+                  user?.userName
+                    ? `/user-account-status?userName=${user?.userName}`
+                    : `/user-account-status`
+                }
+              >
+                Check Account Status
+              </Link>
+              {/* <Link href="/">Link 2</Link> */}
 
               {user?.userName ? (
                 <button onClick={() => setOpenLogout(true)}>
