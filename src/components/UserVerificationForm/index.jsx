@@ -106,7 +106,9 @@ const VerificationForm = (props) => {
   //
   return (
     <div className={styles.container}>
-      <h1 className="title">Account Verification</h1>
+      <div className={styles.title}>
+        <h1>Account Verification</h1>
+      </div>
       {userAccount?.emailVerified === true ? (
         <div className={styles.verifiedContainer}>
           <span className={styles.tickMark}></span>
@@ -114,8 +116,13 @@ const VerificationForm = (props) => {
         </div>
       ) : (
         <div className={styles.formContainer}>
+          <label htmlFor="verification-code">
+            Please enter verification code which is sent to you registered email
+            address.
+          </label>
           <input
             type="text"
+            id="verification-code"
             placeholder="Enter verification code"
             value={verificationCode}
             onChange={handleChange}
