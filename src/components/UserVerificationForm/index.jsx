@@ -51,7 +51,7 @@ const VerificationForm = (props) => {
   const handleResendOTP = async () => {
     try {
       setIsLoading(true);
-      if (Date.now() < new Date(userAccount?.otpExpiration)) {
+      if (Date.now() < new Date(userAccount?.otpExpiration).getTime()) {
         setInfoBoxProps({
           ...infoBoxProps,
           show: true,
