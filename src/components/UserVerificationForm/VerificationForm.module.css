@@ -33,8 +33,9 @@
 
 .formContainer label {
   text-align: left;
+  width: 100%;
   opacity: 0.7;
-  margin: 7px 7px 10px 7px;
+  margin: 7px 7px 10px 20px;
 }
 
 .inputField {
