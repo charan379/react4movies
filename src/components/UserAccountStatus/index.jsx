@@ -1,11 +1,10 @@
 "use client";
 
 import styles from "./UserAccountStatus.module.css";
-import React, { Suspense, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { fetchUserAccountStatus } from "@/lib/api/moviebunkers/methods/fetchUserAccountStatus";
+import React, { Suspense, useState } from "react";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
-import axios from "axios";
+import FindUserForm from "../FindUserForm";
+import UserStatusCard from "../UserStatusCard";
 
 const VerificationForm = React.lazy(() => import("../UserVerificationForm"));
 
@@ -15,102 +14,20 @@ const UserAccountStatus = (props) => {
   //
   const [error, setError] = useState(null);
   //
-  const router = useRouter();
-  //
-  const [searchText, setSearchText] = useState(props.id || "");
-  //
-  const [searchOption, setSearchOption] = useState(props?.idType || "userName");
-  //
   const [userAccount, setUserAccount] = useState(null);
-  //
-  const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
-    //  chanage query according to value
-    router.push(
-      `/user-account-status?${searchOption}=${event.target.value}`,
-      undefined,
-      {
-        shallow: true,
-      }
-    );
-  };
-  //
-  const handleSearchOptionChange = (event) => {
-    setSearchOption(event.target.value);
-    //  chanage query according to value
-    router.push(
-      `/user-account-status?${event.target.value}=${searchText}`,
-      undefined,
-      {
-        shallow: true,
-      }
-    );
-  };
-  //
-  const fetchUserAccount = async (idType, id, source = { token: null }) => {
-    try {
-      const data = await fetchUserAccountStatus({
-        idType,
-        id,
-        source,
-      });
-      setUserAccount({ ...data });
-    } catch (error) {
-      setError(error?.message);
-      // console.error("Error fetching user account:", error?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  //
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    setUserAccount(null);
-    setError(null);
-    setIsLoading(true);
-    // Call your API here to fetch the user account based on the search query and option    //
-    fetchUserAccount(searchOption, searchText);
-  };
-
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-    //
-    fetchUserAccount(props?.idType, props?.id, source);
-    //
-    return () => {
-      source.cancel();
-    };
-  }, []);
-
   //
   return (
     <div className={styles.userAccountStatus}>
       {/*  */}
       <div className={styles.topSection}>
         {/*  */}
-        <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
-          <label className={styles.searchLabel}>
-            Search by:
-            <select
-              className={styles.searchOption}
-              value={searchOption}
-              onChange={handleSearchOptionChange}
-            >
-              <option value="userName">Username</option>
-              <option value="email">Email</option>
-            </select>
-          </label>
-          <input
-            className={styles.searchInput}
-            type={searchOption === "userName" ? "text" : "email"}
-            placeholder={`Search user account by ${searchOption}...`}
-            value={searchText}
-            onChange={handleSearchChange}
-          />
-          <button className={styles.searchButton} type="submit">
-            Search 🚀
-          </button>
-        </form>
+        <FindUserForm
+          id={props?.id}
+          idType={props?.idType}
+          setIsLoading={(bool) => setIsLoading(bool)}
+          setError={(error) => setError(error)}
+          setUserAccount={(userAccount) => setUserAccount(userAccount)}
+        />
       </div>
       {/*  */}
       <div className={styles.loaderSection}>
@@ -127,10 +44,6 @@ const UserAccountStatus = (props) => {
               {/* Inactive */}
               {userAccount?.status === "Inactive" && (
                 <p className={styles.inactiveMessage}>
-                  {/* {`Congratulations!💐Your account has been successfully created. Please
-                        await activation from our team. Once your account is activated🔓,
-                        you'll be able to access all the features and benefits of our
-                        website💻. Thank you for joining us🤗`} */}
                   {`Congratulations!💐Your account has been successfully created. Please
                         verify your email account for account activation. Once your account is activated🔓,
                         you'll be able to access all the features and benefits of our
@@ -145,14 +58,11 @@ const UserAccountStatus = (props) => {
               )}
             </div>
             {/*  */}
-            <div
-              className={`${styles.userCard}`}
-              data-status={userAccount?.status.toString().toLowerCase()}
-            >
-              <h2 className={styles.status}>{userAccount.status}</h2>
-              <h3 className={styles.username}>{userAccount.userName}</h3>
-            </div>
-
+            <UserStatusCard
+              status={userAccount?.status}
+              userName={userAccount?.userName}
+            />
+            {/*  */}
             {userAccount?.status === "Inactive" && (
               <>
                 <p className={styles.inactiveMessage}>
