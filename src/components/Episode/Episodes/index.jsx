@@ -34,7 +34,7 @@ const EpisodeList = ({
     titleId,
     seasonNumber,
     limit,
-    sortBy = "air_date.desc",
+    sortBy = "episode_number.desc",
     source,
   }) => {
     setIsLoading(true); // Set the loading state to true
