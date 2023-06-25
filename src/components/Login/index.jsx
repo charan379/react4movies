@@ -152,14 +152,13 @@ export default function Login() {
 
           {/* Link for trouble logingin */}
           <Link
-            href={"#"}
+            href={"/password-reset"}
             className={styles.link}
             style={{
               float: "right",
               backgroundColor: "crimson",
               color: "#FFFFFF",
             }}
-            onClick={() => alert("Not Implemented")}
           >
             <span>Cannot Login ?</span>
           </Link>
