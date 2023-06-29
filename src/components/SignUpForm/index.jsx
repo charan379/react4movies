@@ -148,7 +148,7 @@ const SignUpForm = () => {
   //
   const handleChange = (e) => {
     const name = e?.target?.name?.trim();
-    const value = e?.target?.value?.trim();
+    const value = e?.target?.value;
     validateForm(name, value);
     setFormData((prevState) => ({
       ...prevState,
