@@ -230,127 +230,122 @@ const PasswordRestForm = () => {
   };
   //
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <h1>Password Reset</h1>
-      </div>
-      <div className={styles.formContainer}>
-        {/* userName */}
-        {formErrors?.userName && (
-          <div className="error-message" data-error={true}>
-            {formErrors.userName}
-          </div>
-        )}
-        <div className={styles.inputBox}>
-          <label htmlFor="userName">Username</label>
-          <input
-            type="text"
-            id="userName"
-            placeholder="Enter your username"
-            value={formData?.userName}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
+    <>
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h1>Password Reset</h1>
         </div>
-        {/* New Password */}
-        {formErrors?.newPassword && (
-          <div className="error-message" data-error={true}>
-            {formErrors.newPassword}
+        <div className={styles.formContainer}>
+          {/* userName */}
+          {formErrors?.userName && (
+            <div className="error-message" data-error={true}>
+              {formErrors.userName}
+            </div>
+          )}
+          <div className={styles.inputBox}>
+            <input
+              type="text"
+              id="userName"
+              value={formData?.userName}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="userName">Username</label>
           </div>
-        )}
-        <div className={styles.inputBox}>
-          <label htmlFor="newPassword">New Password</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="newPassword"
-            placeholder="Enter new password"
-            value={formData?.newPassword}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-          {formData?.newPassword && (
-            <span
-              className={styles.eyeIcon}
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <FontAwesomeIcon icon={faEye} size="lg" />
-              ) : (
-                <FontAwesomeIcon icon={faEyeSlash} size="lg" />
-              )}
-            </span>
+          {/* New Password */}
+          {formErrors?.newPassword && (
+            <div className="error-message" data-error={true}>
+              {formErrors.newPassword}
+            </div>
+          )}
+          <div className={styles.inputBox}>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="newPassword"
+              value={formData?.newPassword}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="newPassword">New Password</label>
+            {formData?.newPassword && (
+              <span
+                className={styles.eyeIcon}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FontAwesomeIcon icon={faEye} size="lg" />
+                ) : (
+                  <FontAwesomeIcon icon={faEyeSlash} size="lg" />
+                )}
+              </span>
+            )}
+          </div>
+          {/* Confirm new password */}
+          {formErrors?.confirmNewPassword && (
+            <div className="error-message" data-error={true}>
+              {formErrors.confirmNewPassword}
+            </div>
+          )}
+          <div className={styles.inputBox}>
+            <input
+              type="password"
+              id="confirmNewPassword"
+              value={formData?.confirmNewPassword}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="confirmNewPassword">Confirm Password</label>
+          </div>
+          {/* OTP */}
+          {formErrors?.otp && (
+            <div className="error-message" data-error={true}>
+              {formErrors.otp}
+            </div>
+          )}
+          <div className={styles.inputBox}>
+            <input
+              type="text"
+              id="otp"
+              value={formData?.otp}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
+            <label htmlFor="otp">Verification code</label>
+          </div>
+          {/*  */}
+          {!requiredOk && (
+            <div className="error-message" data-error={!requiredOk}>
+              {messages.invalidForm}
+            </div>
+          )}
+          {/*  */}
+          {errorMessage && (
+            <div className="error-message" data-error={true}>
+              {errorMessage}
+            </div>
+          )}
+          {/*  */}
+          {isLoading && <BarsLoadingAnimation />}
+          {/*  */}
+          {!isLoading && (
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={handlePasswordReset}
+                className={styles.resetButton}
+                disabled={!validForm}
+              >
+                Reset Password
+              </button>
+              <button
+                onClick={handleResendOTP}
+                className={styles.resendButton}
+                disabled={formData?.userName?.length > 4 ? false : true}
+              >
+                Send OTP
+              </button>
+            </div>
           )}
         </div>
-        {/* Confirm new password */}
-        {formErrors?.confirmNewPassword && (
-          <div className="error-message" data-error={true}>
-            {formErrors.confirmNewPassword}
-          </div>
-        )}
-        <div className={styles.inputBox}>
-          <label htmlFor="confirmNewPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmNewPassword"
-            placeholder="Confirm new password"
-            value={formData?.confirmNewPassword}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        {/* OTP */}
-        {formErrors?.otp && (
-          <div className="error-message" data-error={true}>
-            {formErrors.otp}
-          </div>
-        )}
-        <div className={styles.inputBox}>
-          <label htmlFor="otp">
-            Please enter verification code which is sent to you registered email
-            address.
-          </label>
-          <input
-            type="text"
-            id="otp"
-            placeholder="Enter verification code"
-            value={formData?.otp}
-            onChange={handleChange}
-            className={styles.inputField}
-          />
-        </div>
-        {/*  */}
-        {!requiredOk && (
-          <div className="error-message" data-error={!requiredOk}>
-            {messages.invalidForm}
-          </div>
-        )}
-        {/*  */}
-        {errorMessage && (
-          <div className="error-message" data-error={true}>
-            {errorMessage}
-          </div>
-        )}
-        {/*  */}
-        {isLoading && <BarsLoadingAnimation />}
-        {/*  */}
-        {!isLoading && (
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={handlePasswordReset}
-              className={styles.resetButton}
-              disabled={!validForm}
-            >
-              Reset Password
-            </button>
-            <button
-              onClick={handleResendOTP}
-              className={styles.resendButton}
-              disabled={formData?.userName?.length > 4 ? false : true}
-            >
-              Send OTP
-            </button>
-          </div>
-        )}
       </div>
       {/*  */}
       <InfoCard
@@ -359,7 +354,7 @@ const PasswordRestForm = () => {
         close={() => setInfoBoxProps({ ...infoBoxProps, show: false })}
         message={infoBoxProps?.message}
       />
-    </div>
+    </>
   );
 };
 
