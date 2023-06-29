@@ -87,6 +87,10 @@ export default function Header() {
                 showDrop ? styles.show : ""
               }`}
             >
+              <Link href="/">Home</Link>
+              <Link href="/titles/mbdb">MBDB</Link>
+              <Link href="/titles/tmdb">TMDB</Link>
+              
               {user?.userName ? (
                 <Link href={"#"}>{user?.userName}</Link>
               ) : (
@@ -106,8 +110,6 @@ export default function Header() {
               >
                 Check Account Status
               </Link>
-              {/* <Link href="/">Link 2</Link> */}
-
               {user?.userName ? (
                 <button onClick={() => setOpenLogout(true)}>
                   Logout{" "}
