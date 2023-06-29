@@ -59,10 +59,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: data?.title,
+    title: `${data?.title} ${data?.year}`,
     description: data?.overview,
     openGraph: {
-      title: data?.title,
+      title: `${data?.title} ${data?.year}`,
       description: data?.overview,
       url: process.env.NEXTAUTH_URL,
       siteName: "React4Movies",
@@ -108,7 +108,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: data?.title,
+      title: `${data?.title} ${data?.year}`,
       description: data?.overview,
       images: [
         data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
