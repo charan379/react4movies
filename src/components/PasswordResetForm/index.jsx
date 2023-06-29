@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./PasswordResetForm.module.css";
 import InfoCard from "../InfoCard";
 import { resendOtp } from "@/lib/api/moviebunkers/methods/resendOtp";
