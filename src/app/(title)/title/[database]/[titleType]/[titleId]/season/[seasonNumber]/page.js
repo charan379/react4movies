@@ -62,7 +62,7 @@ export async function generateMetadata({
       case "mbdb":
         const seasons = await fetchTvSeasons({
           titleId: tvShowId,
-          queryParams: { limit: 1, skip: seasonNumber - 1 },
+          queryParams: { limit: 1, skip: seasonNumber - 1, sort_by: "season_number.asc" },
           auth: session?.auth,
         });
         if (seasons?.length > 0) {
