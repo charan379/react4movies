@@ -2,10 +2,13 @@
 
 import styles from "./SignUpForm.module.css"; // Import the CSS file for styling
 import signupValidations from "@/lib/utils/validations/signUp";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createUser } from "@/lib/api/moviebunkers/methods/createUser";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 import { useToastify } from "@/lib/hooks/useToastify";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import InfoCard from "../InfoCard";
 //
 // font awesome library
@@ -13,6 +16,10 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = () => {
+  // auth
+  const { data: session } = useSession();
+  //
+  const router = useRouter();
   //
   const [isLoading, setIsLoading] = useState(false);
   //
@@ -248,6 +255,14 @@ const SignUpForm = () => {
       setValidForm(false);
     }
   };
+  //
+  useEffect(() => {
+    if (session?.auth) {
+      router.push("/");
+    }
+    return () => {};
+  }, [session]);
+
   //
   return (
     <>
