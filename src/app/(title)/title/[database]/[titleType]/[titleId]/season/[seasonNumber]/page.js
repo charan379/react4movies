@@ -22,26 +22,54 @@ export async function generateMetadata({
   params: { database, titleType, titleId, seasonNumber },
 }) {
   const session = await getServerSession(authOptions);
+  //
+  const titleIdElements = titleId?.split("-"); // id elements
+  // 
+  const tvShowId = titleId?.split("-")[0]; // tv shoe id
+  //  tv show name
+  const titleName = titleId
+    ?.split("-")
+    ?.map((elem, index) => {
+      if (index !== 0 && index !== titleIdElements?.length - 1) {
+        let word = [...elem];
+        word?.splice(0, 1, word[0]?.toString()?.toUpperCase())
+        return word.join("");
+      }
+    })
+    .join(" ")
+    ?.trim();
+  // tv show initial release year
 
-  const extractedId = titleId?.split("-")[0];
-
+  const year = titleId?.split("-")?.slice(-1)[0];
+  // 
   let data;
-
+  // 
   try {
     switch (database) {
       case "tmdb":
-        season = await fetchTmdbTvSeason({
+        const season = await fetchTmdbTvSeason({
           seasonNumber: seasonNumber,
           tmdbTitleId: tvShowId,
         });
+        // 
+        if (season) {
+          data = season
+        } else {
+          throw Error("Season not found !")
+        }
         break;
 
       case "mbdb":
-        season = await fetchTvSeasons({
+        const seasons = await fetchTvSeasons({
           titleId: tvShowId,
           queryParams: { limit: 1, skip: seasonNumber - 1 },
           auth: session?.auth,
         });
+        if (seasons?.length > 0) {
+          data = seasons[0];
+        } else {
+          throw Error("Season not found !")
+        }
         break;
 
       default:
@@ -54,63 +82,64 @@ export async function generateMetadata({
     };
   }
 
-  // return {
-  //   title: data?.title,
-  //   description: data?.overview,
-  //   openGraph: {
-  //     title: data?.title,
-  //     description: data?.overview,
-  //     url: process.env.NEXTAUTH_URL,
-  //     siteName: "React4Movies",
-  //     images: [
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w92"),
-  //         width: 92,
-  //         height: 138,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w154"),
-  //         width: 154,
-  //         height: 231,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w185"),
-  //         width: 185,
-  //         height: 278,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w342"),
-  //         width: 342,
-  //         height: 513,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w500"),
-  //         width: 500,
-  //         height: 750,
-  //       },
-  //     ],
-  //     locale: "en-US",
-  //     type: "website",
-  //   },
-  //   twitter: {
-  //     card: "summary_large_image",
-  //     title: data?.title,
-  //     description: data?.overview,
-  //     images: [
-  //       data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
-  //     ],
-  //   },
-  // };
+  // 
+  return {
+    title: `${data?.name} | ${titleName} ${year}`,
+    description: data?.overview,
+    openGraph: {
+      title: `${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      url: process.env.NEXTAUTH_URL,
+      siteName: "React4Movies",
+      images: [
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w92"),
+          width: 92,
+          height: 138,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w154"),
+          width: 154,
+          height: 231,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w185"),
+          width: 185,
+          height: 278,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w342"),
+          width: 342,
+          height: 513,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w500"),
+          width: 500,
+          height: 750,
+        },
+      ],
+      locale: "en-US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      images: [
+        data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
+      ],
+    },
+  };
 }
 
 export default async function SeasonsPage({
@@ -120,6 +149,7 @@ export default async function SeasonsPage({
   const session = await getServerSession(authOptions);
   //
   const titleIdElements = titleId?.split("-"); // id elements
+  // 
   const tvShowId = titleId?.split("-")[0]; // tv shoe id
   //  tv show name
   const titleName = titleId

@@ -17,6 +17,131 @@ import { fetchTvSeasonEpisodes } from "@/lib/api/moviebunkers/methods/fetchTvSea
 
 export const revalidate = 3600; // revalidate every hour
 
+export async function generateMetadata({
+  params: { database, titleType, titleId, seasonNumber, episodeNumber },
+}) {
+  const session = await getServerSession(authOptions);
+  //
+  const titleIdElements = titleId?.split("-"); // id elements
+  // 
+  const tvShowId = titleId?.split("-")[0]; // tv shoe id
+  //  tv show name
+  const titleName = titleId
+    ?.split("-")
+    ?.map((elem, index) => {
+      if (index !== 0 && index !== titleIdElements?.length - 1) {
+        let word = [...elem];
+        word?.splice(0, 1, word[0]?.toString()?.toUpperCase())
+        return word.join("");
+      }
+    })
+    .join(" ")
+    ?.trim();
+  // tv show initial release year
+
+  const year = titleId?.split("-")?.slice(-1)[0];
+  // 
+  let data;
+  // 
+  try {
+    switch (database) {
+      case "tmdb":
+        const tmdbData = await fetchTmdbTvSeasonEpisode({
+          episodeNumber: episodeNumber,
+          seasonNumber: seasonNumber,
+          tmdbTitleId: tvShowId,
+        });
+
+        if (tmdbData?.episode_number) {
+          data = tmdbData;
+        } else {
+          throw Error("Can't find requested episode data");
+        }
+        break;
+
+      case "mbdb":
+        const mbdbData = await fetchTvSeasonEpisodes({
+          titleId: tvShowId,
+          seasonNumber: seasonNumber,
+          queryParams: {
+            limit: 1,
+            skip: episodeNumber - 1 || 0,
+            sort_by: "episode_number.asc",
+          },
+          auth: session?.auth,
+        });
+
+        if (mbdbData?.length > 0 && mbdbData[0]?.episode_number) {
+          data = mbdbData[0];
+        } else {
+          throw Error("Can't find requested episode data");
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  } catch (error) {
+    return {
+      title: "Error",
+      description: `${error?.message}`,
+    };
+  }
+
+  // 
+  return {
+    title: `Episode ${data?.episode_number} | ${data?.name} | ${titleName} ${year}`,
+    description: data?.overview,
+    openGraph: {
+      title: `Episode ${data?.episode_number} | ${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      url: process.env.NEXTAUTH_URL,
+      siteName: "React4Movies",
+      images: [
+        {
+          url: data?.still_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w92"),
+          width: 92,
+          height: 52,
+        },
+        {
+          url: data?.still_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w185"),
+          width: 185,
+          height: 104,
+        },
+        {
+          url: data?.still_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w300"),
+          width: 300,
+          height: 169,
+        },
+        {
+          url: data?.still_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "original"),
+          width: 342,
+          height: 218,
+        },
+      ],
+      locale: "en-US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Episode ${data?.episode_number} | ${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      images: [
+        data?.still_path?.toString()?.replace(/(w\d+|original)/g, "original"),
+      ],
+    },
+  };
+}
+
 export default async function EpisodePage({
   params: { database, titleType, titleId, seasonNumber, episodeNumber },
 }) {
@@ -24,6 +149,7 @@ export default async function EpisodePage({
 
   //
   const titleIdElements = titleId?.split("-"); // id elements
+  // 
   const tvShowId = titleId?.split("-")[0]; // tv shoe id
   //  tv show name
   const titleName = titleId
