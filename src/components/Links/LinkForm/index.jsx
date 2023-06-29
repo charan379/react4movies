@@ -244,7 +244,7 @@ export default function LinkForm({
               <span>
                 <ReactSelector
                   name={`contentType`}
-                  inputWhite={true}
+                  // inputWhite={true}
                   options={contentTypeOptions}
                   handleSelectChange={handleSelectChange}
                   selectedOption={{
@@ -264,7 +264,7 @@ export default function LinkForm({
               <span>
                 <ReactSelector
                   name={`linkType`}
-                  inputWhite={true}
+                  // inputWhite={true}
                   options={linkTypeOptions}
                   handleSelectChange={handleSelectChange}
                   selectedOption={{
@@ -284,7 +284,7 @@ export default function LinkForm({
               <span>
                 <ReactSelector
                   name={`languages`}
-                  inputWhite={true}
+                  // inputWhite={true}
                   isMultiSelect={true}
                   handleSelectChange={handleSelectChange}
                   options={memoizedLanguageOptions}
@@ -306,7 +306,7 @@ export default function LinkForm({
               )}
               <span>
                 <ReactSelector
-                  inputWhite={true}
+                  // inputWhite={true}
                   name={`quality`}
                   handleSelectChange={handleSelectChange}
                   isMultiSelect={true}

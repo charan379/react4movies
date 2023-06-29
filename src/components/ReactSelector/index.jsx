@@ -49,22 +49,18 @@ export default function ReactSelector({
     multiValue: (styles) => {
       return {
         ...styles,
-        backgroundColor: inputWhite
-          ? "black"
-          : theme === "light"
-          ? "#15202b"
-          : "#e9f1fa",
+        backgroundColor: theme === "light" ? "#15202b" : "#e9f1fa",
       };
     },
 
     multiValueLabel: (styles) => ({
       ...styles,
-      color: inputWhite ? "white" : theme === "light" ? "#ffffff" : "#020d1a",
+      color: theme === "light" ? "#ffffff" : "#020d1a",
     }),
 
     multiValueRemove: (styles) => ({
       ...styles,
-      color: inputWhite ? "white" : theme === "light" ? "#ffffff" : "#020d1a",
+      color: theme === "light" ? "#ffffff" : "#020d1a",
       ":hover": {
         backgroundColor: "crimson",
         color: "#ffffff",
@@ -75,11 +71,7 @@ export default function ReactSelector({
     control: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different background color depending on the theme
-      backgroundColor: inputWhite
-        ? "white"
-        : theme === "light"
-        ? "#c8d9ec"
-        : "#22303c",
+      backgroundColor: theme === "light" ? "#e9f1fa" : "#15202b",
       cursor: "pointer",
       border: "none",
       boxShadow: "none",
@@ -89,7 +81,7 @@ export default function ReactSelector({
     singleValue: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different color depending on the theme
-      color: inputWhite ? "black" : theme === "light" ? "#020d1a" : "#c8d9ec",
+      color: theme === "light" ? "#020d1a" : "#c8d9ec",
       cursor: "pointer",
     }),
 
@@ -97,7 +89,7 @@ export default function ReactSelector({
     input: (defaultStyles) => ({
       ...defaultStyles,
       // Apply different color depending on the theme
-      color: inputWhite ? "black" : theme === "light" ? "#020d1a" : "#c8d9ec",
+      color: theme === "light" ? "#020d1a" : "#c8d9ec",
       cursor: "pointer",
     }),
   };
