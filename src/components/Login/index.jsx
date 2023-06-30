@@ -9,11 +9,7 @@ import { useToastify } from "@/lib/hooks/useToastify";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 //
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 
@@ -106,9 +102,9 @@ export default function Login() {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <FontAwesomeIcon icon={["fas", "eye"]} size="lg" />
+                  <FontAwesomeIcon icon={faEye} size="lg" />
                 ) : (
-                  <FontAwesomeIcon icon={["fas", "eye-slash"]} size="lg" />
+                  <FontAwesomeIcon icon={faEyeSlash} size="lg" />
                 )}
               </span>
             )}
@@ -156,14 +152,13 @@ export default function Login() {
 
           {/* Link for trouble logingin */}
           <Link
-            href={"#"}
+            href={"/password-reset"}
             className={styles.link}
             style={{
               float: "right",
               backgroundColor: "crimson",
               color: "#FFFFFF",
             }}
-            onClick={() => alert("Not Implemented")}
           >
             <span>Cannot Login ?</span>
           </Link>

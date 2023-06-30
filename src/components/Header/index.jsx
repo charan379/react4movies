@@ -11,21 +11,30 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useTheme } from "@/redux/hooks/useTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faPowerOff, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useOnOutSideClick } from "@/lib/hooks/useOnOutSideClick";
 import Logout from "../Logout";
+import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
+import { useTmdbQuery } from "@/redux/hooks/useTmdbQuery";
 
 export default function Header() {
+  //
   const { theme, toogleTheme } = useTheme();
+  //
   const { data: session } = useSession();
+  //
   const { user } = session || { user: {}, auth: {} };
-
+  //
   const dropdownRef = useRef();
-
+  //
   const [showDrop, setShowDrop] = useState(false);
-
+  //
   const [openLogout, setOpenLogout] = useState(false);
-
+  //
+  const { resetMbdbQuery } = useMbdbQuery();
+  //
+  const { resetTmdbQuery } = useTmdbQuery();
+  //
   // close dropdown on outside click
   useOnOutSideClick(
     dropdownRef,
@@ -87,15 +96,40 @@ export default function Header() {
                 showDrop ? styles.show : ""
               }`}
             >
+              <Link href="/">Home</Link>
+              <Link href="/titles/mbdb">MBDB</Link>
+              <Link href="/titles/tmdb">TMDB</Link>
+              <button
+                onClick={() => {
+                  resetMbdbQuery();
+                  resetTmdbQuery();
+                }}
+              >
+                Clear Queries{" "}
+                <span>
+                  <FontAwesomeIcon icon={faTrashAlt} size="lg" />
+                </span>
+              </button>
+
               {user?.userName ? (
                 <Link href={"#"}>{user?.userName}</Link>
               ) : (
-                <Link href={"/login"}>Login</Link>
+                <>
+                  <Link href={"/login"}>Login</Link>
+                  <Link href={"/signup"}>Register</Link>
+                  <Link href={"/password-reset"}>Forgot Password</Link>
+                </>
               )}
 
-              <Link href="/">Link 1</Link>
-              <Link href="/">Link 2</Link>
-
+              <Link
+                href={
+                  user?.userName
+                    ? `/user-account-status?userName=${user?.userName}`
+                    : `/user-account-status`
+                }
+              >
+                Check Account Status
+              </Link>
               {user?.userName ? (
                 <button onClick={() => setOpenLogout(true)}>
                   Logout{" "}

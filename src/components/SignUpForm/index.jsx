@@ -1,18 +1,29 @@
 "use client";
 
-import signupValidations from "@/lib/utils/validations/signUp";
 import styles from "./SignUpForm.module.css"; // Import the CSS file for styling
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import signupValidations from "@/lib/utils/validations/signUp";
+import React, { useEffect, useState } from "react";
 import { createUser } from "@/lib/api/moviebunkers/methods/createUser";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 import { useToastify } from "@/lib/hooks/useToastify";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+import InfoCard from "../InfoCard";
+//
+// font awesome library
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpForm = () => {
+  // auth
+  const { data: session } = useSession();
   //
   const router = useRouter();
   //
   const [isLoading, setIsLoading] = useState(false);
+  //
+  const [infoBoxProps, setInfoBoxProps] = useState({});
   //
   const [formData, setFormData] = useState({
     userName: "",
@@ -20,6 +31,8 @@ const SignUpForm = () => {
     password: "",
     confirmPassword: "",
   });
+  //
+  const [showPassword, setShowPassword] = useState(false);
   //
   const [errorMessage, setErrorMessage] = useState("");
   //
@@ -31,10 +44,17 @@ const SignUpForm = () => {
   });
   //
   const messages = {
-    userName: "Please enter a valid username !",
-    email: "Please enter a valid email !",
-    password: "Please enter a valid/strong password !",
-    confirmPassword: "Passwords doesn't match !",
+    userName: "Please enter a valid username",
+    userNameLen: "Username must contain Min 5 , Max 26 characters",
+    userNameSpl:
+      "No special characters are allowed other then underscores and periods",
+    userNameStarting: "Username can only start with alphabets or underscore",
+    email: "Please enter a valid email",
+    password: "Please enter a valid/strong password",
+    passwordLen: "Password must contain Min 8 , Max 26 characters",
+    passwordStrong:
+      "Password must be a combination of atleast 1 speacial character, 1 Uppercase, 1 Lowercase and a number",
+    confirmPassword: "Passwords doesn't match",
     invalidForm: "Please enter all required details",
   };
   //
@@ -76,6 +96,13 @@ const SignUpForm = () => {
       });
       //
       setErrorMessage(error?.message ?? "Somthing went wrong");
+      //  Open Modal
+      setInfoBoxProps({
+        show: true,
+        type: "error",
+        message: `${error?.message ?? "Somthing went wrong"}`,
+        show: true,
+      });
       //
     } finally {
       //
@@ -102,24 +129,22 @@ const SignUpForm = () => {
     }
     //
     // submit form to api
-    const userStatus = await signup(formData);
+    const signUpResult = await signup(formData);
 
-    if (userStatus?.userName) {
-      // display toast about Redirecting
-      toast.info("Redirecting to verification page...", {
-        autoClose: 3500,
-        position: "top-right",
-        closeButton: true,
-        closeOnClick: true,
-      });
+    if (signUpResult?.user?.userName) {
       //
       setTimeout(() => {
-        //  Navigate to account status page after sign up
-        router.push(
-          `/user-account-status?userName=${userStatus?.userName}`,
-          undefined
-        );
-      }, 500);
+        //  Open Modal
+        setInfoBoxProps({
+          show: true,
+          type: "success",
+          message:
+            "Congratulations!💐Your account has been successfully created. Please verify your account to get started.",
+          link: `/user-account-status?userName=${signUpResult?.user?.userName}`,
+          linkText: "Verify Your Account",
+          show: true,
+        });
+      }, 100);
       //
     } else {
       //
@@ -129,7 +154,8 @@ const SignUpForm = () => {
   };
   //
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const name = e?.target?.name?.trim();
+    const value = e?.target?.value;
     validateForm(name, value);
     setFormData((prevState) => ({
       ...prevState,
@@ -149,8 +175,30 @@ const SignUpForm = () => {
     //
     switch (name) {
       case "userName":
-        if (!signupValidations.validUsername(value, 20, 5)) {
-          errors = { ...errors, userName: true };
+        if (!signupValidations.validUsername(value)) {
+          // genric message
+          errors = { ...errors, userName: messages.userName };
+          // length
+          if (value?.length < 5 || value?.length > 26) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameLen}`,
+            };
+          }
+          // starting char
+          if (!/^[a-zA-Z_]/.test(value)) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameStarting}`,
+            };
+          }
+          // other special chars
+          if (!/^[a-zA-Z0-9._]+$/.test(value)) {
+            errors = {
+              ...errors,
+              userName: `${messages.userNameSpl}`,
+            };
+          }
           setValidForm(false);
         } else {
           errors = { ...errors, userName: false };
@@ -159,7 +207,7 @@ const SignUpForm = () => {
       //
       case "email":
         if (!signupValidations.validEmail(value)) {
-          errors = { ...errors, email: true };
+          errors = { ...errors, email: messages.email };
           setValidForm(false);
         } else {
           errors = { ...errors, email: false };
@@ -168,7 +216,14 @@ const SignUpForm = () => {
       //
       case "password":
         if (!signupValidations.validPassword(value)) {
-          errors = { ...errors, password: true };
+          errors = { ...errors, password: messages.passwordStrong };
+          // length
+          if (value?.length < 8 || value?.length > 26) {
+            errors = {
+              ...errors,
+              password: `${messages.passwordLen}`,
+            };
+          }
           setValidForm(false);
         } else {
           errors = { ...errors, password: false };
@@ -177,7 +232,7 @@ const SignUpForm = () => {
       //
       case "confirmPassword":
         if (value !== formData.password) {
-          errors = { ...errors, confirmPassword: true };
+          errors = { ...errors, confirmPassword: messages.confirmPassword };
           setValidForm(false);
         } else {
           errors = { ...errors, confirmPassword: false };
@@ -201,6 +256,14 @@ const SignUpForm = () => {
     }
   };
   //
+  useEffect(() => {
+    if (session?.auth) {
+      router.push("/");
+    }
+    return () => {};
+  }, [session]);
+
+  //
   return (
     <>
       <form className={styles.signupForm} onSubmit={handleSubmit}>
@@ -211,9 +274,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.userName}
+            data-error={formErrors.userName ? true : false}
           >
-            {messages.userName}
+            {formErrors.userName}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -232,9 +295,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.email}
+            data-error={formErrors.email ? true : false}
           >
-            {messages.email}
+            {formErrors.email}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -253,20 +316,32 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.password}
+            data-error={formErrors.password ? true : false}
           >
-            {messages.password}
+            {formErrors.password}
           </span>
         )}
         <div className={styles.inputBox}>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             value={password}
             onChange={handleChange}
             autoComplete="off"
           />
+          {formData?.password && (
+            <span
+              className={styles.eyeIcon}
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEye} size="lg" />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} size="lg" />
+              )}
+            </span>
+          )}
           <label htmlFor="password">Password</label>
         </div>
         {/*  */}
@@ -274,9 +349,9 @@ const SignUpForm = () => {
           <span
             style={{ marginBottom: "10px" }}
             className={"error-message"}
-            data-error={formErrors.confirmPassword}
+            data-error={formErrors.confirmPassword ? true : false}
           >
-            {messages.confirmPassword}
+            {formErrors.confirmPassword}
           </span>
         )}
         <div className={styles.inputBox}>
@@ -321,6 +396,14 @@ const SignUpForm = () => {
         {/*  */}
       </form>
       {/*  */}
+      <InfoCard
+        type={infoBoxProps?.type}
+        message={infoBoxProps?.message}
+        link={infoBoxProps?.link}
+        open={infoBoxProps?.show}
+        linkText={infoBoxProps?.linkText}
+        close={() => setInfoBoxProps({ show: false })}
+      />
       {/* Toast container */}
       <ToastContainer {...toastContainerOptions} />
     </>

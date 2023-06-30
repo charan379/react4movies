@@ -17,11 +17,7 @@ import LinkForm from "./LinkForm";
 import LinkCard from "./LinkCard/Index";
 
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 
@@ -192,7 +188,7 @@ export default function LinkList({ auth, parentId, limit }) {
         <button data-type="add" onClick={() => setOpenForm(true)}>
           New Link
           <span>
-            <FontAwesomeIcon icon={["fas", "plus-circle"]} />
+            <FontAwesomeIcon icon={faPlusCircle} />
           </span>
         </button>
       </div>

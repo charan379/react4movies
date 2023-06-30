@@ -5,6 +5,8 @@
   top: 50%;
   left: 50%;
   width: 420px;
+  margin-top: 30px;
+  max-height: calc(95%);
   padding: 20px;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
@@ -37,6 +39,9 @@
   transition: 0.3s;
   letter-spacing: 2px;
   text-transform: uppercase;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .signupForm .inputBox input {

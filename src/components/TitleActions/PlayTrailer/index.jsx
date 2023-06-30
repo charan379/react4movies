@@ -2,11 +2,8 @@
 
 import styles from "../TitleActions.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import React, { useEffect, useState } from "react";
@@ -83,12 +80,12 @@ const PlayTrailer = ({
           {isLoading ? (
             // If the component is loading, show a loading icon
             <span>
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             </span>
           ) : (
             // Otherwise, show the YouTube logo
             <span>
-              <FontAwesomeIcon icon={["fab", "youtube"]} size="lg" />
+              <FontAwesomeIcon icon={faYoutube} size="lg" />
             </span>
           )}
         </button>

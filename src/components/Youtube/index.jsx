@@ -1,10 +1,6 @@
 import styles from "./Youtube.module.css";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import React, { Suspense, useRef } from "react";
@@ -45,7 +41,7 @@ const YoutubePlayer = ({ videoId, open, close }) => {
         <Suspense fallback={<BarsLoadingAnimation />}>
           {/* Close button */}
           <div onClick={close} className={styles.closeBtn} tabIndex="1">
-            <FontAwesomeIcon icon={["fas", "times"]} size="lg" />
+            <FontAwesomeIcon icon={faTimes} size="lg" />
           </div>
 
           <YouTube

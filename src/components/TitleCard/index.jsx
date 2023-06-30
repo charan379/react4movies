@@ -4,11 +4,16 @@ import styles from "./TitleCard.module.css";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faCompactDisc,
+  faEye,
+  faEyeSlash,
+  faStar,
+  faTv,
+  faFilm,
+  faHeart,
+  faImage,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import handleNextJSImageError from "@/lib/utils/handleNextJSImageError";
 import { useWindowSize } from "@/lib/hooks/useWindowSize";
@@ -32,7 +37,7 @@ const TitleCard = (
   }
 ) => {
   const { width } = useWindowSize();
-  // 
+  //
   const [isLoading, setIsLoading] = useState(false);
 
   const [imageSrc, setImageSrc] = useState(props.posterPath);
@@ -77,7 +82,7 @@ const TitleCard = (
           {isLoading && (
             <FontAwesomeIcon
               style={{ filter: "blur(2px)" }}
-              icon={["fas", "compact-disc"]}
+              icon={faCompactDisc}
               size="4x"
               aria-hidden={true}
               pulse
@@ -89,11 +94,7 @@ const TitleCard = (
         <div className={styles.cardPosterBackdrop}>
           {!isLoading &&
             (imageSrc === "/images/empty.svg" || imageSrc === "") && (
-              <FontAwesomeIcon
-                icon={["fas", "image"]}
-                size="4x"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faImage} size="4x" aria-hidden={true} />
             )}
           <br />
         </div>
@@ -113,59 +114,35 @@ const TitleCard = (
           {/* Display different icons based on the type of the title or TV show */}
           {props.titleType === "movie" && (
             <span>
-              <FontAwesomeIcon
-                icon={["fas", "film"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faFilm} size="xs" aria-hidden={true} />
             </span>
           )}
           {props.titleType === "tv" && (
             <span>
-              <FontAwesomeIcon
-                icon={["fas", "tv"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faTv} size="xs" aria-hidden={true} />
             </span>
           )}
 
           {/* Display icons for whether the title/TV show has been seen or favorited */}
           {props.unseenByUser && (
             <span>
-              <FontAwesomeIcon
-                icon={["fas", "eye-slash"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faEyeSlash} size="xs" aria-hidden={true} />
             </span>
           )}
 
           {props.seenByUser && (
             <span>
-              <FontAwesomeIcon
-                icon={["fas", "eye"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faEye} size="xs" aria-hidden={true} />
             </span>
           )}
           {props.favouriteByUser && (
             <span style={{ color: "rgba(255, 20, 70, 1)" }}>
-              <FontAwesomeIcon
-                icon={["fas", "heart"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faHeart} size="xs" aria-hidden={true} />
             </span>
           )}
           {props.starredByUser && (
             <span style={{ color: "rgb(255 149 0)" }}>
-              <FontAwesomeIcon
-                icon={["fas", "star"]}
-                size="xs"
-                aria-hidden={true}
-              />
+              <FontAwesomeIcon icon={faStar} size="xs" aria-hidden={true} />
             </span>
           )}
         </div>

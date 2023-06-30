@@ -3,12 +3,8 @@ import React from "react";
 import Link from "next/link";
 import handleImageError from "@/lib/utils/handleImageError";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(fas, far, fab);
 //
 
 const TitleExternalLinks = ({ links = [] }) => {
@@ -38,8 +34,7 @@ const TitleExternalLinks = ({ links = [] }) => {
                 className={styles.titleExternalLinkImg}
               />
               <span>
-                <i className="fas fa-user-alt fa-2x" aria-hidden="true"></i>
-                <FontAwesomeIcon icon={["fas", "link"]} size="1x" />
+                <FontAwesomeIcon icon={faLink} size="1x" />
               </span>
             </Link>
           );

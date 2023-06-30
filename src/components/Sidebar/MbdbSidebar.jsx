@@ -11,12 +11,27 @@ import findClosestAncestorOfType from "@/lib/utils/findClosestAncestorOfType";
 import ReactSelector from "../ReactSelector";
 import ReactSlider from "react-slider";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faFilter,
+  faTh,
+  faSearch,
+  faFilm,
+  faTv,
+  faStar,
+  faHeart,
+  faLanguage,
+  faSortAlphaAsc,
+  faUserGear,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart as farHeart,
+  faStar as farStar,
+  faEye as farEye,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//
 import {
   mbdbQueryPageResultsOptions,
   mbdbQuerySortOptions,
@@ -154,7 +169,7 @@ export default function MbdbSidebar({ searchRef }) {
           {/* title */}
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={["fas", "search"]} />
+              <FontAwesomeIcon icon={faSearch} />
             </span>
             <input
               ref={searchRef}
@@ -178,7 +193,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={["fas", "th"]} />
+              <FontAwesomeIcon icon={faTh} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="genre">
               <ReactSelector
@@ -200,7 +215,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={["fas", "language"]} />
+              <FontAwesomeIcon icon={faLanguage} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="language">
               <ReactSelector
@@ -228,7 +243,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={["fas", "sort-alpha-asc"]} />
+              <FontAwesomeIcon icon={faSortAlphaAsc} />
             </span>
             <label className={styles.sidebarSelect} htmlFor="sort_by">
               <ReactSelector
@@ -283,7 +298,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={styles.icon}>
-              <FontAwesomeIcon icon={["fas", "users-gear"]} />
+              <FontAwesomeIcon icon={faUserGear} />
             </span>
             <ReactSlider
               key={`age-slider-${mbdbQuery?.restTime}`}
@@ -318,7 +333,7 @@ export default function MbdbSidebar({ searchRef }) {
           </li>
           <li className={styles.menuItem}>
             <span className={`${styles.icon} ${styles.closed}`}>
-              <FontAwesomeIcon icon={["fas", "filter"]} />
+              <FontAwesomeIcon icon={faFilter} />
             </span>
             {mbdbQuery?.movie == 1 && (
               <button
@@ -333,7 +348,7 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "film"]} />
+                  <FontAwesomeIcon icon={faFilm} />
                 </span>
               </button>
             )}
@@ -351,7 +366,7 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "film"]} />
+                  <FontAwesomeIcon icon={faFilm} />
                 </span>
               </button>
             )}
@@ -369,7 +384,7 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "tv"]} />
+                  <FontAwesomeIcon icon={faTv} />
                 </span>
               </button>
             )}
@@ -387,7 +402,7 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "tv"]} />
+                  <FontAwesomeIcon icon={faTv} />
                 </span>
               </button>
             )}
@@ -395,7 +410,6 @@ export default function MbdbSidebar({ searchRef }) {
             {mbdbQuery?.seen == 1 && (
               <button
                 className={`${styles.icon} ${styles.menuItem}`}
-                // className={`fas fa-eye icon menu-item`}
                 data-id="seen"
                 data-name="seen"
                 data-value={1}
@@ -406,14 +420,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "eye"]} />
+                  <FontAwesomeIcon icon={faEye} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.seen == -1 && (
               <button
-                // className={`fas fa-eye-slash icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="seen"
                 data-name="seen"
@@ -425,14 +438,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "eye-slash"]} />
+                  <FontAwesomeIcon icon={faEyeSlash} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.seen == 0 && (
               <button
-                // className={`far fa-eye icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="seen"
                 data-name="seen"
@@ -444,14 +456,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["far", "eye"]} />
+                  <FontAwesomeIcon icon={farEye} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.favourite == 1 && (
               <button
-                // className={`fas fa-heart icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="favourite"
                 data-name="favourite"
@@ -463,14 +474,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "heart"]} />
+                  <FontAwesomeIcon icon={faHeart} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.favourite == 0 && (
               <button
-                // className={`far fa-heart icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="favourite"
                 data-name="favourite"
@@ -482,14 +492,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["far", "heart"]} />
+                  <FontAwesomeIcon icon={farHeart} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.starred == 1 && (
               <button
-                // className={`fas fa-star icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="starred"
                 data-name="starred"
@@ -501,14 +510,13 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["fas", "star"]} />
+                  <FontAwesomeIcon icon={faStar} />
                 </span>
               </button>
             )}
 
             {mbdbQuery?.starred == 0 && (
               <button
-                // className={`far fa-star icon menu-item`}
                 className={`${styles.icon} ${styles.menuItem}`}
                 data-id="starred"
                 data-name="starred"
@@ -520,7 +528,7 @@ export default function MbdbSidebar({ searchRef }) {
                 tabIndex={"-1"}
               >
                 <span>
-                  <FontAwesomeIcon icon={["far", "star"]} />
+                  <FontAwesomeIcon icon={farStar} />
                 </span>
               </button>
             )}

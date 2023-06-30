@@ -1,11 +1,7 @@
 import styles from "./TitlePage.module.css";
 //
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import { fetchTitle } from "@/lib/api/moviebunkers/methods/fetchTitle";
@@ -55,13 +51,18 @@ export async function generateMetadata({
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    return {
+      title: "Error",
+      description: `${error?.message}`,
+    };
+  }
 
   return {
-    title: data?.title,
+    title: `${data?.title} ${data?.year}`,
     description: data?.overview,
     openGraph: {
-      title: data?.title,
+      title: `${data?.title} ${data?.year}`,
       description: data?.overview,
       url: process.env.NEXTAUTH_URL,
       siteName: "React4Movies",
@@ -107,7 +108,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: data?.title,
+      title: `${data?.title} ${data?.year}`,
       description: data?.overview,
       images: [
         data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
@@ -144,7 +145,9 @@ export default async function TitlePage({
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error?.message);
+  }
 
   return (
     <>
@@ -188,7 +191,7 @@ export default async function TitlePage({
                 Links
                 <span>
                   &nbsp;
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <Links auth={session?.auth} parentId={data?._id} limit={0} />
@@ -205,7 +208,7 @@ export default async function TitlePage({
                 <span>
                   &nbsp;
                   <small>{data?.number_of_episodes}&nbsp;</small>
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <EpisodeList
@@ -214,17 +217,17 @@ export default async function TitlePage({
                 lastestEpisode={
                   data?.last_episode_aired
                     ? {
-                        ...data.last_episode_aired,
-                        data_show_id: data?._id ?? data?.tmdb_id,
-                      }
+                      ...data.last_episode_aired,
+                      data_show_id: data?._id ?? data?.tmdb_id,
+                    }
                     : null
                 }
                 upcomingEpisode={
                   data?.next_episode_to_air
                     ? {
-                        ...data.next_episode_to_air,
-                        data_show_id: data?._id ?? data?.tmdb_id,
-                      }
+                      ...data.next_episode_to_air,
+                      data_show_id: data?._id ?? data?.tmdb_id,
+                    }
                     : null
                 }
               />
@@ -237,7 +240,7 @@ export default async function TitlePage({
                 <span>
                   &nbsp;
                   <small>{data?.number_of_seasons}&nbsp;</small>
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <SeasonList

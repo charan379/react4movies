@@ -2,11 +2,10 @@ import styles from "./Logout.module.css";
 import React, { useRef } from "react";
 
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faTimes,
+  faExclamationTriangle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Custom hooks for managing authentication, theme, and displaying toast notifications
@@ -75,12 +74,12 @@ const Logout = ({ open, close }) => {
         <div ref={logoutRef} className={styles.logoutModal}>
           {/* Close button */}
           <div onClick={close} className={styles.closeBtn} tabIndex="1">
-            <FontAwesomeIcon icon={["fas", "times"]} size="lg" />
+            <FontAwesomeIcon icon={faTimes} size="lg" />
           </div>
 
           {/* Header */}
           <h2>
-            <FontAwesomeIcon icon={["fas", "exclamation-triangle"]} />
+            <FontAwesomeIcon icon={faExclamationTriangle} />
             Confirm Logout
           </h2>
           <h6 style={{ textAlign: "center" }}>

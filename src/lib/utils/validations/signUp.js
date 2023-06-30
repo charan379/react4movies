@@ -1,9 +1,9 @@
-import isNonEmptyString from "./Validators/isNonEmptyString";
 import isValidEmail from "./Validators/isValidEmail";
 import isValidPassword from "./Validators/isValidPassword";
+import isValidUserName from "./Validators/isValidUserName";
 
 const signupValidations = {
-    validUsername: isNonEmptyString,
+    validUsername: isValidUserName,
     validEmail: isValidEmail,
     validPassword: isValidPassword,
 }

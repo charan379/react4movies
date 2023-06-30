@@ -64,6 +64,8 @@
   text-align: left;
   font-size: 0.9rem;
   border-radius: 5px;
+  background-color: var(--bg-color);
+  outline: none;
 }
 
 .linkForm form input[data-role="text-input"] {

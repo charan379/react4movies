@@ -1,11 +1,7 @@
 import styles from "./SeasonPage.module.css";
 //
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //
 import SeasonPoster from "@/components/Season/SeasonPoster";
@@ -26,90 +22,124 @@ export async function generateMetadata({
   params: { database, titleType, titleId, seasonNumber },
 }) {
   const session = await getServerSession(authOptions);
+  //
+  const titleIdElements = titleId?.split("-"); // id elements
+  // 
+  const tvShowId = titleId?.split("-")[0]; // tv shoe id
+  //  tv show name
+  const titleName = titleId
+    ?.split("-")
+    ?.map((elem, index) => {
+      if (index !== 0 && index !== titleIdElements?.length - 1) {
+        let word = [...elem];
+        word?.splice(0, 1, word[0]?.toString()?.toUpperCase())
+        return word.join("");
+      }
+    })
+    .join(" ")
+    ?.trim();
+  // tv show initial release year
 
-  const extractedId = titleId?.split("-")[0];
-
+  const year = titleId?.split("-")?.slice(-1)[0];
+  // 
   let data;
-
+  // 
   try {
     switch (database) {
       case "tmdb":
-        season = await fetchTmdbTvSeason({
+        const season = await fetchTmdbTvSeason({
           seasonNumber: seasonNumber,
           tmdbTitleId: tvShowId,
         });
+        // 
+        if (season) {
+          data = season
+        } else {
+          throw Error("Season not found !")
+        }
         break;
 
       case "mbdb":
-        season = await fetchTvSeasons({
+        const seasons = await fetchTvSeasons({
           titleId: tvShowId,
-          queryParams: { limit: 1, skip: seasonNumber - 1 },
+          queryParams: { limit: 1, skip: seasonNumber - 1, sort_by: "season_number.asc" },
           auth: session?.auth,
         });
+        if (seasons?.length > 0) {
+          data = seasons[0];
+        } else {
+          throw Error("Season not found !")
+        }
         break;
 
       default:
         break;
     }
-  } catch (error) {}
+  } catch (error) {
+    return {
+      title: "Error",
+      description: `${error?.message}`,
+    };
+  }
 
-  // return {
-  //   title: data?.title,
-  //   description: data?.overview,
-  //   openGraph: {
-  //     title: data?.title,
-  //     description: data?.overview,
-  //     url: process.env.NEXTAUTH_URL,
-  //     siteName: "React4Movies",
-  //     images: [
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w92"),
-  //         width: 92,
-  //         height: 138,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w154"),
-  //         width: 154,
-  //         height: 231,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w185"),
-  //         width: 185,
-  //         height: 278,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w342"),
-  //         width: 342,
-  //         height: 513,
-  //       },
-  //       {
-  //         url: data?.poster_path
-  //           ?.toString()
-  //           ?.replace(/(w\d+|original)/g, "w500"),
-  //         width: 500,
-  //         height: 750,
-  //       },
-  //     ],
-  //     locale: "en-US",
-  //     type: "website",
-  //   },
-  //   twitter: {
-  //     card: "summary_large_image",
-  //     title: data?.title,
-  //     description: data?.overview,
-  //     images: [
-  //       data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
-  //     ],
-  //   },
-  // };
+  // 
+  return {
+    title: `${data?.name} | ${titleName} ${year}`,
+    description: data?.overview,
+    openGraph: {
+      title: `${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      url: process.env.NEXTAUTH_URL,
+      siteName: "React4Movies",
+      images: [
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w92"),
+          width: 92,
+          height: 138,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w154"),
+          width: 154,
+          height: 231,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w185"),
+          width: 185,
+          height: 278,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w342"),
+          width: 342,
+          height: 513,
+        },
+        {
+          url: data?.poster_path
+            ?.toString()
+            ?.replace(/(w\d+|original)/g, "w500"),
+          width: 500,
+          height: 750,
+        },
+      ],
+      locale: "en-US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data?.name} | ${titleName} ${year}`,
+      description: data?.overview,
+      images: [
+        data?.poster_path?.toString()?.replace(/(w\d+|original)/g, "w342"),
+      ],
+    },
+  };
 }
 
 export default async function SeasonsPage({
@@ -119,6 +149,7 @@ export default async function SeasonsPage({
   const session = await getServerSession(authOptions);
   //
   const titleIdElements = titleId?.split("-"); // id elements
+  // 
   const tvShowId = titleId?.split("-")[0]; // tv shoe id
   //  tv show name
   const titleName = titleId
@@ -174,7 +205,7 @@ export default async function SeasonsPage({
         break;
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(error?.message);
   }
 
   return (
@@ -263,7 +294,7 @@ export default async function SeasonsPage({
               <span>
                 &nbsp;
                 <small>{season?.episode_count}&nbsp;</small>
-                <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                <FontAwesomeIcon icon={faChevronRight} size="lg" />
               </span>
             </h2>
             {/* code to displayepisodes list */}
@@ -288,7 +319,7 @@ export default async function SeasonsPage({
                 Links
                 <span>
                   &nbsp;
-                  <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                  <FontAwesomeIcon icon={faChevronRight} size="lg" />
                 </span>
               </h2>
               <LinkList parentId={season?._id} auth={session?.auth} />
@@ -303,7 +334,7 @@ export default async function SeasonsPage({
               <span>
                 &nbsp;
                 <small>{season?.images?.length}&nbsp;</small>
-                <FontAwesomeIcon icon={["fas", "chevron-right"]} size="lg" />
+                <FontAwesomeIcon icon={faChevronRight} size="lg" />
               </span>
             </h2>
             {/* <LightboxImages imagesProp={season?.images} layout={"columns"} /> */}

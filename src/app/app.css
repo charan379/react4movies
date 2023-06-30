@@ -268,7 +268,7 @@ body[data-theme="dark"] .link-tree-child::after {
   text-align: center;
   color: rgb(228, 49, 85);
   font-weight: bold;
-  padding: 3px 0px 2px 1px;
+  padding: 1px 2px 10px 1px;
 }
 .error-message[data-error="true"]::after {
   content: " !";

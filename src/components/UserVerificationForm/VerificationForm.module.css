@@ -1,0 +1,109 @@
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 580px;
+  width: 100%;
+  text-align: center;
+  background-color: var(--ui-element-color);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: left;
+  border-bottom: 1px solid var(--font-color-opacity-half);
+  padding-bottom: 0;
+  opacity: 0.85;
+}
+
+.title h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  max-width: 520px;
+}
+
+.formContainer label {
+  text-align: left;
+  width: 100%;
+  opacity: 0.7;
+  margin: 7px 7px 10px 20px;
+}
+
+.inputField {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.activateButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resendButton {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.verifiedContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.tickMark {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+
+.tickMark::before {
+  content: "\2714";
+  font-size: 28px;
+  color: #fff;
+}

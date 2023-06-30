@@ -1,11 +1,10 @@
 import styles from "./SeasonCard.module.css";
 
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fas, far, fab);
+import {
+  faAngleDoubleRight,
+  faCircleNotch,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SeasonPoster from "../SeasonPoster";
 //
@@ -38,9 +37,9 @@ const SeasonCard = ({
           <div className="more-button">
             <span>
               {isLoading ? (
-                <FontAwesomeIcon icon={["fas", "circle-notch"]} pulse />
+                <FontAwesomeIcon icon={faCircleNotch} pulse />
               ) : (
-                <FontAwesomeIcon icon={["fas", "angle-double-right"]} />
+                <FontAwesomeIcon icon={faAngleDoubleRight} />
               )}
             </span>
           </div>

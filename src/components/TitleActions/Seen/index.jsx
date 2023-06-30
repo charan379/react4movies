@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { addToSeenTitles } from "@/lib/api/moviebunkers/methods/addToSeenTitles";
 import { addToUnSeenTitles } from "@/lib/api/moviebunkers/methods/addToUnSeenTitles";
 // font awesome library
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCircleNotch,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(fas, far, fab);
 
 const Seen = ({
   toast,
@@ -95,9 +95,9 @@ const Seen = ({
         >
           <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
             {isLoading ? (
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             ) : (
-              <FontAwesomeIcon icon={["fas", "eye"]} size="lg" />
+              <FontAwesomeIcon icon={faEye} size="lg" />
             )}
           </span>
         </button>
@@ -121,9 +121,9 @@ const Seen = ({
         >
           <span /*style={{ color: 'rgba(16,125,172, 1)' }} */>
             {isLoading ? (
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             ) : (
-              <FontAwesomeIcon icon={["fas", "eye-slash"]} size="lg" />
+              <FontAwesomeIcon icon={faEyeSlash} size="lg" />
             )}
           </span>
         </button>
@@ -147,11 +147,11 @@ const Seen = ({
         >
           {isLoading ? (
             <span>
-              <FontAwesomeIcon icon={["fas", "circle-notch"]} size="lg" pulse />
+              <FontAwesomeIcon icon={faCircleNotch} size="lg" pulse />
             </span>
           ) : (
             <span style={{ opacity: "0.3" }}>
-              <FontAwesomeIcon icon={["fas", "eye"]} size="lg" />
+              <FontAwesomeIcon icon={faEye} size="lg" />
             </span>
           )}
         </button>

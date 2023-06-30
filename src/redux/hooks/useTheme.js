@@ -36,6 +36,7 @@ export function useTheme() {
         const lightRootVariables = {
             '--bg-color': '#e9f1fa',
             '--font-color': '#020d1a',
+            '--font-color-opacity-half': 'rgba(2, 13, 26, 0.5)',
             '--ui-element-color': '#c8d9ec',
             '--ui-element-hover-color': '#22303c',
             '--ui-element-hover-font-color': '#ffffff',
@@ -53,6 +54,7 @@ export function useTheme() {
         const darkRootVariables = {
             '--bg-color': '#15202b',
             '--font-color': '#ffffff',
+            '--font-color-opacity-half': 'rgba(255, 255, 255, 0.5)',
             '--ui-element-color': '#22303c',
             '--ui-element-hover-color': '#c8d9ec',
             '--ui-element-hover-font-color': '#020d1a',

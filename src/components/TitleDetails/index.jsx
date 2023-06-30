@@ -171,7 +171,11 @@ const TitleDetails = ({ title }) => {
 
             {/* number of seasons */}
             <div className={styles.infoItem}>
-              <a className="link" href={`#seasons`}>
+              <a
+                className="link"
+                style={{ fontSize: "inherit" }}
+                href={`#seasons`}
+              >
                 <b>Seasons : </b>
                 {title?.number_of_seasons}
               </a>
@@ -179,7 +183,11 @@ const TitleDetails = ({ title }) => {
 
             {/* number of episodes */}
             <div className={styles.infoItem}>
-              <a className="link" href={`#episodes`}>
+              <a
+                className="link"
+                style={{ fontSize: "inherit" }}
+                href={`#episodes`}
+              >
                 <b>Episodes : </b>
                 {title?.number_of_episodes}
               </a>
