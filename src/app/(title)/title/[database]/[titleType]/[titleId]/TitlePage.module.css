@@ -1,0 +1,110 @@
+.titlePage {
+  padding: 5px 5px 5px 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: -webkit-fill-available;
+  grid-template-areas:
+    "titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection titleTitleSection"
+    "titlePosterSection titlePosterSection  titlePosterSection titleDetailsSection titleDetailsSection titleDetailsSection titleDetailsSection titleDetailsSection titleDetailsSection titleDetailsSection"
+    "titleEpisodesSection titleEpisodesSection titleEpisodesSection titleEpisodesSection  titleEpisodesSection titleEpisodesSection titleEpisodesSection titleEpisodesSection titleEpisodesSection titleEpisodesSection"
+    "titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection titleSeasonsSection"
+    "titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection titleLinksSection"
+    "titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection titleImagesSection";
+}
+
+.titlePage .titleTitleSection {
+  grid-area: titleTitleSection;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: larger;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--font-color);
+}
+
+.titlePage small {
+  color: gray;
+}
+
+.titlePage .titlePosterSection {
+  grid-area: titlePosterSection;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  padding: 0px 10px 10px 10px;
+  color: var(--font-color);
+}
+
+.titlePage .titleDetailsSection {
+  grid-area: titleDetailsSection;
+  margin-right: 0px;
+  color: var(--font-color);
+}
+
+.titlePage .titleEpisodesSection {
+  grid-area: titleEpisodesSection;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 5px;
+  color: var(--font-color);
+}
+
+.titlePage .titleSeasonsSection {
+  grid-area: titleSeasonsSection;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 5px;
+  color: var(--font-color);
+}
+
+.titlePage .titleLinksSection {
+  grid-area: titleLinksSection;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 5px;
+  color: var(--font-color);
+}
+
+.titlePage .titleImagesSection {
+  grid-area: titleImagesSection;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 20px;
+  padding: 5px;
+  color: var(--font-color);
+}
+
+@media (max-width: 1080px) {
+  .titlePage {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "titleTitleSection"
+      "titlePosterSection"
+      "titleDetailsSection"
+      "titleEpisodesSection"
+      "titleSeasonsSection"
+      "titleLinksSection"
+      "titleImagesSection";
+  }
+}

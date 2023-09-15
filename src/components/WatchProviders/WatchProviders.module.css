@@ -1,0 +1,29 @@
+.watchProviders {
+  transition: 0.5s;
+}
+
+.watchProviders a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin: 5px 5px 5px 10px;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.watchProviders .watchProvider {
+  text-decoration: none;
+  margin: 5px 2px 5px 5px;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+}

@@ -1,0 +1,106 @@
+.episodeCard {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1.1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 10px;
+  grid-template-areas:
+    "posterSection"
+    "detailsSection";
+  width: -webkit-fill-available;
+  max-width: 340px;
+  max-height: 580px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  align-items: start;
+  transition: scale 0.5s ease-in-out, color 0.1s ease-in,
+    background-color 0.1s ease-in;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.episodeCard .posterSection {
+  grid-area: posterSection;
+  height: max-content;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.episodeCard .detailsSection {
+  grid-area: detailsSection;
+  width: -webkit-fill-available;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.episodeCard .actionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.episodeCard .actionButtons .actionButton {
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  margin: 0px 10px 0px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+}
+
+.episodeCard .actionButtons .actionButton:hover {
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
+}
+
+.episodeCard .episodeDetails {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  align-content: flex-start;
+  width: -webkit-fill-available;
+}
+
+.episodeCard .episodeDetails a {
+  text-decoration: none;
+  color: inherit;
+}
+.episodeCard .episodeDetails h4 span {
+  font-size: small;
+}
+.episodeCard .episodeDetails .episodeOverview {
+  margin-top: 6px;
+  width: -webkit-fill-available;
+  text-align: left;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .episodeCard:hover {
+    scale: 1.05;
+  }
+}

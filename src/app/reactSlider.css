@@ -1,0 +1,87 @@
+.horizontalSlider {
+  width: 80%;
+  max-width: 500px;
+  height: 50px;
+  padding: 0px;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.horizontalSlider .rangeSliderTrack {
+  border-radius: 5px;
+  top: 20px;
+  height: 10px;
+}
+
+.rangeSliderTrack.rangeSliderTrack-0 {
+  z-index: 1;
+  background: rgb(240, 241, 240);
+  border-radius: 5px 0px 0px 5px;
+}
+
+body[data-theme="light"]
+  .horizontalSlider
+  .rangeSliderTrack.rangeSliderTrack-0 {
+  background: rgb(56, 56, 56);
+}
+
+.rangeSliderTrack.rangeSliderTrack-1 {
+  z-index: 2;
+  background: rgb(98, 0, 255);
+  border-radius: 5px 5px 5px 5px;
+}
+
+.rangeSliderTrack.rangeSliderTrack-2 {
+  z-index: 1;
+  background: rgb(235, 233, 233);
+  border-radius: 0px 5px 5px 0px;
+}
+
+body[data-theme="light"]
+  .horizontalSlider
+  .rangeSliderTrack.rangeSliderTrack-2 {
+  background: rgb(56, 56, 56);
+}
+
+.horizontalSlider .rangeSliderThumb {
+  z-index: 4 !important;
+  top: 12px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #de2222;
+  color: white;
+  cursor: pointer;
+  border: 0px solid #3e2369;
+  box-sizing: border-box;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body[data-theme="light"]
+    .horizontalSlider:hover
+    .rangeSliderTrack.rangeSliderTrack-2 {
+    background: rgb(235, 233, 233);
+  }
+
+  body[data-theme="dark"]
+    .horizontalSlider:hover
+    .rangeSliderTrack.rangeSliderTrack-2 {
+    background: rgb(56, 56, 56);
+  }
+
+  body[data-theme="light"]
+    .horizontalSlider:hover
+    .rangeSliderTrack.rangeSliderTrack-0 {
+    background: rgb(235, 233, 233);
+  }
+
+  body[data-theme="dark"]
+    .horizontalSlider:hover
+    .rangeSliderTrack.rangeSliderTrack-0 {
+    background: rgb(56, 56, 56);
+  }
+}

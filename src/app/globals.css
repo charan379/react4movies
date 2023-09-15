@@ -1,0 +1,84 @@
+:root {
+  /* light theme */
+  --bg-light: #e9f1fa;
+  --font-color-light: #020d1a;
+  --ui-element-light: #c8d9ec;
+  --button-bg-light: #4182cb;
+  --button-color-light: #fafafa;
+  --title-box-title-light: #15202b;
+  --title-box-title-bg-light: #d5e1ed;
+  /* hsf = Header Sidebar Footer */
+  --hsf-bg-light: #192734;
+  /* movie-overlay */
+  --movie-modal-bg-light: rgb(255, 255, 255);
+  --seasons-bg-light: rgba(255, 255, 255, 0);
+
+  /* dark theme */
+  --bg-dark: #15202b;
+  --font-color-dark: #ffffff;
+  --ui-element-dark: #22303c;
+  --button-bg-dark: #9400d3;
+  --button-color-dark: #fafafa;
+  --title-box-title-dark: #ffffff;
+  --title-box-title-bg-dark: #192734;
+  /* hsf = Header Sidebar Footer */
+  --hsf-bg-dark: #ffffff;
+  /* movie-overlay */
+  --movie-modal-bg-dark: rgb(0, 0, 0);
+  --seasons-bg-dark: rgba(0, 0, 0, 0);
+
+  /* tooltip colors */
+  --tooltip-background-color: rgb(15, 105, 178);
+  --tooltip-font-color: #ffffff;
+
+  /* Transitions */
+  ---trans-theme: 0.1s ease-out;
+  ---tran-02: all 0.5 ease;
+  ---tran-03: all 0.5 ease;
+  ---tran-04: all 0.5 ease;
+  ---trans-sidebar-toggle: 0.2s ease-in-out;
+  ---trans-container-margin: 0.2s ease-in-out;
+  ---hover-movies: 1s ease;
+
+  /* =================================== */
+
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    #16abff33 0deg,
+    #0885ff33 55deg,
+    #54d6ff33 120deg,
+    #0071ff33 160deg,
+    transparent 360deg
+  );
+  --secondary-glow: radial-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(
+    #00000080,
+    #00000040,
+    #00000030,
+    #00000020,
+    #00000010,
+    #00000010,
+    #00000080
+  );
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
+}

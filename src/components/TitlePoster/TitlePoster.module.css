@@ -1,0 +1,97 @@
+.titlePoster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 0px solid;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  z-index: 1;
+  width: 300px;
+  height: 450px;
+  margin: 2px 7px 10px 7px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.titlePoster .titlePosterBackdrop,
+.titlePoster .titlePosterImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+}
+
+.titlePoster .titlePosterBackdrop {
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.titlePoster .titlePosterImg {
+  z-index: 1;
+}
+
+.titlePoster .titlePosterImg img {
+  width: inherit;
+  height: inherit;
+  filter: blur(12px);
+  transition: opacity 0.8s ease-in-out;
+  z-index: 3;
+}
+
+.titlePoster .titlePosterImg img[data-loading="true"] {
+  filter: blur(12px);
+}
+
+.titlePoster .titlePosterImg img[data-loading="false"] {
+  animation: blurAnimation 2s linear;
+  filter: blur(0px);
+}
+
+@keyframes imgBlurAnimation {
+  from {
+    filter: blur(12px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+
+.titlePoster .titlePosterBackdrop i,
+.titlePoster .titlePosterImg i {
+  position: absolute;
+}
+
+.titleTagline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 0px solid;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: inherit;
+  padding: 5px;
+  margin: 0px 7px 10px 7px;
+  font-style: italic;
+  color: var(--font-color);
+}

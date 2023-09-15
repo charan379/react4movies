@@ -1,0 +1,557 @@
+/* Title card structure */
+/* in px only
+
+Height = ?
+
+     ##################################
+     #                                #  
+     # <- (Width = Height X 0.635) -> #
+     #                                #
+     #      #- title Poster -#        #
+     #  Height = Height x 0.8735      #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     #                                #
+     ##################################
+     #    #- Title     -#             #      
+     #  Height = Height x 0.127       #
+     #                                #
+     ##################################
+*/
+
+/* title card */
+/* card */
+.titleCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 0px solid;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px 6px 3px 3px;
+  z-index: 1;
+  width: 200px;
+  height: 315px; /* 275px img width + 40px for title */
+  margin: 10px 7px 10px 7px;
+  transition: scale 0.5s ease-in-out, transform 0.3s ease-in-out;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* title poster */
+.titleCard .cardPoster .cardPosterImg,
+.titleCard .cardPoster .cardPosterBackdrop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 275px; /* titleCard width 40px */
+  overflow: hidden;
+  position: absolute;
+  border-radius: 6px 8px 0 0;
+  right: 0px;
+}
+
+.titleCard .cardPoster .cardPosterBackdrop {
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.titleCard .cardPoster .cardPosterImg {
+  z-index: 2;
+}
+
+.titleCard .cardPoster .cardPosterImg img {
+  width: inherit;
+  height: inherit;
+  transition: opacity 0.8s ease-in-out;
+  filter: blur(12px);
+  z-index: 3;
+}
+
+.titleCard .cardPoster .cardPosterImg img[data-loading="true"] {
+  filter: blur(12px);
+}
+
+.titleCard .cardPoster .cardPosterImg img[data-loading="false"] {
+  animation: blurAnimation 1s linear;
+  filter: blur(0px);
+}
+
+@keyframes imgBlurAnimation {
+  from {
+    filter: blur(12px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+
+.titleCard .cardPoster .cardPosterBackdrop i,
+.titleCard .cardPoster .cardPosterImg i {
+  position: absolute;
+}
+
+/* titile */
+.titleCard .title {
+  bottom: 0px;
+  right: 0px;
+  padding: 6px 3px 2px 5px;
+  height: 40px;
+  width: 200px;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  z-index: 2;
+  font-weight: 300;
+  font-size: medium;
+  /* font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; */
+  color: var(--title-box-title-color);
+  background-color: var(--title-box-title-bg-color);
+  border-top: 3px solid var(--title-box-title-color);
+}
+
+/* title Year */
+.titleCard .year {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  bottom: 40px;
+  left: 0px;
+  height: 20px;
+  width: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0px 5px 0px 0px;
+  padding: 2px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
+}
+
+/* title Ratting */
+.titleCard .ratting {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  bottom: 40px;
+  right: 0px;
+  height: 20px;
+  width: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px 0px 0px 0px;
+  padding: 2px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+  z-index: 3;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
+}
+
+.titleCard .northEastBlock {
+  position: absolute;
+  font-weight: 500;
+  font-size: 14px;
+  top: 0;
+  right: 0;
+  width: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px 0 3px 3px;
+  padding: 0px;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  align-content: center;
+  color: var(--font-color);
+  background-color: var(--ui-element-color);
+}
+
+/* for 530px screens and below */
+@media (max-width: 530px) {
+  /* title card */
+  .titleCard {
+    /* margin-top: 10px; */
+    /* margin-right: 10px; */
+    width: 178px;
+    height: 280px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 178px;
+    height: 245px;
+  }
+
+  .titleCard .title {
+    padding: 5px 3px 2px 5px;
+    height: 35.5px;
+    width: 178px;
+    font-size: small;
+  }
+
+  .titleCard .year {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .titleCard .ratting {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 530px screens and below */
+@media (max-width: 530px) {
+  /* title card */
+  .titleCard {
+    /* margin-top: 10px; */
+    /* margin-right: 10px; */
+    width: 178px;
+    height: 280px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 178px;
+    height: 245px;
+  }
+
+  .titleCard .title {
+    padding: 5px 3px 2px 5px;
+    height: 35.5px;
+    width: 178px;
+    font-size: small;
+  }
+
+  .titleCard .year {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .titleCard .ratting {
+    font-size: 12px;
+    bottom: 35.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 485px screens and below */
+@media (max-width: 485px) {
+  /* title card */
+  .titleCard {
+    width: 162.5px;
+    height: 256px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 162.5px;
+    height: 223.6px;
+  }
+
+  .titleCard .title {
+    padding: 5px 3px 2px 5px;
+    height: 32.5px;
+    width: 162.5px;
+    font-size: small;
+  }
+
+  .titleCard .year {
+    font-size: 12px;
+    bottom: 32.5px;
+    height: 17px;
+    width: 35.5px;
+  }
+
+  .titleCard .ratting {
+    font-size: 12px;
+    bottom: 32.5px;
+    height: 17px;
+    width: 25px;
+  }
+}
+
+/* for 455px screens and below */
+@media (max-width: 455px) {
+  /* title card */
+  .titleCard {
+    width: 145px;
+    height: 229px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 145px;
+    height: 200px;
+  }
+
+  .titleCard .title {
+    padding: 5px 3px 2px 5px;
+    height: 29px;
+    width: 145px;
+    font-size: 12px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 29px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 29px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 420px screens and below */
+@media (max-width: 420px) {
+  /* title card */
+  .titleCard {
+    width: 134.5px;
+    height: 212.5px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 134.5px;
+    height: 185.6px;
+  }
+
+  .titleCard .title {
+    padding: 4px 3px 2px 5px;
+    height: 27px;
+    width: 134.5px;
+    font-size: 12px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 27px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 27px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 389px screens and below */
+@media (max-width: 389px) {
+  /* title card */
+  .titleCard {
+    width: 119px;
+    height: 189px;
+    margin: 5px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 119px;
+    height: 165px;
+  }
+
+  .titleCard .title {
+    padding: 3px 3px 2px 5px;
+    height: 24px;
+    width: 119px;
+    font-size: 10px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 24px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 360px screens and below */
+@media (max-width: 359px) {
+  /* title card */
+  .titleCard {
+    width: 109.5px;
+    height: 172px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 109.5px;
+    height: 150px;
+  }
+
+  .titleCard .title {
+    padding: 3px 3px 2px 5px;
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 339px screens and below */
+@media (max-width: 339px) {
+  /* title card */
+  .titleCard {
+    width: 109.5px;
+    height: 172px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 110px;
+    height: 150px;
+  }
+
+  .titleCard .title {
+    padding: 3px 3px 2px 5px;
+    height: 22px;
+    width: 109.5px;
+    font-size: 10px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 29px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 22px;
+    height: 15px;
+    width: 23px;
+  }
+}
+
+/* for 338px screens and below */
+@media (max-width: 320px) {
+  /* title card */
+  .titleCard {
+    width: 101px;
+    height: 156px;
+    margin: 5px;
+  }
+
+  /* title poster */
+  .titleCard .cardPoster .cardPosterImg,
+  .titleCard .cardPoster .cardPosterBackdrop {
+    width: 101px;
+    height: 136px;
+  }
+
+  .titleCard .title {
+    padding: 1px 3px 1px 3px;
+    height: 20px;
+    width: 101px;
+    font-size: 10px;
+  }
+
+  .titleCard .info {
+    width: 101px;
+    height: 136px;
+  }
+
+  .titleCard .year {
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
+    width: 29px;
+  }
+
+  .titleCard .ratting {
+    font-size: 10px;
+    bottom: 20px;
+    height: 12px;
+    width: 23px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .titleCard:hover {
+    border-radius: 8px 8px 3px 3px;
+    scale: 1.05;
+    transform: translateY(-7px);
+  }
+
+  /* change titleCard color on hover */
+
+  .titleCard:hover .year,
+  .titleCard:hover .ratting,
+  .titleCard:hover .northEastBlock,
+  .titleCard:hover .title,
+  .titleCard:hover {
+    color: var(--ui-element-hover-font-color);
+    background-color: var(--ui-element-hover-color);
+  }
+
+  .titleCard:hover .title {
+    border-top: 3px solid var(--ui-element-hover-font-color);
+  }
+}

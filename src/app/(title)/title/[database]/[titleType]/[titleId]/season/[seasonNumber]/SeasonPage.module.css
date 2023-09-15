@@ -1,0 +1,171 @@
+.seasonPage {
+  display: grid;
+  width: 100%;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "linkTreeSection"
+    "mainInfoSection"
+    "episodesSection"
+    "linksSection"
+    "imagesSection"
+    "videosSection";
+  padding: 15px;
+  color: var(--font-color);
+  background: var(--bg-color);
+}
+
+.seasonPage .linkTreeSection {
+  grid-area: linkTreeSection;
+  display: flex;
+}
+
+.seasonPage .linkTreeSection ul {
+  list-style: none;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
+}
+
+.seasonPage .linkTreeSection ul li.linkTreeChild {
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+  float: left;
+  font-size: 1rem;
+}
+
+.seasonPage .mainInfoSection {
+  grid-area: mainInfoSection;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 0.1fr 0.9fr;
+  grid-template-areas:
+    "posterSection infoSection"
+    "actionButtonsSection actionButtonsSection";
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.19);
+  background-color: var(--ui-element-color);
+}
+
+.seasonPage .mainInfoSection .posterSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.seasonPage .mainInfoSection .infoSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.seasonPage .mainInfoSection .infoSection ul {
+  list-style: none;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 0rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
+}
+
+.seasonPage .mainInfoSection .actionButtonsSection {
+  grid-area: actionButtonsSection;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.seasonPage .mainInfoSection .actionButtonsSection .actionButtons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+}
+
+.seasonPage
+  .mainInfoSection
+  .actionButtonsSection
+  .actionButtons
+  .actionButton {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 10px 5px 10px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18), 0 1px 2px 0 rgba(0, 0, 0, 0.167);
+  width: 50px;
+  text-align: center;
+  height: 50px;
+  line-height: 10px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  cursor: pointer;
+  border-width: 0px;
+  font-size: 1.2rem;
+}
+
+.seasonPage
+  .mainInfoSection
+  .actionButtonsSection
+  .actionButtons
+  .actionButton {
+  color: var(--ui-element-hover-font-color);
+  background-color: var(--ui-element-hover-color);
+}
+
+.seasonPage
+  .mainInfoSection
+  .actionButtonsSection
+  .actionButtons
+  .actionButton:hover {
+  color: var(--font-color);
+  background-color: var(--bg-color);
+}
+
+.seasonPage .episodesSection {
+  grid-area: episodesSection;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.seasonPage .imagesSection {
+  grid-area: imagesSection;
+}
+
+.seasonPage .videosSection {
+  grid-area: videosSection;
+}
+
+.seasonPage .linksSection {
+  grid-area: linksSection;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 620px) {
+  .seasonPage .mainInfoSection {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "posterSection"
+      "infoSection"
+      "actionButtonsSection";
+  }
+}

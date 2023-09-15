@@ -1,0 +1,64 @@
+.pagination {
+  margin: 25px 10px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px 5px 5px;
+}
+
+.pagination .pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px 0px 0px 0px;
+}
+
+.pages .page {
+  display: grid;
+  padding: 0px;
+  border: 0px solid;
+  border-radius: 100px;
+  width: 35px;
+  height: 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  text-decoration: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.pages .page.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pages .page {
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+}
+
+.pages .page.active {
+  background-color: var(--ui-element-hover-color);
+  color: var(--ui-element-hover-font-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pages .page:hover {
+    background-color: var(--ui-element-hover-color);
+    color: var(--ui-element-hover-font-color);
+  }
+}

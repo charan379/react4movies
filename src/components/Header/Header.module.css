@@ -1,0 +1,133 @@
+/* Header  */
+
+/* Nav Bar */
+.navbar {
+  display: flex;
+  padding: 5px 15px 5px 15px !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-height: 55px;
+  z-index: 1010;
+  align-items: stretch;
+  background-color: var(--bg-color);
+  border-bottom: 1.4px solid var(--font-color);
+  color: var(--font-color);
+}
+
+.navbar .navTitle {
+  font-size: 24px;
+  letter-spacing: -0.4px;
+  word-spacing: 1.6px;
+  color: #fff;
+  font-weight: normal;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.navbar .navTitle img {
+  width: 40px;
+  border-radius: 6px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.navbar .navItems .navItem {
+  list-style: none;
+  display: inline;
+  padding: 0 2px 0 2px;
+  text-align: right;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.navbar .navItems {
+  margin-bottom: auto;
+  margin-left: auto;
+}
+
+.nav-items .navImg {
+  list-style: none;
+  display: inline-block;
+  padding: 0 0px 0 0px;
+  text-align: center;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+}
+
+.navbarDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbarDropdownContent {
+  float: right;
+  right: 0px;
+  display: none;
+  position: absolute;
+  min-width: 180px;
+  width: calc(20vw);
+  border-radius: 10px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  max-width: 320px;
+}
+
+.navbarDropdownContent a {
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: left;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.navbarDropdownContent button {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: left;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  border-width: 0px;
+  background-color: var(--ui-element-color);
+  color: var(--font-color);
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarDropdown .navbarDropdownContent.show {
+  display: block;
+}
+
+@media (max-width: 580px) {
+  .navbar .navTitle {
+    display: block;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navbarDropdownContent a:hover,
+  .navbarDropdownContent button:hover {
+    background-color: var(--ui-element-hover-color);
+    color: var(--ui-element-hover-font-color);
+  }
+}

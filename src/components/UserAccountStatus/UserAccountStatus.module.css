@@ -1,0 +1,108 @@
+.userAccountStatus {
+  display: grid;
+  grid-template-areas:
+    "topSection topSection"
+    "loaderSection loaderSection"
+    "leftSection rightSection"
+    "errorSection errorSection";
+  grid-template-columns: 3fr 2fr;
+  row-gap: 20px;
+  align-items: start;
+  margin-top: 1rem;
+  color: var(--font-color);
+  justify-content: start;
+  justify-items: stretch;
+}
+
+.userAccountStatus .topSection {
+  grid-area: topSection;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.userAccountStatus .loaderSection {
+  grid-area: loaderSection;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.userAccountStatus .leftSection {
+  grid-area: leftSection;
+  display: flex;
+  border-right: 1px solid var(--font-color-opacity-half);
+  padding: 5px;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(98%);
+}
+
+.userAccountStatus .rightSection {
+  grid-area: rightSection;
+  padding: 50px 4px 10px 4px;
+}
+
+.userAccountStatus .errorSection {
+  grid-area: errorSection;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noAccountMessage {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #888;
+  text-align: left;
+}
+
+.welcomeMessageSection {
+  margin: 1rem;
+}
+
+.inactiveMessage {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  color: #888;
+  text-align: left;
+}
+
+@media (max-width: 720px) {
+  .userAccountStatus {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "topSection"
+      "loaderSection"
+      "leftSection"
+      "rightSection"
+      "errorSection";
+  }
+
+  .userAccountStatus .leftSection {
+    grid-area: leftSection;
+    border-right: 0px solid black;
+  }
+
+  .userAccountStatus .rightSection {
+    grid-area: rightSection;
+    padding: 10px 4px 10px 4px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .userAccountStatus {
+    display: grid;
+    grid-template-areas:
+      "topSection topSection"
+      "loaderSection loaderSection"
+      "leftSection rightSection"
+      "errorSection errorSection";
+    grid-template-columns: 3.4fr 1.6fr;
+  }
+}
