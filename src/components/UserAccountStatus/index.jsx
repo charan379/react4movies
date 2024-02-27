@@ -5,6 +5,7 @@ import React, { Suspense, useState } from "react";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
 import FindUserForm from "../FindUserForm";
 import UserStatusCard from "../UserStatusCard";
+import Link from "next/link";
 
 const VerificationForm = React.lazy(() => import("../UserVerificationForm"));
 
@@ -52,9 +53,12 @@ const UserAccountStatus = (props) => {
               )}
               {/* Active */}
               {userAccount?.status === "Active" && (
+                <>
                 <p className={styles.inactiveMessage}>
                   {`Congratulations!💐Your account has been successfully created and activated😊. Now, you will be able to access all the features and benefits of our website💻. Thank you for joining us and welcome aboard!🤗`}
                 </p>
+                <Link className={styles.loginLink} href="/">Click here to login !</Link>
+                </>
               )}
             </div>
             {/*  */}
