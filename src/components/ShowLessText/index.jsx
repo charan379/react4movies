@@ -12,7 +12,7 @@ const ShowLessText = ({ text, limit }) => {
   }
   return (
     <>
-      {showMore ? text : `${text.substring(0, limit ?? 150)}`}
+      {showMore ? text : `${text?.substring(0, limit ?? 150)}`}
       <span
         style={{
           display: "inline",
