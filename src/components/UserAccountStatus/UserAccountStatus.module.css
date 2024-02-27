@@ -72,6 +72,17 @@
   text-align: left;
 }
 
+.loginLink {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  color: #1793b3;
+  text-align: left;
+}
+
+.loginLink:hover {
+  color: #2e17b3;
+}
+
 @media (max-width: 720px) {
   .userAccountStatus {
     display: grid;

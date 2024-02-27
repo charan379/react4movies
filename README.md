@@ -1,6 +1,6 @@
 # react4movies :clapper:
 
-[![VERSION](https://img.shields.io/badge/VERSION-v2.5.2-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-30--June--2023-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![VERSION](https://img.shields.io/badge/VERSION-v2.5.3-sucess)](https://github.com/charan379/moviebunkers) [![LAST UPDATE](https://img.shields.io/badge/LAST--UPDATED-28--February--2024-sucess)](https://github.com/charan379/react4movies) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/286d2ee8-b609-4db1-886a-99b2f3a4bab2/deploy-status)](https://app.netlify.com/sites/moviebunkers01/deploys)
 
 React/NextJs based web client for [MovieBunkers](https://github.com/charan379/moviebunkers)
@@ -28,7 +28,6 @@ React/NextJs based web client for [MovieBunkers](https://github.com/charan379/mo
 - Set movie as seee, unseen, star, favourite
 - Toggle between light/dark themes
 - Multi user view
-  - Guest
   - User
   - Moderator
   - Admin
@@ -70,9 +69,6 @@ To run this project, you will need to add the following environment variables to
 `NEXT_PUBLIC_MOVIEBUNKERS_API`  
 `NEXT_PUBLIC_MOVIEBUNKERS_IMAGES`  
 `NEXT_PUBLIC_TMDB_API_WRAPPER`
-`NEXT_PUBLIC_MOVIEBUNKERS_GUEST_TOKEN`  
-`NEXT_PUBLIC_GUEST_USERNAME`  
-`NEXT_PUBLIC_GUEST_PASSWORD`
 `NODE_ENV`
 `NEXTAUTH_SECRET`
 `NEXTAUTH_URL`
@@ -108,8 +104,6 @@ To run this project, you will need to add the following environment variables to
 ## Todo
 
 - Admin page to manage users
-- Password reset page
-- User Registration page
 - Code cleaning
 - [PWA](https://en.wikipedia.org/wiki/Progressive_web_app)
 

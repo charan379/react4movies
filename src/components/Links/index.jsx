@@ -20,6 +20,8 @@ import LinkCard from "./LinkCard/Index";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
+import { useSession } from "next-auth/react";
+import { LevelTwo } from "@/constants/AuthRoles";
 
 export default function LinkList({ auth, parentId, limit }) {
   const { completeProgress, incProgress20 } = useProgressBar(); // A hook for displaying a progress bar
@@ -38,6 +40,8 @@ export default function LinkList({ auth, parentId, limit }) {
 
   const [isLoading, setIsLoading] = useState(false); // A flag indicating whether data is being loaded
 
+  const { data: session } = useSession();
+  
   const handleDeleteLink = async ({ id }) => {
     try {
       incProgress20();
@@ -184,6 +188,7 @@ export default function LinkList({ auth, parentId, limit }) {
 
   return (
     <div className={styles.links}>
+      {LevelTwo.includes(session?.user?.role) &&      
       <div className={styles.buttons}>
         <button data-type="add" onClick={() => setOpenForm(true)}>
           New Link
@@ -191,7 +196,7 @@ export default function LinkList({ auth, parentId, limit }) {
             <FontAwesomeIcon icon={faPlusCircle} />
           </span>
         </button>
-      </div>
+      </div>}
       <div className={styles.linkList}>
         {links.map((link, index) => {
           return (

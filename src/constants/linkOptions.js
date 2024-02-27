@@ -1,6 +1,6 @@
 export const linkTypeOptions = [
     { value: "Direct File", label: "Direct File" },
-    { value: "Torrent Magnet", label: "Torrent Magnet" },
+    // { value: "Torrent Magnet", label: "Torrent Magnet" },
     { value: "Youtube", label: "Youtube" },
     { value: "Online Stream", label: "Online Stream" },
     { value: "External Site Link", label: "External Site Link" },

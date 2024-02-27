@@ -3,7 +3,7 @@
 import styles from "./Login.module.css";
 import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useToastify } from "@/lib/hooks/useToastify";
 import BarsLoadingAnimation from "../BarsLoadingAnimation";
@@ -15,9 +15,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Login() {
   // Import hooks and components
+  const { status: authStatus } = useSession();
   const [isLoading, setIsLoading] = useState(false);
-  const [userName, setUsername] = useState(""); // set the initial value of the username to the guest username from the AppConfig
-  const [password, setPassword] = useState(""); // set the initial value of the password to the guest password from the AppConfig
+  const [userName, setUsername] = useState(""); 
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(""); // set the initial value of the error message to an empty string
   const [showPassword, setShowPassword] = useState(false);
   //
@@ -121,7 +122,7 @@ export default function Login() {
 
           <div className={styles.container}>
             {/* Login button */}
-            {!isLoading && (
+            {!isLoading && authStatus !== "authenticated" && (
               <button
                 className={styles.loginButton}
                 style={{ float: "left" }}
@@ -133,6 +134,16 @@ export default function Login() {
 
             {isLoading && <BarsLoadingAnimation />}
           </div>
+
+          {authStatus === "authenticated" ? <div className={styles.successMessage}>
+            Successully Logged In,
+            <br />
+            Redirecting to requested page, if not redirected 
+            <Link className={styles.loginLink} href={searchParams.get("callbackUrl") ?? "/"}>
+              Click Here
+            </Link>
+          </div>
+            : ""}
           <br />
         </form>
         {/* Links */}
