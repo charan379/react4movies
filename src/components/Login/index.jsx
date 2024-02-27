@@ -54,11 +54,13 @@ export default function Login() {
       if (response?.status === 200) {
         if (!!searchParams.has("callbackUrl")) {
           const callbackUrl = new URL(searchParams.get("callbackUrl"));
-          router.push(`${callbackUrl.pathname}`, {
-            query: {
-              ...Object.fromEntries(callbackUrl.searchParams.entries()),
-            },
-          });
+          setTimeout(() => {
+            router.push(`${callbackUrl.pathname}`, {
+              query: {
+                ...Object.fromEntries(callbackUrl.searchParams.entries()),
+              },
+            });
+          }, 300)
           return;
         } else {
           if (response?.status === 200) router.back();
