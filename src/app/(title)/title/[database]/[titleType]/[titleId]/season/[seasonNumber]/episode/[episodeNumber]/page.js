@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth";
 import convertIsoDate from "@/lib/utils/convertIsoDate";
 import ShowLessText from "@/components/ShowLessText";
 import PlayTrailer from "@/components/TitleActions/PlayTrailer";
-import { LevelOne } from "@/constants/AuthRoles";
+import { LevelTwo } from "@/constants/AuthRoles";
 import LinkList from "@/components/Links";
 import { fetchTmdbTvSeasonEpisode } from "@/lib/api/themoviedb/fetchTmdbTvSeasonEpisode";
 import { fetchTvSeasonEpisodes } from "@/lib/api/moviebunkers/methods/fetchTvSeasonEpisodes";
@@ -304,7 +304,7 @@ export default async function EpisodePage({
           </div>
 
           {/* links section */}
-          {database === "mbdb" && LevelOne.includes(session?.user?.role) && (
+          {database === "mbdb" && LevelTwo.includes(session?.user?.role) && (
             <div className={styles.linksSection}>
               <h2 className="page-section-heading" id="links">
                 Links

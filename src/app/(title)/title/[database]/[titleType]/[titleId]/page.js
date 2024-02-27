@@ -12,7 +12,7 @@ import React from "react";
 import TitleActions from "@/components/TitleActions";
 import TitleDetails from "@/components/TitleDetails";
 import TitlePoster from "@/components/TitlePoster";
-import { LevelOne } from "@/constants/AuthRoles";
+import { LevelTwo } from "@/constants/AuthRoles";
 //
 import dynamic from "next/dynamic";
 import BarsLoadingAnimation from "@/components/BarsLoadingAnimation";
@@ -185,7 +185,7 @@ export default async function TitlePage({
           </div>
 
           {/* links */}
-          {database === "mbdb" && LevelOne.includes(session?.user?.role) && (
+          {database === "mbdb" && LevelTwo.includes(session?.user?.role) && (
             <div className={styles.titleLinksSection}>
               <h2 className="page-section-heading" id="links">
                 Links

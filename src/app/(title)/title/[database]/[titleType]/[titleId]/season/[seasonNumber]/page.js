@@ -12,7 +12,7 @@ import ShowLessText from "@/components/ShowLessText";
 import PlayTrailer from "@/components/TitleActions/PlayTrailer";
 import EpisodeList from "@/components/Episode/Episodes";
 import LinkList from "@/components/Links";
-import { LevelOne } from "@/constants/AuthRoles";
+import { LevelTwo } from "@/constants/AuthRoles";
 import { fetchTmdbTvSeason } from "@/lib/api/themoviedb/fetchTmdbTvSeason";
 import { fetchTvSeasons } from "@/lib/api/moviebunkers/methods/fetchTvSeasons";
 
@@ -313,7 +313,7 @@ export default async function SeasonsPage({
           </div>
 
           {/* links section */}
-          {database === "mbdb" && LevelOne.includes(session?.user?.role) && (
+          {database === "mbdb" && LevelTwo.includes(session?.user?.role) && (
             <div className={styles.linksSection}>
               <h2 className="page-section-heading" id="links">
                 Links
