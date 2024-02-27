@@ -13,8 +13,8 @@ export const authOptions = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: { label: "Username", type: "text", placeholder: "guest" },
-                password: { label: "Password", type: "password" }
+                username: { label: "Username", type: "text"},
+                password: { label: "Password", type: "password"}
             },
 
             async authorize(credentials, req) {
@@ -87,7 +87,9 @@ export const authOptions = {
 
     session: {
         strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60, // 30 days
+        //maxAge: 30 * 24 * 60 * 60, // 30 days
+        //maxAge: 3 * 60,  // mins
+        maxAge: 8 * 60 * 60 * 1000 // 8 hours
     },
 
     pages: {

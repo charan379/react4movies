@@ -1,13 +1,10 @@
 const Roles = Object.freeze({
     ADMIN: "Admin",
     MODERATOR: "Moderator",
-    USER: "User",
-    GUEST: "Guest",
+    USER: "User"
 });
 
-export const LevelZero = [...Object.values(Roles)];
-
-export const LevelOne = [Roles.ADMIN, Roles.MODERATOR, Roles.USER];
+export const LevelOne = [...Object.values(Roles)];
 
 export const LevelTwo = [Roles.ADMIN, Roles.MODERATOR];
 

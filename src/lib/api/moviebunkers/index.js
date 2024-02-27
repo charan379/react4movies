@@ -7,7 +7,7 @@ export function moviebunkersAPI(auth = { token: null }) {
         timeout: 300000,
         baseURL: AppConfig.MOVIEBUNKERS_API,
         headers: {
-            Authorization: `Bearer ${auth?.token || AppConfig.MOVIEBUNKERS_GUEST_TOKEN}`,
+            Authorization: `Bearer ${auth?.token}`,
         }
     })
 
