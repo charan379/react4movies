@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// Custom hooks for managing authentication, theme, and displaying toast notifications
+// Custom hooks for managing authentication, and displaying toast notifications
 import { signOut } from "next-auth/react";
 import { useToastify } from "@/lib/hooks/useToastify";
 import { useRouter } from "next/navigation";
@@ -21,9 +21,6 @@ const Logout = ({ open, close }) => {
 
   // Create a ref for the logout dialog box
   const logoutRef = useRef(null);
-
-  // Get the navigate function from the useNavigate hook
-  const router = useRouter();
 
   // Function to handle logout form submission
   const handleSubmit = async (event) => {
