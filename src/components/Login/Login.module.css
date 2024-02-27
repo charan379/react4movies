@@ -114,6 +114,23 @@
   border-radius: 5px;
 }
 
+.loginModal .successMessage {
+  text-align: left;
+  color: rgb(31, 185, 126);
+  font-weight: bold;
+}
+
+.loginLink {
+  font-size: 1rem;
+  margin: 0.5rem;
+  color: #1793b3;
+  text-align: left;
+}
+
+.loginLink:hover {
+  color: #2e17b3;
+}
+
 .loginModal .loginButton:hover {
   background: #604add;
   color: #ffffff;
