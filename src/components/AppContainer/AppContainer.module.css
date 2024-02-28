@@ -38,8 +38,12 @@ nav[data-role="sidebar"][data-open="true"] + .outlet {
   background-color: inherit;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 720px) {
   /* .main-container {
     margin-left: 70px;
   } */
+
+  nav[data-role="sidebar"][data-open="true"] + .outlet {
+    margin-left: 70px;
+  }
 }
