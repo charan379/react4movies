@@ -47,21 +47,21 @@ export default function Header() {
   // Get the toast container and toast functions from the useToastify hook
   const { ToastContainer, toastContainerOptions, toast } = useToastify();
 
-  const logoutDelay = Math.max(0, new Date(session?.expires).getTime() - new Date().getTime())
-  
-  console.log("logout at " + session?.expires, logoutDelay)
-  
+  const logoutDelay = Math.max(0, new Date(session?.user?.expiresAt).getTime() - new Date().getTime());
+
+  console.log("session expires at ", new Date(session?.user?.expiresAt), "expires in ",  logoutDelay)
+
   setTimeout(() => {
-    if(!session?.expires || logoutDelay === NaN) return;
+    if(session?.user?.expiresAt === undefined | session?.auth?.token === undefined) return;
     // Show a loading toast message while logging out
     const toastId = toast.loading("Authentication Expiring...");
     // Update the toast message to indicate that the user has successfully logged out
     toast.update(toastId, {
-      render: `Please Authenticate...`,
+      render: `Authentication Expired`,
       type: "warning",
       isLoading: false,
       autoClose: 3000,
-      delay: 600
+      delay: 100
     });
 
     setTimeout(() => {

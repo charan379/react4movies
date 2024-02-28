@@ -16,18 +16,18 @@ export default withAuth(
         const token = request.nextauth.token;
 
         // if no token then re-direct to login
-        if(!token || !token?.loginDate || !token?.accessToken) {
+        if(token?.accessToken === undefined) {
             return NextResponse.redirect(
                 new URL(`/login?message=Un Authenticated User!&callbackUrl=${encodeURIComponent(request.nextUrl.href)}`, request?.url)
             );
         };
 
-        // if 8 hours completed from time of login then re-login
-        // if(new Date() > new Date(token?.loginDate).getTime() + 8 * 60 * 60 * 1000) {
-        //     return NextResponse.redirect(
-        //         new URL(`/login?message=Authentication Expired!&callbackUrl=${encodeURIComponent(request.nextUrl.href)}`, request?.url)
-        //     );
-        // }
+        // if token expired then re-login
+        if(new Date(token?.expiresAt) <= new Date()) {
+            return NextResponse.redirect(
+                new URL(`/login?message=Authentication Expired!&callbackUrl=${encodeURIComponent(request.nextUrl.href)}`, request?.url)
+            );
+        }
 
         if (request.nextUrl.pathname.startsWith("/admin") && !LevelThere.includes(token?.role))
             return NextResponse.redirect(
