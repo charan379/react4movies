@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Custom hooks for managing authentication, and displaying toast notifications
 import { signOut } from "next-auth/react";
 import { useToastify } from "@/lib/hooks/useToastify";
-import { useRouter } from "next/navigation";
 import { useDisableBodyScrollOnModalOpen } from "@/lib/hooks/useDisableBodyScrollOnModalOpen";
 
 // Component for logging out a user
@@ -33,7 +32,7 @@ const Logout = ({ open, close }) => {
       // Remove user authentication details from the app
       setTimeout(() => {
         signOut();
-      }, 1000);
+      }, 300);
 
       // Update the toast message to indicate that the user has successfully logged out
       toast.update(toastId, {
@@ -41,6 +40,7 @@ const Logout = ({ open, close }) => {
         type: "success",
         isLoading: false,
         autoClose: 3000,
+        delay: 500
       });
 
       // Navigate to the home page and close the logout dialog box

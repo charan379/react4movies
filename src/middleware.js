@@ -9,7 +9,7 @@ export default withAuth(
 
         if(request.nextUrl.pathname === "/") {
             return NextResponse.redirect(
-                new URL(`/titles/mbdb`, request?.url)
+                new URL(`/titles/mbdb?from=home_path_redirect`, request?.url)
             );
         };
 
@@ -23,11 +23,11 @@ export default withAuth(
         };
 
         // if 8 hours completed from time of login then re-login
-        if(new Date() > new Date(token?.loginDate).getTime() + 8 * 60 * 60 * 1000) {
-            return NextResponse.redirect(
-                new URL(`/login?message=Authentication Expired!&callbackUrl=${encodeURIComponent(request.nextUrl.href)}`, request?.url)
-            );
-        }
+        // if(new Date() > new Date(token?.loginDate).getTime() + 8 * 60 * 60 * 1000) {
+        //     return NextResponse.redirect(
+        //         new URL(`/login?message=Authentication Expired!&callbackUrl=${encodeURIComponent(request.nextUrl.href)}`, request?.url)
+        //     );
+        // }
 
         if (request.nextUrl.pathname.startsWith("/admin") && !LevelThere.includes(token?.role))
             return NextResponse.redirect(

@@ -141,7 +141,7 @@ export default function Login() {
             Successully Logged In,
             <br />
             Redirecting to requested page, if not redirected 
-            <Link className={styles.loginLink} href={searchParams.get("callbackUrl") ?? "/"}>
+            <Link className={styles.loginLink} href={searchParams.get("callbackUrl") ?? "/titles/mbdb?from=login_page"}>
               Click Here
             </Link>
           </div>

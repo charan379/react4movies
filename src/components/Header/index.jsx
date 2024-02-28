@@ -8,7 +8,7 @@ import userSvg from "@/assets/icons/user.svg";
 import daySvg from "@/assets/icons/day.svg";
 import nightSvg from "@/assets/icons/night.svg";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "@/redux/hooks/useTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +16,7 @@ import { useOnOutSideClick } from "@/lib/hooks/useOnOutSideClick";
 import Logout from "../Logout";
 import { useMbdbQuery } from "@/redux/hooks/useMbdbQuery";
 import { useTmdbQuery } from "@/redux/hooks/useTmdbQuery";
+import { useToastify } from "@/lib/hooks/useToastify";
 
 export default function Header() {
   //
@@ -42,6 +43,30 @@ export default function Header() {
       setShowDrop(false);
     }, [])
   );
+
+  // Get the toast container and toast functions from the useToastify hook
+  const { ToastContainer, toastContainerOptions, toast } = useToastify();
+
+  const logoutDelay = Math.max(0, new Date(session?.expires).getTime() - Date.now())
+
+  setTimeout(() => {
+    if(!session?.expires) return;
+    // Show a loading toast message while logging out
+    const toastId = toast.loading("Authentication Expiring...");
+    // Update the toast message to indicate that the user has successfully logged out
+    toast.update(toastId, {
+      render: `Please Authenticate...`,
+      type: "warning",
+      isLoading: false,
+      autoClose: 3000,
+      delay: 600
+    });
+
+    setTimeout(() => {
+      signOut();
+    }, 10)
+  }, logoutDelay);
+
   return (
     <>
       <nav className={styles.navbar} data-role="header">
@@ -146,6 +171,8 @@ export default function Header() {
       {openLogout ? (
         <Logout open={openLogout} close={() => setOpenLogout(false)} />
       ) : null}
+      {/*  */}
+      <ToastContainer {...toastContainerOptions} />
     </>
   );
 }
