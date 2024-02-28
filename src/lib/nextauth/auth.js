@@ -60,7 +60,8 @@ export const authOptions = {
                     token.updatedAt = user?.updatedAt,
                     token.createdAt = user?.createdAt,
                     token.accessToken = user?.token
-                token.loginDate = new Date();
+                    token.loginDate = user?.loggedInAt;
+                    token.expiresAt = user?.tokenExpiresAt;
             }
             return token;
         },
@@ -78,7 +79,8 @@ export const authOptions = {
                 status: token?.status,
                 updatedAt: token?.updatedAt,
                 createdAt: token?.createdAt,
-                loginDate: token?.loginDate
+                loginDate: token?.loginDate,
+                expiresAt: token?.expiresAt,
             }
 
             return session;
@@ -89,7 +91,7 @@ export const authOptions = {
         strategy: "jwt",
         //maxAge: 30 * 24 * 60 * 60, // 30 days
         // maxAge: 1 * 60,  // 1 mins
-       maxAge: 8 * 60 * 60 // 8 hours
+        maxAge: 8 * 60 * 60 // 8 hours
     },
 
     pages: {
